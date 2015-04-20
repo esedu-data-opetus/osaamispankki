@@ -340,7 +340,7 @@ function user_data($hloID){
 
 
 
-$dbcon = mysqli_connect(HOST,USER,PASS,DBNAME);*/
+
 	
 	$hloID = (int)$hloID;
 	
@@ -374,7 +374,7 @@ function user_exists($tunnus) {
 
 
 
-$dbcon = mysqli_connect(HOST,USER,PASS,DBNAME); */
+
 
 	$result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT hloID FROM henkilotiedot WHERE tunnus = '$tunnus' ");
 	//return(mysql_result(mysqli_query($GLOBALS["___mysqli_ston"], "SELECT COUNT(userid) FROM user WHERE username = '$username'"), 0) == 1) ? true : false;
