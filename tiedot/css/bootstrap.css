@@ -87,6 +87,15 @@ sub {
 img {
   border: 0;
 }
+.profile {
+	border:1px;
+	padding:3px;
+}
+
+.profile img{
+	width:19%;
+}
+
 svg:not(:root) {
   overflow: hidden;
 }

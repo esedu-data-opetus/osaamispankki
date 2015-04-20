@@ -1,9 +1,11 @@
 <?php
+include 'connect.php';
+
 function change_profile_image($hloID, $file_temp, $file_extn){
-    $dbcon = mysqli_connect(HOST,USER,PASS,DBNAME);
+    //$dbcon = mysqli_connect(HOST,USER,PASS,DBNAME);
     $file_path = 'kuvat/profile/' . substr(md5(time()), 0, 10) . '.' . $file_extn;
     move_uploaded_file($file_temp, $file_path);
-    mysqli_query($dbcon, "UPDATE henkilotiedot SET profile = '" . $file_path ."' WHERE hloID = " . (int)$hloID);
+    mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE henkilotiedot SET profile = '" . $file_path ."' WHERE hloID = " . (int)$hloID);
 }
 function lukematon_viesti($username){
 

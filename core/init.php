@@ -1,7 +1,6 @@
 <?php
 session_start();
 //error_reporting(0);
-require 'functions/db_connect.php';
 require 'functions/general.inc.php';
 require 'functions/users.php'; 
 
