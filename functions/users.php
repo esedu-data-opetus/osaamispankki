@@ -279,11 +279,7 @@ function update_user($update_data) {
 	}
 	
 function change_password($hloID, $salasana) {
- //  $dbcon = mysqli_connect(HOST,USER,PASS,DBNAME);
-/*define('HOST','paja.esedu.fi');
-define('USER', 'op_user');
-define('PASS', 'op_Passu!');
-define('DBNAME', 'osaamispankki');*/
+
 
 	$hloID = (int)$hloID;
 	$salasana = md5($salasana);
@@ -340,10 +336,7 @@ function register_user($tunnus,$salasana,$tyyppi,$eNimi,$sNimi,$email_code) {
 
 function user_data($hloID){
     
-/*define('HOST','paja.esedu.fi');
-define('USER', 'op_user');
-define('PASS', 'op_Passu!');
-define('DBNAME', 'osaamispankki');
+
 
 
 
@@ -377,10 +370,7 @@ function user_exists_ryhma($nimi,$ryhmaid) {
 	
 	}
 function user_exists($tunnus) {
-/*	define('HOST','paja.esedu.fi');
-define('USER', 'op_user');
-define('PASS', 'op_Passu!');
-define('DBNAME', 'osaamispankki');
+
 
 
 
