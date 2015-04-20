@@ -1,0 +1,46 @@
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    width: 20%;
+    color: black;
+} 
+
+
+
+@font-face {  
+  font-family: 'Glyphicons Halflings';  
+  src: url('../fonts/glyphicons-halflings-regular.eot');  
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');  
+}  
+  
+
+
+.glyphicon {  
+  position: relative;  
+  top: 1px;  
+  display: inline-block;  
+  font-family: 'Glyphicons Halflings';  
+  -webkit-font-smoothing: antialiased;  
+  font-style: normal;  
+  font-weight: normal;  
+  line-height: 1;  
+  -moz-osx-font-smoothing: grayscale;  
+
+
+.glyphicon:empty {  
+  width: 1em;  
+}  
+
+.glyphicon-keyword:before {  
+  content: "hexvalue";  
+}  
+
+
+.glyphicon-user:before {  
+  content: "\e008";  
+}  
