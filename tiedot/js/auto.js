@@ -46,7 +46,29 @@ $('#country_name2').autocomplete({
 		      	autoFocus: true,
 		      	minLength: 0      	
 		      });
-		      
+$('#country_name3').autocomplete({
+	source: function( request, response ) {
+		$.ajax({
+		      			url : 'hakua.php',
+		      			dataType: "json",
+						data: {
+						   name_startsWith: request.term,
+						   type: 'moro'
+						},
+						 success: function( data ) {
+							 response( $.map( data, function( item ) {
+								return {
+									label: item,
+									value: item
+								}
+							}));
+						}
+		      		});
+		      	},
+		      	autoFocus: true,
+		      	minLength: 0      	
+		      });
+		      		      
 		      
 		    
 		      

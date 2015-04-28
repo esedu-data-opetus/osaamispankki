@@ -38,6 +38,13 @@
 	    <form method="post">
 	    <div id="wrap">	    	
 	        <div class="row">
+                    
+                     <div class="row"> <div class="row">
+	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">	        		
+                            <p class="text-center"> Osaaminen</p>
+                          <input id="country_name3" class="form-control txt-auto" name="ossaamine">
+	        </div>	
+	        </div>
 	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">
 	        		<p class="text-center">Koulutus </p>
 	        		<input id="country_name" class="form-control txt-auto" name="ala"/>
@@ -46,14 +53,14 @@
 	        </div>	            	
 	        <div class="row">
 	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">
-	        		<p class="text-center">paikkakunta </p>
+	        		<p class="text-center">Paikkakunta </p>
 	        		<input id="country_name2" class="form-control txt-auto" name="paikkakunta"/>
 	        	</div>
 	        	
 	        </div>	
                 <div class="row">
 	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">
-	        		<p class="text-center">harrastus </p>
+	        		<p class="text-center">Harrastus </p>
 	        		<input id="country_name3" class="form-control txt-auto" name="harrastus"/>
 	        	</div>
 	        	
@@ -64,19 +71,8 @@
                           Vain 18 vuotiaat:
                             <input type="checkbox" value="1" name="tyyppi">
 	        </div>
-                </div>
-                <div class="row"> <div class="row">
-	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">	        		
-                          b-ajokortti:
-                            <input type="checkbox" value="B-ajokortti" name="B-ajokortti">
-	        </div>	
-	        </div>
-               <div class="row"> <div class="row">
-	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">	        		
-                          C-ajokortti:
-                            <input type="checkbox" value="C-ajokortti" name="C-ajokortti">
-	        </div>	
-	        </div>
+                </div>     
+                                              
 	        	<div class="col-xs-6 col-sm-4 col-md-4 col-xs-offset-6 col-sm-offset-4 col-md-offset-4">	        		
 	        		<input  type="submit" value="lähetä"/>
 	        	</div>
@@ -105,10 +101,10 @@ if(isset($_GET['success']) && empty($_GET['success'])) {
 	 $paikkakunta = $_POST['paikkakunta'];
          $ika = $_POST['tyyppi'];
          $harrastus = $_POST['harrastus'];
-         $kortit = array(
-         'C-ajokortti' => $_POST['C-ajokortti'],
-         'B-ajokortti' => $_POST['B-ajokortti']
-                 );
+         $ossaamine = $_POST['ossaamine'];
+        
+         if(empty($ossaamine) === true){
+         
          if(empty($harrastus) === true){
          
          
@@ -128,15 +124,49 @@ if(isset($_GET['success']) && empty($_GET['success'])) {
 	$data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND sAika > 18 AND hloID = '$ID[hloID]]'");
         
         }else{
-         $data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND hloID = '$ID[hloID]' AND ($kortit) = 1");   
+         $data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND hloID = '$ID[hloID]'");   
                           
          } 
              
              
          }
          }
+         }else{
+             
+             
+          $turhake = mysqli_query($dbcon, "SELECT hloID FROM osaava WHERE avainsana LIKE '$ossaamine'");
+           while($moi = mysqli_fetch_array($turhake)){
+          
+          if(empty($harrastus) === true){
+         
+         
+         if($ika == 1){
+	
+	$data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND sAika > 18 AND hloid = '$moi[hloID]]'");
+        
+        }else{
+         $data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND hloid = '$moi[hloID]]' ");   
+                          
+         }
+         }else{
+          $info = mysqli_query($dbcon, "SELECT hloID FROM harrastukset WHERE harrastus = '$harrastus'");
+          while($ID = mysqli_fetch_array($info)){
+             if($ika == 1){
+	
+	$data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND sAika > 18 AND hloID = '$ID[hloID]]' AND hloid = '$moi[hloID]]'");
+        
+        }else{
+         $data = mysqli_query($dbcon , " SELECT * FROM henkilotiedot WHERE koulutus = '$ala' AND paikkakunta = '$paikkakunta' AND hloID = '$ID[hloID]' AND hloid = '$moi[hloID]]'");   
+                          
+         } 
+             
+             
+         }
+         }
+         }
+         }
         while($row = mysqli_fetch_array( $data )){
-		echo $row['eNimi'];
+		?><p class="text-center"> <?php echo $row['eNimi']; ?> </p> <?php
 		
 	}
 	

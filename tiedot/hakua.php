@@ -23,6 +23,15 @@ if($_GET['type'] == 'ohjaaja'){
 	echo json_encode($data);
 }
 
+if($_GET['type'] == 'moro'){
+	$result = mysql_query("SELECT avainsana FROM osaava  where avainsana LIKE '".strtoupper($_GET['name_startsWith'])."%'");	
+	$data = array();
+	while ($row = mysql_fetch_array($result)) {
+		array_push($data, $row['avainsana']);	
+	}	
+	echo json_encode($data);
+}
+
 
 
 ?>
