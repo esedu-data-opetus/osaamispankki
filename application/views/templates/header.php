@@ -13,7 +13,7 @@
 						}
 						else 
 						{
-							echo '<a href="'.base_url()."index.php/sivu/login".'"><button type="button" class="btn btn-success" style="width:100px; height:50px; text-size:4px; background-color:green; padding:0px; float: right;" >Kirjaudu sisään</button></a>';
+							echo '<a href="'.base_url()."index.php/sivu/login".'"><button type="button" class="btn btn-success" style="width:100px; height:50px; text-size:4px; background-color:green; padding:0px; float: left;" >Kirjaudu sisään</button></a>';
 						}
 				?>
 		</nav>

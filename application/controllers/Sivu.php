@@ -22,6 +22,7 @@ class Sivu extends CI_Controller {
 		$this->load->template('register');
 	}
 
+	//Estää pääsyn profiilisivulle jos sisään ei ole kirjauduttu
 	public function members()
 	{
 		if ($this->session->userdata('is_logged_in')) {
@@ -68,9 +69,9 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_message('is_unique', "<p style='color:red;'>Tämä sähköpostiosoite on jo käytössä.</p>");
 		$this->form_validation->set_message('required', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
 		$this->form_validation->set_message('matches', "<p style='color:red;''>Salasanat eivät täsmää.</p>");
-
+		
 		if ($this->form_validation->run()){
-
+ 
 			//Generoi satunnaisen avaimen
 			$key = md5(uniqid());
 
@@ -86,7 +87,7 @@ class Sivu extends CI_Controller {
 
 			$this->email->message($message);
 
-			//Lähettää sähköpostia käyttäjälle
+			//Lähettää sähköpostivarmistuksen käyttäjälle
 			if ($this->model_Sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "The email has been sent!";
@@ -99,7 +100,7 @@ class Sivu extends CI_Controller {
 		}
 	}
 
-	//Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi päätteisellä sähköpostiosoitteella
+	//Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi/@esedu.fi päätteisellä sähköpostiosoitteella
 
 	 public function sposti_check($str)
     {

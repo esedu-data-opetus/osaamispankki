@@ -6,7 +6,7 @@ class model_Sivu extends CI_Model {
 	{
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->where('salasana', md5($this->input->post('salasana')));
-		$query = $this->db->get('kayttajat');
+		$query = $this->db->get('kirjautumistiedot');
 
 		if ($query->num_rows() == 1){
 			return true;	
@@ -19,7 +19,7 @@ class model_Sivu extends CI_Model {
 
 		$data = array(
 				'sposti' => $this->input->post('sposti'),
-				'salasana' => $this->input->post('salasana'),
+				'salasana' => md5($this->input->post('salasana')),
 				'key' => $key
 			);
 
