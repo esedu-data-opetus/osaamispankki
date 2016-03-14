@@ -62,13 +62,15 @@ class Sivu extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
-		$this->form_validation->set_rules('salasana', 'Salasana', 'required|trim');
-		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'required|trim|matches[salasana]');
+		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required|alpha');
+	$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
+		$this->form_validation->set_rules('salasana', 'Salasana', 'required|trim|min_length[1]');
+		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'required|trim|min_length[1]|matches[salasana]');
 
 		$this->form_validation->set_message('is_unique', "<p style='color:red;'>Tämä sähköpostiosoite on jo käytössä.</p>");
-		$this->form_validation->set_message('required', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
+		$this->form_validation->set_message('min_length', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
 		$this->form_validation->set_message('matches', "<p style='color:red;''>Salasanat eivät täsmää.</p>");
+		$this->form_validation->set_message('alpha', "<p style='color:red;''>Etunimessä ei voi olla muuta kuin kirjaimia.</p>");
 		
 		if ($this->form_validation->run()){
  
@@ -76,19 +78,19 @@ class Sivu extends CI_Controller {
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
-			$this->load->model('model_Sivu');
+			$this->load->model('Model_sivu');
 
-			$this->email->from('riku.ronka@paja.esedu.fi', "dankmemer destiny");
+			$this->email->from('sender_mailid@gmail.com', "dankmemer destiny");
 			$this->email->to($this->input->post('sposti'));
 			$this->email->subject("Confirm your account.");
 
 			$message = "Thank you for signing up!";
-			$message .= "<a href='".base_url()."sivu/register_user/$key' >Click here to confirm your account";
+			$message .= "<a href='".base_url()."index.php/sivu/register_user/$key' >Click here</a> to confirm your account";
 
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
-			if ($this->model_Sivu->add_temp_user($key)) {
+			if ($this->Model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "The email has been sent!";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Back to login</a></p>";
@@ -114,12 +116,12 @@ class Sivu extends CI_Controller {
 
 	public function validate_credentials()
 	{
-		$this->load->model('model_Sivu');
+		$this->load->model('Model_sivu');
 
-		if ($this->model_Sivu->can_log_in()){
+		if ($this->Model_sivu->can_log_in()){
 			return true;
 		} else {
-			$this->form_validation->set_message('validate_credentials', 'Incorrect username/password.');
+			$this->form_validation->set_message('validate_credentials', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
 			return false;
 		}
 	}
@@ -131,10 +133,11 @@ class Sivu extends CI_Controller {
 	}
 
 	public function register_user($key){
-		$this->load->model('model_Sivu');
+		
+		$this->load->model('Model_sivu');
 
-		if ($this->model_Sivu->is_key_valid($key)){
-			if ($newemail = $this->model_Sivu->add_user($key)){
+		if ($this->Model_sivu->is_key_valid($key)){
+			if ($newemail = $this->Model_sivu->add_user($key)){
 
 				$data = array(
 						'email' => $newemail,
@@ -144,7 +147,8 @@ class Sivu extends CI_Controller {
 					$this->session->set_userdata($data);
 					redirect('sivu/members');
 			} else echo 'failed to add user, please try again.';
-
-		} else echo 'invalid key';
+			
+		} else echo '<b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
+		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-class model_Sivu extends CI_Model {
+class Model_sivu extends CI_Model {
 
 	public function can_log_in()
 	{
@@ -14,17 +14,19 @@ class model_Sivu extends CI_Model {
 			return false;
 		}
 	}
+	
 
 	public function add_temp_user($key){
 
 		$data = array(
+				'etunimi'=> $this->input->post('etunimi'),
 				'sposti' => $this->input->post('sposti'),
 				'salasana' => md5($this->input->post('salasana')),
 				'key' => $key
 			);
 
 
-		$query = $this->db->insert('kirjautumistiedot', $data);
+		$query = $this->db->insert('vahvistamattomatkayttajat', $data);
 		if ($query){
 			return true;
 		} else {
@@ -35,7 +37,7 @@ class model_Sivu extends CI_Model {
 
 	public function is_key_valid($key){
 		$this->db->where('key', $key);
-		$query = $this->db->get('kirjautumistiedot');
+		$query = $this->db->get('vahvistamattomatkayttajat');
 
 		if ($query->num_rows () == 1){
 			return true;
@@ -45,22 +47,23 @@ class model_Sivu extends CI_Model {
 	public function add_user($key){
 
 		$this->db->where('key', $key);
-		$temp_user = $this->db->get('kirjautumistiedot');
+		$temp_user = $this->db->get('vahvistamattomatkayttajat');
 
 		if ($temp_user){
 			$row = $temp_user->row();
 
 			$data = array(
+					'etunimi'=> $row->etunimi,
 					'sposti' => $row->sposti,
 					'salasana' => $row->salasana
 				);
 
-				$did_add_user = $this->db->insert('kayttajat', $data);
+				$did_add_user = $this->db->insert('kirjautumistiedot', $data);
 		}
 
 		if ($did_add_user){
 			$this->db->where('key', $key);
-			$this->db->delete('kirjautumistiedot');
+			$this->db->delete('vahvistamattomatkayttajat');
 			return $data['sposti'];
 		} return false;
 	}
