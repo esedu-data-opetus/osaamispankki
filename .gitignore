@@ -8,6 +8,13 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+.metadata/*
+.metadata/.plugins/*
+.settings/org.eclipse.php.core.prefs
+.settings/*
+.buildpath
+.project
+
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
@@ -26,4 +33,3 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-workspace
 *.sublime-project
 application/config/database.php
-system/libraries/Email.php
