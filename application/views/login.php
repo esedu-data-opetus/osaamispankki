@@ -21,6 +21,6 @@ $inputpassword = array('placeholder' => 'Salasana', 'type' => 'salasana' , 'name
 	echo form_submit('login_submit', 'Kirjaudu sisään', "class='btn btn-success'");
 	echo form_close();
 ?>
-	<br<br><a class="btn btn-primary" href='<?php echo base_url()."index.php/sivu/register"; ?>'>Luo tili </a>
+	<br><br><a class="btn btn-primary" href='<?php echo base_url()."index.php/sivu/register"; ?>'>Luo tili </a>
 	</div>
 </div>
