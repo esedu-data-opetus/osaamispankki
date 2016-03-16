@@ -1,3 +1,9 @@
+<script>
+function hideMessage() {
+    document.getElementById("message").style.display = "none";
+};
+setTimeout(hideMessage, 2000);
+</script>
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
 class Sivu extends CI_Controller {
@@ -26,7 +32,7 @@ class Sivu extends CI_Controller {
 	public function members()
 	{
 		if ($this->session->userdata('is_logged_in')) {
-		$this->load->view('members');
+		$this->load->template('members');
 	} else {
 		redirect('sivu/restricted');
 	}
@@ -57,13 +63,36 @@ class Sivu extends CI_Controller {
 		}
 	}
 
+	public function tyokokemus() {
+
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('Model_sivu');
+		
+
+		$this->form_validation->set_rules('tyokokemus', 'Tyokokemus', 'required');
+		$this->form_validation->set_message('required', "<p style='color:red;'>Työkokemus ei voi olla tyhjä.</p>");
+
+		if ($this->form_validation->run()) {
+
+			$this->Model_sivu->add_tyokokemus();
+			echo '<p id="message" style="text-align:center;color:green;">Työkokemus lisättiin onnistuneesti</p>';
+			$this->load->template('members');
+
+		} else {
+			
+			$this->load->template('members');
+			
+		}
+	}
+
 	public function register_validation()
 	{
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required|alpha');
-	$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
+		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required');
+		$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
 		$this->form_validation->set_rules('salasana', 'Salasana', 'required|trim|min_length[1]');
 		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'required|trim|min_length[1]|matches[salasana]');
 
@@ -80,22 +109,22 @@ class Sivu extends CI_Controller {
 			$this->load->library('email', array('mailtype'=>'html'));
 			$this->load->model('Model_sivu');
 
-			$this->email->from('sender_mailid@gmail.com', "dankmemer destiny");
+			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
 			$this->email->to($this->input->post('sposti'));
-			$this->email->subject("Confirm your account.");
+			$this->email->subject("Vahvista käyttäjätilisi.");
 
-			$message = "Thank you for signing up!";
-			$message .= "<a href='".base_url()."index.php/sivu/register_user/$key' >Click here</a> to confirm your account";
+			$message = "";
+			$message .= "<a href='".base_url()."index.php/sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
 
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
 			if ($this->Model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
-					echo "The email has been sent!";
+					echo "Vahvistus on lähetetty sähköpostiisi!";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Back to login</a></p>";
-			} 	else echo "could not send the email.";
-		} else echo "problem adding to database.";
+			} 	else echo "Sähköpostin lähetys ei onnistu.";
+		} else echo "Ongelma tietokantaan lisätessä.";
 
 		} else {
 			$this->load->template('register');
@@ -141,7 +170,7 @@ class Sivu extends CI_Controller {
 
 				$data = array(
 						'email' => $newemail,
-						'is_logged_in' => 1
+						'is_logged_in' => 1,
 					);
 
 					$this->session->set_userdata($data);

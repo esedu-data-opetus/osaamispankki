@@ -14,6 +14,20 @@ class Model_sivu extends CI_Model {
 			return false;
 		}
 	}
+
+	public function add_tyokokemus(){
+
+		$data = array(
+			'tyokokemus'=> $this->input->post('tyokokemus')
+			);
+			
+		$query = $this->db->insert('koulutukset', $data);
+		if ($query){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 
 	public function add_temp_user($key){
