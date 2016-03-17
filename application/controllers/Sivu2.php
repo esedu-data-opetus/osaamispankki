@@ -1,16 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
-class Sivu2 extends CI_Controller
-	 {
-		public function index(){
-		$this->load->model('Model_sivu');
-		$tarkistatiedot = $this->Model_sivu->tarkistatiedot($this->session->userdata('sposti'));
-
-
-		foreach ($tarkistatiedot->result() as $row) {
-     		$asd = $row->privSposti;
-     	}
-		$this->load->template("perustiedot");
+class Sivu2 extends CI_Controller{
+	$this->load->model('model_Sivu');
+	if(
+	$this->session->userdata('is_logged_in')) {
+	$this->load->template('perustiedot');
+	} else {
+	redirect('sivu/restricted');
+	}
 		}
 
 
