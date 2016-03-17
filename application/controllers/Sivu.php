@@ -37,6 +37,11 @@ class Sivu extends CI_Controller {
 		redirect('sivu/restricted');
 	}
 }
+	public function tietojenmuokkaus()
+	{
+		$this->load->template('tietojenmuokkaus');
+	}
+
 	public function restricted()
 	{
 		$this->load->view('restricted');

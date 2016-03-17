@@ -20,24 +20,17 @@
 </style>
 </head>
 <body>
-<!-- <li style="list-style-type:none;" class="active"><?php echo '<a role="button" class="btn btn-danger" style="float:right;margin-top:-15px;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a></li>'?>-->
+<!-- <li style="list-style-type:none;" class="active"><?php //echo '<a role="button" class="btn btn-danger" style="float:right;margin-top:-15px;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a></li>'?>-->
 
 <div id="container">
 	<h1 style="text-align:center;">Oma profiili</h1>
 	
-		<?php
-
-	
-// 	foreach($result as $row)
-// 	{
-// 		echo $row->sposti;
-// 		echo "<br>";
-// 	}
+	<?php
 
 	echo "<pre>";
 	echo "Tervetuloa "; 
 	echo "<b style='font-size:15px;'>";
-	echo $this->session->userdata('etunimi');
+	echo $this->session->userdata('sposti');
 	echo "</b>";
 	//print_r ($this->session->all_userdata());
 	echo "</pre>";
@@ -45,9 +38,9 @@
 	?>
 	<div id="button">
 	
-<!--<ul>	
-	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
-	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
+<ul>	
+	<li><?php echo '<a href="'.base_url().'index.php/sivu/tietojenmuokkaus" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>'?>
+<!--<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li>
@@ -55,22 +48,7 @@
 	</div>
 <br>
 
-<?php
- echo '<div id="both">';
-$inputname = array('placeholder' => 'Työkokemus',
-				   'name' => 'tyokokemus',
-				   'id'   => 'tyokokemus' );
 
-
-
-	echo form_open('sivu/tyokokemus');
-	echo validation_errors();
-	echo form_input($inputname);
-	echo "<br>";
-	echo "<br>";
-	echo form_submit('submit', 'Lisää työkokemus', "class='btn btn-info'");
-	echo '</div>';
-?>
 	
 </div>
 
