@@ -75,8 +75,12 @@ class Sivu extends CI_Controller {
 		$this->load->model('Model_sivu');
 		
 
-		$this->form_validation->set_rules('tyokokemus', 'Tyokokemus', 'required');
-		$this->form_validation->set_message('required', "<p style='color:red;'>Työkokemus ei voi olla tyhjä.</p>");
+		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required');
+		$this->form_validation->set_rules('tehtava', 'Tehtava', 'required');
+		$this->form_validation->set_rules('alkoi', 'Alkoi', 'required');
+		$this->form_validation->set_rules('loppui', 'Loppui', 'required');
+		$this->form_validation->set_rules('kuvaus', 'Kuvaus', 'required');
+		$this->form_validation->set_message('required', "<p style='color:red;'></p>");
 
 		if ($this->form_validation->run()) {
 

@@ -21,16 +21,43 @@
 
 <?php
  echo '<div id="both">';
-$inputname = array('placeholder' => 'Työkokemus',
-				   'name' => 'tyokokemus',
-				   'id'   => 'tyokokemus'
+$inputtyopaikka= array('placeholder' => 'Työpaikka',
+				   'name' => 'tyopaikka',
+				   'id'   => 'tyopaikka'
 				    );
-
+$inputtehtava = array('placeholder' => 'Tehtävä',
+				   'name' => 'tehtava',
+				   'id'   => 'tehtava'
+				    );
+$inputalkoi = array('placeholder' => 'Alkoi',
+				   'name' => 'alkoi',
+				   'id'   => 'alkoi'
+				    );
+$inputloppui = array('placeholder' => 'Loppui',
+				   'name' => 'loppui',
+				   'id'   => 'loppui'
+				    );
+$inputkuvaus = array('placeholder' => 'Kuvaus',
+				   'name' => 'kuvaus',
+				   'id'   => 'kuvaus'
+				    );
 
 
 	echo form_open('sivu/tyokokemus');
 	echo validation_errors();
-	echo form_input($inputname);
+	echo form_input($inputtyopaikka);
+	echo "<br>";
+	echo "<br>";
+	echo form_input($inputtehtava);
+	echo "<br>";
+	echo "<br>";
+	echo form_input($inputalkoi);
+	echo "<br>";
+	echo "<br>";
+	echo form_input($inputloppui);
+	echo "<br>";
+	echo "<br>";
+	echo form_input($inputkuvaus);
 	echo "<br>";
 	echo "<br>";
 	$attributes = array('id' => 'tyokokemusnappi', 'class' => 'btn btn-info');

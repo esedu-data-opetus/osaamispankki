@@ -67,10 +67,15 @@ background-color:#0066ff;
 
 	  	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 				<?php
+
 				$test = $this->session->userdata('');
 				if($this->session->userdata('is_logged_in') == 1)
 						{
 							echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
+							echo "ようこそ "; 
+							echo "<b style='font-size:15px;'>";
+							echo $this->session->userdata('sposti');
+							echo "</b>";
 						}
 						elseif($this->uri->segment(2) == "login")
 						{

@@ -27,14 +27,14 @@
 	
 	<?php
 
-	echo "<pre>";
+	/*echo "<pre>";
 	echo "Tervetuloa "; 
 	echo "<b style='font-size:15px;'>";
 	echo $this->session->userdata('sposti');
 	echo "</b>";
 	//print_r ($this->session->all_userdata());
 	echo "</pre>";
-
+*/
 	?>
 	<div id="button">
 	

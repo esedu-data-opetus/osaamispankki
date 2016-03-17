@@ -18,10 +18,14 @@ class Model_sivu extends CI_Model {
 	public function add_tyokokemus(){
 
 		$data = array(
-			'tyokokemus'=> $this->input->post('tyokokemus')
+			'tyopaikka' => $this->input->post('tyopaikka'),
+			'tehtava'	=> $this->input->post('tehtava'),
+			'alkoi'		=> $this->input->post('alkoi'),
+			'loppui'	=> $this->input->post('loppui'),
+			'kuvaus'	=> $this->input->post('kuvaus')
 			);
 			
-		$query = $this->db->insert('koulutukset', $data);
+		$query = $this->db->insert('tyo', $data);
 		if ($query){
 			return true;
 		} else {
