@@ -39,10 +39,10 @@ class Sivu extends CI_Controller {
 		redirect('sivu/restricted');
 	}
 }
-	public function tietojenmuokkaus()
+	public function tyohistoria()
 	{
 		if ($this->session->userdata('is_logged_in')) {
-		$this->load->template('tietojenmuokkaus');
+		$this->load->template('tyohistoria');
 	} else {
 		redirect('sivu/restricted');
 	}
