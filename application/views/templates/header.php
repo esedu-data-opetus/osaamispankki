@@ -72,7 +72,7 @@ background-color:#0066ff;
 				if($this->session->userdata('is_logged_in') == 1)
 						{
 							echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
-							echo "ようこそ "; 
+							echo "Tervetuloa "; 
 							echo "<b style='font-size:15px;'>";
 							echo $this->session->userdata('sposti');
 							echo "</b>";

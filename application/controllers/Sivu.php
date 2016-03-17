@@ -3,6 +3,8 @@ function hideMessage() {
     document.getElementById("message").style.display = "none";
 };
 setTimeout(hideMessage, 2000);
+
+
 </script>
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
@@ -39,7 +41,12 @@ class Sivu extends CI_Controller {
 }
 	public function tietojenmuokkaus()
 	{
+		if ($this->session->userdata('is_logged_in')) {
 		$this->load->template('tietojenmuokkaus');
+	} else {
+		redirect('sivu/restricted');
+	}
+		
 	}
 
 	public function restricted()
@@ -80,12 +87,13 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('alkoi', 'Alkoi', 'required');
 		$this->form_validation->set_rules('loppui', 'Loppui', 'required');
 		$this->form_validation->set_rules('kuvaus', 'Kuvaus', 'required');
+
 		$this->form_validation->set_message('required', "<p style='color:red;'></p>");
 
 		if ($this->form_validation->run()) {
 
 			$this->Model_sivu->add_tyokokemus();
-			echo '<p id="message" style="text-align:center;color:green;">Työkokemus lisättiin onnistuneesti</p>';
+			echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus lisättiin onnistuneesti</p>';
 			$this->load->template('members');
 
 		} else {
