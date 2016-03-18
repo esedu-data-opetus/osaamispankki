@@ -70,7 +70,7 @@ class Sivu extends CI_Controller {
 					'is_logged_in' => 1
 				);
 			$this->session->set_userdata($data);
-			redirect('sivu/members');
+			redirect('sivu2/index');
 		} else {
 			$this->load->template('login');
 		}

@@ -85,4 +85,38 @@ class Model_sivu extends CI_Model {
 			return $data['sposti'];
 		} return false;
 	}
+	
+	public function tarkistatiedot($sposti){
+
+		$query = $this->db->query("SELECT privSposti, eNimi, sNimi, osoite, postinro  FROM henkilotiedot WHERE sposti ='".$sposti. "'");
+
+		if($query->num_rows() == 1){
+				return $query;
+			}
+			else
+			{
+				return FALSE;
+			}
+	}
+
+	function paivitatiedot()
+			{
+				$tiedot = array('privSposti' => $this->input->post('privSposti'),
+									'eNimi' => $this->input->post('eNimi'),
+									'privSposti' => $this->input->post('privSposti'),
+									'sNimi' => $this->input->post('sNimi'),
+									'osoite' => $this->input->post('osoite'),
+									'postinro' => $this->input->post('postinro'),
+									'puhelinnro' => $this->input->post('puhelinnro'));
+					$this->db->where('sposti', $this->session->userdata('sposti'));
+					$this->db->update('henkilotiedot', $tiedot);
+					if($this->db->affected_rows() > 0)
+					{
+					return true;
+					}
+					else
+					{
+					return false;
+					}
+			}
 }
