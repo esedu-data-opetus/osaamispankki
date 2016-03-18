@@ -39,12 +39,32 @@
 	<div id="button">
 	
 <ul>	
-	<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>'?>
+	<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Lisää työhistoria</a></li><br>'?>
+	<table>
+	
+    <tr>
+    <?php    
+    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
+			from henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+		foreach ($query->result_array() as $row)
+		{
+		   echo $row['eNimi'];
+		   echo "<br>";
+		   echo $row['sNimi'];
+		   echo "<br>";
+		   echo $row['spuoli'];
+		   echo "<br>";
+		}
+	?>
+    </tr>
+	</li>
+	</table>
 <!--<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
-	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li>
-</ul>-->
+	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li> -->
+</ul>
 	</div>
 <br>
 

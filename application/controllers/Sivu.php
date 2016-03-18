@@ -9,7 +9,7 @@ setTimeout(hideMessage, 2000);
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
 class Sivu extends CI_Controller {
-
+	
 	public function index()
 	{
 		$this->load->helper('url');
@@ -197,4 +197,5 @@ class Sivu extends CI_Controller {
 		} else echo '<b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
 		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 	}
+	
 }

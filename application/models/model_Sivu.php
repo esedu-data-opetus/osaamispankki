@@ -1,7 +1,10 @@
 <?php
 
 class Model_sivu extends CI_Model {
-
+	public function __construct() {
+		$this->load->database();
+	}
+	
 	public function can_log_in()
 	{
 		$this->db->where('sposti', $this->input->post('sposti'));
@@ -15,6 +18,7 @@ class Model_sivu extends CI_Model {
 		}
 	}
 
+	
 	public function add_tyokokemus(){
 
 		$data = array(
