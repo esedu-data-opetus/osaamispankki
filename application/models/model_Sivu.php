@@ -15,7 +15,7 @@ class Model_sivu extends CI_Model {
 		}
 	}
 
-	public function add_tyokokemus(){
+	public function add_tyohistoria(){
 
 		$data = array(
 			'tyopaikka' => $this->input->post('tyopaikka'),

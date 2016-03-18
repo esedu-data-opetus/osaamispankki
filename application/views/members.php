@@ -24,18 +24,17 @@
 
 <div id="container">
 	<h1 style="text-align:center;">Oma profiili</h1>
-	
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
-
-	/*echo "<pre>";
+	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
+	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
 	echo "Tervetuloa "; 
 	echo "<b style='font-size:15px;'>";
 	echo $this->session->userdata('sposti');
 	echo "</b>";
-	//print_r ($this->session->all_userdata());
-	echo "</pre>";
-*/
+
 	?>
+</nav>
 	<div id="button">
 	
 <ul>	

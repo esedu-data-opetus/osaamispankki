@@ -5,6 +5,7 @@ function hideMessage() {
 setTimeout(hideMessage, 2000);
 
 
+
 </script>
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
@@ -81,20 +82,18 @@ class Sivu extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('Model_sivu');
 		
-
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required');
 		$this->form_validation->set_rules('tehtava', 'Tehtava', 'required');
 		$this->form_validation->set_rules('alkoi', 'Alkoi', 'required');
 		$this->form_validation->set_rules('loppui', 'Loppui', 'required');
 		$this->form_validation->set_rules('kuvaus', 'Kuvaus', 'required');
 
-		$this->form_validation->set_message('required', "<p style='color:red;'></p>");
-
 		if ($this->form_validation->run()) {
 
-			$this->Model_sivu->add_tyokokemus();
+			$this->Model_sivu->add_tyohistoria();
 			echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus lisättiin onnistuneesti</p>';
 			$this->load->template('members');
+
 
 		} else {
 			
