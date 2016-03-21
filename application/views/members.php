@@ -37,40 +37,37 @@
 */
 	?>
 	<div id="button">
+<div class='row'>
+	<ul>	
+		<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Lisää työhistoria</a></li><br>'?>
+		<table>
 	
-<ul>	
-	<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Lisää työhistoria</a></li><br>'?>
-	<table>
+   	 	<tr>
+	    <?php    
+	    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.puhelinnro, henkilotiedot.pitkaKuvaus, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
+				from henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 	
-    <tr>
-    <?php    
-    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.puhelinnro, henkilotiedot.lyhytKuvaus, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
-			from henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-		foreach ($query->result_array() as $row)
-		{
-			echo "<h4>Etunimi :</h4>";
-			echo "<p>";
-		   	echo $row['eNimi'];
-		   	echo "</p>";
-			echo "<h4>Sukunimi :</h4>";
-			echo "<p>";
-			echo $row['sNimi'];
-			echo "</p>";
-			echo "<h4>Sukupuoli :</h4>";
-			echo "<p>";
-			echo $row['spuoli'];
-			echo "</p>";
-			echo "<h4>Puhelin numero :</h4>";
-			echo "<p>";
-			echo $row['puhelinnro'];
-			echo "</p>";
-			echo "<h4>Lyhyt Kuvaus :</h4>";
-			echo "<p>";
-			echo $row['lyhytKuvaus'];
-			echo "</p>";
-		}
-	?>
+			foreach ($query->result_array() as $row)
+			{
+				echo "<h4>Nimi :</h4>";
+			   	echo $row['eNimi'];
+			   	echo " ";
+				echo $row['sNimi'];
+				echo "</p>";
+				echo "<h4>Sukupuoli :</h4>";
+				echo "<p>";
+				echo $row['spuoli'];
+				echo "</p>";
+				echo "<h4>Puhelinnumero :</h4>";
+				echo "<p>";
+				echo $row['puhelinnro'];
+				echo "</p>";
+				echo "<h4>Self bio :</h4>";
+				echo "<div class='col-md-4 col-md-offset-4'> <p>";
+				echo $row['pitkaKuvaus'];
+				echo "</p></div>";
+			}
+		?>
     </tr>
 	</li>
 	</table>
@@ -78,7 +75,8 @@
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li> -->
-</ul>
+	</ul>
+</div>
 	</div>
 <br>
 
