@@ -44,17 +44,31 @@
 	
     <tr>
     <?php    
-    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
+    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.puhelinnro, henkilotiedot.lyhytKuvaus, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
 			from henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 		foreach ($query->result_array() as $row)
 		{
-		   echo $row['eNimi'];
-		   echo "<br>";
-		   echo $row['sNimi'];
-		   echo "<br>";
-		   echo $row['spuoli'];
-		   echo "<br>";
+			echo "<h4>Etunimi :</h4>";
+			echo "<p>";
+		   	echo $row['eNimi'];
+		   	echo "</p>";
+			echo "<h4>Sukunimi :</h4>";
+			echo "<p>";
+			echo $row['sNimi'];
+			echo "</p>";
+			echo "<h4>Sukupuoli :</h4>";
+			echo "<p>";
+			echo $row['spuoli'];
+			echo "</p>";
+			echo "<h4>Puhelin numero :</h4>";
+			echo "<p>";
+			echo $row['puhelinnro'];
+			echo "</p>";
+			echo "<h4>Lyhyt Kuvaus :</h4>";
+			echo "<p>";
+			echo $row['lyhytKuvaus'];
+			echo "</p>";
 		}
 	?>
     </tr>
