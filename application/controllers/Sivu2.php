@@ -38,7 +38,7 @@ class Sivu2 extends CI_Controller
 
 						if($this->Model_sivu->paivitatiedot())
 								{
-									redirect('sivu2/index');
+									redirect('sivu/index');
 								}
 								else
 								{
