@@ -76,21 +76,21 @@ class CI_Email {
 	 *
 	 * @var	string
 	 */
-	public $smtp_host	= 'paja.esedu.fi';
+	public $smtp_host	= '';
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var	string
 	 */
-	public $smtp_user	= 'www-data';
+	public $smtp_user	= '';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var	string
 	 */
-	public $smtp_pass	= 'qwerty';
+	public $smtp_pass	= '';
 
 	/**
 	 * SMTP Server port

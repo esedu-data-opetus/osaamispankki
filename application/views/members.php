@@ -38,7 +38,7 @@
 	<div id="button">
 	
 <ul>	
-	<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>'?>
+	<li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Muokkaa tyohistoriaa</a></li><br>'?>
 <!--<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>

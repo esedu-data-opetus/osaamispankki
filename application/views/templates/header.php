@@ -98,7 +98,18 @@ background-color: blue;
 							echo '<a role="button" id="luotili"  href="'.base_url().'index.php/sivu/register'.' ">Luo tili</button></a>';
 						
 						}
+						elseif($this->uri->segment(2) == "login_validation")
+						{
+							echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
+							echo '<a role="button" id="luotili"  href="'.base_url().'index.php/sivu/register'.' ">Luo tili</button></a>';
+						
+						}
 						elseif($this->uri->segment(2) == "register")
+						{
+							echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
+							echo '<a role="button" id="kirjautuminen" href="'.base_url().'index.php/sivu/login'.' ">Kirjautuminen</button></a>';							 														
+						}
+						elseif($this->uri->segment(2) == "register_validation")
 						{
 							echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
 							echo '<a role="button" id="kirjautuminen" href="'.base_url().'index.php/sivu/login'.' ">Kirjautuminen</button></a>';							 														
@@ -116,6 +127,13 @@ background-color: blue;
 							echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Oma profiili</a>';
 
 						}
+						elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyokokemus")
+						{
+							echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
+							echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
+
+						}
+
 						else
 						{
 							echo '<a role="button" id="kirjautuminen" href="'.base_url().'index.php/sivu/login'.' ">Kirjautuminen</button></a>';

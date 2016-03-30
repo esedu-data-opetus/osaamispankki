@@ -61,7 +61,9 @@ class Sivu extends CI_Controller {
 
 
 		$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|callback_validate_credentials');
-		$this->form_validation->set_rules('salasana', 'Salasana', 'required|md5|trim');
+		$this->form_validation->set_rules('salasana', 'Salasana', 'md5|trim');
+
+		$this->form_validation->set_message('required', "<p style='color:red;'>Syötä sähköposti.</p>");
 
 		if ($this->form_validation->run()){
 
@@ -70,36 +72,41 @@ class Sivu extends CI_Controller {
 					'is_logged_in' => 1
 				);
 			$this->session->set_userdata($data);
-			redirect('sivu2/index');
+			redirect('sivu/members');
 		} else {
 			$this->load->template('login');
 		}
 	}
 
 	public function tyokokemus() {
-
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-		$this->load->model('Model_sivu');
 		
-		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required');
-		$this->form_validation->set_rules('tehtava', 'Tehtava', 'required');
-		$this->form_validation->set_rules('alkoi', 'Alkoi', 'required');
-		$this->form_validation->set_rules('loppui', 'Loppui', 'required');
-		$this->form_validation->set_rules('kuvaus', 'Kuvaus', 'required');
+		$this->load->model('Model_sivu');
 
-		if ($this->form_validation->run()) {
+		$this->load->library('form_validation');
+		
+		
+		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
+		$this->form_validation->set_rules('tehtava',   'Tehtava', 'required|trim');
+		$this->form_validation->set_rules('alkoi',     'Alkoi', 'required|trim');
+		$this->form_validation->set_rules('loppui',    'Loppui', 'required|trim');
+		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 'required|trim');
 
-			$this->Model_sivu->add_tyohistoria();
-			echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus lisättiin onnistuneesti</p>';
-			$this->load->template('members');
+		if ($this->form_validation->run())
+		{
 
-
-		} else {
+				if($this->Model_sivu->add_tyohistoria())
+				{
+					redirect('sivu/tyohistoria');
+					//echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus päivitetty</p>';
+				}		
+					else
+				{
 			
-			$this->load->template('members');
-			
+					echo 'Jotain meni pieleen';
+				
+				}
 		}
+		$this->load->template('tyohistoria');
 	}
 
 	public function register_validation()
@@ -108,9 +115,9 @@ class Sivu extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required');
-		$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
-		$this->form_validation->set_rules('salasana', 'Salasana', 'required|trim|min_length[1]');
-		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'required|trim|min_length[1]|matches[salasana]');
+		$this->form_validation->set_rules('sposti', 'Sposti', 'trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
+		$this->form_validation->set_rules('salasana', 'Salasana', 'trim|min_length[1]');
+		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'trim|min_length[1]|matches[salasana]');
 
 		$this->form_validation->set_message('is_unique', "<p style='color:red;'>Tämä sähköpostiosoite on jo käytössä.</p>");
 		$this->form_validation->set_message('min_length', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
@@ -140,12 +147,14 @@ class Sivu extends CI_Controller {
 					echo "Vahvistus on lähetetty sähköpostiisi!";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Back to login</a></p>";
 			} 	else echo "Sähköpostin lähetys ei onnistu.";
+					 echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 		} else echo "Ongelma tietokantaan lisätessä.";
 
 		} else {
 			$this->load->template('register');
 		}
 	}
+
 
 	//Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi/@esedu.fi päätteisellä sähköpostiosoitteella
 

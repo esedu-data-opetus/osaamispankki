@@ -30,54 +30,75 @@
 </script>
 
 <?php
+
+$query = $this->db->query("SELECT tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+foreach ($query->result() as $row){
+	$tyopaikka = "$row->tyopaikka";
+	$tehtava = "$row->tehtava";
+	$alkoi = "$row->alkoi";
+	$loppui = "$row->loppui";
+	$kuvaus = "$row->kuvaus";
+
+}
+
+
+
  echo '<div id="both">';
-$inputtyopaikka= array('placeholder' => 'Työpaikka',
-				   'name' => 'tyopaikka',
-				   'id'   => 'tyopaikka'
+ 
+$inputtyopaikka= array('value' =>''.$tyopaikka.'',
+				  	   'placeholder' => 'Työpaikka',
+				  	   'name' => 'tyopaikka',
+				 	   'id'   => 'tyopaikka'
 				    );
-$inputtehtava = array('placeholder' => 'Tehtävä',
-				   'name' => 'tehtava',
-				   'id'   => 'tehtava'
+ 
+$inputtehtava = array('value' =>''.$tehtava.'',
+					'placeholder' => 'Tehtävä',
+				    'name' => 'tehtava',
+				    'id'   => 'tehtava'
+				    );
+ 
+$inputalkoi = array('value' =>''.$alkoi.'',
+					'placeholder' => 'Alkoi',
+				    'name' => 'alkoi',
+				    'id'   => 'alkoi'
+				    );
+ 
+$inputloppui = array('value' =>''.$loppui.'',
+					 'placeholder' => 'Loppui',
+				     'name' => 'loppui',
+				     'id'   => 'loppui'
 				    );
 
-$inputalkoi = array('placeholder' => 'Alkoi',
-				   'name' => 'alkoi',
-				   'id'   => 'alkoi'
-				    );
-
-$inputloppui = array('placeholder' => 'Loppui',
-				   'name' => 'loppui',
-				   'id'   => 'loppui'
-				    );
-
-$inputkuvaus = array('placeholder' => 'Kuvaus',
-				   'name' => 'kuvaus',
-				   'id'   => 'kuvaus',
-				   'cols' => '22',
-              	   'rows' => '5'
+$inputkuvaus = array('value' =>''.$kuvaus.'',
+					 'placeholder' => 'Kuvaus',
+				     'name' => 'kuvaus',
+				     'id'   => 'kuvaus',
+				     'cols' => '22',
+              	     'rows' => '5'
 				    );
 
 
 	echo form_open('sivu/tyokokemus');
 	echo validation_errors();
+	echo '<h5 style="font-weight:bold;">Työpaikka</h5>';
 	echo form_input($inputtyopaikka);
 	echo "<br>";
-	echo "<br>";
+	echo '<h5 style="font-weight:bold;">Tehtävä</h5>';
 	echo form_input($inputtehtava);
 	echo "<br>";
-	echo "<br>";
+	echo '<h5 style="font-weight:bold;">Alkoi</h5>';
 	echo form_input($inputalkoi);
 	echo "<br>";
-	echo "<br>";
+	echo '<h5 style="font-weight:bold;">Loppui</h5>';
 	echo form_input($inputloppui);
 	echo "<br>";
-	echo "<br>";
+	echo '<h5 style="font-weight:bold;">Kuvaus</h5>';
 	echo form_textarea($inputkuvaus);
 	echo "<br>";
-	echo "<br>";
-	$attributes = array('id' => 'tyokokemusnappi', 'class' => 'btn btn-info');
-	echo form_submit('submit', 'Lisää työkokemus', $attributes);
+	echo form_submit('submit', 'Päivitä työkokemus', 'class="btn btn-success"');
 	echo '</div>';
+
 ?>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <body>
 
 <div id="container">
-	<h1>Akusesu kyohi.</h1>
+	<h1 style="color:red;">Pääsy evätty.</h1>
 	<h3>Et ole kirjautunut sisään</h3>
 
 	<a href='<?php echo base_url()."index.php/sivu/login"; ?>' >Takaisin kirjautumiseen</a>

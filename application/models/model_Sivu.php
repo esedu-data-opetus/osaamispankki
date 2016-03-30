@@ -14,24 +14,6 @@ class Model_sivu extends CI_Model {
 			return false;
 		}
 	}
-
-	public function add_tyohistoria(){
-
-		$data = array(
-			'tyopaikka' => $this->input->post('tyopaikka'),
-			'tehtava'	=> $this->input->post('tehtava'),
-			'alkoi'		=> $this->input->post('alkoi'),
-			'loppui'	=> $this->input->post('loppui'),
-			'kuvaus'	=> $this->input->post('kuvaus')
-			);
-			
-		$query = $this->db->insert('tyo', $data);
-		if ($query){
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 
 	public function add_temp_user($key){
@@ -42,18 +24,25 @@ class Model_sivu extends CI_Model {
 				'salasana' => md5($this->input->post('salasana')),
 				'key' => $key
 			);
+		$data2 = array(
+				'sposti' => $this->input->post('sposti')
+				);
 
-
-		$query = $this->db->insert('vahvistamattomatkayttajat', $data);
+		$query = $this->db->insert('tyo', $data2);
+		$query = $this->db->insert('kirjautumistiedot', $data);
 		if ($query){
 			return true;
 		} else {
 			return false;
 		}
 
+		
+	
+
 	}
 
 	public function is_key_valid($key){
+
 		$this->db->where('key', $key);
 		$query = $this->db->get('vahvistamattomatkayttajat');
 
@@ -85,38 +74,40 @@ class Model_sivu extends CI_Model {
 			return $data['sposti'];
 		} return false;
 	}
-	
+
+
 	public function tarkistatiedot($sposti){
 
-		$query = $this->db->query("SELECT privSposti, eNimi, sNimi, osoite, postinro  FROM henkilotiedot WHERE sposti ='".$sposti. "'");
+	$query = $this->db->query("SELECT tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti='".$posti. "'");
 
 		if($query->num_rows() == 1){
-				return $query;
-			}
-			else
-			{
-				return FALSE;
-			}
+			return $query;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
+	function add_tyohistoria()
+	{
 
-	function paivitatiedot()
-			{
-				$tiedot = array('privSposti' => $this->input->post('privSposti'),
-									'eNimi' => $this->input->post('eNimi'),
-									'privSposti' => $this->input->post('privSposti'),
-									'sNimi' => $this->input->post('sNimi'),
-									'osoite' => $this->input->post('osoite'),
-									'postinro' => $this->input->post('postinro'),
-									'puhelinnro' => $this->input->post('puhelinnro'));
-					$this->db->where('sposti', $this->session->userdata('sposti'));
-					$this->db->update('henkilotiedot', $tiedot);
-					if($this->db->affected_rows() > 0)
-					{
-					return true;
-					}
-					else
-					{
-					return false;
-					}
-			}
+		$data = array(
+			'tyopaikka' => $this->input->post('tyopaikka'),
+			'tehtava'	=> $this->input->post('tehtava'),
+			'alkoi'		=> $this->input->post('alkoi'),
+			'loppui'	=> $this->input->post('loppui'),
+			'kuvaus'	=> $this->input->post('kuvaus')
+			);
+			
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$this->db->update('tyo', $data);
+		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
+		{
+			return true;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
 }
