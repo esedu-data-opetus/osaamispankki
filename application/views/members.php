@@ -46,7 +46,37 @@
 </ul>-->
 	</div>
 <br>
-
+<table>
+	
+   	 	<tr>
+	    <?php    
+	    	$query = $this->db->query("select henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.puhelinnro, henkilotiedot.pitkaKuvaus, henkilotiedot.spuoli, henkilotiedot.lyhytKuvaus sposti
+				from henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	
+			foreach ($query->result_array() as $row)
+			{
+				echo "<h4>Nimi :</h4>";
+			   	echo $row['eNimi'];
+			   	echo " ";
+				echo $row['sNimi'];
+				echo "</p>";
+				echo "<h4>Sukupuoli :</h4>";
+				echo "<p>";
+				echo $row['spuoli'];
+				echo "</p>";
+				echo "<h4>Puhelinnumero :</h4>";
+				echo "<p>";
+				echo $row['puhelinnro'];
+				echo "</p>";
+				echo "<h4>Self bio :</h4>";
+				echo "<div class='col-md-4 col-md-offset-4'> <p>";
+				echo $row['pitkaKuvaus'];
+				echo "</p></div>";
+			}
+		?>
+    </tr>
+	</li>
+	</table>
 
 	
 </div>
