@@ -110,4 +110,39 @@ class Model_sivu extends CI_Model {
 			return false;
 		}
 	}
+	public function checkpassword()
+	{
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$this->db->where('salasana', md5($this->input->post('currentpwd')));
+		$query = $this->db->get('kirjautumistiedot');
+			if($query->num_rows() == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+	}
+
+	public function changepassword()
+	{
+		$passwdtomd5 = md5($this->input->post('newpwd'));
+		$data = array(
+               'salasana' => $passwdtomd5
+               );
+
+
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$this->db->update('kirjautumistiedot', $data);
+
+		if($this->db->affected_rows() > 0)
+		{
+		return true;
+		}
+		else
+		{
+		return false;
+		}
+	}
 }
