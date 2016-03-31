@@ -42,8 +42,8 @@
 <!--<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
-	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li>
-</ul>-->
+	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li> -->
+</ul>
 	</div>
 <br>
 <table>
@@ -75,7 +75,6 @@
 			}
 		?>
     </tr>
-	</li>
 	</table>
 
 	
