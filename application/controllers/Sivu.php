@@ -205,4 +205,43 @@ class Sivu extends CI_Controller {
 		} else echo '<b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
 		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 	}
+	public function changepassword()
+		{
+		$this->load->template('changepassword');
+		}
+
+
+	public function changepasswordCheck()
+	{
+		$this->load->model('Model_sivu');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('newpwd', 'Password', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('confirmnewpdw', 'Password confirmation', 'trim|required|min_length[4]|matches[newpwd]');
+
+
+		if($this->Model_sivu->checkpassword())
+		{
+			if($this->form_validation->run() == FALSE){echo validation_errors('<p style="color:red" class="error">');}
+			else
+			{
+				if($this->Model_sivu->changepassword())
+				{
+					echo 'Salasanan vaihtoi onnistui. Palataan profiilisivulle';
+					header('refresh:3 ;members');
+				}
+				else
+				{
+					echo 'Salasanan vaihtoi epäonnistui.';
+				}
+			}
+
+
+		}
+		else 
+		{
+			echo "Nykyinen salasana ei täsmää";
+		}
+
+	}
 }
