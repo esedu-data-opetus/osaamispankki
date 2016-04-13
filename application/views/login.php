@@ -20,7 +20,6 @@ $inputpassword = array('placeholder' => 'Salasana', 'type' => 'salasana' , 'name
 	echo "<br>";
 	echo form_submit('login_submit', 'Kirjaudu sisään', "class='btn btn-success'");
 	echo form_close();
-?>
-
+ echo '<a href="'.base_url().'index.php/sivu/forgotpassword" class="btn btn-success" role="button">Unohtuiko salasana?</a></li><br>'?>
 	</div>
 </div>
