@@ -80,7 +80,7 @@ class Sivu extends CI_Controller {
 
 	public function tyokokemus() {
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
 		$this->load->library('form_validation');
 		
@@ -94,7 +94,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_tyohistoria())
+				if($this->model_sivu->add_tyohistoria())
 				{
 					redirect('sivu/tyohistoria');
 					//echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus päivitetty</p>';
@@ -130,7 +130,7 @@ class Sivu extends CI_Controller {
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
-			$this->load->model('Model_sivu');
+			$this->load->model('model_sivu');
 
 			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
 			$this->email->to($this->input->post('sposti'));
@@ -142,7 +142,7 @@ class Sivu extends CI_Controller {
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
-			if ($this->Model_sivu->add_temp_user($key)) {
+			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "Vahvistus on lähetetty sähköpostiisi!";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Back to login</a></p>";
@@ -170,9 +170,9 @@ class Sivu extends CI_Controller {
 
 	public function validate_credentials()
 	{
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->can_log_in()){
+		if ($this->model_sivu->can_log_in()){
 			return true;
 		} else {
 			$this->form_validation->set_message('validate_credentials', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
@@ -188,10 +188,10 @@ class Sivu extends CI_Controller {
 
 	public function register_user($key){
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->is_key_valid($key)){
-			if ($newemail = $this->Model_sivu->add_user($key)){
+		if ($this->model_sivu->is_key_valid($key)){
+			if ($newemail = $this->model_sivu->add_user($key)){
 
 				$data = array(
 						'email' => $newemail,
@@ -205,43 +205,174 @@ class Sivu extends CI_Controller {
 		} else echo '<b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
 		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 	}
+
+
 	public function changepassword()
-		{
-		$this->load->template('changepassword');
-		}
-
-
-	public function changepasswordCheck()
 	{
-		$this->load->model('Model_sivu');
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->template('changepassword');
+	}
+
+
+
+	public function changepassword_validation()
+	{
+		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
+		$this->load->model('model_sivu');
 
-		$this->form_validation->set_rules('newpwd', 'Password', 'trim|required|min_length[4]|max_length[32]');
-		$this->form_validation->set_rules('confirmnewpdw', 'Password confirmation', 'trim|required|min_length[4]|matches[newpwd]');
+		$this->form_validation->set_rules('currentpwd', 'Vanha salasana', 'trim|min_length[1]|callback_passwd_check');
+		$this->form_validation->set_rules('newpwd', 'Uusi salasana', 'trim|min_length[1]');
+		$this->form_validation->set_rules('confirmnewpdw', 'Vahvista uusi salasana', 'trim|min_length[1]|matches[newpwd]');
 
+		$this->form_validation->set_message('min_length', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
+		$this->form_validation->set_message('matches', "<p style='color:red;''>Salasanat eivät täsmää.</p>");
+		
+		if ($this->form_validation->run()){
+ 			if($this->model_sivu->changepassword()){
+ 				redirect('sivu/members');
+ 			}
+ 			else
+ 			{
+ 				echo'Salanan vaihto epäonnistui';
+ 			}
+		
 
-		if($this->Model_sivu->checkpassword())
-		{
-			if($this->form_validation->run() == FALSE){echo validation_errors('<p style="color:red" class="error">');}
-			else
-			{
-				if($this->Model_sivu->changepassword())
-				{
-					echo 'Salasanan vaihtoi onnistui. Palataan profiilisivulle';
-					header('refresh:3 ;members');
-				}
-				else
-				{
-					echo 'Salasanan vaihtoi epäonnistui.';
-				}
-			}
-
-
+		} else {
+			$this->load->template('changepassword');
 		}
+ 			}
+
+	public function passwd_check()
+	{
+		$this->load->model('model_sivu');
+
+		if ($this->model_sivu->checkpassword()){
+			return true;
+		} else {
+			$this->form_validation->set_message('passwd_check', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
+			return false;
+		}
+	}
+	public function forgotpassword()
+	{
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->template('forgottenpassword');
+	}
+	public function forgotpassword_validation()
+	{
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('model_sivu');
+
+		$this->form_validation->set_rules('currentpwd', 'Vanha salasana', 'trim|min_length[1]|callback_forgotpasswordemailcheck');
+		if ($this->form_validation->run()){
+ 
+			//Generoi satunnaisen avaimen
+			$key = md5(uniqid());
+
+			$this->load->library('email', array('mailtype'=>'html'));
+			$this->load->model('model_sivu');
+
+			$this->email->from('miika.hamalainen@paja.esedu.fi', "Miika");
+			$this->email->to($this->input->post('sposti'));
+			$this->email->subject("Aseta uusi salasana");
+
+			$message = "";
+			$message .= "<a href='".base_url()."index.php/sivu/resetpassword/$key' >Klikkaa tästä</a> asettaaksesi uuden salasanan";
+
+			$this->email->message($message);
+
+			//Lähettää sähköpostivarmistuksen käyttäjälle
+			if ($this->model_sivu->passwordresetkey($key)) {
+				if ($this->email->send()){
+					echo "Linkki salasanan palauttamiseeen on lähetetty sähköpostiisi!";
+					//echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
+							echo $this->email->print_debugger();
+
+			} 	else echo "Sähköpostin lähetys ei onnistu.";
+					// echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
+					 		echo $this->email->print_debugger();
+
+		} else echo "Ongelma tietokantaan lisätessä.";
+
+		} else {
+			$this->load->template('forgottenpassword');
+		}
+	}
+
+	public function forgotpasswordemailcheck()
+	{
+		$this->load->model('model_sivu');
+
+		if ($this->model_sivu->tarkistasposti()){
+			return true;
+		} 
 		else 
 		{
-			echo "Nykyinen salasana ei täsmää";
+			$this->form_validation->set_message('forgotpasswordemailcheck', "<p style='color:red;'>Väärä sähköposti.</p>");
+			return false;
 		}
+	}
+
+	public function resetpassword($key)
+	{
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('model_sivu');
+		
+		$this->form_validation->set_rules('newpwd', 'Uusi salasana', 'trim|min_length[1]');
+		$this->form_validation->set_rules('confirmnewpdw', 'Vahvista uusi salasana', 'trim|min_length[1]|matches[newpwd]');
+
+				if ($this->model_sivu->check_key($key)){
+				$data = array('key' => $key);
+
+				$this->load->template('forgottenpasswordreset', $data);
+
+				}
+				else{
+				redirect('sivu/index');
+
+				}
+
+
 
 	}
+
+	public function changeforgottenpassword()
+		{
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('model_sivu');
+
+		$newkey = md5(uniqid());
+
+		$this->form_validation->set_rules('newpwd', 'Uusi salasana', 'trim|min_length[1]');
+		$this->form_validation->set_rules('confirmnewpdw', 'Vahvista uusi salasana', 'trim|min_length[1]|matches[newpwd]');
+		$this->form_validation->set_message('min_length', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
+		$this->form_validation->set_message('matches', "<p style='color:red;''>Salasanat eivät täsmää.</p>");
+		
+		$data = array('key' => $newkey);
+
+
+		if ($this->form_validation->run()){
+ 			if($this->model_sivu->changeforgottenpassword($newkey)){
+ 				redirect('sivu/login');
+ 			}
+ 			else
+ 			{
+ 				$this->load->template('forgottenpasswordreset', $data);
+ 				echo'Salanan vaihto epäonnistui';
+ 			}
+		
+
+		} else {
+				$this->load->template('forgottenpasswordreset', $data);
+				}
+ 		}
+
 }
+
+
