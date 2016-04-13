@@ -1,6 +1,6 @@
 <?php
 
-class Model_sivu extends CI_Model {
+class model_sivu extends CI_Model {
 
 	public function can_log_in()
 	{
@@ -125,24 +125,98 @@ class Model_sivu extends CI_Model {
 			}
 	}
 
-	public function changepassword()
-	{
+		public function changepassword()
+		{
 		$passwdtomd5 = md5($this->input->post('newpwd'));
 		$data = array(
                'salasana' => $passwdtomd5
                );
-
-
 		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->update('kirjautumistiedot', $data);
 
-		if($this->db->affected_rows() > 0)
-		{
-		return true;
+			if($this->db->affected_rows() == 1)
+			{
+			return true;
+			}
+			else
+			{
+			return false;
+			}
 		}
-		else
+
+		public function tarkistasposti()
 		{
-		return false;
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$query = $this->db->get('kirjautumistiedot');
+			if($query->num_rows() == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+	public function passwordresetkey($key){
+			$data = array(
+				'key' => $key
+			);
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$this->db->update('kirjautumistiedot', $data);
+
+		$this->db->where('sposti', $this->input->post('sposti'));
+
+		if ($this->db->affected_rows() == 1){
+			return true;
+		} else {
+			return false;
 		}
 	}
+
+	public function check_key($key){
+
+		$this->db->where('key', $key);
+		$query =	$this->db->get('kirjautumistiedot');
+
+		if($query->num_rows() == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+
+
+/*		Haettiin sähköpostiosoite keyn perusteella, mutta eihän tuota tarvinnutkaan. Olkoon nyt siinä.
+		if ($keycheck){
+			$row = $keycheck->row();
+
+			$data = array(
+					'sposti' => $row->sposti
+				);
+			return $keycheck->row('sposti');
+			}
+			*/
+	}
+
+			public function changeforgottenpassword($newkey)
+		{
+		$passwdtomd5 = md5($this->input->post('newpwd'));
+		$data = array(
+               'salasana' => $passwdtomd5, 'key' => $newkey);
+		$this->db->where('key', $this->input->post('keyfield'));
+		$this->db->update('kirjautumistiedot', $data);
+
+			if($this->db->affected_rows() == 1)
+			{
+			return true;
+			}
+			else
+			{
+			return false;
+			}
+		}
+
 }
