@@ -39,8 +39,22 @@ class Sivu extends CI_Controller {
 	} else {
 		redirect('sivu/restricted');
 	}
-}
+
+	}
+	
+	// Jos ei ole kirjauduttu sisään, estää pääsyn tälle sivulle
 	public function tyohistoria()
+	{
+		if ($this->session->userdata('is_logged_in')) {
+		$this->load->template('tyohistoria');
+	} else {
+		redirect('sivu/restricted');
+	}
+
+	}
+
+	// Jos ei ole kirjauduttu sisään, estää pääsyn tälle sivulle
+	public function koulutukset_()
 	{
 		if ($this->session->userdata('is_logged_in')) {
 		$this->load->template('tyohistoria');
@@ -50,12 +64,14 @@ class Sivu extends CI_Controller {
 		
 	}
 
+	// Access denied sivu
 	public function restricted()
 	{
 		$this->load->view('restricted');
 	}
 
-	public function login_validation(){
+	public function login_validation()
+	{
 
 		$this->load->library('form_validation');
 
@@ -63,7 +79,7 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('sposti', 'Sposti', 'required|trim|callback_validate_credentials');
 		$this->form_validation->set_rules('salasana', 'Salasana', 'md5|trim');
 
-		$this->form_validation->set_message('required', "<p style='color:red;'>Syötä sähköposti.</p>");
+		$this->form_validation->set_message('required', "<b style='color:red;'>Syötä sähköposti.</b>");
 
 		if ($this->form_validation->run()){
 
@@ -78,35 +94,62 @@ class Sivu extends CI_Controller {
 		}
 	}
 
-	public function tyokokemus() {
+	public function tyokokemus() 
+	{
 		
 		$this->load->model('Model_sivu');
-
 		$this->load->library('form_validation');
 		
-		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
-		$this->form_validation->set_rules('tehtava',   'Tehtava', 'required|trim');
-		$this->form_validation->set_rules('alkoi',     'Alkoi', 'required|trim');
-		$this->form_validation->set_rules('loppui',    'Loppui', 'required|trim');
-		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 'required|trim');
+		$this->form_validation->set_rules('tehtava',   'Tehtava', 'trim');
+		$this->form_validation->set_rules('alkoi',     'Alkoi', 'trim');
+		$this->form_validation->set_rules('loppui',    'Loppui', 'trim');
+		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 'trim');
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Tyopaikka on pakollinen.</b>");
 
 		if ($this->form_validation->run())
 		{
 
 				if($this->Model_sivu->add_tyohistoria())
 				{
-					redirect('sivu/tyohistoria');
-					//echo '<p id="message" style="text-align:center;color:green;font-size:1.2em;">Työkokemus päivitetty</p>';
+					$this->output->set_header('sivu/members');
+					//redirect('sivu/members');	
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria päivitetty</p>';		
 				}		
 					else
-				{
-			
-					echo 'Jotain meni pieleen';
-				
+				{	
+					echo 'Jotain meni pieleen';		
 				}
 		}
 		$this->load->template('tyohistoria');
+	}
+
+
+	public function koulutukset() 
+	{
+		
+		$this->load->model('Model_sivu');
+		$this->load->library('form_validation');
+			
+		$this->form_validation->set_rules('koulutusnimi', 'Koulutus', 'required|trim');
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Koulutus on pakollinen.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->Model_sivu->add_koulutus())
+				{
+					$this->output->set_header('sivu/members');
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Työkokemus päivitetty</p>';
+				}		
+					else
+				{			
+					echo 'Jotain meni pieleen';				
+				}
+		}
+		$this->load->template('koulutukset');
 	}
 
 	public function register_validation()
@@ -114,19 +157,21 @@ class Sivu extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required');
+		$this->form_validation->set_rules('etunimi', 'Etunimi', 'required|alpha');
 		$this->form_validation->set_rules('sposti', 'Sposti', 'trim|is_unique[vahvistamattomatkayttajat.sposti]|is_unique[kirjautumistiedot.sposti]|callback_sposti_check');
 		$this->form_validation->set_rules('salasana', 'Salasana', 'trim|min_length[1]');
 		$this->form_validation->set_rules('salasanaconfirm', 'Confirm Password', 'trim|min_length[1]|matches[salasana]');
 
-		$this->form_validation->set_message('is_unique', "<p style='color:red;'>Tämä sähköpostiosoite on jo käytössä.</p>");
-		$this->form_validation->set_message('min_length', "<p style='color:red;''>Salasana kentät ovat pakollisia.</p>");
-		$this->form_validation->set_message('matches', "<p style='color:red;''>Salasanat eivät täsmää.</p>");
-		$this->form_validation->set_message('alpha', "<p style='color:red;''>Etunimessä ei voi olla muuta kuin kirjaimia.</p>");
+		$this->form_validation->set_message('required', "<b style='color:red;'>Etunimi on pakollinen.</b>");
+		$this->form_validation->set_message('is_unique', "<b style='color:red;'>Tämä sähköpostiosoite on jo käytössä.</b>");
+		$this->form_validation->set_message('min_length', "<b style='color:red;''>Salasana kentät ovat pakollisia.</b>");
+		$this->form_validation->set_message('matches', "<b style='color:red;''>Salasanat eivät täsmää.</b>");
+		$this->form_validation->set_message('alpha', "<b style='color:red;''>Etunimessä ei voi olla muuta kuin kirjaimia.</b>");
 		
-		if ($this->form_validation->run()){
+		if ($this->form_validation->run())
+		{
  
-			//Generoi satunnaisen avaimen
+			//Luo satunnaisen avaimen
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
@@ -156,18 +201,41 @@ class Sivu extends CI_Controller {
 	}
 
 
-	//Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi/@esedu.fi päätteisellä sähköpostiosoitteella
 
-	 public function sposti_check($str)
+	/* public function salasana_check($str)
     {
-        if(stristr($str,'@esedulainen.fi') !== false) return true;
-        if(stristr($str,'@esedu.fi') !== false) return true;
-    
+    	if(empty($_GET['salasana'])){
 
-        $this->form_validation->set_message('sposti_check', '<p style="color:red;">Voit käyttää vain <b>@esedulainen.fi/@esedu.fi</b> päätteistä osoitetta.</p>');
+        $this->form_validation->set_message('salasana_check', '<b style="color:red;">Salasana kentät ovat pakollisia.</b>');
         return FALSE;
+    	 } else {
+    	return true;
+    	 }
     }
 
+    public function sposti2_check($str)
+    {
+    	 if(empty($_GET['sposti'])){
+
+    	 $this->form_validation->set_message('sposti2_check', '<b style="color:red;">Sähköposti on pakollinen.</b>');
+    	 return FALSE;
+    	}
+    }*/
+
+    //Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi/@esedu.fi päätteisellä sähköpostiosoitteella
+    public function sposti_check($str)
+    {
+
+    	 
+        if(stristr($str,'@esedulainen.fi') !== false) return true;
+        if(stristr($str,'@esedu.fi') !== false) return true; 
+
+        $this->form_validation->set_message('sposti_check', '<p style="color:red;">Voit käyttää vain <b style="color:#5eab1c">@esedulainen.fi/@esedu.fi</b> päätteistä osoitetta.</p>');
+        return FALSE;
+    }
+   
+
+    //Kirjautuminen
 	public function validate_credentials()
 	{
 		$this->load->model('Model_sivu');
@@ -180,13 +248,15 @@ class Sivu extends CI_Controller {
 		}
 	}
 
+	//Uloskirjautuminen
 	public function logout()
 	{
 		$this->session->sess_destroy();
 		redirect('sivu/login');
 	}
 
-	public function register_user($key){
+	public function register_user($key)
+	{
 		
 		$this->load->model('Model_sivu');
 

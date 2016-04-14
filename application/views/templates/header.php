@@ -84,13 +84,11 @@ background-color: blue;
 
 	  	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 				<?php
-
+					// Laittaa napit sen mukaan millä sivulla on
 				$test = $this->session->userdata('');
 				if($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyohistoria")
 						{
-							echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
 							echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
-				
 						}
 						elseif($this->uri->segment(2) == "login")
 						{
@@ -129,9 +127,12 @@ background-color: blue;
 						}
 						elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyokokemus")
 						{
-							echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>';
 							echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
+						}
 
+						elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "koulutukset")
+						{
+							echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
 						}
 
 						else

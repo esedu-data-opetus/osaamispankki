@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tyohistoria</title>
-	<h1 style="text-align:center;">Tyohistoria</h1><br>
+	<h1 style="text-align:center;font-weight:bold;">Tyohistoria</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
@@ -20,7 +20,7 @@
 	resize: none;
 }
 </style>
-<script type="text/javascript">
+<script type="text/javascript"> 
 
 	 $(function() {
 	    $("#alkoi").datepicker();
@@ -41,8 +41,6 @@ foreach ($query->result() as $row){
 	$kuvaus = "$row->kuvaus";
 
 }
-
-
 
  echo '<div id="both">';
  
@@ -96,7 +94,7 @@ $inputkuvaus = array('value' =>''.$kuvaus.'',
 	echo '<h5 style="font-weight:bold;">Kuvaus</h5>';
 	echo form_textarea($inputkuvaus);
 	echo "<br>";
-	echo form_submit('submit', 'Päivitä työkokemus', 'class="btn btn-success"');
+	echo form_submit('submit', 'Päivitä työhistoria', 'class="btn btn-success"');
 	echo '</div>';
 
 ?>
