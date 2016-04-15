@@ -72,6 +72,8 @@ foreach ($query->result() as $row){
 <ul>	
    <li><?php echo '<a href="'.base_url().'index.php/sivu/tyohistoria" class="btn btn-success" role="button">Lisää/Muokkaa tyohistoriaa</a></li><br>'?><br>
    <li><?php echo '<a href="'.base_url().'index.php/sivu/koulutukset" class="btn btn-success" style="margin-top:-40px;" role="button">Lisää/Muokkaa koulutuksia</a></li><br>'?>
+     <li><?php echo '<a href="'.base_url().'index.php/sivu/changepassword" class="btn btn-success" style="margin-top:-40px;" role="button">Vaihda salasana</a></li><br>'?>
+
 <!--<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
 	<li><a href="" class="btn btn-success" role="button">Muokkaa tietoja</a></li><br>
