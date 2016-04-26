@@ -6,6 +6,24 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-5">
 	<h1>Rekisteröityminen</h1><br>
+	</head>
+<style>
+#nappi {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #31c398;
+  width: 18%;
+  height:5.5%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 15px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+</style>
+
 <?php
 
 $inputname = array('placeholder' => 'Etunimi',
@@ -40,7 +58,7 @@ $inputpasswordconfirm = array('placeholder' => 'Salasana uudestaan',
 	echo form_password($inputpasswordconfirm);
 	echo "<br>";
 	echo "<br>";
-	echo form_submit('submit', 'Rekisteröidy', "class='btn btn-info'");
+	echo form_submit('submit', 'Rekisteröidy', "id='nappi'");
 ?>
 </div>
 </div>
