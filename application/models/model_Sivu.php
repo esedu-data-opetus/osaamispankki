@@ -96,6 +96,30 @@ class Model_sivu extends CI_Model {
 		}
 	}
 	
+	//MUOKKAA TÄLLÄ HETKELLÄ VAIN VIIMEISTÄ RIVIÄ
+	public function edit_tyohistoria($id)
+	{
+
+		$data = array(
+			'tyopaikka' => $this->input->post('tyopaikka'),
+			'tehtava'	=> $this->input->post('tehtava'),
+			'alkoi'		=> $this->input->post('alkoi'),
+			'loppui'	=> $this->input->post('loppui'),
+			'kuvaus'	=> $this->input->post('kuvaus')
+			);
+			
+		$this->db->where('id', $id);
+		$this->db->update('tyo', $data);
+		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
+		{
+			return true;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
+	
 	function add_tyohistoria()
 	{
 
@@ -109,6 +133,30 @@ class Model_sivu extends CI_Model {
 			
 		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->update('tyo', $data);
+		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
+		{
+			return true;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
+
+	//MUOKKAA TÄLLÄ HETKELLÄ VAIN VIIMEISTÄ RIVIÄ
+	public function edit_koulutus($id)
+	{
+
+		$data = array(
+			'koulutusnimi' => $this->input->post('koulutusnimi'),
+			'koulutusaste' => $this->input->post('koulutusaste'),
+			'oppilaitos'   => $this->input->post('oppilaitos'),
+			'alkoi' 	   => $this->input->post('alkoi'),
+			'loppui' 	   => $this->input->post('loppui')
+			);
+			
+		$this->db->where('id', $id);
+		$this->db->update('koulutukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
@@ -136,5 +184,30 @@ class Model_sivu extends CI_Model {
 		{
 			return false;
 		}
+	}
+	
+	//Poistaa tyohistoriarivin
+	public function delete_tyohistoria($id)
+	{
+		$data = array(
+			'sposti' => $this->session->userdata('sposti')
+			);
+
+		$this->db->where('id', $id);
+		$this->db->delete('tyo');
+
+		
+	}
+
+	//Poistaa koulutusrivin
+	public function delete_koulutukset($id)
+	{
+		$data = array(
+			'sposti' => $this->session->userdata('sposti')
+			);
+
+		$this->db->where('id', $id);
+		$this->db->delete('koulutukset');
+	
 	}
 }
