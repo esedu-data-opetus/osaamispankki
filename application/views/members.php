@@ -111,7 +111,7 @@
 	//Tyohistoria
 	echo '<div class="row">';
 	echo '<div id="tyohistoria">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Tyohistoria</p><a href="'.base_url().'index.php/sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button yellow" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Tyohistoria</p><a href="'.base_url().'index.php/sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 	?>
 	<div class="tooltip">Hover over me
 		<span class="tooltiptext">Tooltip text</span>
@@ -161,7 +161,7 @@
 	//Koulutus
 	echo '<div class="row">';
 	echo '<div id="koulutukset">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'index.php/sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button yellow" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'index.php/sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 	
 	$query = $this->db->query("SELECT koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
