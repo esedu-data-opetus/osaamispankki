@@ -157,21 +157,22 @@
 	  */
 	}
 
-.button.yellow {
+.button.green {
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyZDg1MSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VjYzkyYiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2d851), color-stop(100%, #ecc92b));
   background: -moz-linear-gradient(top, green, green);
   background: -webkit-linear-gradient(top, green, green);
   background: linear-gradient(to bottom, green, green);
   color: white;
+   margin-top:0px;
   box-shadow: -1px 0px 1px green, 0px 1px 1px green, -2px 1px 1px green, -1px 2px 1px green, -3px 2px 1px green, -2px 3px 1px green, -4px 3px 1px green, -3px 4px 1px green, -5px 4px 1px green, -4px 5px 1px green, -6px 5px 1px green, -6px 7px 0 rgba(0, 0, 0, 0.05), -5px 8px 0 rgba(0, 0, 0, 0.05), -3px 9px 0 rgba(0, 0, 0, 0.04), -2px 10px 0 rgba(0, 0, 0, 0.04), -1px 11px 0 rgba(0, 0, 0, 0.03), 0px 12px 0 rgba(0, 0, 0, 0.03), 1px 13px 0 rgba(0, 0, 0, 0.02), 2px 14px 0 rgba(0, 0, 0, 0.02), 3px 15px 0 rgba(0, 0, 0, 0.01), 4px 16px 0 rgba(0, 0, 0, 0.01), 5px 17px 0 rgba(0, 0, 0, 0.01), 6px 18px 0 rgba(0, 0, 0, 0.01), inset 0 4px 5px -2px rgba(255, 255, 255, 0.5), inset 0 1px 0 0 rgba(0, 0, 0, 0.3);
 }
 
-.button.yellow:after {
+.button.green:after {
   -webkit-filter: drop-shadow(-2px 0 0 rgba(255, 255, 255, 0.4));
   filter: drop-shadow(-2px 0 0 rgba(255, 255, 255, 0.4));
 }
-.button.yellow:before {
+.button.green:before {
   -webkit-filter: drop-shadow(0 -2px 0 rgba(255, 255, 255, 0.35));
   filter: drop-shadow(0 -2px 0 rgba(255, 255, 255, 0.35));
 }
@@ -182,6 +183,7 @@
   background: -webkit-linear-gradient(top, blue, blue);
   background: linear-gradient(to bottom, blue, blue);
   color: white;
+    margin-top:0px;
   box-shadow: -1px 0px 1px blue, 0px 1px 1px blue, -2px 1px 1px blue, -1px 2px 1px blue, -3px 2px 1px blue, -2px 3px 1px blue, -4px 3px 1px blue, -3px 4px 1px blue, -5px 4px 1px blue, -4px 5px 1px blue, -6px 5px 1px blue, -6px 7px 0 rgba(0, 0, 0, 0.05), -5px 8px 0 rgba(0, 0, 0, 0.05), -3px 9px 0 rgba(0, 0, 0, 0.04), -2px 10px 0 rgba(0, 0, 0, 0.04), -1px 11px 0 rgba(0, 0, 0, 0.03), 0px 12px 0 rgba(0, 0, 0, 0.03), 1px 13px 0 rgba(0, 0, 0, 0.02), 2px 14px 0 rgba(0, 0, 0, 0.02), 3px 15px 0 rgba(0, 0, 0, 0.01), 4px 16px 0 rgba(0, 0, 0, 0.01), 5px 17px 0 rgba(0, 0, 0, 0.01), 6px 18px 0 rgba(0, 0, 0, 0.01), inset 0 4px 5px -2px rgba(255, 255, 255, 0.5), inset 0 1px 0 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -200,6 +202,7 @@
   background: -webkit-linear-gradient(top, red, red);
   background: linear-gradient(to bottom, red, red);
   color: white;
+  margin-top:0px;
   box-shadow: -1px 0px 1px red, 0px 1px 1px red, -2px 1px 1px red, -1px 2px 1px red, -3px 2px 1px red, -2px 3px 1px red, -4px 3px 1px red, -3px 4px 1px red, -5px 4px 1px red, -4px 5px 1px red, -6px 5px 1px red, -6px 7px 0 rgba(0, 0, 0, 0.05), -5px 8px 0 rgba(0, 0, 0, 0.05), -3px 9px 0 rgba(0, 0, 0, 0.04), -2px 10px 0 rgba(0, 0, 0, 0.04), -1px 11px 0 rgba(0, 0, 0, 0.03), 0px 12px 0 rgba(0, 0, 0, 0.03), 1px 13px 0 rgba(0, 0, 0, 0.02), 2px 14px 0 rgba(0, 0, 0, 0.02), 3px 15px 0 rgba(0, 0, 0, 0.01), 4px 16px 0 rgba(0, 0, 0, 0.01), 5px 17px 0 rgba(0, 0, 0, 0.01), 6px 18px 0 rgba(0, 0, 0, 0.01), inset 0 4px 5px -2px rgba(255, 255, 255, 0.5), inset 0 1px 0 0 rgba(0, 0, 0, 0.3);
 }
 
