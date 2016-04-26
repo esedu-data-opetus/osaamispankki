@@ -3,9 +3,6 @@ function hideMessage() {
     document.getElementById("message").style.display = "none";
 };
 setTimeout(hideMessage, 2000);
-
-
-
 </script>
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
@@ -42,7 +39,7 @@ class Sivu extends CI_Controller {
 
 	}
 	
-	// Jos ei ole kirjauduttu sisään, estää pääsyn tälle sivulle
+	//Estää pääsyn tälle sivulle jos ei ole kirjauduttu sisään
 	public function tyohistoria()
 	{
 		if ($this->session->userdata('is_logged_in')) {
@@ -53,7 +50,7 @@ class Sivu extends CI_Controller {
 
 	}
 
-	// Jos ei ole kirjauduttu sisään, estää pääsyn tälle sivulle
+	//Estää pääsyn tälle sivulle jos ei ole kirjauduttu sisään
 	public function koulutukset_()
 	{
 		if ($this->session->userdata('is_logged_in')) {
@@ -94,63 +91,141 @@ class Sivu extends CI_Controller {
 		}
 	}
 
-	public function tyokokemus() 
+	public function edit_tyohistoria($id) 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_Sivu');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
-		$this->form_validation->set_rules('tehtava',   'Tehtava', 'trim');
-		$this->form_validation->set_rules('alkoi',     'Alkoi', 'trim');
-		$this->form_validation->set_rules('loppui',    'Loppui', 'trim');
-		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 'trim');
+		$this->form_validation->set_rules('tehtava',   'Tehtava', 	'trim');
+		$this->form_validation->set_rules('alkoi',     'Alkoi', 	'trim');
+		$this->form_validation->set_rules('loppui',    'Loppui', 	'trim');
+		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 	'trim');
 
 		$this->form_validation->set_message('required', "<b style='color:red;'>Tyopaikka on pakollinen.</b>");
 
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_tyohistoria())
+				if($this->model_Sivu->edit_tyohistoria($id))
 				{
-					$this->output->set_header('sivu/members');
-					//redirect('sivu/members');	
+					$this->output->set_header('sivu/members');	
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria päivitetty</p>';		
 				}		
 					else
 				{	
-					echo 'Jotain meni pieleen';		
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Tyohistoriaa ei päivitetty</p>';		
 				}
 		}
 		$this->load->template('tyohistoria');
 	}
 
-
-	public function koulutukset() 
+	public function tyohistoria_lisaus() 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_Sivu');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
+		$this->form_validation->set_rules('tehtava',   'Tehtava', 	'trim');
+		$this->form_validation->set_rules('alkoi',     'Alkoi', 	'trim');
+		$this->form_validation->set_rules('loppui',    'Loppui', 	'trim');
+		$this->form_validation->set_rules('kuvaus',    'Kuvaus', 	'trim');
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Tyopaikka on pakollinen.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->model_Sivu->add_tyohistoria())
+				{
+					$this->output->set_header('sivu/members');
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria lisätty</p>';		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Tyohistoriaa ei lisätty</p>';		
+				}
+		}
+		$this->load->template('tyohistoria_lisaus');
+	}
+
+	public function edit_koulutukset($id) 
+	{
+		
+		$this->load->model('model_Sivu');
 		$this->load->library('form_validation');
 			
-		$this->form_validation->set_rules('koulutusnimi', 'Koulutus', 'required|trim');
+		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
+		$this->form_validation->set_rules('koulutusaste', 'Koulutusaste', 'trim');
+		$this->form_validation->set_rules('oppilaitos',   'Oppilaitos',   'trim');
+		$this->form_validation->set_rules('alkoi', 	      'alkoi', 		  'trim');
+		$this->form_validation->set_rules('loppui', 	  'Loppui', 	  'trim');
 
 		$this->form_validation->set_message('required', "<b style='color:red;'>Koulutus on pakollinen.</b>");
 
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_koulutus())
+				if($this->model_Sivu->edit_koulutus($id))
 				{
 					$this->output->set_header('sivu/members');
-					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Työkokemus päivitetty</p>';
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus päivitetty</p>';
 				}		
 					else
 				{			
-					echo 'Jotain meni pieleen';				
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Koulutusta ei päivitetty</p>';				
 				}
 		}
 		$this->load->template('koulutukset');
 	}
+
+	public function koulutukset_lisaus() 
+	{
+		
+		$this->load->model('model_Sivu');
+		$this->load->library('form_validation');
+			
+		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
+		$this->form_validation->set_rules('koulutusaste', 'Koulutusaste', 'trim');
+		$this->form_validation->set_rules('oppilaitos',   'Oppilaitos',   'trim');
+		$this->form_validation->set_rules('alkoi', 	      'alkoi', 		  'trim');
+		$this->form_validation->set_rules('loppui', 	  'Loppui', 	  'trim');
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Koulutus on pakollinen.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->model_Sivu->add_koulutus())
+				{
+					$this->output->set_header('sivu/members');
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus lisätty</p>';
+				}		
+					else
+				{			
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Koulutusta ei lisätty</p>';				
+				}
+		}
+		$this->load->template('koulutukset_lisaus');
+	}
+
+	public function delete_tyohistoria($id)
+		{
+			$this->load->model('model_Sivu');
+			$this->model_Sivu->delete_tyohistoria($id);
+			redirect('sivu/members');	
+		   
+		}
+
+	public function delete_koulutukset($id)
+		{
+			$this->load->model('model_Sivu');
+			$this->model_Sivu->delete_koulutukset($id);
+			redirect('sivu/members');	
+		   
+		}
 
 	public function register_validation()
 	{
@@ -200,27 +275,6 @@ class Sivu extends CI_Controller {
 		}
 	}
 
-
-
-	/* public function salasana_check($str)
-    {
-    	if(empty($_GET['salasana'])){
-
-        $this->form_validation->set_message('salasana_check', '<b style="color:red;">Salasana kentät ovat pakollisia.</b>');
-        return FALSE;
-    	 } else {
-    	return true;
-    	 }
-    }
-
-    public function sposti2_check($str)
-    {
-    	 if(empty($_GET['sposti'])){
-
-    	 $this->form_validation->set_message('sposti2_check', '<b style="color:red;">Sähköposti on pakollinen.</b>');
-    	 return FALSE;
-    	}
-    }*/
 
     //Tarkistaa että pystyy rekisteröitymään vain @esedulainen.fi/@esedu.fi päätteisellä sähköpostiosoitteella
     public function sposti_check($str)
