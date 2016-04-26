@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tyohistoria</title>
-	<h1 style="text-align:center;font-weight:bold;">Tyohistoria</h1><br>
+	<h1 style="text-align:center;font-weight:bold;">Tyohistorian lisäys</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
@@ -42,57 +42,44 @@
 	   });
 
 </script>
-
 <?php
-
-$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-foreach ($query->result() as $row){
-	$id		   = "$row->id";
-	$tyopaikka = "$row->tyopaikka";
-	$tehtava   = "$row->tehtava";
-	$alkoi 	   = "$row->alkoi";
-	$loppui    = "$row->loppui";
-	$kuvaus    = "$row->kuvaus";
-
-}
 
  echo '<div id="both">';
  
-$inputtyopaikka = array('value' 	 =>''.$tyopaikka.'',
+$inputtyopaikka = array('value'		 =>'',
 				  	   'placeholder' => 'Työpaikka',
-				  	   'name' 	 	 => 'tyopaikka',
-				 	   'id'  	 	 => 'tyopaikka'
+				  	   'name' 		 => 'tyopaikka',
+				 	   'id'  		 => 'tyopaikka'
 				    );
  
-$inputtehtava =   array('value' 	 =>''.$tehtava.'',
-					'placeholder' 	 => 'Tehtävä',
-				    'name' 		 	 => 'tehtava',
-				    'id'  		  	 => 'tehtava'
+  $inputtehtava = array('value'	     =>'',
+					'placeholder'    => 'Tehtävä',
+				    'name' 		     => 'tehtava',
+				    'id'  		     => 'tehtava'
 				    );
  
-$inputalkoi = 	  array('value' 	 =>''.$alkoi.'',
-					'placeholder' 	 => 'Alkoi',
-				    'name'		  	 => 'alkoi',
-				    'id'   			 => 'alkoi'
+    $inputalkoi = array('value'      =>'',
+					'placeholder'    => 'Alkoi',
+				    'name' 		     => 'alkoi',
+				    'id'   	 	     => 'alkoi'
 				    );
  
-$inputloppui = 	  array('value'      =>''.$loppui.'',
+   $inputloppui = array('value' 	 =>'',
 					 'placeholder'   => 'Loppui',
-				     'name'		     => 'loppui',
-				     'id'  		     => 'loppui'
+				     'name' 		 => 'loppui',
+				     'id'   		 => 'loppui'
 				    );
 
-$inputkuvaus =    array('value'      =>''.$kuvaus.'',
-					 'placeholder'   => 'Kuvaus',
-				     'name' 	     => 'kuvaus',
-				     'id' 	 	     => 'kuvaus',
-				     'cols' 	     => '22',
-              	     'rows'		     => '5'
+   $inputkuvaus = array('value' 	 =>'',
+					 'placeholder'	 => 'Kuvaus',
+				     'name' 		 => 'kuvaus',
+				     'id'  		  	 => 'kuvaus',
+				     'cols' 		 => '22',
+              	     'rows' 		 => '5'
 				    );
 
 
-	echo form_open('sivu/edit_tyohistoria/'.$id.'');
+	echo form_open('sivu/tyohistoria_lisaus');
 	echo validation_errors();
 	echo '<h5 style="font-weight:bold;">Työpaikka</h5>';
 	echo form_input($inputtyopaikka);
@@ -110,7 +97,7 @@ $inputkuvaus =    array('value'      =>''.$kuvaus.'',
 	echo form_textarea($inputkuvaus);
 	echo "<br>";
 	echo "<br>";
-	echo form_submit('submit', 'Päivitä työhistoria', 'id="nappi"');
+	echo form_submit('submit', 'Lisää työhistoria', 'id="nappi"');
 	echo '</div>';
 
 ?>

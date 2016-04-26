@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Koulutus</title>
-	<h1 style="text-align:center;font-weight:bold;">Koulutus</h1><br>
+	<h1 style="text-align:center;font-weight:bold;">Koulutuksen lisäys</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
@@ -44,54 +44,40 @@
 </script>
 <?php
 
-$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-foreach ($query->result() as $row){
-	$id 		  = "$row->id";
-	$koulutusnimi = "$row->koulutusnimi";
-	$koulutusaste = "$row->koulutusaste";
-	$oppilaitos   = "$row->oppilaitos";
-	$alkoi 		  = "$row->alkoi";
-	$loppui 	  = "$row->loppui";
-
-}
-
-
  echo '<div id="both">';
  
-$inputkoulutusnimi = array('value'   =>''.$koulutusnimi.'',
+$inputkoulutusnimi = array('value'   =>'',
 				  	   'placeholder' => 'Koulutus',
 				  	   'name'		 => 'koulutusnimi',
-				 	   'id'  		 => 'koulutusnimi'
+				 	   'id'   		 => 'koulutusnimi'
 				    );
  
-$inputkoulutusaste = array('value'   =>''.$koulutusaste.'',
+$inputkoulutusaste = array('value'   =>'',
 					'placeholder'    => 'Koulutusaste',
 				    'name' 		     => 'koulutusaste',
 				    'id'   		     => 'koulutusaste'
 				    );
  
- $inputoppilaitos = array('value'    =>''.$oppilaitos.'',
+  $inputoppilaitos = array('value'   =>'',
 					'placeholder'    => 'Oppilaitos',
 				    'name' 		     => 'oppilaitos',
-				    'id'   		     => 'oppilaitos'
+				    'id'  		     => 'oppilaitos'
 				    );
  
-      $inputalkoi = array('value'    =>''.$alkoi.'',
+       $inputalkoi = array('value'   =>'',
 					 'placeholder'   => 'Alkoi',
 				     'name' 	     => 'alkoi',
 				     'id'  		     => 'alkoi'
 				    );
 
-	 $inputloppui = array('value'    =>''.$loppui.'',
+ 	  $inputloppui = array('value' 	 =>'',
 					 'placeholder'   => 'Loppui',
-				     'name' 	     => 'loppui',
+				     'name'		     => 'loppui',
 				     'id'  		     => 'loppui'
-	
 				    );
 
 
-	echo form_open('sivu/edit_koulutukset/'.$id.'');
+	echo form_open('sivu/koulutukset_lisaus');
 	echo validation_errors();
 	echo '<h5 style="font-weight:bold;">Koulutus</h5>';
 	echo form_input($inputkoulutusnimi);
@@ -109,7 +95,7 @@ $inputkoulutusaste = array('value'   =>''.$koulutusaste.'',
 	echo form_input($inputloppui);
 	echo "<br>";
 	echo "<br>";
-	echo form_submit('submit', 'Päivitä koulutus', 'id="nappi"');
+	echo form_submit('submit', 'Lisää koulutus', 'id="nappi"');
 	echo '</div>';
 
 ?>
