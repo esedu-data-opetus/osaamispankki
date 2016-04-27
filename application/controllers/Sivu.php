@@ -91,7 +91,7 @@ class Sivu extends CI_Controller {
 						redirect('sivu2');
 					}
 					elseif($this->session->userdata('usertype') == 2){
-						redirect('haku');
+						redirect('sivu/haku');
 					}
 					else{
 						redirect('secret_meme2');
