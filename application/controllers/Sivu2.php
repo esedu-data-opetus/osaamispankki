@@ -14,7 +14,7 @@ class Sivu2 extends CI_Controller
 
 		public function paivita_perustiedot()
 		{
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
 		$this->load->library('form_validation');
 		
@@ -36,7 +36,7 @@ class Sivu2 extends CI_Controller
 			if ($this->form_validation->run())
 			{
 
-						if($this->Model_sivu->paivitatiedot())
+						if($this->model_sivu->paivitatiedot())
 								{
 									redirect('sivu/index');
 								}
