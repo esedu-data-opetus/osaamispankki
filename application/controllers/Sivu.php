@@ -261,7 +261,7 @@ class Sivu extends CI_Controller {
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
-			$this->load->model('Model_sivu');
+			$this->load->model('model_sivu');
 
 			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
 			$this->email->to($this->input->post('sposti'));
@@ -273,7 +273,7 @@ class Sivu extends CI_Controller {
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
-			if ($this->Model_sivu->add_temp_user($key)) {
+			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "Vahvistus on lähetetty sähköpostiisi!";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Back to login</a></p>";
@@ -303,9 +303,9 @@ class Sivu extends CI_Controller {
     //Kirjautuminen
 	public function validate_credentials()
 	{
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->can_log_in()){
+		if ($this->model_sivu->can_log_in()){
 			return true;
 		} else {
 			$this->form_validation->set_message('validate_credentials', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
@@ -323,10 +323,10 @@ class Sivu extends CI_Controller {
 	public function register_user($key)
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->is_key_valid($key)){
-			if ($newemail = $this->Model_sivu->add_user($key)){
+		if ($this->model_sivu->is_key_valid($key)){
+			if ($newemail = $this->model_sivu->add_user($key)){
 
 				$data = array(
 						'email' => $newemail,
