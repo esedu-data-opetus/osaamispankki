@@ -1,6 +1,6 @@
 <?php
 
-class Model_sivu extends CI_Model {
+class model_sivu extends CI_Model {
 	// Tarkistaa sisäänkirjautumisen
 	public function can_log_in()
 	{
