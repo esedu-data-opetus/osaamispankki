@@ -77,7 +77,7 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('salasana', 'Salasana', 'md5|trim');
 
 		$this->form_validation->set_message('required', "<b style='color:red;'>Syötä sähköposti.</b>");
-
+		$this->load->model('model_sivu');
 		if ($this->form_validation->run()){
 
 			$data = array(
