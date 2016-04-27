@@ -210,6 +210,31 @@ class model_sivu extends CI_Model {
 		$this->db->delete('koulutukset');
 	
 	}
+	public function paivitatiedot()
+		{
+
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$henkid = $this->db->get('kirjautumistiedot');
+		$row = $henkid->row();
+
+			$tiedot = array('privSposti' => $this->input->post('privSposti'),
+								'eNimi' => $this->input->post('eNimi'),
+								'privSposti' => $this->input->post('privSposti'),
+								'sNimi' => $this->input->post('sNimi'),
+								'osoite' => $this->input->post('osoite'),
+								'postinro' => $this->input->post('postinro'),
+								'puhelinnro' => $this->input->post('puhelinnro'));
+				$this->db->where('henkid', $row->henkiloId);
+				$this->db->update('henkilotiedot', $tiedot);
+				if($this->db->affected_rows() > 0)
+				{
+				return true;
+				}
+				else
+				{
+				return false;
+				}
+		}
 	public function getusertype(){
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$usertype = $this->db->get('kirjautumistiedot');
