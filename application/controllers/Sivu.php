@@ -82,10 +82,21 @@ class Sivu extends CI_Controller {
 
 			$data = array(
 					'sposti' => $this->input->post('sposti'),
-					'is_logged_in' => 1
+					'is_logged_in' => 1,
+					'usertype' => $this->model_sivu->getusertype()
 				);
-			$this->session->set_userdata($data);
-			redirect('sivu/members');
+				$this->session->set_userdata($data);
+					//Ohjataan eri sivuille käyttäjätyypin mukaan
+					if ($this->session->userdata('usertype') == 1) {
+						redirect('sivu2');
+					}
+					elseif($this->session->userdata('usertype') == 2){
+						redirect('haku');
+					}
+					else{
+						redirect('secret_meme2');
+					}
+
 		} else {
 			$this->load->template('login');
 		}
@@ -329,4 +340,28 @@ class Sivu extends CI_Controller {
 		} else echo '<b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
 		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
 	}
+	public function haku()
+ 	{
+ 		if ($this->session->userdata('is_logged_in') || $this->session->userdata('usertype') > 1) {
+ 		$this->load->model('model_sivu');
+ 		//$data['query'] = $this->model_sivu->tee_haku();
+ 		$this->load->template('haku');
+ 		}
+ 		else {
+		redirect('sivu/restricted');
+	}
+ 	}
+
+ 	public function hakutulokset()
+ 	{
+ 		if ($this->session->userdata('is_logged_in') || $this->session->userdata('usertype') > 1) {
+ 	 	$this->load->model('model_sivu');
+ 		$data['query'] = $this->model_sivu->tee_haku();
+ 		$this->load->template('hakutulokset', $data);
+ 	}
+ 	else
+ 	{
+ 	redirect('sivu/restricted');
+ 	}
+ 	}
 }
