@@ -42,7 +42,7 @@ class Sivu2 extends CI_Controller
 								}
 								else
 								{
-									echo 'Jotain meni pieleen.';
+									redirect('sivu/index');
 								}
 			}
 			$this->load->template('perustiedot');
