@@ -105,7 +105,7 @@ class Sivu extends CI_Controller {
 	public function edit_tyohistoria($id) 
 	{
 		
-		$this->load->model('model_Sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -119,7 +119,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->model_Sivu->edit_tyohistoria($id))
+				if($this->model_sivu->edit_tyohistoria($id))
 				{
 					$this->output->set_header('sivu/members');	
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria päivitetty</p>';		
@@ -135,7 +135,7 @@ class Sivu extends CI_Controller {
 	public function tyohistoria_lisaus() 
 	{
 		
-		$this->load->model('model_Sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -149,7 +149,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->model_Sivu->add_tyohistoria())
+				if($this->model_sivu->add_tyohistoria())
 				{
 					$this->output->set_header('sivu/members');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria lisätty</p>';		
@@ -165,7 +165,7 @@ class Sivu extends CI_Controller {
 	public function edit_koulutukset($id) 
 	{
 		
-		$this->load->model('model_Sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -179,7 +179,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->model_Sivu->edit_koulutus($id))
+				if($this->model_sivu->edit_koulutus($id))
 				{
 					$this->output->set_header('sivu/members');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus päivitetty</p>';
@@ -195,7 +195,7 @@ class Sivu extends CI_Controller {
 	public function koulutukset_lisaus() 
 	{
 		
-		$this->load->model('model_Sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -209,7 +209,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->model_Sivu->add_koulutus())
+				if($this->model_sivu->add_koulutus())
 				{
 					$this->output->set_header('sivu/members');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus lisätty</p>';
@@ -224,16 +224,16 @@ class Sivu extends CI_Controller {
 
 	public function delete_tyohistoria($id)
 		{
-			$this->load->model('model_Sivu');
-			$this->model_Sivu->delete_tyohistoria($id);
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_tyohistoria($id);
 			redirect('sivu/members');	
 		   
 		}
 
 	public function delete_koulutukset($id)
 		{
-			$this->load->model('model_Sivu');
-			$this->model_Sivu->delete_koulutukset($id);
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_koulutukset($id);
 			redirect('sivu/members');	
 		   
 		}
