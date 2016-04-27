@@ -210,4 +210,40 @@ class Model_sivu extends CI_Model {
 		$this->db->delete('koulutukset');
 	
 	}
+	public function getusertype(){
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$usertype = $this->db->get('kirjautumistiedot');
+		$row = $usertype->row();
+
+		if($row->ktyyppi == 1){
+			return 1;
+		}
+		elseif($row->ktyyppi==2){
+			return 2;
+		}
+		else{
+			return 3;
+		}
+	}
+
+		public function tee_haku() {
+
+		$match = $this->input->post('haku');
+		$kysely="
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.profiilikuva
+		FROM henkilotiedot 
+		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
+		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
+		WHERE henkilotiedot.eNimi 
+		LIKE '".$match."' ESCAPE '!' 
+		OR henkilotiedot.sNimi LIKE '%".$match."%' ESCAPE '!' 
+		OR henkilotiedot.sposti LIKE '%".$match."%' ESCAPE '!' 
+		OR tyo.tyopaikka LIKE '%".$match."%' ESCAPE '!' 
+		OR koulutukset.koulutusnimi LIKE '%".$match."%' ESCAPE '!' 
+		OR tyo.tehtava LIKE '%".$match."%' ESCAPE '!' ";
+
+		$query = $this->db->query($kysely);
+
+		return $query->result();
+}
 }
