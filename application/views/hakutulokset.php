@@ -27,7 +27,7 @@ echo ' 	<div class="panel panel-default">
     	 <div class="panel-heading" style="">';
     	 echo '<h4 style="margin-top:10px;text-align:center">'.$row->eNimi. ' '. $row->sNimi .'</h4>';
     	 //Profiilikuvan hakeminen
-    	 if (!isset($row->profiilikuva)){echo '<img src="/osaamispankki/profiilikuvat/default.png" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';} else { echo '<img src="/osaamispankki/profiilikuvat/'.$row->profiilikuva.'" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';}
+    	 if (!isset($row->profiilikuva)){echo '<img src="../../osaamispankki/profiilikuvat/default.png" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';} else { echo '<img src="../../osaamispankki/profiilikuvat/'.$row->profiilikuva.'" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';}
 
     //echo '<p style="margin-left:120px">';
     //haetaan työkokemus
