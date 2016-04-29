@@ -106,6 +106,7 @@ class Sivu extends CI_Controller {
 	{
 		
 		$this->load->model('model_sivu');
+		$tyodata = $this->Model_sivu->get_tyohistoria($id);
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -121,7 +122,8 @@ class Sivu extends CI_Controller {
 
 				if($this->model_sivu->edit_tyohistoria($id))
 				{
-					$this->output->set_header('sivu/members');	
+					$this->output->set_header('sivu/members');
+					$tyodata = $this->Model_sivu->get_tyohistoria($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria päivitetty</p>';		
 				}		
 					else
@@ -129,7 +131,7 @@ class Sivu extends CI_Controller {
 					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Tyohistoriaa ei päivitetty</p>';		
 				}
 		}
-		$this->load->template('tyohistoria');
+		$this->load->template('tyohistoria', $tyodata);
 	}
 
 	public function tyohistoria_lisaus() 
@@ -166,6 +168,7 @@ class Sivu extends CI_Controller {
 	{
 		
 		$this->load->model('model_sivu');
+		$tyodata = $this->Model_sivu->get_koulutukset($id);
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -182,6 +185,7 @@ class Sivu extends CI_Controller {
 				if($this->model_sivu->edit_koulutus($id))
 				{
 					$this->output->set_header('sivu/members');
+					$tyodata = $this->Model_sivu->get_koulutukset($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus päivitetty</p>';
 				}		
 					else
@@ -189,7 +193,7 @@ class Sivu extends CI_Controller {
 					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Koulutusta ei päivitetty</p>';				
 				}
 		}
-		$this->load->template('koulutukset');
+		$this->load->template('koulutukset', $tyodata);
 	}
 
 	public function koulutukset_lisaus() 
