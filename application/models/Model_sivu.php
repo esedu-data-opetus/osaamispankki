@@ -152,7 +152,7 @@ class model_sivu extends CI_Model {
 		}
 	}
 	//Lisää tyohistorian
-	function add_tyohistoria()
+	public function add_tyohistoria()
 	{
 
 		$data = array(
@@ -160,11 +160,12 @@ class model_sivu extends CI_Model {
 			'tehtava'	=> $this->input->post('tehtava'),
 			'alkoi'		=> $this->input->post('alkoi'),
 			'loppui'	=> $this->input->post('loppui'),
-			'kuvaus'	=> $this->input->post('kuvaus')
+			'kuvaus'	=> $this->input->post('kuvaus'),
+			'sposti'    => $this->session->userdata('sposti')
 			);
 			
 		$this->db->where('sposti', $this->session->userdata('sposti'));
-		$this->db->update('tyo', $data);
+		$this->db->insert('tyo', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
@@ -199,15 +200,20 @@ class model_sivu extends CI_Model {
 		}
 	}
 	//Lisää koulutuksen
-	function add_koulutus()
+	public function add_koulutus()
 	{
 
 		$data = array(
-			'koulutusnimi' => $this->input->post('koulutusnimi')
+			'koulutusnimi' => $this->input->post('koulutusnimi'),
+			'koulutusaste' => $this->input->post('koulutusaste'),
+			'oppilaitos'   => $this->input->post('oppilaitos'),
+			'alkoi' 	   => $this->input->post('alkoi'),
+			'loppui' 	   => $this->input->post('loppui'),
+			'sposti'       => $this->session->userdata('sposti')
 			);
 			
-		$this->db->where('sposti', $this->session->userdata('sposti'));
-		$this->db->update('koulutukset', $data);
+		
+		$this->db->insert('koulutukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
