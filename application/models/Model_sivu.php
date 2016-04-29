@@ -164,7 +164,6 @@ class model_sivu extends CI_Model {
 			'sposti'    => $this->session->userdata('sposti')
 			);
 			
-		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->insert('tyo', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
