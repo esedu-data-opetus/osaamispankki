@@ -96,7 +96,39 @@ class model_sivu extends CI_Model {
 		}
 	}
 	
-	//MUOKKAA TÄLLÄ HETKELLÄ VAIN VIIMEISTÄ RIVIÄ
+	public function get_tyohistoria($id) {
+		$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE id =".$id);
+
+		foreach ($query->result() as $row){
+			$data['id']		   = "$row->id";
+			$data['tyopaikka'] = "$row->tyopaikka";
+			$data['tehtava']   = "$row->tehtava";
+			$data['alkoi'] 	   = "$row->alkoi";
+			$data['loppui']    = "$row->loppui";
+			$data['kuvaus']    = "$row->kuvaus";
+
+		}
+
+		return $data;
+	}
+
+	public function get_koulutukset($id) {
+		$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE id =".$id);
+
+		foreach ($query->result() as $row){
+			$data['id']		  		= "$row->id";
+			$data['koulutusnimi']	= "$row->koulutusnimi";
+			$data['koulutusaste']   = "$row->koulutusaste";
+			$data['oppilaitos'] 	= "$row->oppilaitos";
+			$data['alkoi']    		= "$row->alkoi";
+			$data['loppui']  	    = "$row->alkoi";
+
+		}
+
+		return $data;
+	}
+	
+	//Muokkaa tyohistoriaa
 	public function edit_tyohistoria($id)
 	{
 
@@ -119,7 +151,7 @@ class model_sivu extends CI_Model {
 			return false;
 		}
 	}
-	
+	//Lisää tyohistorian
 	function add_tyohistoria()
 	{
 
@@ -143,7 +175,7 @@ class model_sivu extends CI_Model {
 		}
 	}
 
-	//MUOKKAA TÄLLÄ HETKELLÄ VAIN VIIMEISTÄ RIVIÄ
+	//Muokkaa koulutusta
 	public function edit_koulutus($id)
 	{
 
@@ -166,7 +198,7 @@ class model_sivu extends CI_Model {
 			return false;
 		}
 	}
-
+	//Lisää koulutuksen
 	function add_koulutus()
 	{
 
