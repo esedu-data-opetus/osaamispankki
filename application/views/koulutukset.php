@@ -44,19 +44,6 @@
 </script>
 <?php
 
-$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-foreach ($query->result() as $row){
-	$id 		  = "$row->id";
-	$koulutusnimi = "$row->koulutusnimi";
-	$koulutusaste = "$row->koulutusaste";
-	$oppilaitos   = "$row->oppilaitos";
-	$alkoi 		  = "$row->alkoi";
-	$loppui 	  = "$row->loppui";
-
-}
-
-
  echo '<div id="both">';
  
 $inputkoulutusnimi = array('value'   =>''.$koulutusnimi.'',
