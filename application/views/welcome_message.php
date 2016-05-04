@@ -15,7 +15,7 @@
 <body>
 <?php
 echo '<img src="'.base_url().'pictures/esedu_logo.png" class="col-md-5 col-md-offset-4" style="width:250px;height:90px;">';
-echo '<a href ="'.base_url().'index.php/sivu/welcome_message_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5 col-md-offset-6" style="width:75px;height:30px;margin-right:-80px;"></a>';
+//echo '<a href ="'.base_url().'index.php/sivu/welcome_message_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5 col-md-offset-6" style="width:75px;height:30px;margin-right:-80px;"></a>';
 
 ?>
 
