@@ -25,17 +25,7 @@ class model_sivu extends CI_Model {
 				'salasana' => md5($this->input->post('salasana')),
 				'key' => $key
 			);
-		$data2 = array(
-				'sposti' => $this->input->post('sposti')
-				);
-
-		$query = $this->db->insert('tyo', $data2);
-		$data3 = array(
-				'sposti' => $this->input->post('sposti')
-				);
-
-		$query = $this->db->insert('koulutukset', $data3);
-		$query = $this->db->insert('tyo', $data2);
+	
 		$query = $this->db->insert('kirjautumistiedot', $data);
 		if ($query){
 			return true;
@@ -226,22 +216,15 @@ class model_sivu extends CI_Model {
 	//Poistaa tyohistoriarivin
 	public function delete_tyohistoria($id)
 	{
-		$data = array(
-			'sposti' => $this->session->userdata('sposti')
-			);
-
+	
 		$this->db->where('id', $id);
 		$this->db->delete('tyo');
-
 		
 	}
 
 	//Poistaa koulutusrivin
 	public function delete_koulutukset($id)
 	{
-		$data = array(
-			'sposti' => $this->session->userdata('sposti')
-			);
 
 		$this->db->where('id', $id);
 		$this->db->delete('koulutukset');
