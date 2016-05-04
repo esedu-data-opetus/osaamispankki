@@ -119,7 +119,7 @@
 	
 	}
 
-	echo '<a role="button" id="osaamispankki"  href="'.base_url().'index.php/sivu/welcome_message'.'">Osaamispankki</a>';
+	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>'; 
 	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
