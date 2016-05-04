@@ -86,6 +86,7 @@ class Sivu extends CI_Controller {
 					//'usertype' => $this->model_sivu->getusertype()
 				);
 				$this->session->set_userdata($data);
+					redirect('sivu/members');
 					//Ohjataan eri sivuille käyttäjätyypin mukaan
 				/*	if ($this->session->userdata('usertype') == 1) {
 						redirect('sivu2');
