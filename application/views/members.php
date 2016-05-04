@@ -8,8 +8,7 @@
 	<script type="text/javascript" src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
  	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css" type="text/css" />
-</head>
-
+</head>		
 <body>
 
   <!-- Modal TYOHISTORIA -->
@@ -84,11 +83,32 @@
      </div>
     </div>
   </div>
-  
+<script type="text/javascript">
+	setInterval(function() 
+	{
+		if(document.getElementById("uploadBox").value != "") 
+		{
+			document.getElementById('nappi').disabled = false;
+		}
+		else
+		{
+			document.getElementById('nappi').disabled = true;
+		}
+	}, 100);
+</script> 
 
 <div class="container" id="container">
 
 	<h1 style="text-align:center;font-size:3.3em;font-weight:bold;">Oma profiili</h1><br>
+	<?php $query = $this->db->query("SELECT eNimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");?>
+	<img src="<?php echo base_url()?>images/profiili/<?php foreach ($query->result_array() as $row){ echo $row['pkuva'];} ?>" class="img-responsive img-thumbnail" style="width: 200px;">
+
+	<?php echo form_open_multipart('upload_controller/do_upload');?>
+		<?php echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; ?>
+		<br>
+		<?php echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";?>
+		<?php echo "</form>"?>
+
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
 
@@ -99,63 +119,62 @@
 	
 	}
 
-	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
+	echo '<a role="button" id="osaamispankki"  href="'.base_url().'index.php/sivu/welcome_message'.'">Osaamispankki</a>';
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout'.' ">Kirjaudu ulos</button></a>'; 
-	echo "Tervetuloa "; 
+	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
-	echo $etunimi;
+	echo "<h4 style='font-size:1.1em;margin-left:290px;margin-top:-28px;'>".$etunimi."</h4>";
 	echo "</b>";
 	
-	echo'</nav>';
+	echo '</nav>';
 
 	//Tyohistoria
 	echo '<div class="row">';
 	echo '<div id="tyohistoria">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Tyohistoria</p><a href="'.base_url().'index.php/sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
-	?>
-	<div class="tooltip">Hover over me
-		<span class="tooltiptext">Tooltip text</span>
-	</div>
-	<?php
-	$query = $this->db->query("SELECT tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	
+	$tyohistoria = "";
 
-	foreach ($query->result() as $row){
+	$tyohistoria .= '<table class="table" border="1">';
+	$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th><th></th></th></tr></thead>';
+
+	
+	$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	$bFound = false;
+
+	foreach ($query->result() as $row)
+	{
+		$id 	   = "$row->id";
 		$tyopaikka = "$row->tyopaikka";
 		$tehtava   = "$row->tehtava";
-		$alkoi 	   = "$row->alkoi";
+		$alkoi     = "$row->alkoi";
 		$loppui    = "$row->loppui";
 		$kuvaus    = "$row->kuvaus";
-	}
-	
-	if($tyopaikka == ''){
-		echo '<p>Et ole lisännyt vielä työhistoriaa!</p>';
-	} else {
-		echo '<table class="table" border="1">';
-		echo '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th><th></th></th></tr></thead>';
 
-		$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-		foreach ($query->result() as $row){
-			$id 	   = "$row->id";
-			$tyopaikka = "$row->tyopaikka";
-			$tehtava   = "$row->tehtava";
-			$alkoi     = "$row->alkoi";
-			$loppui    = "$row->loppui";
-			$kuvaus    = "$row->kuvaus";
-
-			echo '<tr>';
-			echo '<td>'.$tyopaikka.'</td>';
-			echo '<td>'.$tehtava.'</td>';
-			echo '<td>'.$alkoi.'</td>';
-			echo '<td>'.$loppui.'</td>';
-			echo '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
-			echo '<td><a href="'.base_url().'index.php/sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
-			echo '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
-			echo '</tr>';
+		if($tyopaikka != NULL) 
+		{
+			$bFound = true;
+		
+			$tyohistoria .= '<tr>';
+			$tyohistoria .= '<td>'.$tyopaikka.'</td>';
+			$tyohistoria .= '<td>'.$tehtava.'</td>';
+			$tyohistoria .= '<td>'.$alkoi.'</td>';
+			$tyohistoria .= '<td>'.$loppui.'</td>';
+			$tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
+			$tyohistoria .= '<td><a href="'.base_url().'index.php/sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
+			$tyohistoria .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$tyohistoria .= '</tr>';
 		}
-		echo '</table>';
 	}
-
+		
+	if($bFound)
+		echo $tyohistoria;
+	else
+		echo "<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>";
+	
+	
+	echo '</table>';
 	echo '</div>';
 	echo '</div>';
 	//Koulutus
@@ -163,50 +182,52 @@
 	echo '<div id="koulutukset">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'index.php/sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
-	
-	$query = $this->db->query("SELECT koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$koulutukset = "";
 
-	foreach ($query->result() as $row){
+	$koulutukset .= '<table class="table" border="1">';
+	$koulutukset .= '<thead><tr><th>Koulutusnimi</th><th>Koulutusaste</th><th>Oppilaitos</th><th>Alkoi</th><th>Loppui</th><th><th></th></th></tr></thead>';
+
+	$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui, sposti FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	$bFound = false;
+
+	foreach ($query->result() as $row)
+	{
+		$id 		  = "$row->id";
 		$koulutusnimi = "$row->koulutusnimi";
 		$koulutusaste = "$row->koulutusaste";
 		$oppilaitos   = "$row->oppilaitos";
 		$alkoi2 	  = "$row->alkoi";
 		$loppui2 	  = "$row->loppui";
-	}
+		$sposti 	  = "$row->sposti";
 
-	if($koulutusnimi == '' ){
-		echo '<p>Et ole lisännyt vielä koulutusta!</p>';
-	} else {
-		echo '<table class="table" border="1">';
-		echo '<thead><tr><th>Koulutusnimi</th><th>Koulutusaste</th><th>Oppilaitos</th><th>Alkoi</th><th>Loppui</th><th><th></th></th></tr></thead>';
+		if($koulutusnimi != NULL)
+		{
+			$bFound = true;
 
-		$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-		foreach ($query->result() as $row){
-
-		$id = "$row->id";
-		$koulutusnimi = "$row->koulutusnimi";
-		$koulutusaste = "$row->koulutusaste";
-		$oppilaitos   = "$row->oppilaitos";
-		$alkoi2 	  = "$row->alkoi";
-		$loppui2 	  = "$row->loppui";
-	
-		echo '<tr>';
-		echo '<td>'.$koulutusnimi.'</td>';
-		echo '<td>'.$koulutusaste.'</td>';
-		echo '<td>'.$oppilaitos.'</td>';
-		echo '<td>'.$alkoi2.'</td>';
-		echo '<td>'.$loppui2.'</td>';
-		echo '<td><a href="'.base_url().'index.php/sivu/edit_koulutukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
-		echo '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
-		echo '</tr>';
+			$koulutukset .= '<tr>';
+			$koulutukset .= '<td>'.$koulutusnimi.'</td>';
+			$koulutukset .= '<td>'.$koulutusaste.'</td>';
+			$koulutukset .= '<td>'.$oppilaitos.'</td>';
+			$koulutukset .= '<td>'.$alkoi2.'</td>';
+			$koulutukset .= '<td>'.$loppui2.'</td>';
+			$koulutukset .= '<td><a href="'.base_url().'index.php/sivu/edit_koulutukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
+			$koulutukset .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$koulutukset .= '</tr>';
 		}
-		echo '</table>';
 	}
+
+	$koulutukset .= '</table>';
+
+	if($bFound)
+		echo $koulutukset;
+	else
+		echo "<p style='color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</p>";
 
 	echo '</div>';
 	echo '</div>';
 	?>
+
 </div>
 </body>
 </html>
