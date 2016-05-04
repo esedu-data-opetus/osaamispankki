@@ -83,11 +83,11 @@ class Sivu extends CI_Controller {
 			$data = array(
 					'sposti' => $this->input->post('sposti'),
 					'is_logged_in' => 1,
-					'usertype' => $this->model_sivu->getusertype()
+					//'usertype' => $this->model_sivu->getusertype()
 				);
 				$this->session->set_userdata($data);
 					//Ohjataan eri sivuille käyttäjätyypin mukaan
-					if ($this->session->userdata('usertype') == 1) {
+				/*	if ($this->session->userdata('usertype') == 1) {
 						redirect('sivu2');
 					}
 					elseif($this->session->userdata('usertype') == 2){
@@ -95,7 +95,7 @@ class Sivu extends CI_Controller {
 					}
 					else{
 						redirect('secret_meme2');
-					}
+					}*/
 
 		} else {
 			$this->load->template('login');
