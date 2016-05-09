@@ -10,12 +10,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for codeigniterosaamispankki
+-- Dumping database structure for osaamispankki
 CREATE DATABASE IF NOT EXISTS `codeigniterosaamispankki` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `codeigniterosaamispankki`;
 
 
--- Dumping structure for taulu codeigniterosaamispankki.henkilotiedot
+-- Dumping structure for taulu rosaamispankki.henkilotiedot
 CREATE TABLE IF NOT EXISTS `henkilotiedot` (
   `henkId` int(11) NOT NULL AUTO_INCREMENT,
   `eNimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `henkilotiedot` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.kirjautumistiedot
+-- Dumping structure for taulu osaamispankki.kirjautumistiedot
 CREATE TABLE IF NOT EXISTS `kirjautumistiedot` (
   `henkiloId` int(11) NOT NULL AUTO_INCREMENT,
   `etunimi` varchar(50) CHARACTER SET ujis DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `kirjautumistiedot` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.kortinomistajat
+-- Dumping structure for taulu osaamispankki.kortinomistajat
 CREATE TABLE IF NOT EXISTS `kortinomistajat` (
   `henkiloId` int(11) NOT NULL,
   `korttiId` int(11) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `kortinomistajat` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.kortit
+-- Dumping structure for taulu osaamispankki.kortit
 CREATE TABLE IF NOT EXISTS `kortit` (
   `korttiId` int(11) NOT NULL AUTO_INCREMENT,
   `kNimi` varchar(50) DEFAULT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `kortit` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.koulutukset
+-- Dumping structure for taulu osaamispankki.koulutukset
 CREATE TABLE IF NOT EXISTS `koulutukset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `koulutusnimi` varchar(50) CHARACTER SET ujis DEFAULT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `koulutukset` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.koulutus
+-- Dumping structure for taulu osaamispankki.koulutus
 CREATE TABLE IF NOT EXISTS `koulutus` (
   `kouluid` int(11) NOT NULL,
   `koulutusid` int(11) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `koulutus` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.paikkakunnat
+-- Dumping structure for taulu osaamispankki.paikkakunnat
 CREATE TABLE IF NOT EXISTS `paikkakunnat` (
   `postinro` varchar(7) NOT NULL,
   `paikkakunta` varchar(50) DEFAULT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `paikkakunnat` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.tyo
+-- Dumping structure for taulu osaamispankki.tyo
 CREATE TABLE IF NOT EXISTS `tyo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tyopaikka` varchar(50) CHARACTER SET ujis DEFAULT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `tyo` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.tyotyypit
+-- Dumping structure for taulu rosaamispankki.tyotyypit
 CREATE TABLE IF NOT EXISTS `tyotyypit` (
   `tyyppiID` int(11) NOT NULL AUTO_INCREMENT,
   `tyyppinimi` int(11) DEFAULT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `tyotyypit` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu codeigniterosaamispankki.vahvistamattomatkayttajat
+-- Dumping structure for taulu osaamispankki.vahvistamattomatkayttajat
 CREATE TABLE IF NOT EXISTS `vahvistamattomatkayttajat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `etunimi` varchar(50) DEFAULT NULL,
