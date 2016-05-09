@@ -38,11 +38,11 @@ class Sivu2 extends CI_Controller
 
 						if($this->model_sivu->paivitatiedot())
 								{
-									redirect('sivu/index');
+									redirect('sivu/members');
 								}
 								else
 								{
-									redirect('sivu/index');
+									redirect('sivu/members');
 								}
 			}
 			$this->load->template('perustiedot');
