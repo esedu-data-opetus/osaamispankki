@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Rekisteröityminen</title>
+	<title>Register</title>
 <div class="row">
 <div class="col-md-6 col-md-offset-5">
-	<h1>Rekisteröityminen</h1><br>
+	<h1>Register</h1><br>
 	</head>
 <style>
 #nappi {
@@ -26,25 +26,25 @@
 
 <?php
 
-$inputname = array('placeholder' => 'Etunimi',
+$inputname = array('placeholder' => 'First name',
 				   'name' => 'etunimi',
 				   'id'   => 'etunimi' );
 
-$inputemail = array('placeholder' => 'Sähköposti',
+$inputemail = array('placeholder' => 'Email',
 						'name' => 'sposti',
 						'id' => 'sposti' ); 
 
-$inputpassword = array('placeholder' => 'Salasana',
+$inputpassword = array('placeholder' => 'Password',
 					   'type' => 'salasana',
 					   'name' => 'salasana',
 					   'id' => 'salasana' );
 
-$inputpasswordconfirm = array('placeholder' => 'Salasana uudestaan',
+$inputpasswordconfirm = array('placeholder' => 'Confirm password',
 							  'type' => 'salasanaconfirm',
 							  'name' => 'salasanaconfirm',
 							  'id' => 'salasanaconfirm' );
 
-	echo form_open('sivu/register_validation');
+	echo form_open('sivu/register_validation_english');
 	echo validation_errors();
 	echo form_input($inputname);
 	echo "<br>";
@@ -58,7 +58,7 @@ $inputpasswordconfirm = array('placeholder' => 'Salasana uudestaan',
 	echo form_password($inputpasswordconfirm);
 	echo "<br>";
 	echo "<br>";
-	echo form_submit('submit', 'Rekisteröidy', "id='nappi'");
+	echo form_submit('submit', 'Register', "id='nappi'");
 ?>
 </div>
 </div>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Tyohistoria</title>
-	<h1 style="text-align:center;font-weight:bold;">Tyohistorian lisäys</h1><br>
+	<title>Work history</title>
+	<h1 style="text-align:center;font-weight:bold;">Add work history</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
@@ -47,31 +47,31 @@
  echo '<div id="both">';
  
 $inputtyopaikka = array('value'		 =>'',
-				  	   'placeholder' => 'Työpaikka',
+				  	   'placeholder' => 'Workplace',
 				  	   'name' 		 => 'tyopaikka',
 				 	   'id'  		 => 'tyopaikka'
 				    );
  
   $inputtehtava = array('value'	     =>'',
-					'placeholder'    => 'Tehtävä',
+					'placeholder'    => 'Task',
 				    'name' 		     => 'tehtava',
 				    'id'  		     => 'tehtava'
 				    );
  
     $inputalkoi = array('value'      =>'',
-					'placeholder'    => 'Alkoi',
+					'placeholder'    => 'Started',
 				    'name' 		     => 'alkoi',
 				    'id'   	 	     => 'alkoi'
 				    );
  
    $inputloppui = array('value' 	 =>'',
-					 'placeholder'   => 'Loppui',
+					 'placeholder'   => 'Ended',
 				     'name' 		 => 'loppui',
 				     'id'   		 => 'loppui'
 				    );
 
    $inputkuvaus = array('value' 	 =>'',
-					 'placeholder'	 => 'Kuvaus',
+					 'placeholder'	 => 'Description',
 				     'name' 		 => 'kuvaus',
 				     'id'  		  	 => 'kuvaus',
 				     'cols' 		 => '22',
@@ -79,25 +79,25 @@ $inputtyopaikka = array('value'		 =>'',
 				    );
 
 
-	echo form_open('sivu/tyohistoria_lisaus');
+	echo form_open('sivu/tyohistoria_lisaus_english');
 	echo validation_errors();
-	echo '<h5 style="font-weight:bold;">Työpaikka</h5>';
+	echo '<h5 style="font-weight:bold;">Workplace</h5>';
 	echo form_input($inputtyopaikka);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Tehtävä</h5>';
+	echo '<h5 style="font-weight:bold;">Task</h5>';
 	echo form_input($inputtehtava);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Alkoi</h5>';
+	echo '<h5 style="font-weight:bold;">Started</h5>';
 	echo form_input($inputalkoi);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Loppui</h5>';
+	echo '<h5 style="font-weight:bold;">Ended</h5>';
 	echo form_input($inputloppui);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Kuvaus</h5>';
+	echo '<h5 style="font-weight:bold;">Description</h5>';
 	echo form_textarea($inputkuvaus);
 	echo "<br>";
 	echo "<br>";
-	echo form_submit('submit', 'Lisää työhistoria', 'id="nappi"');
+	echo form_submit('submit', 'Add work history', 'id="nappi"');
 	echo '</div>';
 
 ?>

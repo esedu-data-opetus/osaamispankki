@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Koulutus</title>
-	<h1 style="text-align:center;font-weight:bold;">Koulutuksen lisäys</h1><br>
+	<title>Work history</title>
+	<h1 style="text-align:center;font-weight:bold;">Work history</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
@@ -44,58 +44,61 @@
 </script>
 <?php
 
+
  echo '<div id="both">';
  
-$inputkoulutusnimi = array('value'   =>'',
-				  	   'placeholder' => 'Koulutus',
-				  	   'name'		 => 'koulutusnimi',
-				 	   'id'   		 => 'koulutusnimi'
+$inputtyopaikka = array('value' 	 =>''.$tyopaikka.'',
+				  	   'placeholder' => 'Workplace',
+				  	   'name' 	 	 => 'tyopaikka',
+				 	   'id'  	 	 => 'tyopaikka'
 				    );
  
-$inputkoulutusaste = array('value'   =>'',
-					'placeholder'    => 'Koulutusaste',
-				    'name' 		     => 'koulutusaste',
-				    'id'   		     => 'koulutusaste'
+$inputtehtava =   array('value' 	 =>''.$tehtava.'',
+					'placeholder' 	 => 'Task',
+				    'name' 		 	 => 'tehtava',
+				    'id'  		  	 => 'tehtava'
 				    );
  
-  $inputoppilaitos = array('value'   =>'',
-					'placeholder'    => 'Oppilaitos',
-				    'name' 		     => 'oppilaitos',
-				    'id'  		     => 'oppilaitos'
+$inputalkoi = 	  array('value' 	 =>''.$alkoi.'',
+					'placeholder' 	 => 'Started',
+				    'name'		  	 => 'alkoi',
+				    'id'   			 => 'alkoi'
 				    );
  
-       $inputalkoi = array('value'   =>'',
-					 'placeholder'   => 'Alkoi',
-				     'name' 	     => 'alkoi',
-				     'id'  		     => 'alkoi'
-				    );
-
- 	  $inputloppui = array('value' 	 =>'',
-					 'placeholder'   => 'Loppui',
+$inputloppui = 	  array('value'      =>''.$loppui.'',
+					 'placeholder'   => 'Ended',
 				     'name'		     => 'loppui',
 				     'id'  		     => 'loppui'
 				    );
 
+$inputkuvaus =    array('value'      =>''.$kuvaus.'',
+					 'placeholder'   => 'Description',
+				     'name' 	     => 'kuvaus',
+				     'id' 	 	     => 'kuvaus',
+				     'cols' 	     => '22',
+              	     'rows'		     => '5'
+				    );
 
-	echo form_open('sivu/koulutukset_lisaus');
+
+	echo form_open('sivu/edit_tyohistoria_english/'.$id.'');
 	echo validation_errors();
-	echo '<h5 style="font-weight:bold;">Koulutus</h5>';
-	echo form_input($inputkoulutusnimi);
+	echo '<h5 style="font-weight:bold;">Workplace</h5>';
+	echo form_input($inputtyopaikka);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Koulutusaste</h5>';
-	echo form_input($inputkoulutusaste);
+	echo '<h5 style="font-weight:bold;">Task</h5>';
+	echo form_input($inputtehtava);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Oppilaitos</h5>';
-	echo form_input($inputoppilaitos);
-	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Alkoi</h5>';
+	echo '<h5 style="font-weight:bold;">Started</h5>';
 	echo form_input($inputalkoi);
 	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Loppui</h5>';
+	echo '<h5 style="font-weight:bold;">Ended</h5>';
 	echo form_input($inputloppui);
 	echo "<br>";
+	echo '<h5 style="font-weight:bold;">Description</h5>';
+	echo form_textarea($inputkuvaus);
 	echo "<br>";
-	echo form_submit('submit', 'Lisää koulutus', 'id="nappi"');
+	echo "<br>";
+	echo form_submit('submit', 'Update', 'id="nappi"');
 	echo '</div>';
 
 ?>

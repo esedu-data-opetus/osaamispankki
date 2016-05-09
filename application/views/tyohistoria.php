@@ -45,6 +45,18 @@
 
 <?php
 
+$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+foreach ($query->result() as $row){
+	$id		   = "$row->id";
+	$tyopaikka = "$row->tyopaikka";
+	$tehtava   = "$row->tehtava";
+	$alkoi 	   = "$row->alkoi";
+	$loppui    = "$row->loppui";
+	$kuvaus    = "$row->kuvaus";
+
+}
+
  echo '<div id="both">';
  
 $inputtyopaikka = array('value' 	 =>''.$tyopaikka.'',
