@@ -32,7 +32,7 @@ class Model_sivu extends CI_Model {
 		);		
 		
 		$query = $this->db->insert('henkilotiedot', $data2);
-		$query = $this->db->insert('vahvistamattomatkayttajat', $data);
+		$query = $this->db->insert('kirjautumistiedot', $data);
 		if ($query){
 			return true;
 		} else {
