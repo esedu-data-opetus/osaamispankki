@@ -1,9 +1,3 @@
-<script>
-function hideMessage() {
-    document.getElementById("message").style.display = "none";
-};
-setTimeout(hideMessage, 2000);
-</script>
 <?php if ( ! defined('BASEPATH')) exit('No direct script acces allowed');
 
 class Sivu extends CI_Controller {
