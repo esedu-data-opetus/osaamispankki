@@ -1,6 +1,6 @@
 <?php
 
-class model_sivu extends CI_Model {
+class Model_sivu extends CI_Model {
 	// Tarkistaa sisäänkirjautumisen
 	public function can_log_in()
 	{
@@ -26,7 +26,13 @@ class model_sivu extends CI_Model {
 				'key' => $key
 			);
 	
-		$query = $this->db->insert('kirjautumistiedot', $data);
+		$data2 = array(
+			    'eNimi'=> $this->input->post('eNimi'),
+				'sposti ' => $this->input->post('sposti')
+		);		
+		
+		$query = $this->db->insert('henkilotiedot', $data2);
+		$query = $this->db->insert('vahvistamattomatkayttajat', $data);
 		if ($query){
 			return true;
 		} else {
@@ -86,6 +92,8 @@ class model_sivu extends CI_Model {
 		}
 	}
 	
+
+
 	public function get_tyohistoria($id) {
 		$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE id =".$id);
 
@@ -117,10 +125,10 @@ class model_sivu extends CI_Model {
 
 		return $data;
 	}
-	
+
 	//Muokkaa tyohistoriaa
 	public function edit_tyohistoria($id)
-	{
+	{		
 
 		$data = array(
 			'tyopaikka' => $this->input->post('tyopaikka'),
@@ -141,6 +149,7 @@ class model_sivu extends CI_Model {
 			return false;
 		}
 	}
+
 	//Lisää tyohistorian
 	public function add_tyohistoria()
 	{
@@ -153,7 +162,7 @@ class model_sivu extends CI_Model {
 			'kuvaus'	=> $this->input->post('kuvaus'),
 			'sposti'    => $this->session->userdata('sposti')
 			);
-			
+
 		$this->db->insert('tyo', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
@@ -216,20 +225,22 @@ class model_sivu extends CI_Model {
 	//Poistaa tyohistoriarivin
 	public function delete_tyohistoria($id)
 	{
-	
+		
 		$this->db->where('id', $id);
 		$this->db->delete('tyo');
-		
+			
 	}
 
 	//Poistaa koulutusrivin
 	public function delete_koulutukset($id)
 	{
+		
 
 		$this->db->where('id', $id);
-		$this->db->delete('koulutukset');
+		$this->db->delete('koulutukset');		
 	
 	}
+	
 	public function paivitatiedot()
 		{
 
@@ -237,14 +248,13 @@ class model_sivu extends CI_Model {
 		$henkid = $this->db->get('kirjautumistiedot');
 		$row = $henkid->row();
 
-			$tiedot = array('privSposti' => $this->input->post('privSposti'),
-								'eNimi' => $this->input->post('eNimi'),
+			$tiedot = array(	'eNimi' 	 => $this->input->post('eNimi'),
 								'privSposti' => $this->input->post('privSposti'),
-								'sNimi' => $this->input->post('sNimi'),
-								'osoite' => $this->input->post('osoite'),
-								'postinro' => $this->input->post('postinro'),
+								'sNimi' 	 => $this->input->post('sNimi'),
+								'osoite'	 => $this->input->post('osoite'),
+								'postinro' 	 => $this->input->post('postinro'),
 								'puhelinnro' => $this->input->post('puhelinnro'));
-				$this->db->where('henkid', $row->henkiloId);
+				$this->db->where('henkid', $row->henkid);
 				$this->db->update('henkilotiedot', $tiedot);
 				if($this->db->affected_rows() > 0)
 				{
@@ -275,12 +285,12 @@ class model_sivu extends CI_Model {
 
 		$match = $this->input->post('haku');
 		$kysely="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.profiilikuva
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
 		WHERE henkilotiedot.eNimi 
-		LIKE '".$match."' ESCAPE '!' 
+		LIKE '%".$match."%' ESCAPE '!' 
 		OR henkilotiedot.sNimi LIKE '%".$match."%' ESCAPE '!' 
 		OR henkilotiedot.sposti LIKE '%".$match."%' ESCAPE '!' 
 		OR tyo.tyopaikka LIKE '%".$match."%' ESCAPE '!' 
