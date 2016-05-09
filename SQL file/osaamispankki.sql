@@ -11,7 +11,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for osaamispankki
-CREATE DATABASE IF NOT EXISTS `codeigniterosaamispankki` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `osaamispankki` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `codeigniterosaamispankki`;
 
 
