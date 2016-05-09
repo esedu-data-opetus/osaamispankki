@@ -1,9 +1,11 @@
 <link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">
-<style>
-
-</style>
-
+<script>
+function hideMessage() {
+    document.getElementById("message").style.display = "none";
+};
+setTimeout(hideMessage, 2000);
+</script>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
