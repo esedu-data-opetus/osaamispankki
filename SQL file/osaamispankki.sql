@@ -12,7 +12,7 @@
 
 -- Dumping database structure for osaamispankki
 CREATE DATABASE IF NOT EXISTS `osaamispankki` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `codeigniterosaamispankki`;
+USE `osaamispankki`;
 
 
 -- Dumping structure for taulu rosaamispankki.henkilotiedot
