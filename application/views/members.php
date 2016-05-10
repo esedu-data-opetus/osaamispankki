@@ -8,9 +8,14 @@
 	<script type="text/javascript" src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
  	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css" type="text/css" />
-</head>		
+</head>
+<style>
+.glyphicon glyphicon-search{
+	font-size:1em;
+}
+</style>
 <body>
-
+<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>
   <!-- Modal TYOHISTORIA -->
   <div class="modal fade" id="myModalTyohistoria">
    <div class="vertical-alignment-helper">
@@ -100,7 +105,7 @@
 <div class="container" id="container">
 
 	<h1 style="text-align:center;font-size:3.3em;font-weight:bold;">Oma profiili</h1><br>
-	<?php $query = $this->db->query("SELECT eNimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");?>
+	<?php $query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");?>
 	<img src="<?php echo base_url()?>images/profiili/<?php foreach ($query->result_array() as $row){ echo $row['pkuva'];} ?>" class="img-responsive img-thumbnail" style="width: 200px;">
 
 	<?php echo form_open_multipart('Upload_controller/do_upload');?>
