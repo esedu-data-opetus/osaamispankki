@@ -585,7 +585,7 @@ class Sivu extends CI_Controller {
     {
   	 
         if(stristr($str,'@esedulainen.fi') !== false) return true;
-        //if(stristr($str,'@esedu.fi') !== false) return true; 
+        if(stristr($str,'@esedu.fi') !== false) return true; 
 
         $this->form_validation->set_message('sposti_check', '<p style="color:red;">Voit käyttää vain <b>@esedulainen.fi</b> päätteistä osoitetta.</p>');
         return FALSE;
