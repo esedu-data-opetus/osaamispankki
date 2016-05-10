@@ -108,6 +108,14 @@ setTimeout(hideMessage, 2000);
 			{
 				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members_english'.'">Back to profile</a>';
 			}
+			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "haku")
+			{
+				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
+			}
+			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "hakutulokset")
+			{
+				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'index.php/sivu/members'.'">Takaisin profiiliin</a>';
+			}
 			elseif($this->uri->segment(2) == "register_successful")
 			{
 			
