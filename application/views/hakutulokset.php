@@ -25,7 +25,7 @@ $i++;
 echo '<div class="panel panel-default">';
 echo ' 	<div class="panel panel-default">
     	 <div class="panel-heading" style="">';
-    	 echo '<h4 style="margin-top:10px;text-align:center">'.$row->eNimi. ' '. $row->sNimi .'</h4>';
+    	 echo '<h4 style="margin-top:10px;text-align:center">'.$row->etunimi. ' '. $row->sNimi .'</h4>';
     	 //Profiilikuvan hakeminen
     	 if (!isset($row->pkuva)){echo '<img src="../../images/profiili/default.png" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';} else { echo '<img src="../../images/profiili/'.$row->pkuva.'" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';}
 
