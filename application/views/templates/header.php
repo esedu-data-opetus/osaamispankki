@@ -1,5 +1,6 @@
 <link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">
+<link rel="icon" href="<?=base_url()?>/esedu_logo.ico" type="image/gif">
 <script>
 function hideMessage() {
     document.getElementById("message").style.display = "none";
