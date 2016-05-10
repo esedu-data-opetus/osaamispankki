@@ -18,7 +18,7 @@ USE `osaamispankki`;
 -- Dumping structure for taulu rosaamispankki.henkilotiedot
 CREATE TABLE IF NOT EXISTS `henkilotiedot` (
   `henkId` int(11) NOT NULL AUTO_INCREMENT,
-  `eNimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `etunimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `pkuva` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `sNimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `puhelinnro` varchar(50) DEFAULT NULL,
