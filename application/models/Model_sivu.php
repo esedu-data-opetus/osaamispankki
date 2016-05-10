@@ -25,7 +25,7 @@ class model_sivu extends CI_Model {
 				'salasana' => md5($this->input->post('salasana')),
 				'key' => $key
 			);
-	
+		//Lisää käyttäjän etunimen ja sähköpostin henkilötietoihin ja laittaa käyttäjälle oletusprofiilikuvan
 		$data2 = array(
 			    'etunimi'=> $this->input->post('etunimi'),
 			    'sposti ' => $this->input->post('sposti'),
