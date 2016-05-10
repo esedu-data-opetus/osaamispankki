@@ -27,8 +27,9 @@ class Model_sivu extends CI_Model {
 			);
 	
 		$data2 = array(
-			    'eNimi'=> $this->input->post('eNimi'),
-				'sposti ' => $this->input->post('sposti')
+			    'etunimi'=> $this->input->post('etunimi'),
+			    'sposti ' => $this->input->post('sposti'),
+			    'pkuva' => ('default.png')
 		);		
 		
 		$query = $this->db->insert('henkilotiedot', $data2);
