@@ -286,11 +286,11 @@ class model_sivu extends CI_Model {
 
 		$match = $this->input->post('haku');
 		$kysely="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.eNimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		WHERE henkilotiedot.eNimi 
+		WHERE henkilotiedot.etunimi 
 		LIKE '%".$match."%' ESCAPE '!' 
 		OR henkilotiedot.sNimi LIKE '%".$match."%' ESCAPE '!' 
 		OR henkilotiedot.sposti LIKE '%".$match."%' ESCAPE '!' 
