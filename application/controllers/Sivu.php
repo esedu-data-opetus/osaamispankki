@@ -149,7 +149,7 @@ class Sivu extends CI_Controller {
 			$data = array(
 					'sposti' => $this->input->post('sposti'),
 					'is_logged_in' => 1,
-					'usertype' => $this->Model_sivu->getusertype()
+					'usertype' => $this->model_sivu->getusertype()
 				);
 			$this->session->set_userdata($data);
 			
@@ -197,8 +197,8 @@ class Sivu extends CI_Controller {
 	public function edit_tyohistoria($id) 
 	{
 		
-		$this->load->model('Model_sivu');
-		$tyodata = $this->Model_sivu->get_tyohistoria($id);
+		$this->load->model('model_sivu');
+		$tyodata = $this->model_sivu->get_tyohistoria($id);
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -213,10 +213,10 @@ class Sivu extends CI_Controller {
 		{
 
 			
-				if($this->Model_sivu->edit_tyohistoria($id))
+				if($this->model_sivu->edit_tyohistoria($id))
 				{
 					$this->output->set_header('sivu/members');	
-					$tyodata = $this->Model_sivu->get_tyohistoria($id);
+					$tyodata = $this->model_sivu->get_tyohistoria($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria päivitetty</p>';		
 				}		
 					else
@@ -232,8 +232,8 @@ class Sivu extends CI_Controller {
 	public function edit_tyohistoria_english($id) 
 	{
 		
-		$this->load->model('Model_sivu');
-		$tyodata = $this->Model_sivu->get_tyohistoria($id);
+		$this->load->model('model_sivu');
+		$tyodata = $this->model_sivu->get_tyohistoria($id);
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -248,10 +248,10 @@ class Sivu extends CI_Controller {
 		{
 
 			
-				if($this->Model_sivu->edit_tyohistoria($id))
+				if($this->model_sivu->edit_tyohistoria($id))
 				{
 					$this->output->set_header('sivu/members_english');	
-					$tyodata = $this->Model_sivu->get_tyohistoria($id);
+					$tyodata = $this->model_sivu->get_tyohistoria($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Work history updated</p>';		
 				}		
 					else
@@ -267,7 +267,7 @@ class Sivu extends CI_Controller {
 	public function tyohistoria_lisaus() 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -281,7 +281,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_tyohistoria())
+				if($this->model_sivu->add_tyohistoria())
 				{
 					$this->output->set_header('sivu/members');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Tyohistoria lisätty</p>';		
@@ -297,7 +297,7 @@ class Sivu extends CI_Controller {
 	public function tyohistoria_lisaus_english() 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('tyopaikka', 'Työpaikka', 'required|trim');
@@ -311,7 +311,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_tyohistoria())
+				if($this->model_sivu->add_tyohistoria())
 				{
 					$this->output->set_header('sivu/members_english');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Work history added</p>';		
@@ -328,8 +328,8 @@ class Sivu extends CI_Controller {
 	public function edit_koulutukset($id) 
 	{
 		
-		$this->load->model('Model_sivu');
-		$tyodata = $this->Model_sivu->get_koulutukset($id);
+		$this->load->model('model_sivu');
+		$tyodata = $this->model_sivu->get_koulutukset($id);
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -343,10 +343,10 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->edit_koulutus($id))
+				if($this->model_sivu->edit_koulutus($id))
 				{
 					$this->output->set_header('sivu/members');
-					$tyodata = $this->Model_sivu->get_koulutukset($id);
+					$tyodata = $this->model_sivu->get_koulutukset($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus päivitetty</p>';
 				}		
 					else
@@ -360,8 +360,8 @@ class Sivu extends CI_Controller {
 	public function edit_koulutukset_english($id) 
 	{
 		
-		$this->load->model('Model_sivu');
-		$tyodata = $this->Model_sivu->get_koulutukset($id);
+		$this->load->model('model_sivu');
+		$tyodata = $this->model_sivu->get_koulutukset($id);
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -375,10 +375,10 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->edit_koulutus($id))
+				if($this->model_sivu->edit_koulutus($id))
 				{
 					$this->output->set_header('sivu/members_english');
-					$tyodata = $this->Model_sivu->get_koulutukset($id);
+					$tyodata = $this->model_sivu->get_koulutukset($id);
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Education updated</p>';
 				}		
 					else
@@ -392,7 +392,7 @@ class Sivu extends CI_Controller {
 	public function koulutukset_lisaus() 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -406,7 +406,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_koulutus())
+				if($this->model_sivu->add_koulutus())
 				{
 					$this->output->set_header('sivu/members');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Koulutus lisätty</p>';
@@ -422,7 +422,7 @@ class Sivu extends CI_Controller {
 	public function koulutukset_lisaus_english() 
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 		$this->load->library('form_validation');
 			
 		$this->form_validation->set_rules('koulutusnimi', 'Koulutus',     'required|trim');
@@ -436,7 +436,7 @@ class Sivu extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 
-				if($this->Model_sivu->add_koulutus())
+				if($this->model_sivu->add_koulutus())
 				{
 					$this->output->set_header('sivu/members_english');
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Education added</p>';
@@ -451,32 +451,32 @@ class Sivu extends CI_Controller {
 
 	public function delete_tyohistoria($id)
 		{
-			$this->load->model('Model_sivu');
-			$this->Model_sivu->delete_tyohistoria($id);
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_tyohistoria($id);
 			redirect('sivu/members');	
 		   
 		}
 		
 	public function delete_tyohistoria_english($id)
 	{
-		$this->load->model('Model_sivu');
-		$this->Model_sivu->delete_tyohistoria($id);
+		$this->load->model('model_sivu');
+		$this->model_sivu->delete_tyohistoria($id);
 		redirect('sivu/members_english');	
 	   
 	}
 
 	public function delete_koulutukset($id)
 		{
-			$this->load->model('Model_sivu');
-			$this->Model_sivu->delete_koulutukset($id);
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_koulutukset($id);
 			redirect('sivu/members');	
 		   
 		}
 		
 	public function delete_koulutukset_english($id)
 	{
-		$this->load->model('Model_sivu');
-		$this->Model_sivu->delete_koulutukset($id);
+		$this->load->model('model_sivu');
+		$this->model_sivu->delete_koulutukset($id);
 		redirect('sivu/members_english');	
 	   
 	}
@@ -504,7 +504,7 @@ class Sivu extends CI_Controller {
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
-			$this->load->model('Model_sivu');
+			$this->load->model('model_sivu');
 
 			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
 			$this->email->to($this->input->post('sposti'));
@@ -516,7 +516,7 @@ class Sivu extends CI_Controller {
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
-			if ($this->Model_sivu->add_temp_user($key)) {
+			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p></center>";
@@ -552,7 +552,7 @@ class Sivu extends CI_Controller {
 			$key = md5(uniqid());
 
 			$this->load->library('email', array('mailtype'=>'html'));
-			$this->load->model('Model_sivu');
+			$this->load->model('model_sivu');
 
 			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
 			$this->email->to($this->input->post('sposti'));
@@ -564,7 +564,7 @@ class Sivu extends CI_Controller {
 			$this->email->message($message);
 
 			//Lähettää sähköpostivarmistuksen käyttäjälle
-			if ($this->Model_sivu->add_temp_user($key)) {
+			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>A confirmation has been sent to your email!</h2>";
 					echo "<p><a href='".base_url()."index.php/sivu/login_english' >Back to login</a></p></center>";
@@ -602,9 +602,9 @@ class Sivu extends CI_Controller {
     //Kirjautuminen
 	public function validate_credentials()
 	{
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->can_log_in()){
+		if ($this->model_sivu->can_log_in()){
 			return true;
 		} else {
 			$this->form_validation->set_message('validate_credentials', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
@@ -614,9 +614,9 @@ class Sivu extends CI_Controller {
 	
 	public function validate_credentials_english()
 	{
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->can_log_in()){
+		if ($this->model_sivu->can_log_in()){
 			return true;
 		} else {
 			$this->form_validation->set_message('validate_credentials_english', "<p style='color:red;'>Incorrect username/password.</p>");
@@ -639,10 +639,10 @@ class Sivu extends CI_Controller {
 	public function register_user($key)
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->is_key_valid($key)){
-			if ($newemail = $this->Model_sivu->add_user($key)){
+		if ($this->model_sivu->is_key_valid($key)){
+			if ($newemail = $this->model_sivu->add_user($key)){
 
 				$data = array(
 						'email' => $newemail,
@@ -660,10 +660,10 @@ class Sivu extends CI_Controller {
 	public function register_user_english($key)
 	{
 		
-		$this->load->model('Model_sivu');
+		$this->load->model('model_sivu');
 
-		if ($this->Model_sivu->is_key_valid($key)){
-			if ($newemail = $this->Model_sivu->add_user($key)){
+		if ($this->model_sivu->is_key_valid($key)){
+			if ($newemail = $this->model_sivu->add_user($key)){
 
 				$data = array(
 						'email' => $newemail,
