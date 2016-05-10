@@ -4,7 +4,7 @@
 <div class="footer navbar-fixed-bottom">
 	<a href="http://www.esedu.fi/" target="_blank" >
 	<?php
-	echo '<img src="'.base_url().'pictures/esedu_logo.png" style="width:２０0px;height:90px;"></a>';
+/*	echo '<img src="'.base_url().'pictures/esedu_logo.png" style="width:２０0px;height:90px;"></a>';
 
 	$test = $this->session->userdata('');
 	if($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyohistoria")
@@ -90,7 +90,7 @@
 			{
 			
 			}*/
-
+/*
 			elseif($this->uri->segment(2) == "welcome_message")
 			{
 				echo '<a href ="'.base_url().'index.php/sivu/welcome_message_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
@@ -106,7 +106,7 @@
 			elseif($this->uri->segment(2) == "members_english")
 			{	
 				echo '<a href ="'.base_url().'index.php/sivu/members"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
+			}*/
 	?>
 	<span class="text-muted">ページ rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></span><span class="text-muted"><br><p style="margin-left:227px;margin-top:-30px;"> <b>Tekijät:</b> リク, ミーカ ja ティキ</p></span>
 	
