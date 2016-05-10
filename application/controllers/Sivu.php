@@ -520,7 +520,7 @@ class Sivu extends CI_Controller {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
 					echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p></center>";
-			} 	else echo "<h2 style='font-weight:bold;color:red;'Sähköpostin lähetys ei onnistu.</h2>";
+			} 	else echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistu.</h2>";
 					
 		} else echo "Ongelma tietokantaan lisätessä.";
 
@@ -568,7 +568,7 @@ class Sivu extends CI_Controller {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>A confirmation has been sent to your email!</h2>";
 					echo "<p><a href='".base_url()."index.php/sivu/login_english' >Back to login</a></p></center>";
-			} 	else echo "<h2 style='font-weight:bold;color:red;'Unable to send an email.</h2>";
+			} 	else echo "<h2 style='font-weight:bold;color:red;'>Unable to send an email.</h2>";
 					
 		} else echo "Ongelma tietokantaan lisätessä.";
 
