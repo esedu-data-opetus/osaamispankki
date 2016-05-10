@@ -47,8 +47,8 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "register")
 			{
-				echo '<a role="button" id="osaamispankki" href="'.base_url().'index.php/sivu/welcome_message'.'">Osaamispankki</a>';
-				echo '<a role="button" id="kirjautuminen" href="'.base_url().'index.php/sivu/login'.' ">Kirjautuminen</button></a>';							 														
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
+				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login'.' ">Kirjautuminen</button></a>';							 														
 			}
 			elseif($this->uri->segment(2) == "register_english")
 			{
