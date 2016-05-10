@@ -6,6 +6,7 @@
 	<?php
 	echo '<img src="'.base_url().'pictures/esedu_logo.png" style="width:２０0px;height:90px;"></a>';
 /*
+	TP was here!
 	$test = $this->session->userdata('');
 	if($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyohistoria")
 			{
