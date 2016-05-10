@@ -249,7 +249,7 @@ class model_sivu extends CI_Model {
 		$henkid = $this->db->get('kirjautumistiedot');
 		$row = $henkid->row();
 
-			$tiedot = array(	'eNimi' 	 => $this->input->post('eNimi'),
+			$tiedot = array(	'etunimi' 	 => $this->input->post('etunimi'),
 								'privSposti' => $this->input->post('privSposti'),
 								'sNimi' 	 => $this->input->post('sNimi'),
 								'osoite'	 => $this->input->post('osoite'),
