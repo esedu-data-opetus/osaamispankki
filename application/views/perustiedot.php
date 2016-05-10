@@ -1,11 +1,11 @@
 <div style="text-align: center;">
 <h2>Päivitä perustietoja tai jatka sivulle</h2>
 <?php
-$query = $this->db->query("SELECT privSposti, eNimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 foreach ($query->result() as $row){
 	$privSposti = "$row->privSposti";
-	$eNimi = "$row->eNimi";
+	$eNimi = "$row->etunimi";
 	$sNimi = "$row->sNimi";
 	$osoite = "$row->osoite";
 	$postinro = "$row->postinro";
@@ -14,7 +14,7 @@ if($privSposti == '' || $eNimi == '' || $sNimi == '' || $osoite == '' || $postin
 	
 
 	$sposti = array('value' => ''.$privSposti.'', 'placeholder' => 'Henkilökohtainen sähköpostiosoite', 'size' => '30','type' => 'text' , 'name' => 'privSposti', 'id' => 'privSposti' );
-	$etunimi = array('value' => ''.$eNimi.'','placeholder' => 'Etunimi', 'size' => '30', 'type' => 'text' , 'name' => 'eNimi', 'id' => 'eNimi' );
+	$etunimi = array('value' => ''.$eNimi.'','placeholder' => 'Etunimi', 'size' => '30', 'type' => 'text' , 'name' => 'etunimi', 'id' => 'etunimi' );
 	$sukunimi = array('value' => ''.$sNimi.'','placeholder' => 'Sukunimi', 'size' => '30','type' => 'text' , 'name' => 'sNimi', 'id' => 'sNimi' );
 	$katuosoite = array('value' => ''.$osoite.'','placeholder' => 'Katuosoite', 'size' => '30','type' => 'text' , 'name' => 'osoite', 'id' => 'osoite' );
 	$postinumero = array('value' => ''.$postinro.'','placeholder' => 'Postinumero', 'size' => '30','type' => 'text' , 'name' => 'postinro', 'id' => 'postinro' );
