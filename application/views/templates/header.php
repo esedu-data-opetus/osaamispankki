@@ -70,11 +70,11 @@ setTimeout(hideMessage, 2000);
 				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Oma profiili</a>';
 
 			}
-		/*	elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "welcome_message_english")
+			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "welcome_message_english")
 			{
 				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members_english'.'">Your profile</a>';
 
-			}*/
+			}
 			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "edit_tyohistoria")
 			{
 				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Takaisin profiiliin</a>';
