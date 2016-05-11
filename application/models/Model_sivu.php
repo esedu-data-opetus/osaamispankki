@@ -223,6 +223,31 @@ class model_sivu extends CI_Model {
 		}
 	}
 	
+	//Muokkaa perustietoja
+	public function edit_members()
+	{
+
+		$data = array(
+			'privSposti' => $this->input->post('privSposti'),
+			'etunimi'	 => $this->input->post('etunimi'),
+			'sNimi' 	 => $this->input->post('sNimi'),
+			'osoite' 	 => $this->input->post('osoite'),
+			'postinro' 	 => $this->input->post('postinro'),
+			'puhelinnro' => $this->input->post('puhelinnro')
+			);
+			
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$this->db->update('henkilotiedot', $data);
+		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
+		{
+			return true;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
+	
 	//Poistaa tyohistoriarivin
 	public function delete_tyohistoria($id)
 	{
