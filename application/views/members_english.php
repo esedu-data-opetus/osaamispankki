@@ -43,7 +43,7 @@
         <div class="modal-footer">
      
         <?php
-         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'index.php/sivu/delete_tyohistoria_english/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Delete</a></button>';//Poisto nappi
+         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/delete_tyohistoria_english/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Delete</a></button>';//Poisto nappi
          ?>
         <button type="button" class="btn btn-default"  data-dismiss="modal"><a href="" style="text-decoration:none;" id="cancel">Cancel</a></button>
         </div>
@@ -80,7 +80,7 @@
           ?>
         <div class="modal-footer">
         <?php
-         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'index.php/sivu/delete_koulutukset_english/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Delete</a></button>';//Poisto nappi
+         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/delete_koulutukset_english/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Delete</a></button>';//Poisto nappi
          ?>
           <button type="button" class="btn btn-default" data-dismiss="modal"><a href="" style="text-decoration:none;" id="cancel">Cancel</a></button>
         </div>
@@ -105,14 +105,6 @@
 <div class="container" id="container">
 
 	<h1 style="text-align:center;font-size:3.3em;font-weight:bold;">Your profile</h1><br>
-	<?php $query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");?>
-	<img src="<?php echo base_url()?>images/profiili/<?php foreach ($query->result_array() as $row){ echo $row['pkuva'];} ?>" class="img-responsive img-thumbnail" style="width: 200px;">
-
-	<?php echo form_open_multipart('upload_controller/do_upload_english');?>
-		<?php echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; ?>
-		<br>
-		<?php echo "<input type='submit' id='nappi' name='submit'  value='Upload' class='btn btn-success' disabled/> ";?>
-		<?php echo "</form>"?>
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
@@ -124,8 +116,8 @@
 	
 	}
 
-	echo '<a role="button" id="osaamispankki"  href="'.base_url().'index.php/sivu/welcome_message_english'.'">Learning bank</a>';
-	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'index.php/sivu/logout_english'.' ">Logout</button></a>'; 
+	echo '<a role="button" id="osaamispankki"  href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
+	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout_english'.' ">Logout</button></a>'; 
 	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Welcome,</h3>"; 
 	echo "<b style='font-size:15px;'>";
 	echo "<h4 style='font-size:1.1em;margin-left:290px;margin-top:-28px;'>".$etunimi."</h4>";
@@ -133,10 +125,63 @@
 	
 	echo '</nav>';
 
-	//Tyohistoria
 	echo '<div class="row">';
+	echo '<div class="col-md-6">';
+	//Perustiedot
+
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	foreach ($query->result() as $row)
+	{
+		$privSposti = "$row->privSposti";
+		$eNimi = "$row->etunimi";
+		$sNimi = "$row->sNimi";
+		$osoite = "$row->osoite";
+		$postinro = "$row->postinro";
+		$puhelinnro = "$row->puhelinnro";
+	}
+
+	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
+
+	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	foreach ($query->result_array() as $row)
+	{
+		echo '<img src="'.base_url().'images/profiili/'.$row['pkuva'].'" class="img-responsive img-thumbnail" style="width: 200px;">';
+	}
+
+	echo form_open_multipart('Upload_controller/do_upload');
+		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
+		echo '<br>';
+		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
+		echo "</form>";
+
+		    echo '<b style="font-size:1.1em;">Email: </b>';
+		    echo $privSposti;
+		    echo '</br>';
+		    echo '<b style="font-size:1.1em;">First name: </b>';
+		    echo $eNimi;
+		    echo '</br>';
+		    echo '<b style="font-size:1.1em;">Surname: </b>';
+		    echo $sNimi;
+		    echo '</br>';
+		    echo '<b style="font-size:1.1em;">Address: </b>';
+		    echo $osoite;
+		    echo '</br>';
+		    echo '<b style="font-size:1.1em;">Postcode: </b>';
+		    echo $postinro;
+		    echo '</br>';
+		    echo '<b style="font-size:1.1em;">Telephone number: </b>';
+	    	echo $puhelinnro;
+	    	echo '</br>';
+	
+	echo '</div>';
+	echo '</div>';
+
+	//Tyohistoria
+	echo '<div class="col-md-6">';
 	echo '<div id="tyohistoria">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Work history</p><a href="'.base_url().'index.php/sivu/tyohistoria_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Work history</p><a href="'.base_url().'sivu/tyohistoria_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 	
 	$tyohistoria = "";
 
@@ -167,7 +212,7 @@
 			$tyohistoria .= '<td>'.$alkoi.'</td>';
 			$tyohistoria .= '<td>'.$loppui.'</td>';
 			$tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
-			$tyohistoria .= '<td><a href="'.base_url().'index.php/sivu/edit_tyohistoria_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
+			$tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
 			$tyohistoria .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$tyohistoria .= '</tr>';
 		}
@@ -182,10 +227,11 @@
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
+
 	//Koulutus
-	echo '<div class="row">';
+	echo '<div class="col-md-6">';
 	echo '<div id="koulutukset">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Education</p><a href="'.base_url().'index.php/sivu/koulutukset_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Education</p><a href="'.base_url().'sivu/koulutukset_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 	$koulutukset = "";
 
@@ -216,7 +262,7 @@
 			$koulutukset .= '<td>'.$oppilaitos.'</td>';
 			$koulutukset .= '<td>'.$alkoi2.'</td>';
 			$koulutukset .= '<td>'.$loppui2.'</td>';
-			$koulutukset .= '<td><a href="'.base_url().'index.php/sivu/edit_koulutukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
+			$koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
 			$koulutukset .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$koulutukset .= '</tr>';
 		}
@@ -229,6 +275,7 @@
 	else
 		echo "<p style='color:red;font-weight:bold;'>Education is not added yet</p>";
 
+	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 	?>
