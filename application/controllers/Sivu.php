@@ -193,6 +193,71 @@ class Sivu extends CI_Controller {
 		}
 	}
 
+	public function members_edit2() 
+	{
+		
+		$this->load->model('model_sivu');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('privSposti', 'Sposti', 'trim');
+		$this->form_validation->set_rules('etunimi', 'Salasana', 'trim');
+		$this->form_validation->set_rules('sNimi', 'Sposti', 'trim');
+		$this->form_validation->set_rules('osoite', 'Salasana', 'trim');
+		$this->form_validation->set_rules('postinro', 'Salasana', 'trim');
+		$this->form_validation->set_rules('puhelinnro', 'Salasana', 'trim');
+
+
+		if ($this->form_validation->run())
+		{
+
+			
+				if($this->model_sivu->edit_members())
+				{
+					
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Perustiedot päivitetty</p>';
+					redirect('sivu/members');		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Tyohistoriaa ei päivitetty</p>';		
+				}
+		}
+		
+		$this->load->template('members');
+	}
+
+	public function members_edit_english() 
+	{
+		
+		$this->load->model('model_sivu');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('privSposti', 'Sposti', 'trim');
+		$this->form_validation->set_rules('etunimi', 'Salasana', 'trim');
+		$this->form_validation->set_rules('sNimi', 'Sposti', 'trim');
+		$this->form_validation->set_rules('osoite', 'Salasana', 'trim');
+		$this->form_validation->set_rules('postinro', 'Salasana', 'trim');
+		$this->form_validation->set_rules('puhelinnro', 'Salasana', 'trim');
+
+
+		if ($this->form_validation->run())
+		{
+
+			
+				if($this->model_sivu->edit_members())
+				{
+					
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Basic information updated</p>';
+					redirect('sivu/members_english');		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Basic information was not updated</p>';		
+				}
+		}
+		
+		$this->load->template('members_edit_english');
+	}
 
 	public function edit_tyohistoria($id) 
 	{
