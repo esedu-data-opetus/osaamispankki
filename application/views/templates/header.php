@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<head>
 <link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">
 <link rel="icon" href="<?=base_url()?>/esedu_logo.ico" type="image/gif">
@@ -7,7 +9,8 @@ function hideMessage() {
 };
 setTimeout(hideMessage, 2000);
 </script>
-
+</head>
+<body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
 		// Laittaa napit sen mukaan millä sivulla on
