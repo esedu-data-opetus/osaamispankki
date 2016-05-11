@@ -81,12 +81,11 @@
 	list-style-type:none;
 	}
 	#tyohistoria {
-	display: inline-block;
-	float:left;
+	
+	margin-left:-100px;
 	}
 	#koulutukset {
-	display: inline-block;
-	float:left;
+	margin-left:-100px;
 	}
 	button {
     border: 1px #AAA solid;
