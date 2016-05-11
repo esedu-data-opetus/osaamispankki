@@ -5,8 +5,12 @@ echo '<br>'.form_input($haku);
 echo form_submit('submit', 'Hae', 'class="btn btn-success"');
 form_close();
 echo '</div>';
-if($this->input->post('haku') == '')
-{
+//Näytetään kaikki tulokset jos haku on tyhjä tai sisältää pelkkiä välilyöntejä
+
+  $match = trim($this->input->post('haku'));
+  $str = preg_replace( "/\s+/", " ", $match);
+
+    if($str === '' OR $str === ' '){
 echo '<h1>Näytetään kaikki tulokset</h1>';
 }
 else{
