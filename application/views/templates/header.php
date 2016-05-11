@@ -35,7 +35,7 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "login_validation")
 			{
-				echo '<a role="button" id="osaamispankki"  href="'.base_url().'>Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 				echo '<a role="button" id="luotili" 	   href="'.base_url().'sivu/register'.' ">Luo tili</button></a>';
 			
 			}
