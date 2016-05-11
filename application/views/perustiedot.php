@@ -39,10 +39,6 @@ if($privSposti == '' || $eNimi == '' || $sNimi == '' || $osoite == '' || $postin
 
 		echo form_submit('submit', 'Jatka', 'class="btn btn-success"');
 
-
-
-
-
 	}
 else
 	{

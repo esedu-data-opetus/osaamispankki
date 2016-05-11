@@ -156,19 +156,21 @@
 		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
 		echo "</form>";
 
-		    echo '<b style="font-size:1.1em;">Email: </b>';
+			echo '<a href="'.base_url().'sivu/members_edit_english" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
+
+		    echo '<b style="font-size:1.1em;">                       Email: </b>';
 		    echo $privSposti;
 		    echo '</br>';
-		    echo '<b style="font-size:1.1em;">First name: </b>';
+		    echo '<b style="font-size:1.1em;">              First name: </b>';
 		    echo $eNimi;
 		    echo '</br>';
-		    echo '<b style="font-size:1.1em;">Surname: </b>';
+		    echo '<b style="font-size:1.1em;">                 Surname: </b>';
 		    echo $sNimi;
 		    echo '</br>';
-		    echo '<b style="font-size:1.1em;">Address: </b>';
+		    echo '<b style="font-size:1.1em;">                  Address: </b>';
 		    echo $osoite;
 		    echo '</br>';
-		    echo '<b style="font-size:1.1em;">Postcode: </b>';
+		    echo '<b style="font-size:1.1em;">                Postcode: </b>';
 		    echo $postinro;
 		    echo '</br>';
 		    echo '<b style="font-size:1.1em;">Telephone number: </b>';
