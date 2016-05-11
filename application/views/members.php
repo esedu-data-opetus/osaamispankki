@@ -13,9 +13,11 @@
 .glyphicon glyphicon-search{
 	font-size:1em;
 }
+
+
 </style>
 <body>
-<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>
+
   <!-- Modal TYOHISTORIA -->
   <div class="modal fade" id="myModalTyohistoria">
    <div class="vertical-alignment-helper">
@@ -118,6 +120,7 @@
 	}
 
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
+	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;margin-left:155px;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.' ">Kirjaudu ulos</button></a>'; 
 	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
