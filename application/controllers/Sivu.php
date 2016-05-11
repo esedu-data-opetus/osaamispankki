@@ -70,6 +70,16 @@ class Sivu extends CI_Controller {
 
 	}
 	
+	public function members_edit()
+	{
+		if ($this->session->userdata('is_logged_in')) {
+		$this->load->template('members_edit');
+	} else {
+		redirect('sivu/restricted');
+	}
+
+	}
+	
 	public function members_english()
 	{
 		if ($this->session->userdata('is_logged_in')) {
