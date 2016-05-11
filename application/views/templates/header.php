@@ -23,7 +23,7 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "login")
 			{
-				echo '<a role="button" id="osaamispankki"   href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki"   href="'.base_url().'">Osaamispankki</a>';
 				echo '<a role="button" id="luotili" 		href="'.base_url().'sivu/register'.' ">Luo tili</button></a>';
 			
 			}
@@ -35,7 +35,7 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "login_validation")
 			{
-				echo '<a role="button" id="osaamispankki"  href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 				echo '<a role="button" id="luotili" 	   href="'.base_url().'sivu/register'.' ">Luo tili</button></a>';
 			
 			}
@@ -47,7 +47,7 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "register")
 			{
-				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login'.' ">Kirjautuminen</button></a>';							 														
 			}
 			elseif($this->uri->segment(2) == "register_english")
@@ -57,7 +57,7 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "register_validation")
 			{
-				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login'.' ">Kirjautuminen</button></a>';							 														
 			}
 			elseif($this->uri->segment(2) == "register_validation_english")
