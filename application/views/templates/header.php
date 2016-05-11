@@ -1,17 +1,19 @@
 <!DOCTYPE html>
+<html>
 <head>
-<link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">
-<link rel="icon" href="<?=base_url()?>/esedu_logo.ico" type="image/gif">
-<script>
-function hideMessage() {
-    document.getElementById("message").style.display = "none";
-};
-setTimeout(hideMessage, 2000);
-</script>
+	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">
+	<link rel="icon" href="<?=base_url()?>/esedu_logo.ico" type="image/gif">
+	
+	<script>
+	function hideMessage() {
+	    document.getElementById("message").style.display = "none";
+	};
+	setTimeout(hideMessage, 2000);
+	</script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
 		// Laittaa napit sen mukaan millä sivulla on
 	$test = $this->session->userdata('');
@@ -142,7 +144,4 @@ setTimeout(hideMessage, 2000);
 			}
 			
 	?>
-</nav>
-
-<!--Laitetaan paddingiä jotta navbar ei mene tekstin päälle-->
-<body style="padding-top: 60px;">
+	</nav>
