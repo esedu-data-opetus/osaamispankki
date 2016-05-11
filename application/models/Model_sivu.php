@@ -309,22 +309,36 @@ class model_sivu extends CI_Model {
 
 		public function tee_haku() {
 
-		$match = $this->input->post('haku');
-		$kysely="
+		$match = trim($this->input->post('haku'));
+		$str = preg_replace( "/\s+/", " ", $match);
+
+		if($str === '' OR $str === ' '){
+		$kysely ="
 		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
 		WHERE henkilotiedot.etunimi 
-		LIKE '%".$match."%' ESCAPE '!' 
-		OR henkilotiedot.sNimi LIKE '%".$match."%' ESCAPE '!' 
-		OR henkilotiedot.sposti LIKE '%".$match."%' ESCAPE '!' 
-		OR tyo.tyopaikka LIKE '%".$match."%' ESCAPE '!' 
-		OR koulutukset.koulutusnimi LIKE '%".$match."%' ESCAPE '!' 
-		OR tyo.tehtava LIKE '%".$match."%' ESCAPE '!' ";
-
+		LIKE '%%' ESCAPE '!'";
 		$query = $this->db->query($kysely);
-
 		return $query->result();
+		}
+		else
+		{
+		$haku_explode = explode(' ', $str);
+		$kysely="
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
+		FROM henkilotiedot 
+		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
+		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
+		WHERE henkilotiedot.etunimi
+		REGEXP '".implode("|", $haku_explode)."'
+		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
+		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
+		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'";
+		$query = $this->db->query($kysely);
+		
+		return $query->result();
+	}
 }
 }
