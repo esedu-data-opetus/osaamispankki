@@ -29,19 +29,19 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "login_english")
 			{
-				//echo '<a role="button" id="osaamispankki"   href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
+				echo '<a role="button" id="osaamispankki"   href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
 				echo '<a role="button" id="luotili"  		href="'.base_url().'sivu/register_english'.' ">Create an account</button></a>';
 			
 			}
 			elseif($this->uri->segment(2) == "login_validation")
 			{
-				echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki"  href="'.base_url().'>Osaamispankki</a>';
 				echo '<a role="button" id="luotili" 	   href="'.base_url().'sivu/register'.' ">Luo tili</button></a>';
 			
 			}
 			elseif($this->uri->segment(2) == "login_validation_english")
 			{
-				//echo '<a role="button" id="osaamispankki"  href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
+				echo '<a role="button" id="osaamispankki"  href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
 				echo '<a role="button" id="luotili"  	   href="'.base_url().'sivu/register_english'.' ">Create an account</button></a>';
 			
 			}
@@ -52,17 +52,17 @@ setTimeout(hideMessage, 2000);
 			}
 			elseif($this->uri->segment(2) == "register_english")
 			{
-			//	echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login_english'.' ">Login</button></a>';							 														
 			}
 			elseif($this->uri->segment(2) == "register_validation")
 			{
-				echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message'.'">Osaamispankki</a>';
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login'.' ">Kirjautuminen</button></a>';							 														
 			}
 			elseif($this->uri->segment(2) == "register_validation_english")
 			{
-			//	echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
+				echo '<a role="button" id="osaamispankki" href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login_english'.' ">Login</button></a>';							 														
 			}
 			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "")
@@ -131,12 +131,12 @@ setTimeout(hideMessage, 2000);
 				echo '<a role="button" id="luotili" href="'.base_url().'sivu/register'.' ">Luo tili</button></a>';
 
 			}
-		/*	elseif($this->uri->segment(2) == "welcome_message_english")
+			elseif($this->uri->segment(2) == "welcome_message_english")
 			{
 				echo '<a role="button" id="kirjautuminen" href="'.base_url().'sivu/login_english'.' ">Login</button></a>';
 				echo '<a role="button" id="luotili" href="'.base_url().'sivu/register_english'.' ">Create an account</button></a>';
 				//echo '<a href ="'.base_url().'sivu/welcome_message"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5 col-md-offset-6" style="width:75px;height:30px;margin-right:-80px;"></a>';
-			}*/
+			}
 			
 	?>
 </nav>
