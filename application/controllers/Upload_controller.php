@@ -26,7 +26,7 @@ class Upload_Controller extends CI_Controller {
 			$upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
 			$file_name = $upload_data['file_name'];
 			$data = array(
-					//			md5 häshätään		tiedoston nimi			tiedoston pääte
+					//			md5 hÃ¤shÃ¤tÃ¤Ã¤n		tiedoston nimi			tiedoston pÃ¤Ã¤te
 					//'pkuva' => md5($this->session->userdata('sposti')).'.'. end((explode(".", $_FILES['userfile']['name'])))
 					'pkuva' => $file_name
 			);
