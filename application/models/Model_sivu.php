@@ -233,7 +233,8 @@ class model_sivu extends CI_Model {
 			'sNimi' 	 => $this->input->post('sNimi'),
 			'osoite' 	 => $this->input->post('osoite'),
 			'postinro' 	 => $this->input->post('postinro'),
-			'puhelinnro' => $this->input->post('puhelinnro')
+			'puhelinnro' => $this->input->post('puhelinnro'),
+			'aktiivisuus' => $this->input->post('aktiivisuus')
 			);
 			
 		$this->db->where('sposti', $this->session->userdata('sposti'));
