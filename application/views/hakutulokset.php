@@ -75,11 +75,15 @@ echo '
 echo '
 <table class="table table-striped">
  <tr>
-    <th>Koulutuksen nimi</th>
+    	<th>Koulutuksen nimi</th>
+	<th>Koulutusaste</th>
+    	<th>Oppilaitos</th>
+    	<th>Alkoi</th>
+    	<th>Loppui</th>
   </tr>';
 
   foreach($query4->result() as $row4){
-		echo '<tr><td>'. $row4->koulutusnimi . '</td></tr>';
+		echo '<tr><td>'. $row4->koulutusnimi . '</td><td>'. $row4->koulutusaste . '</td><td>'. $row4->oppilaitos .'</td><td>'. $row4->alkoi . '</td><td>'. $row4->loppui . '</td>'.'</tr>';
 		}
 
 echo '</table></div>';
