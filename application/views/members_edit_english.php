@@ -130,7 +130,7 @@
 	echo '<div class="col-md-6">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row)
 	{
@@ -140,6 +140,7 @@
 		$osoite = "$row->osoite";
 		$postinro = "$row->postinro";
 		$puhelinnro = "$row->puhelinnro";
+		$aktiivisuus = "$row->aktiivisuus";
 	}
 
 	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
@@ -168,6 +169,8 @@
  			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Telephone number', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
 
 			echo form_open('sivu/members_edit_english');
+			echo validation_errors();
+			echo '<input style="margin-left:280px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-320px;">    <b>  Profile is allowed to appear in searches</b></p><br>';
 		    echo '<b style="font-size:1.1em;">                       Email: </b>';
 		    echo '<p style="display:inline;">'.form_input($privSposti).'</p>';
 		    echo '</br>';

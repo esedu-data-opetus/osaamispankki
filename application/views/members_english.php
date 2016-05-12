@@ -130,7 +130,7 @@
 	echo '<div class="col-md-6">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row)
 	{
@@ -140,6 +140,7 @@
 		$osoite = "$row->osoite";
 		$postinro = "$row->postinro";
 		$puhelinnro = "$row->puhelinnro";
+		$aktiivisuus = "$row->aktiivisuus";
 	}
 
 	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
@@ -158,6 +159,12 @@
 		echo "</form>";
 
 			echo '<a href="'.base_url().'sivu/members_edit_english" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
+
+			if ($aktiivisuus == '1'){
+			echo '<p style="display:inline;margin-left:-15px;"><b style="color:green">Profile is visible  </b></p><br>';
+			}else {
+			echo '<p style="display:inline;margin-left:-15px;"><b style="color:red;">Profile is invisible</b></p><br>';
+		}
 
 		    echo '<b style="font-size:1.1em;">                       Email: </b>';
 		    echo $privSposti;
