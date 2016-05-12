@@ -131,7 +131,7 @@
 	echo '<div class="col-md-6">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row)
 	{
@@ -141,6 +141,8 @@
 		$osoite = "$row->osoite";
 		$postinro = "$row->postinro";
 		$puhelinnro = "$row->puhelinnro";
+		$lyhytKuvaus = "$row->lyhytKuvaus";
+		$aktiivisuus = "$row->aktiivisuus";
 	}
 
 	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
@@ -168,8 +170,13 @@
  			$osoite = array(	'value' => ''.$osoite.'', 	  'placeholder' => 'Osoite',     	'name' => 'osoite', 	'id' => 'osoite', 	  'class' => "login-form" );
  			$postinro = array(	'value' => ''.$postinro.'',   'placeholder' => 'Postinumero',   'name' => 'postinro',  	'id' => 'postinro',   'class' => "login-form" );
  			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Puhelinnumero', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
+ 			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytkuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '40',
+              	     'rows' 		 => '5' );
+ 			
 
  			echo form_open('sivu/members_edit2');
+ 			echo validation_errors();
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-230px;">   <b>Profiili saa näkyä hauissa</b></p><br>';
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';
 		    echo '<p style="display:inline;">'.form_input($privSposti).'</p>';
 		    echo '</br>';
@@ -187,6 +194,9 @@
 		    echo '</br>';
 		    echo '<b style="font-size:1.1em;">Puhelinnumero: </b>';
 	    	echo '<p style="display:inline;">'.form_input($puhelinnro).'</p>';
+	    	 echo '</br>';
+	    	echo '<b style="font-size:1.1em;">  Lyhyt kuvaus: </b>';
+	    	echo '<p style="display:inline;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br></br>';
 
 	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success"');
