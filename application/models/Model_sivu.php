@@ -269,18 +269,13 @@ class model_sivu extends CI_Model {
 	
 	public function paivitatiedot()
 		{
-
-		$this->db->where('sposti', $this->session->userdata('sposti'));
-		$henkid = $this->db->get('kirjautumistiedot');
-		$row = $henkid->row();
-
 			$tiedot = array(	'etunimi' 	 => $this->input->post('etunimi'),
 								'privSposti' => $this->input->post('privSposti'),
 								'sNimi' 	 => $this->input->post('sNimi'),
 								'osoite'	 => $this->input->post('osoite'),
 								'postinro' 	 => $this->input->post('postinro'),
 								'puhelinnro' => $this->input->post('puhelinnro'));
-				$this->db->where('henkid', $row->henkid);
+				$this->db->where('sposti', $this->session->userdata('sposti'));
 				$this->db->update('henkilotiedot', $tiedot);
 				if($this->db->affected_rows() > 0)
 				{
