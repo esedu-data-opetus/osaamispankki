@@ -17,6 +17,23 @@
 
 </style>
 <body>
+<script type="text/javascript">
+	setInterval(function() 
+	{
+		if(document.getElementById("uploadBox").value != "") 
+		{
+			document.getElementById('nappi').disabled = false;
+		}
+		else
+		{
+			document.getElementById('nappi').disabled = true;
+		}
+	}, 100);
+
+</script> 
+
+
+
 
   <!-- Modal TYOHISTORIA -->
   <div class="modal fade" id="myModalTyohistoria">
@@ -32,14 +49,15 @@
 
           $query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
-		foreach ($query->result() as $row){
+		foreach ($query->result() as $row)
+		{
 			$id 	   = "$row->id";
 			$tyopaikka = "$row->tyopaikka";
 			$tehtava   = "$row->tehtava";
 			$alkoi     = "$row->alkoi";
 			$loppui    = "$row->loppui";
 			$kuvaus    = "$row->kuvaus";
-			}
+		}
          
           ?>
         <div class="modal-footer">
@@ -69,14 +87,14 @@
           
         $query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
-		foreach ($query->result() as $row){
-
-		$id 		  = "$row->id";
-		$koulutusnimi = "$row->koulutusnimi";
-		$koulutusaste = "$row->koulutusaste";
-		$oppilaitos   = "$row->oppilaitos";
-		$alkoi2 	  = "$row->alkoi";
-		$loppui2 	  = "$row->loppui";
+		foreach ($query->result() as $row)
+		{
+			$id 		  = "$row->id";
+			$koulutusnimi = "$row->koulutusnimi";
+			$koulutusaste = "$row->koulutusaste";
+			$oppilaitos   = "$row->oppilaitos";
+			$alkoi2 	  = "$row->alkoi";
+			$loppui2 	  = "$row->loppui";
 		}
          
           ?>
@@ -90,19 +108,7 @@
      </div>
     </div>
   </div>
-<script type="text/javascript">
-	setInterval(function() 
-	{
-		if(document.getElementById("uploadBox").value != "") 
-		{
-			document.getElementById('nappi').disabled = false;
-		}
-		else
-		{
-			document.getElementById('nappi').disabled = true;
-		}
-	}, 100);
-</script> 
+
 
 <div class="container" id="container">
 
@@ -133,7 +139,7 @@
 	echo '<div class="col-md-6">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row)
 	{
@@ -143,6 +149,8 @@
 		$osoite = "$row->osoite";
 		$postinro = "$row->postinro";
 		$puhelinnro = "$row->puhelinnro";
+		$lyhytKuvaus = "$row->lyhytKuvaus";
+		$aktiivisuus = "$row->aktiivisuus";
 	}
 
 	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
@@ -162,6 +170,12 @@
 
 			echo '<a href="'.base_url().'sivu/members_edit" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
 
+			if ($aktiivisuus == '1'){
+			echo '<p style="display:inline;margin-left:-15px;"><b style="color:green">Profiili näkyy haussa </b></p><br>';
+			}else {
+			echo '<p style="display:inline;margin-left:-15px;"><b style="color:red;">Profiili ei näy haussa </b></p><br>';
+		}
+	
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';
 		    echo $privSposti;
 		    echo '</br>';
@@ -179,6 +193,9 @@
 		    echo '</br>';
 		    echo '<b style="font-size:1.1em;">Puhelinnumero: </b>';
 	    	echo $puhelinnro;
+	    	echo '</br>';
+		    echo '<b style="font-size:1.1em;">Lyhyt kuvaus: </b>';
+	    	echo $lyhytKuvaus;
 	    	echo '</br>';
 
 
