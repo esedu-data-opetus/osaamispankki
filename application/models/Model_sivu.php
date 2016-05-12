@@ -306,11 +306,11 @@ class model_sivu extends CI_Model {
 
 		if($str === '' OR $str === ' '){
 		$kysely ="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		WHERE henkilotiedot.etunimi 
+		WHERE henkilotiedot.aktiivisuus = 1 
 		LIKE '%%' ESCAPE '!'";
 		$query = $this->db->query($kysely);
 		return $query->result();
@@ -319,12 +319,11 @@ class model_sivu extends CI_Model {
 		{
 		$haku_explode = explode(' ', $str);
 		$kysely="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		WHERE henkilotiedot.etunimi
-		REGEXP '".implode("|", $haku_explode)."'
+		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
 		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
 		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
 		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'";
