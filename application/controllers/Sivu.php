@@ -757,7 +757,8 @@ class Sivu extends CI_Controller {
 	
 	public function haku()
  	{
- 		if ($this->session->userdata('is_logged_in') || $this->session->userdata('usertype') > 1) {
+	  	//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
+ 		if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
  		$this->load->model('model_sivu');
  		//$data['query'] = $this->model_sivu->tee_haku();
  		$this->load->template('haku');
@@ -769,7 +770,8 @@ class Sivu extends CI_Controller {
 
  	public function hakutulokset()
  	{
- 		if ($this->session->userdata('is_logged_in') || $this->session->userdata('usertype') > 1) {
+ 		//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
+ 		if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
  	 	$this->load->model('model_sivu');
  		$data['query'] = $this->model_sivu->tee_haku();
  		$this->load->template('hakutulokset', $data);
