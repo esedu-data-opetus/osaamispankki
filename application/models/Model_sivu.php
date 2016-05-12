@@ -288,18 +288,14 @@ class model_sivu extends CI_Model {
 		}
 	public function getusertype(){
 		$this->db->where('sposti', $this->input->post('sposti'));
-		$usertype = $this->db->get('kirjautumistiedot');
-		$row = $usertype->row();
-
-		if($row->ktyyppi == 1){
-			return 1;
+		$query = $this->db->get('kirjautumistiedot');
+		if($query->num_rows() == 1){
+	   		foreach ($query->result() as $row){
+	    	return $row->ktyyppi;}
 		}
-		elseif($row->ktyyppi==2){
-			return 2;
-		}
-		else{
-			return 3;
-		}
+   		else{
+   			return 1;}
+	
 	}
 
 		public function tee_haku() {
