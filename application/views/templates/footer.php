@@ -1,4 +1,3 @@
- <body>
 <footer class="footer">
 
 <div class="footer navbar-fixed-bottom">
