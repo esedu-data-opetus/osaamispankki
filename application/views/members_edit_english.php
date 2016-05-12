@@ -160,12 +160,12 @@
 
 			echo '<a href="'.base_url().'sivu/members_english" class="btn btn-danger"><span style="line-height:14px;display:inline;"></span>Cancel editing</a><br><br>';
 
-			$privSposti = array('value' => ''.$privSposti.'', 'placeholder' => 'Sähköposti', 	'name' => 'privSposti', 'id' => 'sposti',     'class' => "login-form" );
- 			$eNimi = array(		'value' => ''.$eNimi.'', 	  'placeholder' => 'Etunimi',    	'name' => 'etunimi', 	'id' => 'etunimi',	  'class' => "login-form" );
- 			$sNimi = array(		'value' => ''.$sNimi.'', 	  'placeholder' => 'Sukunimi',   	'name' => 'sNimi', 		'id' => 'sNimi',	  'class' => "login-form" );
- 			$osoite = array(	'value' => ''.$osoite.'', 	  'placeholder' => 'Osoite',     	'name' => 'osoite', 	'id' => 'osoite', 	  'class' => "login-form" );
- 			$postinro = array(	'value' => ''.$postinro.'',   'placeholder' => 'Postinumero',   'name' => 'postinro',  	'id' => 'postinro',   'class' => "login-form" );
- 			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Puhelinnumero', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
+			$privSposti = array('value' => ''.$privSposti.'', 'placeholder' => 'Email', 	'name' => 'privSposti', 'id' => 'sposti',     'class' => "login-form" );
+ 			$eNimi = array(		'value' => ''.$eNimi.'', 	  'placeholder' => 'First name',    	'name' => 'etunimi', 	'id' => 'etunimi',	  'class' => "login-form" );
+ 			$sNimi = array(		'value' => ''.$sNimi.'', 	  'placeholder' => 'Surname',   	'name' => 'sNimi', 		'id' => 'sNimi',	  'class' => "login-form" );
+ 			$osoite = array(	'value' => ''.$osoite.'', 	  'placeholder' => 'Address',     	'name' => 'osoite', 	'id' => 'osoite', 	  'class' => "login-form" );
+ 			$postinro = array(	'value' => ''.$postinro.'',   'placeholder' => 'Postcode',   'name' => 'postinro',  	'id' => 'postinro',   'class' => "login-form" );
+ 			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Telephone number', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
 
 			echo form_open('sivu/members_edit_english');
 		    echo '<b style="font-size:1.1em;">                       Email: </b>';
