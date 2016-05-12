@@ -144,4 +144,5 @@
 			}
 			
 	?>
+<body style="padding-top: 60px;">
 	</nav>
