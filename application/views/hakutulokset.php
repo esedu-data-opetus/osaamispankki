@@ -25,6 +25,7 @@ echo '<h1>Tulokset haulla "'.$this->input->post('haku'). '"</h1>';
 
 $i=0;
 foreach ($query as $row){
+ if($row->aktiivisuus == 1){
 $i++;
 echo '<div class="panel panel-default">';
 echo ' 	<div class="panel panel-default">
@@ -101,5 +102,6 @@ echo'
      	 </div>
    		 </div>';
 echo '</div> <br>';
+}
 }
 ?>
