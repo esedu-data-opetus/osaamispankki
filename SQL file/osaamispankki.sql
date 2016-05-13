@@ -15,21 +15,34 @@ CREATE DATABASE IF NOT EXISTS `osaamispankki` /*!40100 DEFAULT CHARACTER SET lat
 USE `osaamispankki`;
 
 
--- Dumping structure for taulu rosaamispankki.henkilotiedot
+-- Dumping structure for taulu osaamispankki.harrastukset
+CREATE TABLE IF NOT EXISTS `harrastukset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `harrastus` varchar(50) DEFAULT NULL,
+  `vapaasana` varchar(200) DEFAULT NULL,
+  `sposti` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Tietojen vientiä ei oltu valittu.
+
+
+-- Dumping structure for taulu osaamispankki.henkilotiedot
 CREATE TABLE IF NOT EXISTS `henkilotiedot` (
   `henkId` int(11) NOT NULL AUTO_INCREMENT,
   `etunimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `pkuva` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `sNimi` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `puhelinnro` varchar(50) DEFAULT NULL,
+  `puhelinnro` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `pitkaKuvaus` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `osoite` varchar(50) DEFAULT NULL,
-  `privSposti` varchar(50) DEFAULT NULL,
-  `postinro` varchar(50) DEFAULT NULL,
+  `osoite` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `privSposti` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `postinro` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `spuoli` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `lyhytKuvaus` varchar(140) CHARACTER SET latin1 DEFAULT NULL,
   `sposti` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `ktyyppi` int(11) DEFAULT NULL,
+  `aktiivisuus` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`henkId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=sjis;
 
@@ -43,9 +56,9 @@ CREATE TABLE IF NOT EXISTS `kirjautumistiedot` (
   `sposti` varchar(50) CHARACTER SET ujis DEFAULT NULL,
   `salasana` varchar(50) DEFAULT NULL,
   `privSposti` varchar(50) DEFAULT NULL COMMENT 'Käyttäjän privaatti posti, jota lukee aktiivisesti',
-  `ktyyppi` varchar(50) DEFAULT NULL COMMENT 'opiskelija, admin, työnantaja',
-  `aktiivisuus` datetime DEFAULT NULL,
+  `aktiivisuus` varchar(50) DEFAULT NULL,
   `key` varchar(50) DEFAULT NULL,
+  `ktyyppi` int(11) DEFAULT NULL COMMENT 'opiskelija, admin, työnantaja',
   PRIMARY KEY (`henkiloId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -126,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `tyo` (
 -- Tietojen vientiä ei oltu valittu.
 
 
--- Dumping structure for taulu rosaamispankki.tyotyypit
+-- Dumping structure for taulu osaamispankki.tyotyypit
 CREATE TABLE IF NOT EXISTS `tyotyypit` (
   `tyyppiID` int(11) NOT NULL AUTO_INCREMENT,
   `tyyppinimi` int(11) DEFAULT NULL,
