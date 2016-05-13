@@ -156,7 +156,7 @@
 		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
 		echo '<br>';
 		echo "<input type='submit' id='nappi' name='submit'  value='Upload' class='btn btn-success' disabled/> ";
-		echo "</form>";
+		echo "</form><br>";
 
 			echo '<a href="'.base_url().'sivu/members_edit_english" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
 
