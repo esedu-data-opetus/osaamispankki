@@ -35,8 +35,8 @@ echo ' 	<div class="panel panel-default">
     	 if (!isset($row->pkuva)){echo '<img src="../../images/profiili/default.png" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';} else { echo '<img src="../../images/profiili/'.$row->pkuva.'" alt="profiilikuva" style="float:left;width:100px;height:100px;border: 5px solid black"> ';}
 
     //echo '<p style="margin-left:120px">';
-    
-    //haetaan harrastukset
+
+      //haetaan harrastukset
   $query3 = $this->db->query("SELECT * FROM harrastukset WHERE sposti ='".$row->sposti."'");
   if($query3->num_rows() > 0)
   {
@@ -60,15 +60,16 @@ echo '</table></div>';
     
   }
       echo '<br><br>';
-    
+ 
+
     //haetaan työkokemus
 	$query3 = $this->db->query("SELECT * FROM tyo WHERE sposti ='".$row->sposti."'");
 	if($query3->num_rows() > 0)
 	{
 
 echo '
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#t'.$i.'">Näytä työkokemukset</button>
-  <div id="t'.$i.'" class="collapse">';
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#h'.$i.'">Näytä työkokemukset</button>
+  <div id="h'.$i.'" class="collapse">';
 
 echo '
 <table class="table table-striped">

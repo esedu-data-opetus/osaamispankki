@@ -165,7 +165,7 @@
 	echo '<div class="col-md-6">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus ,aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row)
 	{
@@ -175,6 +175,7 @@
 		$osoite = "$row->osoite";
 		$postinro = "$row->postinro";
 		$puhelinnro = "$row->puhelinnro";
+		$lyhytKuvaus = "$row->lyhytKuvaus";
 		$aktiivisuus = "$row->aktiivisuus";
 	}
 
@@ -219,6 +220,10 @@
 		    echo '<b style="font-size:1.1em;">Telephone number: </b>';
 	    	echo $puhelinnro;
 	    	echo '</br>';
+	    	echo '<b style="font-size:1.1em;">Short description: </b>';
+	    	echo $lyhytKuvaus;
+	    	echo '</br>';
+
 	
 	echo '</div>';
 	echo '</div>';
