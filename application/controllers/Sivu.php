@@ -59,6 +59,7 @@ class Sivu extends CI_Controller {
 		header( "refresh:2;url=login" );
 	}
 
+
 	//Estää pääsyn profiilisivulle jos sisään ei ole kirjauduttu
 	public function members()
 	{
@@ -87,9 +88,9 @@ class Sivu extends CI_Controller {
 	} else {
 		redirect('sivu/restricted');
 	}
-	
+
 	}
-	
+
 	public function members_english()
 	{
 		if ($this->session->userdata('is_logged_in')) {
@@ -100,6 +101,27 @@ class Sivu extends CI_Controller {
 
 	}
 	
+
+	public function harrastukset()
+	{
+		if ($this->session->userdata('is_logged_in')) {
+		$this->load->template('harrastukset');
+	} else {
+		redirect('sivu/restricted');
+	}
+		
+	}
+
+	public function harrastukset_english()
+	{
+		if ($this->session->userdata('is_logged_in')) {
+		$this->load->template('harrastukset_english');
+	} else {
+		redirect('sivu/restricted_english');
+	}
+		
+	}
+
 	//Estää pääsyn tälle sivulle jos ei ole kirjauduttu sisään
 	public function tyohistoria()
 	{
@@ -259,7 +281,7 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('osoite', 'Osoite', 'trim');
 		$this->form_validation->set_rules('postinro', 'Postinumero', 'trim');
 		$this->form_validation->set_rules('puhelinnro', 'Puhelinnumero', 'trim');
-		$this->form_validation->set_rules('lyhytKuvaus', 'Lyhyt kuvaus', 'trim');;
+		$this->form_validation->set_rules('lyhytKuvaus', 'Lyhyt kuvaus', 'trim');
 
 
 		if ($this->form_validation->run())
@@ -351,6 +373,8 @@ class Sivu extends CI_Controller {
 	
 	}
 
+	
+
 	public function tyohistoria_lisaus() 
 	{
 		
@@ -411,6 +435,124 @@ class Sivu extends CI_Controller {
 		$this->load->template('tyohistoria_lisaus_english');
 	}
 	
+	public function harrastukset_lisaus() 
+	{
+		
+		$this->load->model('Model_harrastus');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('harrastus', 'Harrastus', 'required|trim');
+		$this->form_validation->set_rules('vapaasana', 'Vapaasana', 'trim');
+		
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Harrastus on pakollinen.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->Model_harrastus->add_harrastus())
+				{
+					$this->output->set_header('sivu/members');
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Harrastus lisätty</p>';		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Harrastusta ei lisätty</p>';		
+				}
+		}
+		$this->load->template('harrastukset_lisaus');
+	}
+
+	public function harrastukset_lisaus_english() 
+	{
+		
+		$this->load->model('Model_harrastus');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('harrastus', 'Harrastus', 'required|trim');
+		$this->form_validation->set_rules('vapaasana', 'Vapaasana', 'trim');
+		
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Hobby is required.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->Model_harrastus->add_harrastus())
+				{
+					$this->output->set_header('sivu/members');
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Harrastus lisätty</p>';		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Harrastusta ei lisätty</p>';		
+				}
+		}
+		$this->load->template('harrastukset_lisaus_english');
+	}
+
+
+	public function edit_harrastukset($id) 
+	{
+		
+		$this->load->model('Model_harrastus');
+		$harrastusdata = $this->Model_harrastus->get_harrastus($id);
+		$this->load->library('form_validation');
+			
+		$this->form_validation->set_rules('harrastus', 'Harrastus', 'trim');
+		$this->form_validation->set_rules('vapaasana', 'Vapaasana', 'trim');
+		
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Harrastus on pakollinen.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->Model_harrastus->edit_harrastus($id))
+				{
+					$this->output->set_header('sivu/members');
+					$harrastusdata = $this->Model_harrastus->get_harrastus($id);
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Harrastukset on päivitetty</p>';
+				}		
+					else
+				{			
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Harrastusta ei päivitetty</p>';				
+				}
+		}
+		$this->load->template('edit_harrastukset', $harrastusdata);
+		
+	}
+
+	public function edit_harrastukset_english($id) 
+	{
+		
+		$this->load->model('Model_harrastus');
+		$harrastusdata = $this->Model_harrastus->get_harrastus($id);
+		$this->load->library('form_validation');
+			
+		$this->form_validation->set_rules('harrastus', 'Harrastus', 'trim');
+		$this->form_validation->set_rules('vapaasana', 'Vapaasana', 'trim');
+		
+
+		$this->form_validation->set_message('required', "<b style='color:red;'>Hobby is required.</b>");
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->Model_harrastus->edit_harrastus($id))
+				{
+					$this->output->set_header('sivu/members');
+					$harrastusdata = $this->Model_harrastus->get_harrastus($id);
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Hobby is updated</p>';
+				}		
+					else
+				{			
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Harrastusta ei päivitetty</p>';				
+				}
+		}
+		$this->load->template('edit_harrastukset_english', $harrastusdata);
+		
+	}
 	
 	public function edit_koulutukset($id) 
 	{
@@ -534,6 +676,22 @@ class Sivu extends CI_Controller {
 				}
 		}
 		$this->load->template('koulutukset_lisaus_english');
+	}
+
+	public function delete_harrastukset($id)
+		{
+			$this->load->model('Model_harrastus');
+			$this->Model_harrastus->delete_harrastus($id);
+			redirect('sivu/members');	
+		   
+		}
+
+	public function delete_harrastukset_english($id)
+	{
+		$this->load->model('Model_harrastus');
+		$this->Model_harrastus->delete_harrastus($id);
+		redirect('sivu/members');	
+	   
 	}
 
 	public function delete_tyohistoria($id)
@@ -770,30 +928,31 @@ class Sivu extends CI_Controller {
 	public function haku()
  	{
 	  	//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
- 		if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
+ 		//if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
  		$this->load->model('model_sivu');
  		//$data['query'] = $this->model_sivu->tee_haku();
  		$this->load->template('haku');
- 		}
- 		else {
-		redirect('sivu/restricted');
-	}
- 	}
+ 		//}
+ 		//else {
+		//redirect('sivu/restricted');
+	//}
+ 	//}
+ }
 
  	public function hakutulokset()
  	{
  		//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
- 		if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
+ 		//if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
  	 	$this->load->model('model_sivu');
  		$data['query'] = $this->model_sivu->tee_haku();
  		$this->load->template('hakutulokset', $data);
+ 	//}
+ 	//else
+	 	//{
+	 	//redirect('sivu/restricted');
+	 	//}
  	}
- 	else
- 	{
- 	redirect('sivu/restricted');
- 	}
- 	}
- 	
+
  	public function paivita_perustiedot()
 		{
 		$this->load->model('model_sivu');
