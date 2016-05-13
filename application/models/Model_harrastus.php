@@ -1,15 +1,15 @@
 <?php
 
-class model_harrastus extends CI_Model {
+class Model_harrastus extends CI_Model {
 public function edit_harrastus($id)
 	{
 
 		$data = array(
 			'harrastus' => $this->input->post('harrastus'),
-			'vapaasana' => $this->input->post('vapaasana'),
+			'vapaasana' => $this->input->post('vapaasana')
 			);
 			
-		$this->db->where('hid', $id);
+		$this->db->where('id', $id);
 		$this->db->update('harrastukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
@@ -20,7 +20,21 @@ public function edit_harrastus($id)
 			return false;
 		}
 	}
-	//Lisää koulutuksen
+
+	public function get_harrastus($id) {
+		$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE id =".$id);
+
+		foreach ($query->result() as $row){
+			$data['id']	   = "$row->id";
+			$data['harrastus'] = "$row->harrastus";
+			$data['vapaasana'] = "$row->vapaasana";			
+
+		}
+
+		return $data;
+	}
+
+	//Lisää harrastuksen
 	public function add_harrastus()
 	{
 
@@ -31,7 +45,7 @@ public function edit_harrastus($id)
 			);
 			
 		
-		$this->db->insert('koulutukset', $data);
+		$this->db->insert('harrastukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
@@ -45,7 +59,7 @@ public function edit_harrastus($id)
 	{
 		
 
-		$this->db->where('hid', $id);
+		$this->db->where('id', $id);
 		$this->db->delete('harrastukset');		
 	
 	}
