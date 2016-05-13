@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-<h2>Päivitä perustietoja tai jatka sivulle</h2>
+<h2>Päivitä perustietoja tai jatka profiilisivulle</h2>
 <?php
 $query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -34,7 +34,7 @@ if($privSposti == '' || $eNimi == '' || $sNimi == '' || $osoite == '' || $postin
 		echo '<h5>Postinumero</h5>';
 		echo form_input($postinumero)."<br>";
 		echo '<h5>Puhelinnumero</h5>';
-		echo form_input($puhelinnro)."<br>";
+		echo form_input($puhelinnro)."<br><br>";
 
 
 		echo form_submit('submit', 'Jatka', 'class="btn btn-success"');
