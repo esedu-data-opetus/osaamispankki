@@ -220,11 +220,12 @@ class Sivu extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('privSposti', 'Sposti', 'trim');
-		$this->form_validation->set_rules('etunimi', 'Salasana', 'trim');
-		$this->form_validation->set_rules('sNimi', 'Sposti', 'trim');
-		$this->form_validation->set_rules('osoite', 'Salasana', 'trim');
-		$this->form_validation->set_rules('postinro', 'Salasana', 'trim');
-		$this->form_validation->set_rules('puhelinnro', 'Salasana', 'trim');
+		$this->form_validation->set_rules('etunimi', 'Etunimi', 'trim');
+		$this->form_validation->set_rules('sNimi', 'Sukunimi', 'trim');
+		$this->form_validation->set_rules('osoite', 'Osoite', 'trim');
+		$this->form_validation->set_rules('postinro', 'Postinumero', 'trim');
+		$this->form_validation->set_rules('puhelinnro', 'Puhelinnumero', 'trim');
+		$this->form_validation->set_rules('lyhytKuvaus', 'Lyhyt kuvaus', 'trim');
 
 
 		if ($this->form_validation->run())
