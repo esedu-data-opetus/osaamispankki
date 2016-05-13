@@ -20,7 +20,7 @@ if($privSposti == '' || $eNimi == '' || $sNimi == '' || $osoite == '' || $postin
 	$postinumero = array('value' => ''.$postinro.'','placeholder' => 'Postinumero', 'size' => '30','type' => 'text' , 'name' => 'postinro', 'id' => 'postinro' );
 	$puhelinnro = array('value' => ''.$puhelinnro.'','placeholder' => 'Puhelinnumero', 'size' => '30','type' => 'text' , 'name' => 'puhelinnro', 'id' => 'puhelinnro' );
 
-		echo form_open('Sivu2/paivita_perustiedot');
+		echo form_open('sivu/paivita_perustiedot');
 		echo validation_errors();
 
 		echo '<h5>Henkilökohtainen sähköpostiosoite</h5>';
