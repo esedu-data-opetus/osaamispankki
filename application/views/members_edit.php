@@ -200,7 +200,7 @@
 	    	 echo '</br>';
 	    	echo '<b style="font-size:1.1em;">  Lyhyt kuvaus: </b>';
 	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($lyhytKuvaus).'</p>';
-	    	echo '</br></br>';
+	    	echo '</br>';
 
 	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success"');
 	    	echo form_close();
