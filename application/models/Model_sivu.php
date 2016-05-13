@@ -23,12 +23,14 @@ class model_sivu extends CI_Model {
 				'etunimi'=> $this->input->post('etunimi'),
 				'sposti' => $this->input->post('sposti'),
 				'salasana' => md5($this->input->post('salasana')),
+				'ktyyppi' => ('1'),
 				'key' => $key
 			);
 		//Lisää käyttäjän etunimen ja sähköpostin henkilötietoihin ja laittaa käyttäjälle oletusprofiilikuvan
 		$data2 = array(
 			    'etunimi'=> $this->input->post('etunimi'),
 			    'sposti ' => $this->input->post('sposti'),
+			    'ktyyppi' => ('1'),
 			    'pkuva' => ('default.png')
 		);		
 		
@@ -234,6 +236,7 @@ class model_sivu extends CI_Model {
 			'osoite' 	 => $this->input->post('osoite'),
 			'postinro' 	 => $this->input->post('postinro'),
 			'puhelinnro' => $this->input->post('puhelinnro'),
+			'lyhytKuvaus' => $this->input->post('lyhytKuvaus'),
 			'aktiivisuus' => $this->input->post('aktiivisuus')
 			);
 			
@@ -290,12 +293,16 @@ class model_sivu extends CI_Model {
 	public function getusertype(){
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$query = $this->db->get('kirjautumistiedot');
-		if($query->num_rows() == 1){
+		if($query->num_rows() == 1)
+		{
 	   		foreach ($query->result() as $row){
-	    	return $row->ktyyppi;}
+	    	return $row->ktyyppi;
+	    	}
 		}
-   		else{
-   			return 1;}
+   		else
+   		{
+   			return 1;
+   		}
 	
 	}
 
@@ -323,24 +330,17 @@ class model_sivu extends CI_Model {
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		LEFT JOIN harrastukset ON henkilotiedot.sposti = koulutukset.sposti
+		LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
 		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
 		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
 		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
 		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
 		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'";
+		
+
 		$query = $this->db->query($kysely);
 		
 		return $query->result();
 	}
-	}
-	
-		public function lisaa_hakusana() 
-	{
-			$data = array(
-			    'hakusana'=> $this->input->post('hakusana'),
-			    'sposti ' => $this->session->userdata('sposti'));		
-		
-		$query = $this->db->insert('hakusanat', $data);
-	}
+}
 }
