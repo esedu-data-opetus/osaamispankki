@@ -49,3 +49,4 @@ public function edit_harrastus($id)
 		$this->db->delete('harrastukset');		
 	
 	}
+}
