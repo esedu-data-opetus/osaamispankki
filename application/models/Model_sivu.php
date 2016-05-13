@@ -333,5 +333,14 @@ class model_sivu extends CI_Model {
 		
 		return $query->result();
 	}
-}
+	}
+	
+		public function lisaa_hakusana() 
+	{
+			$data = array(
+			    'hakusana'=> $this->input->post('hakusana'),
+			    'sposti ' => $this->session->userdata('sposti'));		
+		
+		$query = $this->db->insert('hakusanat', $data);
+	}
 }
