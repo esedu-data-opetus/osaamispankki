@@ -146,28 +146,26 @@
 
 
 <div class="container" id="container">
-
-	<h1 style="text-align:center;font-size:3.3em;font-weight:bold;">Oma profiili</h1><br>
-	
-
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<?php
-
-	$query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+<?php
+$query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row){
 		$etunimi = "$row->etunimi";
 	
 	}
+?>
+	<h1 style="text-align:center;font-size:;font-weight:bold;"><?php echo "<p style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</p>";?>n profiili</h1><br>
+	
 
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<?php
+
+	
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
-
-
-	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;margin-left:155px;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';	
+	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';	
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.' ">Kirjaudu ulos</button></a>'; 
-	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
+	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
-	echo "<h4 style='font-size:1.1em;margin-left:290px;margin-top:-28px;'>".$etunimi."</h4>";
 	echo "</b>";
 
 	echo '</nav>';
@@ -262,7 +260,7 @@
 		$vapaasana   = "$row->vapaasana";
 		
 
-		if($tyopaikka != NULL) 
+		if($harrastus != NULL) 
 		{
 			$bFound = true;
 		
