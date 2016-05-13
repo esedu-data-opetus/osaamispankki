@@ -158,7 +158,7 @@
 		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
 		echo '<br>';
 		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
-		echo "</form>";
+		echo "</form><br>";
 		echo form_close();
 
 	
@@ -170,7 +170,7 @@
  			$osoite = array(	'value' => ''.$osoite.'', 	  'placeholder' => 'Osoite',     	'name' => 'osoite', 	'id' => 'osoite', 	  'class' => "login-form" );
  			$postinro = array(	'value' => ''.$postinro.'',   'placeholder' => 'Postinumero',   'name' => 'postinro',  	'id' => 'postinro',   'class' => "login-form" );
  			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Puhelinnumero', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
- 			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytkuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '40',
+ 			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytKuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '40',
               	     'rows' 		 => '5' );
  			
 
@@ -196,7 +196,7 @@
 	    	echo '<p style="display:inline;">'.form_input($puhelinnro).'</p>';
 	    	 echo '</br>';
 	    	echo '<b style="font-size:1.1em;">  Lyhyt kuvaus: </b>';
-	    	echo '<p style="display:inline;">'.form_textarea($lyhytKuvaus).'</p>';
+	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br></br>';
 
 	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success"');

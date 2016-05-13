@@ -16,6 +16,41 @@
 </style>
 <body>
 
+	<!-- Modal HARRASTUKSET -->
+  <div class="modal fade" id="myModalTyohistoria">
+   <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center modal-sm">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 style="font-weight:bold;" class="modal-title">Confirm deletion</h4>
+        </div>
+          <?php
+
+          $query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+
+		foreach ($query->result() as $row)
+		{
+			$id 	   = "$row->id";
+			$harrastus = "$row->harrastus";
+			$vapaasana   = "$row->vapaasana";
+         
+         }
+          ?>
+        <div class="modal-footer">
+     
+        <?php
+         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/delete_harrastukset/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Delete</a></button>';//Poisto nappi
+         ?>
+        <button type="button" class="btn btn-default"  data-dismiss="modal"><a href="" style="text-decoration:none;" id="cancel">Cancel</a></button>
+        </div>
+      </div>
+     </div>
+    </div>
+  </div>
+
   <!-- Modal TYOHISTORIA -->
   <div class="modal fade" id="myModalTyohistoria">
    <div class="vertical-alignment-helper">
@@ -185,6 +220,51 @@
 	    	echo $puhelinnro;
 	    	echo '</br>';
 	
+	echo '</div>';
+	echo '</div>';
+
+	//Harrastus
+	echo '<div class="col-md-6 ">';
+	echo '<div id="tyohistoria">';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Hobby</p><a href="'.base_url().'sivu/harrastukset_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	
+	$harrastukset = "";
+
+	$harrastukset .= '<table class="table" border="1">';
+	$harrastukset .= '<thead><tr><th>Hobby</th><th>Description</th><th><th></th></th></tr></thead>';
+
+	
+	$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	$bFound = false;
+
+	foreach ($query->result() as $row)
+	{
+		$id 	   = "$row->id";
+		$harrastus = "$row->harrastus";
+		$vapaasana   = "$row->vapaasana";
+		
+
+		if($tyopaikka != NULL) 
+		{
+			$bFound = true;
+		
+			$harrastukset .= '<tr>';
+			$harrastukset .= '<td>'.$harrastus.'</td>';
+			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
+			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
+			$harrastukset .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$harrastukset .= '</tr>';
+		}
+	}
+		
+	if($bFound)
+		echo $harrastukset;
+	else
+		echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
+	
+	
+	echo '</table>';
 	echo '</div>';
 	echo '</div>';
 
