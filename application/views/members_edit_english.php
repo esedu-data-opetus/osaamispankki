@@ -176,7 +176,7 @@
 
 			echo form_open('sivu/members_edit_english');
 			echo validation_errors();
-			echo '<input style="margin-left:280px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-320px;">    <b>  Profile is allowed to appear in searches</b></p><br>';
+			echo '<input style="margin-left:280px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus"/><p  style="display:inline;margin-left:-320px;">    <b>  Profile is allowed to appear in searches</b></p><br>';
 		    echo '<b style="font-size:1.1em;">                       Email: </b>';
 		    echo '<p style="display:inline;">'.form_input($privSposti).'</p>';
 		    echo '</br>';
