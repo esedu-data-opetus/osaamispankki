@@ -185,6 +185,7 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('salasana', 'Salasana', 'md5|trim');
 
 		$this->form_validation->set_message('required', "<b style='color:red;'>Syötä sähköposti.</b>");
+		
 
 		if ($this->form_validation->run()){
 
@@ -756,7 +757,7 @@ class Sivu extends CI_Controller {
 			$this->email->subject("Vahvista käyttäjätilisi.");
 
 			$message = "";
-			$message .= "<a href='".base_url()."index.php/sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+			$message .= "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
 
 			$this->email->message($message);
 
@@ -764,10 +765,10 @@ class Sivu extends CI_Controller {
 			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
-					echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p></center>";
+					echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
 			} 	else echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistu localhostilla.</h2>";
 				     echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
-				     echo "<a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a>";
+				     echo "<a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a>";
 					
 		} else echo "Ongelma tietokantaan lisätessä.";
 
@@ -806,7 +807,7 @@ class Sivu extends CI_Controller {
 			$this->email->subject("Confirm your account.");
 
 			$message = "";
-			$message .= "<a href='".base_url()."index.php/sivu/register_user/$key' >Click here</a> to confirm your account";
+			$message .= "<a href='".base_url()."sivu/register_user/$key' >Click here</a> to confirm your account";
 
 			$this->email->message($message);
 
@@ -814,7 +815,7 @@ class Sivu extends CI_Controller {
 			if ($this->model_sivu->add_temp_user($key)) {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>A confirmation has been sent to your email!</h2>";
-					echo "<p><a href='".base_url()."index.php/sivu/login_english' >Back to login</a></p></center>";
+					echo "<p><a href='".base_url()."sivu/login_english' >Back to login</a></p></center>";
 			} 	else echo "<h2 style='font-weight:bold;color:red;'>Unable to send an email.</h2>";
 					
 		} else echo "Ongelma tietokantaan lisätessä.";
@@ -855,6 +856,7 @@ class Sivu extends CI_Controller {
 			return true;
 		} else {
 			$this->form_validation->set_message('validate_credentials', "<p style='color:red;'>Väärä sähköposti/salasana.</p>");
+			echo "<a style='text-align:center;margin-left:42.5%;position:fixed;z-index: 1;margin-top:210px;font-weight:bold;' href='".base_url()."sivu/forgotpassword'>Unohtuiko salasana?</a>";
 			return false;
 		}
 	}
@@ -901,7 +903,7 @@ class Sivu extends CI_Controller {
 			} else echo 'failed to add user, please try again.';
 			
 		} else echo '<center><b><h1>Käyttäjätili on jo vahvistettu</h1></b>';
-		echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p></center>";
+		echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
 	}
 	
 	public function register_user_english($key)
@@ -922,7 +924,7 @@ class Sivu extends CI_Controller {
 			} else echo 'failed to add user, please try again.';
 			
 		} else echo '<center><b><h1>Your account has already been confirmed</h1></b>';
-		echo "<p><a href='".base_url()."index.php/sivu/login_english' >Back to login</a></p></center>";
+		echo "<p><a href='".base_url()."sivu/login_english' >Back to login</a></p></center>";
 	}
 	
 	public function haku()
@@ -991,7 +993,7 @@ class Sivu extends CI_Controller {
 
 		}
 
-	public function changepassword()
+		public function changepassword()
 	{
 		if ($this->session->userdata('is_logged_in')) {
 		$this->load->helper('url');
@@ -1002,11 +1004,9 @@ class Sivu extends CI_Controller {
 		redirect('sivu/welcome_message');
 	}
 	}
-
 public function changepassword_validation()
  	{
 	if ($this->session->userdata('is_logged_in')) {
-
  		$this->load->helper(array('form', 'url'));
  		$this->load->library('form_validation');
  		$this->load->model('model_sivu');
@@ -1070,16 +1070,16 @@ public function changepassword_validation()
 			$this->email->to($this->input->post('sposti'));
 			$this->email->subject("Aseta uusi salasana");
 			$message = "";
-			$message .= "<a href='".base_url()."index.php/sivu/resetpassword/$key' >Klikkaa tästä</a> asettaaksesi uuden salasanan";
+			$message .= "<a href='".base_url()."sivu/resetpassword/$key' >Klikkaa tästä</a> asettaaksesi uuden salasanan";
 			$this->email->message($message);
 			//Lähettää sähköpostivarmistuksen käyttäjälle
 			if ($this->model_sivu->passwordresetkey($key)) {
 				if ($this->email->send()){
-					echo "Linkki salasanan palauttamiseeen on lähetetty sähköpostiisi!";
-					//echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
+					$this->load->template('forgottenpassword');
+					//echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p>";
 							echo $this->email->print_debugger();
-			} 	else echo "Sähköpostin lähetys ei onnistu.";
-					// echo "<p><a href='".base_url()."index.php/sivu/login' >Takaisin kirjautumiseen</a></p>";
+			} 	else echo "<p style='color:red;'>Sähköpostin lähetys ei onnistu.</p>";
+					// echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p>";
 					 		echo $this->email->print_debugger();
 		} else echo "Ongelma tietokantaan lisätessä.";
 		} else {
@@ -1091,12 +1091,13 @@ public function changepassword_validation()
  		$this->load->model('model_sivu');
  
  		if ($this->model_sivu->tarkistasposti()){
+ 			echo "<center><h2 id='message' style='font-weight:bold;color:green;'>A confirmation has been sent to your email!</h2></center>";
  			return true;
  		} 
   		else 
   		{
- 			echo "Nykyinen salasana ei täsmää";
- 			$this->form_validation->set_message('forgotpasswordemailcheck', "<p style='color:red;'>Väärä sähköposti.</p>");
+ 			
+ 			$this->form_validation->set_message('forgotpasswordemailcheck', "<p style='color:red;font-weight:bold;'>Väärä sähköposti.</p>");
  			return false;
   		}
  	}
@@ -1117,7 +1118,7 @@ public function changepassword_validation()
  
  				}
  				else{
- 				redirect('sivu');
+ 				redirect('sivu/login');
  
  				}
  
@@ -1156,7 +1157,5 @@ public function changepassword_validation()
  				$this->load->template('forgottenpasswordreset', $data);
  				}
   		}
-
-
 
 }
