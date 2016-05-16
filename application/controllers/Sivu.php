@@ -1117,7 +1117,7 @@ public function changepassword_validation()
  
  				}
  				else{
- 				redirect('sivu/index');
+ 				redirect('sivu');
  
  				}
  
