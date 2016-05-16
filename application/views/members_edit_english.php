@@ -197,7 +197,7 @@
 	    	echo '</br>';
 	    	echo '<b style="font-size:1.1em;">Short description: </b>';
 	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($lyhytKuvaus).'</p>';
-	    	echo '</br>';
+	    	echo '</br></br>';
 	
 	    	echo form_submit('submit', 'Save changes', 'class="btn btn-success"');
 	    	echo form_close();
@@ -213,7 +213,7 @@
 	$harrastukset = "";
 
 	$harrastukset .= '<table class="table" border="1">';
-	$harrastukset .= '<thead><tr><th>Hobby</th><th>Description</th><th><th></th></th></tr></thead>';
+	$harrastukset .= '<thead><tr><th>Hobby</th><th>Description</th><th style="width:150px;"></th></tr></thead>';
 
 	
 	$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -234,8 +234,8 @@
 			$harrastukset .= '<tr>';
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
-			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
-			$harrastukset .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$harrastukset .= '</tr>';
 		}
 	}
@@ -258,7 +258,7 @@
 	$tyohistoria = "";
 
 	$tyohistoria .= '<table class="table" border="1">';
-	$tyohistoria .= '<thead><tr><th>Workplace</th><th>Task</th><th>Started</th><th>Ended</th><th>Description</th><th><th></th></th></tr></thead>';
+	$tyohistoria .= '<thead><tr><th>Workplace</th><th>Task</th><th>Started</th><th>Ended</th><th>Description</th><th style="width:140px;"></th></tr></thead>';
 
 	
 	$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -284,8 +284,8 @@
 			$tyohistoria .= '<td>'.$alkoi.'</td>';
 			$tyohistoria .= '<td>'.$loppui.'</td>';
 			$tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
-			$tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
-			$tyohistoria .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			$tyohistoria .= '<button type="button" style="margin-left:25px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$tyohistoria .= '</tr>';
 		}
 	}
@@ -310,7 +310,7 @@
 	$koulutukset = "";
 
 	$koulutukset .= '<table class="table" border="1">';
-	$koulutukset .= '<thead><tr><th>Education name</th><th>Level of education</th><th>School</th><th>Started</th><th>Ended</th><th><th></th></th></tr></thead>';
+	$koulutukset .= '<thead><tr><th>Education name</th><th>Level of education</th><th>School</th><th>Started</th><th>Ended</th><th style="width:140px;"></th></tr></thead>';
 
 	$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui, sposti FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -336,8 +336,8 @@
 			$koulutukset .= '<td>'.$oppilaitos.'</td>';
 			$koulutukset .= '<td>'.$alkoi2.'</td>';
 			$koulutukset .= '<td>'.$loppui2.'</td>';
-			$koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></td>';//Muokkaus nappi
-			$koulutukset .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			$koulutukset .= '<button type="button" style="margin-left:30px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$koulutukset .= '</tr>';
 		}
 	}
