@@ -41,6 +41,7 @@ echo '</div>';
 	echo form_password($inputpassword);
 	echo "<br>";
 	echo "<br>";
+	echo "<br>";
 	echo form_submit('login_submit', 'Kirjaudu sisään', 'id="nappi"');
 	echo form_close();
 ?>
