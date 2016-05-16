@@ -16,7 +16,7 @@
 {
  text-align:center;
 }
-#kuvaus {
+#vapaasana {
  resize: none;
 }
 #nappi {
@@ -59,7 +59,9 @@ echo '<div id="both">';
 	$inputvapaasana = array('value'   =>'',
 					'placeholder'    => 'Vapaasana',
 				    'name' 		     => 'vapaasana',
-				    'id'   		     => 'vapaasana'
+				    'id'   		     => 'vapaasana',
+				    'cols'           => '22',
+				    'rows'           => '6'
 				    );
 	 
 
@@ -69,7 +71,7 @@ echo '<div id="both">';
 	echo form_input($inputharrastukset);
 	echo "<br>";
 	echo '<h5 style="font-weight:bold;">Vapaa sana</h5>';
-	echo form_input($inputvapaasana);
+	echo form_textarea($inputvapaasana);
 	echo "<br>";
 	echo "<br>";
 	echo form_submit('submit', 'Lisää harrastus', 'id="nappi"');
