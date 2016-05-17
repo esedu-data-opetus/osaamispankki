@@ -257,7 +257,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$harrastukset .= '<tr>';
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
-			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
 			$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$harrastukset .= '</tr>';
 		}
