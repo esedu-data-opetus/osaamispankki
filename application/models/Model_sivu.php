@@ -245,29 +245,29 @@ class model_sivu extends CI_Model {
 
 
 		$hakusanat = explode(" ", $this->input->post('hakusanat'));
-
 		
-		$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
+		//Poistetaan aikaisemmat hakusanat
+		$this->db->query("DELETE FROM hakusanat WHERE sposti ='".$this->session->userdata('sposti')."'");
 
+		//Lisätään uudet hakusanat
+		$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
 		foreach($hakusanat as $row)
 		{
-			$kysely .= "'".$row."')";
-			$query = $this->db->query($kysely);
-			$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
-
+			//Varmistetaan että samaa hakusanaa ei lisätä kahdesti
+ 			$testquery = $this->db->query("SELECT * from hakusanat WHERE sposti='".$this->session->userdata('sposti')."' AND hakusana='".$row."'");
+ 			if($testquery->num_rows() == 0 )
+ 			{
+				$kysely .= "'".$row."')";
+				$query = $this->db->query($kysely);
+				$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
+			}
 		}
-
-
-
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
-		{
-			return true;
-		} 
+		{return true;} 
 		else 
-		{
-			return false;
-		}
+		{return false;}
 	}
+	
 	
 	//Hakee kortit
 	public function get_kortit(){
