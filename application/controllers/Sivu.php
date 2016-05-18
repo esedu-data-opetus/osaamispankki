@@ -464,6 +464,34 @@ class Sivu extends CI_Controller {
 		$this->load->template('harrastukset_lisaus');
 	}
 
+	public function kortit_lisaus() 
+	{
+		
+		$this->load->model('model_sivu');
+		$data['kortit'] = $this->model_sivu->get_kortit();
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('knimi', 'Kortti', 'trim');
+		$this->form_validation->set_rules('voimassa', 'Voimassaoloaika', 'trim');
+		$this->form_validation->set_rules('kommentti', 'Kommentti', 'trim');
+
+		
+
+		if ($this->form_validation->run())
+		{
+
+				if($this->model_sivu->add_kortti())
+				{			
+					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Kortti lisätty</p>';		
+				}		
+					else
+				{	
+					echo '<p id="message" style="text-align:center;color:red;font-size:2em;font-weight:bold;">Korttia ei lisätty</p>';		
+				}
+		}
+		$this->load->template('kortit_lisaus');
+	}
+
 	public function harrastukset_lisaus_english() 
 	{
 		
@@ -678,6 +706,14 @@ class Sivu extends CI_Controller {
 		}
 		$this->load->template('koulutukset_lisaus_english');
 	}
+
+	public function delete_kortit($id)
+		{
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_kortti($id);
+			redirect('sivu/members');	
+		   
+		}
 
 	public function delete_harrastukset($id)
 		{
