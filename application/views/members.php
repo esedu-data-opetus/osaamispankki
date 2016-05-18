@@ -267,6 +267,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
+
+
+
 	foreach ($query->result_array() as $row)
 	{
 		echo '<img src="'.base_url().'images/profiili/'.$row['pkuva'].'" class="img-responsive img-thumbnail" style="width: 200px;">';
@@ -284,7 +287,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			echo '<p style="display:inline;margin-left:-15px;"><b style="color:green">Profiili näkyy haussa </b></p><br>';
 			}else {
 			echo '<p style="display:inline;margin-left:-15px;"><b style="color:red;">Profiili ei näy haussa </b></p><br>';
-		}
+			}
 	
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';
 		    echo $privSposti;
@@ -307,6 +310,12 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		    echo '<b style="font-size:1.1em;">Lyhyt kuvaus: </b>';
 	    	echo '<p style="display:inline;max-width:400px;word-wrap: break-word;">'.$lyhytKuvaus.'</p>';
 	    	echo '</br>';
+		    echo '<b style="font-size:1.1em;">Hakusanat: </b>';
+			$query2 = $this->db->query("SELECT hakusana FROM hakusanat WHERE sposti ='".$this->session->userdata('sposti')."'");
+			foreach ($query2->result_array() as $row)
+			{
+			   echo $row['hakusana'].' ';
+			}
 
 
 	
@@ -516,7 +525,6 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 
 	?>
-
 </div>
 </body>
 </html>

@@ -249,6 +249,7 @@ class Sivu extends CI_Controller {
 		$this->form_validation->set_rules('postinro', 'Postinumero', 'trim');
 		$this->form_validation->set_rules('puhelinnro', 'Puhelinnumero', 'trim');
 		$this->form_validation->set_rules('lyhytKuvaus', 'Lyhyt kuvaus', 'trim');
+		$this->form_validation->set_rules('hakusanat', 'Hakusanat', 'trim');
 
 
 		if ($this->form_validation->run())
