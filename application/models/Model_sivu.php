@@ -252,6 +252,45 @@ class model_sivu extends CI_Model {
 		}
 	}
 	
+	//Hakee kortit
+	public function get_kortit(){
+
+	$query = $this->db->query('SELECT * FROM kortit');
+
+		return $query->result();
+	}
+	//Lisää kortin
+	public function add_kortti()
+	{
+
+		$data = array(
+			'knimi'  => $this->input->post('knimi'),
+			'voimassa'  => $this->input->post('voimassa'),
+			'kommentti'  => $this->input->post('kommentti'),
+			'sposti' => $this->session->userdata('sposti')
+			);
+			
+		$this->db->where('sposti', $this->session->userdata('sposti'));
+		$this->db->insert('opiskelijakortit', $data);
+		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
+		{
+			return true;
+		} 
+		else 
+		{
+			return false;
+		}
+	}
+
+	//Poistaa kortin
+	public function delete_kortti($id)
+	{
+		
+		$this->db->where('id', $id);
+		$this->db->delete('opiskelijakortit');
+			
+	}
+	
 	//Poistaa tyohistoriarivin
 	public function delete_tyohistoria($id)
 	{
