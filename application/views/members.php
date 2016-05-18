@@ -13,6 +13,14 @@
 .glyphicon glyphicon-search{
 	font-size:1em;
 }
+#table {
+	table-layout: fixed;
+    word-wrap: break-word;
+    width:370px;
+    float:right;
+    margin-right:-385px;
+    margin-top:-78px;
+}
 
 
 </style>
