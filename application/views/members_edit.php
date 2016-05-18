@@ -179,7 +179,12 @@
 
  			echo form_open('sivu/members_edit2');
  			echo validation_errors();
+ 			if($aktiivisuus == '1'){
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-230px;">    <b>  Profiili saa näkyä hauissa</b></p><br>';
+ 		} else {		
  			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" /><p  style="display:inline;margin-left:-230px;">    <b>  Profiili saa näkyä hauissa</b></p><br>';
+ 		}
+ 			
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';
 		    echo '<p style="display:inline;">'.form_input($privSposti).'</p>';
 		    echo '</br>';
@@ -355,7 +360,55 @@
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-		echo '</div>';
+	echo '</div>';
+
+	//Kortit
+	echo '<div class="col-md-9 col-md-push-6" style="margin-left:-115px;">';
+	echo '<div class="col-md-6 ">';
+	echo '<div id="kortit">';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p><a href="'.base_url().'sivu/kortit_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	
+	$kortit = "";
+
+	$kortit .= '<table class="table" border="1">';
+	$kortit .= '<thead><tr><th>Kortti</th><th>Päättymispäivä</th><th>Kommentti</th><th style="width:30px"></th></tr></thead>';
+
+	$query = $this->db->query("SELECT id, knimi, sposti, kommentti, voimassa FROM opiskelijakortit WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+	$bFound = false;
+
+	foreach ($query->result() as $row)
+	{
+		$id 	= "$row->id";
+		$knimi 	 = "$row->knimi";
+		$voimassa = "$row->voimassa";
+		$kommentti = "$row->kommentti";
+
+		if($kortit != NULL)
+		{
+			$bFound = true;
+
+			$kortit .= '<tr>';
+			$kortit .= '<td>'.$knimi.'</td>';
+			$kortit .= '<td>'.$voimassa.'</td>';
+			$kortit .= '<td>'.$kommentti.'</td>';
+			$kortit .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKortit"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$kortit .= '</tr>';
+		}
+	}
+
+	$kortit .= '</table>';
+
+	if($bFound)
+		echo $kortit;
+	else
+		echo "<p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>";
+
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
 	?>
 
 </div>
