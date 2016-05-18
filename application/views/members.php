@@ -229,6 +229,27 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		 	echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>n profiili</b></h1><br><?php
 		}
 		echo '</center><br><br>';
+		
+		$query = $this->db->query("SELECT henkiloId, lastlogin, luotu FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+		foreach ($query->result() as $row)
+		{
+			$id 	= "$row->henkiloId";
+			$lastlogin 	 = "$row->lastlogin";
+			$luotu 	 = "$row->luotu";				
+		}
+		echo '<table class="table table-bordered" border="1" id="table">';
+		echo '<thead>';
+		echo '<tr>';
+		echo '<td class="col-md-2 "><p style=""><b>Rekisteröitymispäivämäärä</b></p></td>';
+		echo '<td class="col-md-1 ">'.$luotu.'</td>';
+		echo '<tr></tr>';
+		echo '<td class="col-md-2 "><p style=""><b>Edellinen käyntisi oli</b>  </p></td>';
+		echo '<td class="col-md-1 ">'.$lastlogin.'</td>';
+		echo '</tr>';
+		echo '</thead>';
+		echo '</table>'
+		
 ?>
 
 
