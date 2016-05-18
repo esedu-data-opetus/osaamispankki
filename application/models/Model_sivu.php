@@ -228,7 +228,7 @@ class model_sivu extends CI_Model {
 	//Muokkaa perustietoja
 	public function edit_members()
 	{
-
+		
 		$data = array(
 			'privSposti' => $this->input->post('privSposti'),
 			'etunimi'	 => $this->input->post('etunimi'),
@@ -242,6 +242,23 @@ class model_sivu extends CI_Model {
 			
 		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->update('henkilotiedot', $data);
+
+
+		$hakusanat = explode(" ", $this->input->post('hakusanat'));
+
+		
+		$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
+
+		foreach($hakusanat as $row)
+		{
+			$kysely .= "'".$row."')";
+			$query = $this->db->query($kysely);
+			$kysely = "INSERT INTO hakusanat (sposti, hakusana) VALUES ('".$this->session->userdata('sposti')."', ";
+
+		}
+
+
+
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
