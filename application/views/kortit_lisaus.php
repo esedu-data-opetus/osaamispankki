@@ -105,7 +105,7 @@ $inputkommentti = array('value'   =>'',
 	echo form_open('sivu/kortit_lisaus');
 	echo validation_errors();?>
 	
-	 <select id="select" onchange="validateDropdown();" class="form-control col-md-4 col-md-push-0" style="width:200px;margin-top:60px;margin-left:40px;">
+	 <select name="knimi" id="select" onchange="validateDropdown();" class="form-control col-md-4 col-md-push-0" style="width:200px;margin-top:60px;margin-left:40px;">
             <?php 
             $query = $this->db->query('SELECT id, knimi FROM kortit');
             echo '<option disabled selected value="0">Valitse kortti</option>';
