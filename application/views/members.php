@@ -452,7 +452,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 
 	//Koulutus
-	echo '<div class="col-md-9 col-md-push-6" style="margin-left:-15px;">';
+//	echo '<div class="col-md-9 col-md-push-6" style="margin-left:-15px;">';
 	echo '<div class="col-md-6 ">';
 	echo '<div id="koulutukset">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
