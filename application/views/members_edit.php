@@ -136,6 +136,13 @@
 
 	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
+	$hakusanat ='';
+		$query2 = $this->db->query("SELECT hakusana FROM hakusanat WHERE sposti ='".$this->session->userdata('sposti')."'");
+		foreach ($query2->result_array() as $row)
+		{
+		 $hakusanat .= $row['hakusana'].' ';
+		}
+
 	foreach ($query->result() as $row)
 	{
 		$privSposti = "$row->privSposti";
@@ -175,7 +182,8 @@
  			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Puhelinnumero', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
  			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytKuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '27',
               	     'rows' 		 => '5' );
- 			
+ 			$hakusanat = array('value' => ''.$hakusanat.'', 'placeholder' => 'Hakusanat', 'name' => 'hakusanat', 'id' => 'hakusanat', 'class' => "login-form",  'cols' 		 => '20',
+              	     'rows' 		 => '5' );
 
  			echo form_open('sivu/members_edit2');
  			echo validation_errors();
@@ -201,7 +209,9 @@
 	    	echo '<b style="font-size:1.1em;">  Lyhyt kuvaus: </b>';
 	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br>';
-
+		    echo '<b style="font-size:1.1em;">Hakusanat: </b>';
+	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($hakusanat).'</p>';
+	    	echo '</br>';
 	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success"');
 	    	echo form_close();
 
