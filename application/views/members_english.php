@@ -13,11 +13,19 @@
 .glyphicon glyphicon-search{
 	font-size:1em;
 }
+#table {
+	table-layout: fixed;
+    word-wrap: break-word;
+    width:280px;
+    float:right;
+    margin-right:-385px;
+    margin-top:-78px;
+}
 </style>
 <body>
 
 	<!-- Modal HARRASTUKSET -->
-  <div class="modal fade" id="myModalTyohistoria">
+  <div class="modal fade" id="myModalHarrastukset">
    <div class="vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center modal-sm">
 
@@ -146,7 +154,42 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	
 	}
 ?>
-	<h1 style="text-align:center;font-size:;font-weight:bold;"><?php echo "<p style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</p>";?>'s profiili</h1><br>
+
+	<?php
+		echo '<center>';
+		//Jos nimen viimeinen kirjain on 's' printtaa ksen profiili
+		if (substr($etunimi, -1) == 's')
+		{																					
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>' profile</b></h1><br><?php
+		}
+		//Jos nimen viimeinen kirjain on mikään muu kuin 's' printtaa 's profiili
+		else 
+		{
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>'s profile</b></h1><br><?php
+		}
+		
+		echo '</center><br><br>';
+
+		$query = $this->db->query("SELECT henkiloId, lastlogin, luotu FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+		foreach ($query->result() as $row)
+		{
+			$id 	= "$row->henkiloId";
+			$lastlogin 	 = "$row->lastlogin";
+			$luotu 	 = "$row->luotu";				
+		}
+		echo '<table class="table table-bordered" border="1" id="table">';
+		echo '<thead>';
+		echo '<tr>';
+		echo '<td class="col-md-1 "><p style=""><b>Register date</b></p></td>';
+		echo '<td class="col-md-1 ">'.$luotu.'</td>';
+		echo '<tr></tr>';
+		echo '<td class="col-md-1 "><p style=""><b>Last login</b>  </p></td>';
+		echo '<td class="col-md-1 ">'.$lastlogin.'</td>';
+		echo '</tr>';
+		echo '</thead>';
+		echo '</table>'
+?>
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
@@ -258,7 +301,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
 			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset_english/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
-			$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalHarrastukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$harrastukset .= '</tr>';
 		}
 	}
@@ -266,7 +309,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	if($bFound)
 		echo $harrastukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
+		echo "<p style='color:red;font-weight:bold;'>Hobbies are not added yet</p>";
 	
 	
 	echo '</table>';
@@ -325,6 +368,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	echo '</div>';
 
 	//Koulutus
+	//echo '<div class="col-md-9 col-md-push-6" style="margin-left:-13px;">';
 	echo '<div class="col-md-6">';
 	echo '<div id="koulutukset">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Education</p><a href="'.base_url().'sivu/koulutukset_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
@@ -371,6 +415,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	else
 		echo "<p style='color:red;font-weight:bold;'>Education is not added yet</p>";
 
+	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
