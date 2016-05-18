@@ -6,10 +6,16 @@ class model_sivu extends CI_Model {
 	{
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->where('salasana', md5($this->input->post('salasana')));
-		$query = $this->db->get('kirjautumistiedot');
 
+		
+		$query = $this->db->get('kirjautumistiedot');
 		if ($query->num_rows() == 1){
-			return true;	
+			$time = array(
+				'lastlogin' => date('d.n.Y H:i', strtotime('+1 hour'))
+			);
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$this->db->update('kirjautumistiedot', $time);
+			return true;		
 		} else {
 			return false;
 		}
@@ -24,6 +30,7 @@ class model_sivu extends CI_Model {
 				'sposti' => $this->input->post('sposti'),
 				'salasana' => md5($this->input->post('salasana')),
 				'ktyyppi' => ('1'),
+				'luotu'   => (date('d.n.Y H:i', strtotime('+1 hour'))),
 				'key' => $key
 			);
 		//Lisää käyttäjän etunimen ja sähköpostin henkilötietoihin ja laittaa käyttäjälle oletusprofiilikuvan
