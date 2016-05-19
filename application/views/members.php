@@ -187,32 +187,6 @@
     </div>
   </div>
 
-	<!-- Modal LOGOUT -->
-  <div class="modal fade" id="myModalLogout">
-   <div class="vertical-alignment-helper">
-    <div class="modal-dialog vertical-align-center modal-sm">
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="font-weight:bold;" class="modal-title">Vahvista uloskirjautuminen</h4>
-        </div>
-          
-
-      
-        <div class="modal-footer">
-        <?php
-         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/lastt_login" style="text-decoration:none;" id="confirm-delete" >Kirjaudu ulos</a></button>';//Poisto nappi
-         ?>
-          <button type="button" class="btn btn-default" data-dismiss="modal"><a href="" style="text-decoration:none;" id="cancel">Peruuta</a></button>
-        </div>
-      </div>
-     </div>
-    </div>
-  </div>
-
-<div class="container-fluid">
-<div class="row">
 <?php
 $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -272,7 +246,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';	
-	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/lastt_login'.'" data-toggle="modal" data-target="#myModalLogout" >Kirjaudu ulos</button></a>'; 
+	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.'" >Kirjaudu ulos</button></a>'; 
 	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
 	echo "</b>";
@@ -298,9 +272,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	}
 
 
-
-	echo '<div class="col-md-4">';
 	echo '<div class="row">';
+	echo '<div class="col-md-4">';
+	
 	
 	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -372,8 +346,8 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		echo '<td class="col-md-2 "><p style=""><b>Rekisteröitymispäivämäärä ja aika</b></p></td>';
 		echo '<td class="col-md-1 ">'.$luotu.'</td>';
 		echo '<tr></tr>';
-		echo '<td class="col-md-2 "><p style=""><b>Edellinen käyntisi oli</b>  </p></td>';
-		echo '<td class="col-md-1 ">'.$lasttlogin.'</td>';
+		//echo '<td class="col-md-2 "><p style=""><b>Edellinen käyntisi oli</b>  </p></td>';
+		//echo '<td class="col-md-1 ">'.$lasttlogin.'</td>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '</table>';
