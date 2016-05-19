@@ -42,7 +42,7 @@ if($privSposti == '' || $eNimi == '' || $sNimi == '' || $osoite == '' || $postin
 	}
 else
 	{
-	redirect('sivu/index');
+	redirect('sivu/members');
 	}
 ?>
 
