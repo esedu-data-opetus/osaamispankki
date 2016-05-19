@@ -187,6 +187,29 @@
     </div>
   </div>
 
+	<!-- Modal LOGOUT -->
+  <div class="modal fade" id="myModalLogout">
+   <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center modal-sm">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 style="font-weight:bold;" class="modal-title">Vahvista uloskirjautuminen</h4>
+        </div>
+          
+
+      
+        <div class="modal-footer">
+        <?php
+         echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/lastt_login" style="text-decoration:none;" id="confirm-delete" >Kirjaudu ulos</a></button>';//Poisto nappi
+         ?>
+          <button type="button" class="btn btn-default" data-dismiss="modal"><a href="" style="text-decoration:none;" id="cancel">Peruuta</a></button>
+        </div>
+      </div>
+     </div>
+    </div>
+  </div>
 
 <div class="container" id="container">
 <?php
@@ -237,14 +260,23 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		}
 		echo '</center><br><br>';
 
-		 $query = $this->db->query("SELECT henkiloId, lastlogin, luotu FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+		 $query = $this->db->query("SELECT henkiloId, luotu FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 		foreach ($query->result() as $row)
 		{
 			$id 	= "$row->henkiloId";
-			$lastlogin 	 = "$row->lastlogin";
 			$luotu 	 = "$row->luotu";				
 		}
+
+		 $query = $this->db->query("SELECT id, lasttlogin FROM last_login WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+		foreach ($query->result() as $row)
+		{
+			$id 	= "$row->id";
+			$lasttlogin 	 = "$row->lasttlogin";
+						
+		}
+		
 		echo '<table class="table table-bordered" border="1" id="table">';
 		echo '<thead>';
 		echo '<tr>';
@@ -252,7 +284,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		echo '<td class="col-md-1 ">'.$luotu.'</td>';
 		echo '<tr></tr>';
 		echo '<td class="col-md-2 "><p style=""><b>Edellinen käyntisi oli</b>  </p></td>';
-		echo '<td class="col-md-1 ">'.$lastlogin.'</td>';
+		echo '<td class="col-md-1 ">'.$lasttlogin.'</td>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '</table>';
