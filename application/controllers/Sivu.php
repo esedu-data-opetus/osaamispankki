@@ -910,6 +910,16 @@ class Sivu extends CI_Controller {
 		}
 	}
 
+	public function lastt_login()
+	{
+		$this->load->model('model_sivu');
+		$this->model_sivu->last_login2();
+		$this->model_sivu->last_login3();
+			
+		redirect('sivu/login');
+		
+	}
+
 	//Uloskirjautuminen
 	public function logout()
 	{
