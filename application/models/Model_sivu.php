@@ -21,6 +21,37 @@ class model_sivu extends CI_Model {
 		}
 	}
 	
+	public function last_login3()
+	{
+
+			$time = array(
+				'lasttlogin' => date('d.n.Y H:i', strtotime('+1 hour')),
+				'sposti' => $this->session->userdata('sposti')
+			);
+		
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$this->db->insert('last_login', $time);
+	
+
+	}
+
+	public function last_login2()
+	{
+
+			$time = array(
+				'lasttlogin' => date('d.n.Y H:i', strtotime('+1 hour')),
+				'sposti' => $this->session->userdata('sposti')
+			);
+		
+		$this->db->where('sposti', $this->input->post('sposti'));
+		$this->db->insert('last_login', $time);
+		$this->db->update('last_login', $time);
+		$query = $this->db->query("DELETE FROM last_login WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+
+
+	}
+	
 	// Lisää käyttäjän vahvistamattomiinkäyttäjiin
 	public function add_temp_user($key)
 	{
@@ -41,8 +72,14 @@ class model_sivu extends CI_Model {
 			    'pkuva' => ('default.png')
 		);		
 		
+		$data3 = array(
+			    'sposti ' => $this->input->post('sposti')
+			    
+		);	
+		
 		$query = $this->db->insert('henkilotiedot', $data2);
 		$query = $this->db->insert('kirjautumistiedot', $data);
+		$query = $this->db->insert('last_login', $data3);
 		if ($query){
 			return true;
 		} else {
