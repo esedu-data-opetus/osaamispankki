@@ -92,7 +92,7 @@
     </div>
   </div>
 <script type="text/javascript">
-	setInterval(function() 
+/*	setInterval(function() 
 	{
 		if(document.getElementById("uploadBox").value != "") 
 		{
@@ -102,7 +102,7 @@
 		{
 			document.getElementById('nappi').disabled = true;
 		}
-	}, 100);
+	}, 100);*/
 </script> 
 
 
@@ -115,7 +115,7 @@
 	
 	}
 
-	echo '<center><br>';
+	echo '<center>';
 		echo '<div class="col-xs-4 col-md-8 col-md-offset-2">';
 		//Jos nimen viimeinen kirjain on 's' printtaa ksen profiili
 		if (substr($etunimi, -1) == 's')
@@ -210,9 +210,10 @@
 	}
 
 	echo form_open_multipart('Upload_controller/do_upload');
-		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
-		echo '<br>';
-		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
+		//echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
+		echo '<br><br><br>';
+
+		//echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
 		echo "</form><br>";
 		echo form_close();
 			echo '<div class="col-md-12 col-xs-4" style="position:relative;margin-left:250px;margin-top:-290px;">';
