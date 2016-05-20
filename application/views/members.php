@@ -187,6 +187,7 @@
     </div>
   </div>
 
+
 <?php
 $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -198,6 +199,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 	<?php
 		echo '<center>';
+		echo '<div class="col-xs-4 col-md-8 col-md-offset-2">';
 		//Jos nimen viimeinen kirjain on 's' printtaa ksen profiili
 		if (substr($etunimi, -1) == 's')
 		{																					//Poistaa nimestä s:n
@@ -236,6 +238,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		 	echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>n profiili</b></h1><br><?php
 		}
 		echo '</center><br><br>';
+		echo '</div><br>'
 
 		 
 ?>
@@ -243,12 +246,14 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
 
-	
+	//echo '<div class="col-xs-2 col-md-1 >';
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
-	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';	
+	//echo '</div>';
+	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
+	echo '<div class="col-sm-1 col-md-pull-3>';	
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.'" >Kirjaudu ulos</button></a>'; 
+	echo '</div>';
 	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
-	echo "<b style='font-size:15px;'>";
 	echo "</b>";
 
 	echo '</nav>';
@@ -273,7 +278,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 
 	echo '<div class="row">';
-	echo '<div class="col-md-4">';
+	echo '<div class="col-md-8">';
 	
 	
 	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -288,7 +293,8 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		echo '<br>';
 		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
 		echo "</form><br>";
-		echo '<div class="col-md-10">';
+
+		echo '<div class="col-md-12 col-xs-4 col-xs-pull-1" style="position:relative;margin-left:350px;margin-top:-290px;">';
 			echo '<a href="'.base_url().'sivu/members_edit" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
 
 			if ($aktiivisuus == '1'){
@@ -315,12 +321,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		    echo '<b style="font-size:1.1em;">Puhelinnumero: </b>';
 	    	echo $puhelinnro;
 	    	echo '</br>';
-		    echo '<b style="font-size:1.1em;">Lyhyt kuvaus: </b>';
-	    	echo '<p style="display:inline;max-width:400px;word-wrap: break-word;">'.$lyhytKuvaus.'</p>';
+		    echo '<b style="font-size:1.1em;">   Lyhyt kuvaus: </b>';
+	    	echo $lyhytKuvaus;
 	    	echo '</br>';
-	    	echo '</div>';
-	    	echo '</div>';
-
 
 	    	$query = $this->db->query("SELECT henkiloId, luotu FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -330,20 +333,13 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$luotu 	 = "$row->luotu";				
 		}
 
-		 $query = $this->db->query("SELECT id, lasttlogin FROM last_login WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-		foreach ($query->result() as $row)
-		{
-			$id 	= "$row->id";
-			$lasttlogin 	 = "$row->lasttlogin";
-						
-		}
+		
 		echo '<div class="row">';
-		echo '<div class="col-md-6 col-md-offset-3" >';
+		echo '<div class="col-xs-1 col-xs-pull-1" ><br><br><br><br>';
 		echo '<table class="table table-bordered" border="1" id="table">';
 		echo '<thead>';
 		echo '<tr>';
-		echo '<td class="col-md-2 "><p style=""><b>Rekisteröitymispäivämäärä ja aika</b></p></td>';
+		echo '<td class="col-md-2 col-xs-8 "><p style=""><b>Rekisteröitymispäivämäärä ja aika</b></p></td>';
 		echo '<td class="col-md-1 ">'.$luotu.'</td>';
 		echo '<tr></tr>';
 		//echo '<td class="col-md-2 "><p style=""><b>Edellinen käyntisi oli</b>  </p></td>';
@@ -353,6 +349,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		echo '</table>';
 	    echo '</div>';
 	    echo '</div>';
+
+    	echo '</div>';
+    	echo '</div>';    	
 
 	
 	echo '</div>';
@@ -392,7 +391,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
 			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
-			$harrastukset .= '<button type="button" style="margin-left:60px;margin-top:-50px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalHarrastukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			$harrastukset .= '<button type="button" style="margin-left:60px;margin-top:-50px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalHarrastukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button>';//Poisto nappi
 			$harrastukset .= '</tr>';
 		}
 	}
@@ -527,7 +526,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	$kortit = "";
 
 	$kortit .= '<table class="table" border="1">';
-	$kortit .= '<thead><tr><th>Kortti</th><th>Päättymispäivä</th><th>Kommentti</th><th style="width:30px"></th></tr></thead>';
+	$kortit .= '<thead><tr><th>Kortti</th><th>Vanhenemispäivä</th><th>Kommentti</th><th style="width:30px"></th></tr></thead>';
 
 	$query = $this->db->query("SELECT id, knimi, sposti, kommentti, voimassa FROM opiskelijakortit WHERE sposti ='".$this->session->userdata('sposti'). "'");
 

@@ -105,14 +105,9 @@
 	}, 100);
 </script> 
 
-<div class="container" id="container">
 
-	<h1 style="text-align:center;font-size:3.3em;font-weight:bold;">Oma profiili</h1><br>
+<?php
 	
-
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<?php
-
 	$query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result() as $row){
@@ -120,18 +115,67 @@
 	
 	}
 
+	echo '<center><br>';
+		echo '<div class="col-xs-4 col-md-8 col-md-offset-2">';
+		//Jos nimen viimeinen kirjain on 's' printtaa ksen profiili
+		if (substr($etunimi, -1) == 's')
+		{																					//Poistaa nimestä s:n
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".rtrim($etunimi, "s")."</h1>";?><h1 style="display:inline;"><b>ksen profiili</b></h1><br><?php
+		}
+		//Jos nimen viimeinen kirjain on 'n' tai 'l' tai 'k' tai 'r' printtaa in profiili
+		elseif (substr($etunimi, -1) == 'n' || 
+				substr($etunimi, -1) == 'l' || 
+				substr($etunimi, -1) == 'k' || 
+				substr($etunimi, -1) == 'r' ||
+				substr($etunimi, -1) == 'd') 
+		{
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
+		}
+		//Jos nimen kaksi viimeistä kirjainta on 'ax'  tai 'ex' printtaa in profiili
+		elseif (substr($etunimi, -2) == 'ax' || 
+				substr($etunimi, -2) == 'ex')
+		{
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
+		}
+		//Jos nimen viimeinen kirjain on 'x' printtaa en profiili
+		elseif (substr($etunimi, -1) == 'x' ||
+			    substr($etunimi, -1) == 'g') 
+		{
+			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>en profiili</b></h1><br><?php
+		}
+		
+		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' printtaa n profiili 
+	 	elseif (substr($etunimi, -1) == 'u' || 
+	 		substr($etunimi, -1) == 'i' || 
+	 		substr($etunimi, -1) == 'e' || 
+	 		substr($etunimi, -1) == 'o' || 
+	 		substr($etunimi, -1) == 'u' || 
+	 		substr($etunimi, -1) == 'ö')
+	 	{
+		 	echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>n profiili</b></h1><br><?php
+		}
+		echo '</center><br><br>';
+		echo '</div><br>'
+
+	?>
+	
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<?php
+
+	
+
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
-	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;margin-left:155px;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
+	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;margin-left:0px;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.' ">Kirjaudu ulos</button></a>'; 
-	echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
+	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "<b style='font-size:15px;'>";
-	echo "<h4 style='font-size:1.1em;margin-left:290px;margin-top:-28px;'>".$etunimi."</h4>";
+	//echo "<h4 style='font-size:1.1em;margin-left:290px;margin-top:-28px;'>".$etunimi."</h4>";
 	echo "</b>";
 
 	echo '</nav>';
 
-	echo '<div class="row">';
-	echo '<div class="col-md-6">';
+	echo '<div class="col-md-6 col-md-offset-3">';
 	//Perustiedot
 
 	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -155,7 +199,8 @@
 		$aktiivisuus = "$row->aktiivisuus";
 	}
 
-	echo '<div class="col-md-offset-3" style="margin-top:10px;">';
+	echo '<div class="row">';
+	echo '<div class="col-md-8">';
 
 	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -170,7 +215,7 @@
 		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
 		echo "</form><br>";
 		echo form_close();
-
+			echo '<div class="col-md-12 col-xs-4" style="position:relative;margin-left:250px;margin-top:-290px;">';
 	
 			echo '<a href="'.base_url().'sivu/members" class="btn btn-danger"><span style="line-height:14px;display:inline;"></span>Lopeta muokkaaminen</a><br><br>';
 
@@ -180,9 +225,9 @@
  			$osoite = array(	'value' => ''.$osoite.'', 	  'placeholder' => 'Osoite',     	'name' => 'osoite', 	'id' => 'osoite', 	  'class' => "login-form" );
  			$postinro = array(	'value' => ''.$postinro.'',   'placeholder' => 'Postinumero',   'name' => 'postinro',  	'id' => 'postinro',   'class' => "login-form" );
  			$puhelinnro = array('value' => ''.$puhelinnro.'', 'placeholder' => 'Puhelinnumero', 'name' => 'puhelinnro', 'id' => 'puhelinnro', 'class' => "login-form" );
- 			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytKuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '27',
+ 			$lyhytKuvaus = array('value' => ''.$lyhytKuvaus.'', 'placeholder' => 'Lyhyt kuvaus', 'name' => 'lyhytKuvaus', 'id' => 'lyhytkuvaus', 'class' => "login-form",  'cols' 		 => '21',
               	     'rows' 		 => '5' );
- 			$hakusanat = array('value' => ''.$hakusanat.'', 'placeholder' => 'Hakusanat', 'name' => 'hakusanat', 'id' => 'hakusanat', 'class' => "login-form",  'cols' 		 => '20',
+ 			$hakusanat = array('value' => ''.$hakusanat.'', 'placeholder' => 'Hakusanat', 'name' => 'hakusanat', 'id' => 'hakusanat', 'class' => "login-form",  'cols' 		 => '21',
               	     'rows' 		 => '5' );
 
  			echo form_open('sivu/members_edit2');
@@ -210,29 +255,40 @@
 		    echo '</br>';
 		    echo '<b style="font-size:1.1em;">Puhelinnumero: </b>';
 	    	echo '<p style="display:inline;">'.form_input($puhelinnro).'</p>';
-	    	 echo '</br>';
-	    	echo '<b style="font-size:1.1em;">  Lyhyt kuvaus: </b>';
-	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br>';
-		    echo '<b style="font-size:1.1em;">Hakusanat: </b>';
-	    	echo '<p style="display:inline;margin-left:117px;margin-top:-20px;">'.form_textarea($hakusanat).'</p>';
+	    	echo '<b style="font-size:1.1em;position:absolute;">  Lyhyt kuvaus: </b>';
+	    	echo '<p style="display:inline;margin-left:120px;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br>';
-	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success"');
+		    echo '<b style="font-size:1.1em;position:absolute;">        Hakusanat: </b>';
+	    	echo '<p style="display:inline;margin-left:120px;">'.form_textarea($hakusanat).'</p>';
+	    	echo '</br>';
+	    	echo form_submit('submit', 'Tallenna muutokset', 'class="btn btn-success col-md-offset-3"');
 	    	echo form_close();
 
 	
 	echo '</div>';
 	echo '</div>';
+	echo '</div>';
+    	echo '</div>';    	
+
+	
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
 
 	//Harrastus
-	echo '<div class="col-md-6 ">';
+	echo '<div class="row">';
+	echo '<div class="col-md-8 col-xs-8 col-md-offset-4">';
+	echo '<div class="row">';
+	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="tyohistoria">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p><a href="'.base_url().'sivu/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p>';
+	//echo '<a href="'.base_url().'sivu/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 	
 	$harrastukset = "";
 
 	$harrastukset .= '<table class="table" border="1">';
-	$harrastukset .= '<thead><tr><th>Harrastus</th><th>Vapaa sana</th><th style="width:150px;"></th></tr></thead>';
+	$harrastukset .= '<thead><tr><th>Harrastus</th><th>Vapaa sana</th></tr></thead>';
 
 	
 	$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -253,8 +309,8 @@
 			$harrastukset .= '<tr>';
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
-			$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
-			$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			//$harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			//$harrastukset .= '<button type="button" style="margin-left:35px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$harrastukset .= '</tr>';
 		}
 	}
@@ -268,16 +324,21 @@
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
+	echo '</div>';
+	
+
 
 	//Tyohistoria
-	echo '<div class="col-md-6 ">';
+	echo '<div class="row">';
+	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="tyohistoria">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p><a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p>';
+	//echo '<a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 	
 	$tyohistoria = "";
 
 	$tyohistoria .= '<table class="table" border="1">';
-	$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th style="width:140px;"></th></tr></thead>';
+	$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th></tr></thead>';
 
 	
 	$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
@@ -303,8 +364,8 @@
 			$tyohistoria .= '<td>'.$alkoi.'</td>';
 			$tyohistoria .= '<td>'.$loppui.'</td>';
 			$tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
-			$tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
-			$tyohistoria .= '<button type="button" style="margin-left:25px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			//$tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			//$tyohistoria .= '<button type="button" style="margin-left:25px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$tyohistoria .= '</tr>';
 		}
 	}
@@ -318,16 +379,19 @@
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
+	echo '</div>';
 
 	//Koulutus
-	echo '<div class="col-md-6">';
+	echo '<div class="row">';
+	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="koulutukset">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p>';
+	//echo '<a href="'.base_url().'sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 	$koulutukset = "";
 
 	$koulutukset .= '<table class="table" border="1">';
-	$koulutukset .= '<thead><tr><th>Koulutusnimi</th><th>Koulutusaste</th><th>Oppilaitos</th><th>Alkoi</th><th>Loppui</th><th style="width:140px;"></th></tr></thead>';
+	$koulutukset .= '<thead><tr><th>Koulutusnimi</th><th>Koulutusaste</th><th>Oppilaitos</th><th>Alkoi</th><th>Loppui</th></tr></thead>';
 
 	$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui, sposti FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -353,8 +417,8 @@
 			$koulutukset .= '<td>'.$oppilaitos.'</td>';
 			$koulutukset .= '<td>'.$alkoi2.'</td>';
 			$koulutukset .= '<td>'.$loppui2.'</td>';
-			$koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
-			$koulutukset .= '<button type="button" style="margin-left:30px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			//$koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset/'.$id.'" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span>';//Muokkaus nappi
+			//$koulutukset .= '<button type="button" style="margin-left:30px;margin-top:-6px;" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$koulutukset .= '</tr>';
 		}
 	}
@@ -369,19 +433,19 @@
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-	echo '</div>';
-	echo '</div>';
+
 
 	//Kortit
-	echo '<div class="col-md-9 col-md-push-6" style="margin-left:-115px;">';
-	echo '<div class="col-md-6 ">';
+	echo '<div class="row">';
+	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="kortit">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p><a href="'.base_url().'sivu/kortit_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p>';
+	//echo '<a href="'.base_url().'sivu/kortit_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 	
 	$kortit = "";
 
 	$kortit .= '<table class="table" border="1">';
-	$kortit .= '<thead><tr><th>Kortti</th><th>Päättymispäivä</th><th>Kommentti</th><th style="width:30px"></th></tr></thead>';
+	$kortit .= '<thead><tr><th>Kortti</th><th>Päättymispäivä</th><th>Kommentti</th></tr></thead>';
 
 	$query = $this->db->query("SELECT id, knimi, sposti, kommentti, voimassa FROM opiskelijakortit WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
@@ -402,7 +466,7 @@
 			$kortit .= '<td>'.$knimi.'</td>';
 			$kortit .= '<td>'.$voimassa.'</td>';
 			$kortit .= '<td>'.$kommentti.'</td>';
-			$kortit .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKortit"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
+			//$kortit .= '<td><button type="button" class="btn btn-danger button red" data-toggle="modal" data-target="#myModalKortit"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
 			$kortit .= '</tr>';
 		}
 	}
@@ -414,11 +478,17 @@
 	else
 		echo "<p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>";
 
-	echo '</div>';
-	echo '</div>';
-	echo '</div>';
-	echo '</div>';
-	echo '</div>';
+
+	echo '<br><br><br><br></div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
+	//echo '</div>';
 	?>
 
 </div>
