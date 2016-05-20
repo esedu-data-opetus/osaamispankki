@@ -234,7 +234,8 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	 		substr($etunimi, -1) == 'e' || 
 	 		substr($etunimi, -1) == 'o' || 
 	 		substr($etunimi, -1) == 'u' || 
-	 		substr($etunimi, -1) == 'ö')
+	 		substr($etunimi, -1) == 'ö' ||
+	 		substr($etunimi, -1) == 'a')
 	 	{
 		 	echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>n profiili</b></h1><br><?php
 		}
