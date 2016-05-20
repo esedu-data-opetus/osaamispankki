@@ -135,7 +135,7 @@
 	
 
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'sivu/welcome_message_english'.'">Learning bank</a>';
-	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;margin-left:0px;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Search</span></a>';
+	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Search</span></a>';
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout_english'.' ">Logout</button></a>'; 
 	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Welcome,</h3>"; 
 	echo "<b style='font-size:15px;'>";

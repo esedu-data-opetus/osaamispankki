@@ -250,9 +250,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 	//echo '</div>';
 	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
-	echo '<div class="col-sm-1 col-md-pull-3>';	
+	//echo '<div class="col-sm-1 col-md-pull-3>';	
 	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.'" >Kirjaudu ulos</button></a>'; 
-	echo '</div>';
+	//echo '</div>';
 	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
 	echo "</b>";
 
