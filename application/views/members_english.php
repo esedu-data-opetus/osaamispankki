@@ -206,7 +206,8 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>'s profile</b></h1><br><?php
 		}
 		
-		echo '</center><br><br><br><br>';
+		echo '</center><br><br><br><br><br>';
+		echo '</div>';
 
 		
 ?>
@@ -253,9 +254,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	}
 
 	echo form_open_multipart('Upload_controller/do_upload');
-		//echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
-		echo '<br><br><br><br>';
-		//echo "<input type='submit' id='nappi' name='submit'  value='Upload' class='btn btn-success' disabled/> ";
+		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
+		echo '<br>';
+		echo "<input type='submit' id='nappi' name='submit'  value='Upload' class='btn btn-success' disabled/> ";
 		echo "</form><br>";
 		echo '<div class="col-md-12 col-xs-4 col-xs-pull-1" style="position:relative;margin-left:350px;margin-top:-290px;">';
 			echo '<a href="'.base_url().'sivu/members_edit_english" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';

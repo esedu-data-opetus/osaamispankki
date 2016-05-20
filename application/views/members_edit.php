@@ -133,7 +133,8 @@
 		}
 		//Jos nimen kaksi viimeistä kirjainta on 'ax'  tai 'ex' printtaa in profiili
 		elseif (substr($etunimi, -2) == 'ax' || 
-				substr($etunimi, -2) == 'ex')
+				substr($etunimi, -2) == 'ex' ||
+				substr($etunimi, -2) == 'ng')
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
 		}
@@ -154,8 +155,8 @@
 	 	{
 		 	echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>n profiili</b></h1><br><?php
 		}
-		echo '</center><br><br>';
-		echo '</div><br>'
+		echo '</center><br><br><br><br>';
+		echo '</div><br>';
 
 	?>
 	

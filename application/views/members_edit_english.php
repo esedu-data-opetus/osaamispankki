@@ -127,7 +127,8 @@
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>'s profile</b></h1><br><?php
 		}
 		
-		echo '</center><br><br>';
+		echo '</center><br><br><br>';
+		echo '</div>';
 ?>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
