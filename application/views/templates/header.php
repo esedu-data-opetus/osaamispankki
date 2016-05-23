@@ -137,6 +137,14 @@
 			{
 				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Takaisin profiiliin</a>';
 			}
+			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "kortit_lisaus")
+			{
+				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Takaisin profiiliin</a>';
+			}
+			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "kortit_lisaus_english")
+			{
+				echo '<a role="button" id="takaisinprofiiliin" href="'.base_url().'sivu/members_english'.'">Back to profile</a>';
+			}
 			elseif($this->uri->segment(2) == "register_successful")
 			{
 			
