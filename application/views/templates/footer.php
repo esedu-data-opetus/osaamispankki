@@ -56,40 +56,6 @@
 			{
 				echo '<a href ="'.base_url().'"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
 			}
-			/*elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "edit_tyohistoria")
-			{
-				echo '<a href ="'.base_url().'sivu/edit_tyohistoria_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "edit_tyohistoria_english")
-			{
-				echo '<a href ="'.base_url().'sivu/edit_tyohistoria"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "edit_koulutukset")
-			{
-				echo '<a href ="'.base_url().'sivu/edit_koulutukset_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "edit_koulutukset_english")
-			{
-				echo '<a href ="'.base_url().'sivu/edit_koulutukset"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyohistoria_lisaus")
-			{
-				echo '<a href ="'.base_url().'sivu/tyohistoria_lisaus_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "tyohistoria_lisaus_english")
-			{
-				echo '<a href ="'.base_url().'sivu/tyohistoria_lisaus"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "koulutukset_lisaus")
-			{
-				
-			}
-			elseif($this->session->userdata('is_logged_in') == 1 && $this->uri->segment(2) == "koulutukset_lisaus_english")
-			{
-			
-			}*/
-
 			elseif($this->uri->segment(2) == "")
 			{
 				echo '<a href ="'.base_url().'sivu/welcome_message_english"><img src="'.base_url().'pictures/English_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
