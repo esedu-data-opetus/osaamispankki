@@ -10,6 +10,7 @@
 	padding:16px 31px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2f6627;
+	width:180px;
 }
 #osaamispankki:hover{
 	
@@ -52,6 +53,7 @@
 	padding:16px 31px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2f6627;
+	width:180px;
 }
 #kirjauduulos:hover{
 	
@@ -79,13 +81,6 @@
 	ul {
 	width:5%;
 	list-style-type:none;
-	}
-	#tyohistoria {
-	
-	margin-left:-100px;
-	}
-	#koulutukset {
-	margin-left:-100px;
 	}
 	button {
     border: 1px #AAA solid;
