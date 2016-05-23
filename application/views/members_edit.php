@@ -122,7 +122,7 @@
 		{																					//Poistaa nimestä s:n
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".rtrim($etunimi, "s")."</h1>";?><h1 style="display:inline;"><b>ksen profiili</b></h1><br><?php
 		}
-		//Jos nimen viimeinen kirjain on 'n' tai 'l' tai 'k' tai 'r' printtaa in profiili
+		//Jos nimen viimeinen kirjain on 'n' tai 'l' tai 'k' tai 'r' tai 'd' printtaa in profiili
 		elseif (substr($etunimi, -1) == 'n' || 
 				substr($etunimi, -1) == 'l' || 
 				substr($etunimi, -1) == 'k' || 
@@ -131,21 +131,21 @@
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
 		}
-		//Jos nimen kaksi viimeistä kirjainta on 'ax'  tai 'ex' printtaa in profiili
+		//Jos nimen kaksi viimeistä kirjainta on 'ax'  tai 'ex' tai 'ng'printtaa in profiili
 		elseif (substr($etunimi, -2) == 'ax' || 
 				substr($etunimi, -2) == 'ex' ||
 				substr($etunimi, -2) == 'ng')
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
 		}
-		//Jos nimen viimeinen kirjain on 'x' printtaa en profiili
+		//Jos nimen viimeinen kirjain on 'x' tai g printtaa en profiili
 		elseif (substr($etunimi, -1) == 'x' ||
 			    substr($etunimi, -1) == 'g') 
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>en profiili</b></h1><br><?php
 		}
 		
-		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' printtaa n profiili 
+		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' tai 'a' printtaa n profiili 
 	 	elseif (substr($etunimi, -1) == 'u' || 
 	 		substr($etunimi, -1) == 'i' || 
 	 		substr($etunimi, -1) == 'e' || 
@@ -480,7 +480,6 @@
 		echo $kortit;
 	else
 		echo "<p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>";
-
 
 	echo '<br><br><br><br></div>';
 	//echo '</div>';
