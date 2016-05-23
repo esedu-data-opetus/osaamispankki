@@ -366,7 +366,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	if($bFound)
 		echo $harrastukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>Hobbies are not added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>No hobbies added yet</p>";
 	
 	
 	echo '</table>';
@@ -420,7 +420,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	if($bFound)
 		echo $tyohistoria;
 	else
-		echo "<p style='color:red;font-weight:bold;'>Work history is not added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>No work histories added yet</p>";
 	
 	
 	echo '</table>';
@@ -475,7 +475,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	if($bFound)
 		echo $koulutukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>Education is not added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>No educations added yet</p>";
 
 	echo '</div>';
 	echo '</div>';
