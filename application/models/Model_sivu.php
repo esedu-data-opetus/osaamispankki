@@ -413,7 +413,7 @@ class model_sivu extends CI_Model {
 
 		if($str === '' OR $str === ' '){
 		$kysely ="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
@@ -426,7 +426,7 @@ class model_sivu extends CI_Model {
 		{
 		$haku_explode = explode(' ', $str);
 		$kysely="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.etunimi, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
