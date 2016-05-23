@@ -23,10 +23,14 @@ echo '<h1>Tulokset haulla "'.$this->input->post('haku'). '"</h1>';
 <div class="panel-group">
 <?php
 
+  
+
 $i=0;
 foreach ($query as $row){
  if($row->aktiivisuus == 1){
 $i++;
+
+
 echo '<div class="panel panel-default">';
 echo ' 	<div class="panel panel-default">
     	 <div class="panel-heading" style="">';
@@ -125,7 +129,14 @@ echo'
     	</p><br>';
 		echo'</div>';
 		echo '<div class="panel-body">
-     	 Lyhyt kuvaus: '.$row->lyhytKuvaus.'
+     	 <b>Sähköposti:</b> '.$row->privSposti.'<br>
+       <b>Etunimi:</b> '.$row->etunimi.'<br>
+       <b>Sukunimi:</b> '.$row->sNimi.'<br>
+       <b>Osoite:</b> '.$row->osoite.'<br>
+       <b>Postinumero:</b> '.$row->postinro.'<br>
+       <b>Puhelinnumero:</b> '.$row->puhelinnro.'<br>
+       <b>Lyhyt kuvaus:</b> '.$row->lyhytKuvaus.'
+
      	 </div>
    		 </div>';
 echo '</div> <br>';
