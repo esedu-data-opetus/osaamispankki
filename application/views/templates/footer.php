@@ -107,7 +107,7 @@
 				echo '<a href ="'.base_url().'sivu/members"><img src="'.base_url().'pictures/Finnish_flag.png" class="col-md-5" style="width:75px;height:30px;float:right;"></a>';
 			}
 	?>
-	<span class="text-muted">ページ rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></span><span class="text-muted"><br><p style="margin-left:227px;margin-top:-30px;"> <b>Tekijät:</b> リク, ミーカ ja ティキ</p></span>
+	<span class="text-muted"><br><p style="margin-left:227px;margin-top:-30px;"> <b>Tekijät:</b> Riku, Miika ja Valtteri</p></span>
 	
 
 </div>
