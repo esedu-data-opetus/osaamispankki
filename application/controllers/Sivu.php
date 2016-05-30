@@ -743,6 +743,14 @@ class Sivu extends CI_Controller {
 			redirect('sivu/members');	
 		   
 		}
+		
+	public function delete_kortit_english($id)
+		{
+			$this->load->model('model_sivu');
+			$this->model_sivu->delete_kortti($id);
+			redirect('sivu/members_english');	
+		   
+		}
 
 	public function delete_harrastukset($id)
 		{
