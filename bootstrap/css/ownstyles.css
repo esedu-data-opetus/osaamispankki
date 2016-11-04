@@ -9,36 +9,27 @@
 	font-size:17px;
 	padding:16px 31px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
 	width:180px;
 }
 #osaamispankki:hover{
-	
+
 }
 #luotili {
-	background-color:#31c398;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
-	font-family: "Roboto", sans-serif;
 	font-size:17px;
 	padding:16px 31px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
 }
 #luotili:hover{
 
 }
 #kirjautuminen{
-	background-color:#4CAF50;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
-	font-family: "Roboto", sans-serif;
 	font-size:17px;
 	padding:16px 31px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
 }
 #kirjautuminen:hover{
 
@@ -56,7 +47,7 @@
 	width:180px;
 }
 #kirjauduulos:hover{
-	
+
 }
 #takaisinprofiiliin{
 	margin-left:0%;
