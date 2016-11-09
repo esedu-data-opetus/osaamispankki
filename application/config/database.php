@@ -76,13 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-<<<<<<< HEAD
 	'username' => 'op_user',
 	'password' => 'op_Passu!',
-=======
-	'username' => 'root',
-	'password' => '',
->>>>>>> e234b5942d8a2b3107415be87e7948a44e30d8ce
 	'database' => 'op2',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
