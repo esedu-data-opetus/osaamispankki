@@ -822,7 +822,7 @@ class Sivu extends CI_Controller {
 			//Luo satunnaisen avaimen
 			$key = md5(uniqid());
 
-			$this->load->library('email', array('mailtype'=>'html'));
+			$this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
 			$this->load->model('model_sivu');
 
 			$this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
@@ -839,10 +839,11 @@ class Sivu extends CI_Controller {
 				if ($this->email->send()){
 					echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
 					echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
-			} 	else echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistu localhostilla.</h2>";
-				     echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
-				     echo "<a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a>";
-
+			} else {
+				echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistu localhostilla.</h2>";
+				echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
+				echo "<a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a>";
+			}
 		} else echo "Ongelma tietokantaan lisätessä.";
 
 		} else {
