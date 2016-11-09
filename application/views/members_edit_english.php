@@ -148,7 +148,7 @@
 	echo '<div class="col-md-6 col-md-offset-3">';
 	//Perustiedot
 
-	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus , aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
+	$query = $this->db->query("SELECT privSposti, etunimi, sNimi, osoite, postinro, puhelinnro, lyhytKuvaus, aktiivisuus  FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	$hakusanat ='';
 		$query2 = $this->db->query("SELECT hakusana FROM hakusanat WHERE sposti ='".$this->session->userdata('sposti')."'");
@@ -203,7 +203,11 @@
 
 			echo form_open('sivu/members_edit_english');
 			echo validation_errors();
-			echo '<input style="margin-left:280px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus"/><p  style="display:inline;margin-left:-320px;">    <b>  Profile is allowed to appear in searches</b></p><br>';
+			if($aktiivisuus == '1'){
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-290px;"><b>Profile is allowed to appear in searches</b></p><br>';
+ 		} else {		
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" /><p  style="display:inline;margin-left:-290px;"><b>Profile is allowed to appear in searches</b></p><br>';
+ 		}
 		    echo '<b style="font-size:1.1em;">                       Email: </b>';
 		    echo '<p style="display:inline;">'.form_input($privSposti).'</p>';
 		    echo '</br>';
@@ -286,7 +290,7 @@
 	if($bFound)
 		echo $harrastukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>No hobbies added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
 	
 	
 	echo '</table>';
@@ -339,7 +343,7 @@
 	if($bFound)
 		echo $tyohistoria;
 	else
-		echo "<p style='color:red;font-weight:bold;'>No work histories added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>Work history is not added yet</p>";
 	
 	
 	echo '</table>';
@@ -396,7 +400,7 @@
 	if($bFound)
 		echo $koulutukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>No educations added yet</p>";
+		echo "<p style='color:red;font-weight:bold;'>Education is not added yet</p>";
 
 	echo '</div>';
 	echo '</div>';

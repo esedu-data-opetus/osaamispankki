@@ -236,9 +236,9 @@
  			echo form_open('sivu/members_edit2');
  			echo validation_errors();
  			if($aktiivisuus == '1'){
- 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-230px;">    <b>  Profiili saa näkyä hauissa</b></p><br>';
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" checked /><p  style="display:inline;margin-left:-230px;">    <b> Profiili saa näkyä haussa </b></p><br>';
  		} else {		
- 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" /><p  style="display:inline;margin-left:-230px;">    <b>  Profiili saa näkyä hauissa</b></p><br>';
+ 			echo '<input style="margin-left:200px;" type="checkbox" value="1" id="aktiivisuus" name="aktiivisuus" /><p  style="display:inline;margin-left:-230px;">    <b>  Profiili saa näkyä haussa</b></p><br>';
  		}
  			
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';

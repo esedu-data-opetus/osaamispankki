@@ -430,12 +430,14 @@ class model_sivu extends CI_Model {
 		FROM henkilotiedot 
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
+		LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
 		LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
 		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
 		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
 		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
 		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
-		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'";
+		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
+		OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
 		
 
 		$query = $this->db->query($kysely);
