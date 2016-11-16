@@ -254,7 +254,7 @@
 	echo '<div class="row">';
 	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="tyohistoria">';
-	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Hobby</p>';
+	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Hobbies</p>';
 	//echo '<a href="'.base_url().'sivu/harrastukset_lisaus_english" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 	$harrastukset = "";
