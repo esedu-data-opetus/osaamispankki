@@ -29,20 +29,18 @@
 <p>
 <?php echo form_label('Sähköposti:'); ?>
 <?php
-	$data = array('name'        => 'sposti',
-								'id' 					=> 'sposti',
+	$data = array('name'        => 'email',
 								'class' 			=> 'login-form',
-								'value'       => set_value('sposti'));
+								'value'       => set_value('email'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php echo form_label('Salasana:'); ?>
 <?php
-    $data = array('name'        => 'salasana',
-									'id' 					=> 'salasana',
+    $data = array('name'        => 'password',
 									'class' 			=> 'login-form',
-                  'value'       => set_value('salasana'));
+                  'value'       => set_value('password'));
 ?>
 <?php echo form_password($data); ?>
   </p>

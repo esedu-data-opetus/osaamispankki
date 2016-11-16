@@ -10,7 +10,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
 </head>
 <body>
-  
+
   <div style="padding-top: 60px;"></div>
 
   <?php $this->load->view('templates/header'); ?>

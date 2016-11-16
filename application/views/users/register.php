@@ -17,21 +17,29 @@
   cursor: pointer;
 }
 
+.error {
+	color: #ff0000;
+	border: 1px solid #ff0000;
+	margin: 0;
+	padding: 5px;
+	border-radius: 10px;
+}
+
 .styling {
 	max-width: 200px;
 }
 </style>
 
 <div class="styling">
-<?php echo validation_errors('<p class="alert alert-dismissable alert-dager">'); ?>
+<?php echo validation_errors('<p class="error">'); ?>
 <?php echo form_open('users/register'); ?>
 <p>
 	<?php echo form_label('Etunimi:'); ?>
 	<?php
 	$data = array(
-		'name' => 'etunimi',
+		'name' => 'name',
 		'id'	 => 'etunimi',
-		'value'=> set_value('etunimi')
+		'value'=> set_value('name')
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -40,9 +48,8 @@
 	<?php echo form_label('sähköposti:'); ?>
 	<?php
 	$data = array(
-		'name' => 'sposti',
-		'id' => 'sposti',
-		'value'=> set_value('sposti')
+		'name' => 'email',
+		'value'=> set_value('email')
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -51,9 +58,8 @@
 	<?php echo form_label('Salasana:'); ?>
 	<?php
 	$data = array(
-		'name' => 'salasana',
-		'id'	 => 'salasana',
-		'value'=> set_value('salasana')
+		'name' => 'password',
+		'value'=> set_value('password')
 	);
 	?>
 	<?php echo form_password($data); ?>
@@ -62,9 +68,8 @@
 	<?php echo form_label('Salasana uudestaan:'); ?>
 	<?php
 	$data = array(
-		'name' => 'salasanaconfirm',
-		'id'	 => 'salasanaconfirm',
-		'value'=> set_value('salasanaconfirm')
+		'name' => 'confirmpassword',
+		'value'=> set_value('confirmpassword')
 	);
 	?>
 	<?php echo form_password($data); ?>
