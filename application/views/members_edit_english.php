@@ -290,7 +290,7 @@
 	if($bFound)
 		echo $harrastukset;
 	else
-		echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
+		echo "<p style='color:red;font-weight:bold;'>No hobbies added yet</p>";
 
 
 	echo '</table>';
