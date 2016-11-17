@@ -6,18 +6,10 @@
 	<?php
 
 if ($this->session->userdata('is_logged_in') !== 1) {
-	if ($this->uri->segment(2) == "register") {
-		echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
-		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
-	} else if ($this->uri->segment(2) == "login") {
-		echo '<a role="button" id="osaamispankki" href="'.base_url().'">Osaamispankki</a>';
-		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
-	} else {
 		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
 		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
-	}
 } else {
-					echo '<a id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Oma profiili</a>';
+		echo '<a id="takaisinprofiiliin" href="'.base_url().'sivu/members'.'">Oma profiili</a>';
 }
 
 
