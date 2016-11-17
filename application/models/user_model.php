@@ -15,7 +15,7 @@ class User_model extends CI_Model {
   public function login_user($username,$password) {
     $enc_password = md5($password);
 
-    $this->db->where('Name',$username);
+    $this->db->where('Email',$username);
     $this->db->where('Password',$enc_password);
 
     $result = $this->db->get('users');

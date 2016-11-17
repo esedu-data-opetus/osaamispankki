@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+
+<?php if ($this->session->flashdata('login_success')) : ?>
+<p class="success"><?php echo $this->session->flashdata('login_success'); ?>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('registered')) : ?>
+  <p class="success"><?php echo $this->session->flashdata('registered'); ?>
+<?php endif; ?>
+
 <div class="page-header">
 <h2 >ETURIVIN TAITAJAT - Osaajapankki</h2>
 </div>

@@ -36,11 +36,11 @@ class Users extends CI_Controller {
       $user_id = $this->User_model->login_user($username,$password);
 
       if($user_id){
-        $user_data = array(
+        $data = array(
           'sposti' => $this->input->post('email'),
 					'is_logged_in' => 1
         );
-        $this->session->set_userdata($user_data);
+        $this->session->set_userdata($data);
         $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
         redirect('home');
       } else {
