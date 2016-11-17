@@ -1,8 +1,8 @@
 <?php
 class Users extends CI_Controller {
   public function register() {
-    if ($this->session->userdata('is_logged_in')) {
-      redicet('home/index');
+    if ($this->session->userdata('is_logged_in') == 1) {
+      redirect('home/index');
     }
     $this->form_validation->set_rules('password2', 'Confirm Password','');
 
@@ -23,6 +23,9 @@ class Users extends CI_Controller {
     }
   }
   public function login() {
+    if ($this->session->userdata('is_logged_in') == 1) {
+      redirect('home/index');
+    }
     $this->form_validation->set_rules('email', 'Email', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
