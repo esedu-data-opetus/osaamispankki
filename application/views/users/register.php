@@ -1,5 +1,10 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-5">
+	
+	<?php if ($this->session->flashdata('Email')) : ?>
+	<p class="unsuccess"><?php echo $this->session->flashdata('Email'); ?>
+	<?php endif; ?>
+
 	<h1>Rekisteröityminen</h1><br>
 <style>
 #nappi {
