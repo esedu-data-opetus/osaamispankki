@@ -229,7 +229,7 @@
 	    	echo '<b style="font-size:1.1em;position:absolute;">Short description: </b>';
 	    	echo '<p style="display:inline;margin-left:143px;">'.form_textarea($lyhytKuvaus).'</p>';
 	    	echo '</br>';
-	    	echo '<b style="font-size:1.1em;position:absolute;">        Hakusanat: </b>';
+	    	echo '<b style="font-size:1.1em;position:absolute;">        Keywords: </b>';
 	    	echo '<p style="display:inline;margin-left:143px;">'.form_textarea($hakusanat).'</p>';
 	    	echo '</br>';
 	    	echo '</br>';
