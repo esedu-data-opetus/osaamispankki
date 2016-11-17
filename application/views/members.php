@@ -25,9 +25,9 @@
 </style>
 <body>
 <script type="text/javascript">
-	setInterval(function() 
+	setInterval(function()
 	{
-		if(document.getElementById("uploadBox").value != "") 
+		if(document.getElementById("uploadBox").value != "")
 		{
 			document.getElementById('nappi').disabled = false;
 		}
@@ -37,7 +37,7 @@
 		}
 	}, 100);
 
-</script> 
+</script>
 
 
 
@@ -62,11 +62,11 @@
 			$id 	   = "$row->id";
 			$harrastus = "$row->harrastus";
 			$vapaasana   = "$row->vapaasana";
-         
+
          }
           ?>
         <div class="modal-footer">
-     
+
         <?php
          echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/delete_harrastukset/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Poista</a></button>';//Poisto nappi
          ?>
@@ -100,10 +100,10 @@
 			$loppui    = "$row->loppui";
 			$kuvaus    = "$row->kuvaus";
 		}
-         
+
           ?>
         <div class="modal-footer">
-     
+
         <?php
          echo '<button type="button" class="btn btn-danger"><a href="'.base_url().'sivu/delete_tyohistoria/'.$id.'" style="text-decoration:none;" id="confirm-delete" >Poista</a></button>';//Poisto nappi
          ?>
@@ -126,7 +126,7 @@
         </div>
           <?php
 
-          
+
         $query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 		foreach ($query->result() as $row)
@@ -138,7 +138,7 @@
 			$alkoi2 	  = "$row->alkoi";
 			$loppui2 	  = "$row->loppui";
 		}
-         
+
           ?>
         <div class="modal-footer">
         <?php
@@ -163,7 +163,7 @@
         </div>
           <?php
 
-          
+
         $query = $this->db->query("SELECT id, knimi, voimassa, kommentti, sposti FROM opiskelijakortit WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 		foreach ($query->result() as $row)
@@ -172,9 +172,9 @@
 			$knimi 	 = "$row->knimi";
 			$voimassa = "$row->voimassa";
 			$kommentti = "$row->kommentti";
-			
+
 		}
-         
+
           ?>
         <div class="modal-footer">
         <?php
@@ -193,7 +193,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 	foreach ($query->result() as $row){
 		$etunimi = "$row->etunimi";
-	
+
 	}
 ?>
 
@@ -206,16 +206,16 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".rtrim($etunimi, "s")."</h1>";?><h1 style="display:inline;"><b>ksen profiili</b></h1><br><?php
 		}
 		//Jos nimen viimeinen kirjain on 'n' tai 'l' tai 'k' tai 'r' printtaa in profiili
-		elseif (substr($etunimi, -1) == 'n' || 
-				substr($etunimi, -1) == 'l' || 
-				substr($etunimi, -1) == 'k' || 
+		elseif (substr($etunimi, -1) == 'n' ||
+				substr($etunimi, -1) == 'l' ||
+				substr($etunimi, -1) == 'k' ||
 				substr($etunimi, -1) == 'r' ||
-				substr($etunimi, -1) == 'd') 
+				substr($etunimi, -1) == 'd')
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>in profiili</b></h1><br><?php
 		}
 		//Jos nimen kaksi viimeistä kirjainta on 'ax'  tai 'ex' printtaa in profiili
-		elseif (substr($etunimi, -2) == 'ax' || 
+		elseif (substr($etunimi, -2) == 'ax' ||
 				substr($etunimi, -2) == 'ex' ||
 				substr($etunimi, -2) == 'ng')
 		{
@@ -223,17 +223,17 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		}
 		//Jos nimen viimeinen kirjain on 'x' printtaa en profiili
 		elseif (substr($etunimi, -1) == 'x' ||
-			    substr($etunimi, -1) == 'g') 
+			    substr($etunimi, -1) == 'g')
 		{
 			echo "<h1 style='text-align:center;font-size:;font-weight:bold;display:inline;'>".$etunimi."</h1>";?><h1 style="display:inline;"><b>en profiili</b></h1><br><?php
 		}
-		
-		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' printtaa n profiili 
-	 	elseif (substr($etunimi, -1) == 'u' || 
-	 		substr($etunimi, -1) == 'i' || 
-	 		substr($etunimi, -1) == 'e' || 
-	 		substr($etunimi, -1) == 'o' || 
-	 		substr($etunimi, -1) == 'u' || 
+
+		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' printtaa n profiili
+	 	elseif (substr($etunimi, -1) == 'u' ||
+	 		substr($etunimi, -1) == 'i' ||
+	 		substr($etunimi, -1) == 'e' ||
+	 		substr($etunimi, -1) == 'o' ||
+	 		substr($etunimi, -1) == 'u' ||
 	 		substr($etunimi, -1) == 'ö' ||
 	 		substr($etunimi, -1) == 'a')
 	 	{
@@ -242,9 +242,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		echo '</center><br><br><br><br>';
 		echo '</div><br>'
 
-		 
+
 ?>
-	
+
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<?php
 
@@ -252,15 +252,15 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 	//echo '</div>';
 	echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
-	//echo '<div class="col-sm-1 col-md-pull-3>';	
-	echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.'" >Kirjaudu ulos</button></a>'; 
+	//echo '<div class="col-sm-1 col-md-pull-3>';
+	echo '<a id="kirjauduulos" style="float:right;" href="'.base_url().'users/logout" >Kirjaudu ulos</a>'; 
 	//echo '</div>';
-	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>"; 
+	//echo "<h3 style='font-family:Impact, Charcoal, sans-serif;font-size:1.3em;margin-left:200px;margin-top:-51px;'>Tervetuloa,</h3>";
 	echo "</b>";
 
 	echo '</nav>';
 
-	
+
 	echo '<div class="col-md-6 col-md-offset-3">';
 	//Perustiedot
 
@@ -281,8 +281,8 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 
 	echo '<div class="row">';
 	echo '<div class="col-md-8">';
-	
-	
+
+
 	$query = $this->db->query("SELECT etunimi, pkuva, sNimi, puhelinnro, pitkaKuvaus, spuoli, lyhytKuvaus, sposti FROM henkilotiedot WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	foreach ($query->result_array() as $row)
@@ -291,7 +291,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	}
 
 	echo form_open_multipart('Upload_controller/do_upload');
-		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>"; 
+		echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
 		echo '<br>';
 		echo "<input type='submit' id='nappi' name='submit'  value='Lataa' class='btn btn-success' disabled/> ";
 		echo "</form><br>";
@@ -304,7 +304,7 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			}else {
 			echo '<p style="display:inline;margin-left:-15px;"><b style="color:red;">Profiili ei näy haussa </b></p><br>';
 		}
-			
+
 		    echo '<b style="font-size:1.1em;">      Sähköposti: </b>';
 		    echo $privSposti;
 		    echo '</br>';
@@ -332,10 +332,10 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		foreach ($query->result() as $row)
 		{
 			$id 	= "$row->henkiloId";
-			$luotu 	 = "$row->luotu";				
+			$luotu 	 = "$row->luotu";
 		}
 
-		
+
 		echo '<div class="row">';
 		echo '<div class="col-xs-1 col-xs-pull-1" ><br><br><br><br>';
 		echo '<table class="table table-bordered" border="1" id="table">';
@@ -353,9 +353,9 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	    echo '</div>';
 
     	echo '</div>';
-    	echo '</div>';    	
+    	echo '</div>';
 
-	
+
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
@@ -367,13 +367,13 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="tyohistoria">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p><a href="'.base_url().'sivu/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
-	
+
 	$harrastukset = "";
 
 	$harrastukset .= '<table class="table" border="1">';
 	$harrastukset .= '<thead><tr><th>Harrastus</th><th>Vapaa sana</th><th style="width:150px;"></th></tr></thead>';
 
-	
+
 	$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	$bFound = false;
@@ -383,12 +383,12 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		$id 	   = "$row->id";
 		$harrastus = "$row->harrastus";
 		$vapaasana   = "$row->vapaasana";
-		
 
-		if($harrastus != NULL) 
+
+		if($harrastus != NULL)
 		{
 			$bFound = true;
-		
+
 			$harrastukset .= '<tr>';
 			$harrastukset .= '<td>'.$harrastus.'</td>';
 			$harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
@@ -397,32 +397,32 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$harrastukset .= '</tr>';
 		}
 	}
-		
+
 	if($bFound)
 		echo $harrastukset;
 	else
 		echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
-	
-	
+
+
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 
-	
+
 
 	//Tyohistoria
 	echo '<div class="row">';
 	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="tyohistoria">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p><a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
-	
+
 	$tyohistoria = "";
 
 	$tyohistoria .= '<table class="table" border="1">';
 	$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th style="width:140px"></th></tr></thead>';
 
-	
+
 	$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
 
 	$bFound = false;
@@ -436,10 +436,10 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 		$loppui    = "$row->loppui";
 		$kuvaus    = "$row->kuvaus";
 
-		if($tyopaikka != NULL) 
+		if($tyopaikka != NULL)
 		{
 			$bFound = true;
-		
+
 			$tyohistoria .= '<tr>';
 			$tyohistoria .= '<td>'.$tyopaikka.'</td>';
 			$tyohistoria .= '<td>'.$tehtava.'</td>';
@@ -452,13 +452,13 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 			$tyohistoria .= '</tr>';
 		}
 	}
-		
+
 	if($bFound)
 		echo $tyohistoria;
 	else
 		echo "<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>";
-	
-	
+
+
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
@@ -517,14 +517,14 @@ $query = $this->db->query("SELECT etunimi FROM kirjautumistiedot WHERE sposti ='
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-	
-	
+
+
 	//Kortit
 	echo '<div class="row">';
 	echo '<div class="col-md-6 col-xs-8">';
 	echo '<div id="kortit">';
 	echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p><a href="'.base_url().'sivu/kortit_lisaus" class="btn btn-success glyphicon glyphicon-plus button green" data-placement="top" style="font-size:1.3em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
-	
+
 	$kortit = "";
 
 	$kortit .= '<table class="table" border="1">';

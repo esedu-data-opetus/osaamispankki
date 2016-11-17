@@ -6,6 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <p class="success"><?php echo $this->session->flashdata('login_success'); ?>
 <?php endif; ?>
 
+<?php if ($this->session->flashdata('login_failed')) : ?>
+<p class="unsuccess"><?php echo $this->session->flashdata('login_failed'); ?>
+<?php endif; ?>
+
 <?php if ($this->session->flashdata('registered')) : ?>
   <p class="success"><?php echo $this->session->flashdata('registered'); ?>
 <?php endif; ?>

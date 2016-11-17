@@ -1,7 +1,7 @@
 <?php
 class Users extends CI_Controller {
   public function register() {
-    if ($this->session->userdata('Logged_In')) {
+    if ($this->session->userdata('is_logged_in')) {
       redicet('home/index');
     }
     $this->form_validation->set_rules('password2', 'Confirm Password','');
@@ -37,8 +37,9 @@ class Users extends CI_Controller {
 
       if($user_id){
         $data = array(
-          'sposti' => $this->input->post('email'),
-					'is_logged_in' => 1
+          'user_id'      =>  $user_id,
+          'sposti'       =>  $this->input->post('email'),
+					'is_logged_in' =>  1
         );
         $this->session->set_userdata($data);
         $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
@@ -48,6 +49,12 @@ class Users extends CI_Controller {
         redirect('home');
       }
     }
-
+  }
+  public function logout() {
+    $this->session->unset_userdata('is_logged_in');
+    $this->session->unset_userdata('user_id');
+    $this->session->unset_userdata('sposti');
+    $this->session->sess_destroy();
+    redirect('home/index');
   }
 }
