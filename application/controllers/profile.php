@@ -27,5 +27,7 @@ class Profile extends CI_Controller {
   }
 
   public function edit() {
+    $data['main_content'] = 'users/profile_edit';
+    $this->load->view('layouts/main',$data);
   }
 }

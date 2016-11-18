@@ -260,7 +260,7 @@ class Sivu extends CI_Controller {
 				{
 
 					echo '<p id="message" style="text-align:center;color:green;font-size:2em;font-weight:bold;">Perustiedot päivitetty</p>';
-					redirect('sivu/members');
+					redirect('profile');
 				}
 					else
 				{
