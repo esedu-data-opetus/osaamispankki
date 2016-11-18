@@ -3,12 +3,14 @@ class User_model extends CI_Model {
   public function create_member() {
 
     $key = md5(uniqid());
+    $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
+    $Email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
     $enc_password = md5($this->input->post('password'));
 
     $n = 1;
     $query = $this->db->get('users');
         foreach ($query->result() as $row) {
-            if ($this->input->post('email') == $row->Email) {
+            if ($Email == $row->Email) {
               $C = "Sähköposti on jo käytössä!";
               echo $n++.". MATCH FOUND<br>";
             } else {
@@ -27,8 +29,8 @@ class User_model extends CI_Model {
     if (!isset($C)) {
 
       $data = array(
-          'Name'       => $this->input->post('name'),
-          'Email'      => $this->input->post('email'),
+          'Name'       => $Name,
+          'Email'      => $Email,
           'Password'   => $enc_password,
           'C_Key'      => $key
       );

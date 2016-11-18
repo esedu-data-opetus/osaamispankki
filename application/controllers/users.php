@@ -35,7 +35,7 @@ class Users extends CI_Controller {
       $data['main_content'] = 'users/login';
       $this->load->view('layouts/main',$data);
     } else {
-      $username = $this->input->post('email');
+      $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
       $password = $this->input->post('password');
       $user_id = $this->User_model->login_user($username,$password);
 
