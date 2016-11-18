@@ -4,6 +4,11 @@ class Profile extends CI_Controller {
     $data['main_content'] = 'users/profile';
     $this->load->view('layouts/main',$data);
   }
+
+  public function set() {
+    
+  }
+
   public function edit() {
   }
 }
