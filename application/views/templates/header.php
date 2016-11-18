@@ -9,7 +9,7 @@ if ($this->session->userdata('is_logged_in') !== 1) {
 		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
 		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
 } else {
-		echo '<a id="takaisinprofiiliin" href="'.base_url().'users/profile'.'">Oma profiili</a>';
+		echo '<a id="takaisinprofiiliin" href="'.base_url().'profile'.'">Oma profiili</a>';
 }
 
 
