@@ -197,16 +197,16 @@ class Sivu extends CI_Controller {
 			$this->session->set_userdata($data);
 
 				if($this->session->userdata('usertype') == 1) {
-					redirect('sivu/paivita_perustiedot');
+					redirect('profile/set_profile');
 				}
 				elseif($this->session->userdata('usertype') == 2){
-					redirect('sivu/members');
+					redirect('profile');
 				}
 				else {
-					redirect('sivu/members');
+					redirect('profile');
 				}
 
-			redirect('sivu/members');
+			redirect('profile');
 		} else {
 			$this->load->template('login');
 		}

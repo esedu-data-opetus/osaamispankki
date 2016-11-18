@@ -47,7 +47,7 @@ class Users extends CI_Controller {
         );
         $this->session->set_userdata($data);
         $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
-        redirect('home/index');
+        redirect('profile/set_profile');
       } else {
         $this->session->set_flashdata('login_failed', 'Käyttäjä nimi tai salasana väärin :/');
         redirect('home/index');
