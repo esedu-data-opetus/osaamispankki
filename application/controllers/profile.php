@@ -4,4 +4,6 @@ class Profile extends CI_Controller {
     $data['main_content'] = 'profile';
     $this->load->view('layouts/main',$data);
   }
+  public function edit() {
+  }
 }
