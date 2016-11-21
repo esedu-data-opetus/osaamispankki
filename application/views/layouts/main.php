@@ -10,17 +10,14 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
 </head>
 <body>
-
   <div style="padding-top: 60px;"></div>
-
   <?php $this->load->view('templates/header'); ?>
-  <?php if ($this->session->userdata('Vahvistus') == 0) : ?>
-    <a href="users/C_Key" onclick="return; alert('Vahvistetaanko käyttäjä?');">Vahvista</a>
-  <?php endif; ?>
+    <?php if ($this->session->userdata('Vahvistus') === 0) : ?>
+    <a onclick="alert('Vahvistetaanko käyttäjä?');" href="<?php echo base_url(); ?>users/C_Key">Vahvista</a>
+    <?php endif; ?>
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>
-
 <footer class="footer">
   <div class="footer navbar-fixed-bottom">
   	  <a href="http://www.esedu.fi/" target="_blank" >

@@ -11,8 +11,10 @@ class User_model extends CI_Model {
     // $this->email->message($message);
     //
     // if ($this->email->send()) {
+    $key = md5(uniqid());
     $data = array(
           'Vahvistus' =>  0,
+          'Key'       =>  $key
         );
         $this->session->set_userdata($data);
       return True;
@@ -42,8 +44,6 @@ class User_model extends CI_Model {
   // }
   }
   public function create_member() {
-
-    $key = md5(uniqid());
     $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
     $Email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
     $enc_password = md5($this->input->post('password'));
@@ -72,7 +72,7 @@ class User_model extends CI_Model {
           'Name'       => $Name,
           'Email'      => $Email,
           'Password'   => $enc_password,
-          'C_Key'      => $key
+          'C_Key'      => $this->session->userdata('Key')
       );
       $insert = $this->db->insert('users',$data);
       return $insert;

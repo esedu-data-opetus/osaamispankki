@@ -42,6 +42,11 @@ class Users extends CI_Controller {
     } else {
       $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
       $password = $this->input->post('password');
+
+      if ($this->session->userdata('Vahvistus') == 0) {
+        $this->session->set_flashdata('error', 'Vahvista sähköposti osoite ensin!');
+        redirect('home/index');
+      } else {
       $user_id = $this->User_model->login_user($username,$password);
 
     if($user_id){
@@ -56,9 +61,9 @@ class Users extends CI_Controller {
       } else {
         $this->session->set_flashdata('login_failed', 'Käyttäjä nimi tai salasana väärin :/');
         redirect('home/index');
+        }
       }
     }
-
   }
   public function logout() {
     $this->session->unset_userdata('is_logged_in');
@@ -66,5 +71,14 @@ class Users extends CI_Controller {
     $this->session->unset_userdata('sposti');
     $this->session->sess_destroy();
     redirect('home/index');
+  }
+  public function C_Key() {
+    $data = array(
+      'Vahvistus' => 1
+    );
+      $this->session->set_userdata($data);
+      $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
+      redirect('home/index');
+      return true;
   }
 }
