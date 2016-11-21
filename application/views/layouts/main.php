@@ -14,7 +14,9 @@
   <div style="padding-top: 60px;"></div>
 
   <?php $this->load->view('templates/header'); ?>
-
+  <?php if ($this->session->userdata('Vahvistus') == 0) : ?>
+    <a href="users/C_Key" onclick="return; alert('Vahvistetaanko käyttäjä?');">Vahvista</a>
+  <?php endif; ?>
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>

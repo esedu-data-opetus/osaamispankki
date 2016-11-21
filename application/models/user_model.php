@@ -1,6 +1,6 @@
 <?php
 class User_model extends CI_Model {
-  public function send_mail($key) {
+  public function send_mail() {
     // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
     //
     // $this->load->library('email');
@@ -11,6 +11,10 @@ class User_model extends CI_Model {
     // $this->email->message($message);
     //
     // if ($this->email->send()) {
+    $data = array(
+          'Vahvistus' =>  0,
+        );
+        $this->session->set_userdata($data);
       return True;
     // }
 
