@@ -10,12 +10,12 @@ class Profile extends CI_Controller {
       redirect('home/index');
     }
 
-    $this->form_validation->set_rules('privSposti', 'Henkilökohtainen sähköpostiosoite', 'valid_email|max_length[30]');
-		$this->form_validation->set_rules('eNimi', 'Etunimi', 'alpha|trim|max_length[30]');
-		$this->form_validation->set_rules('sNimi', 'Sukunimi', 'alpha|trim|max_length[30]');
+    $this->form_validation->set_rules('Email', 'Henkilökohtainen sähköpostiosoite', 'valid_email|max_length[30]');
+		$this->form_validation->set_rules('F_Name', 'Etunimi', 'alpha|trim|max_length[30]');
+		$this->form_validation->set_rules('L_Name', 'Sukunimi', 'alpha|trim|max_length[30]');
 		$this->form_validation->set_rules('osoite', 'Osoite', 'trim|max_length[30]');
 		$this->form_validation->set_rules('postinro', 'Postinumero', 'trim');
-		$this->form_validation->set_rules('puhelinnro', 'Puhelinnumero', 'trim|numeric|max_length[12]');
+		$this->form_validation->set_rules('p_nro', 'Puhelinnumero', 'trim|numeric|max_length[12]');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'users/set_profile';
@@ -29,5 +29,7 @@ class Profile extends CI_Controller {
   }
 
   public function edit() {
+    $data['main_content'] = 'users/profile_edit';
+    $this->load->view('layouts/main',$data);
   }
 }

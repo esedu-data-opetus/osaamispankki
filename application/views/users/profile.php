@@ -253,7 +253,7 @@ echo form_open_multipart('Upload_controller/do_upload');
   echo "</form><br>";
 
   echo '<div class="col-md-12 col-xs-4 col-xs-pull-1" style="position:relative;margin-left:350px;margin-top:-290px;">';
-    echo '<a href="'.base_url().'sivu/members_edit" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
+    echo '<a href="'.base_url().'profile/edit" class="btn btn-primary button blue"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
 
     if ($aktiivisuus == '1'){
     echo '<p style="display:inline;margin-left:-15px;"><b style="color:green">Profiili näkyy haussa </b></p><br>';

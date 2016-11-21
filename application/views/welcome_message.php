@@ -1,6 +1,12 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<?php if ($this->session->flashdata('error')) : ?>
+<p class="unsuccess"><?php echo $this->session->flashdata('error'); ?>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('success')) : ?>
+<p class="success"><?php echo $this->session->flashdata('success'); ?>
+<?php endif; ?>
 
 <?php if ($this->session->flashdata('login_success')) : ?>
 <p class="success"><?php echo $this->session->flashdata('login_success'); ?>

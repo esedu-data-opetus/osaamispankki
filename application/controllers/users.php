@@ -15,8 +15,13 @@ class Users extends CI_Controller {
       $data['main_content'] = 'users/register';
       $this->load->view('layouts/main',$data);
     } else {
+    if ($this->User_model->send_mail($key)) {
       if ($this->User_model->create_member()) {
-        $this->session->set_flashdata('registered', 'Olet rekisteröitynyt ja valmis kirjautumaan');
+        $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
+        redirect('home/index');
+        }
+      } else {
+        $this->session->set_flashdata('error', 'Sähköpostin lähetyksessä on ongelma!');
         redirect('home/index');
       }
     }
