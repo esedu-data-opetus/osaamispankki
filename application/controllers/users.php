@@ -15,19 +15,18 @@ class Users extends CI_Controller {
       $data['main_content'] = 'users/register';
       $this->load->view('layouts/main',$data);
     } else {
-    if ($this->User_model->send_mail()) {
-      if ($this->User_model->create_member()) {
-        $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
-        redirect('home/index');
+      $key = md5(uniqid());
+      if ($this->User_model->send_mail($key)) {
+        if ($this->User_model->create_member($key)) {
+          $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
+          redirect('home/index');
         }
       } else {
         $this->session->set_flashdata('error', 'Sähköpostin lähetyksessä on ongelma!');
         redirect('home/index');
       }
     }
-
   }
-
   public function login() {
     if ($this->session->userdata('is_logged_in') == 1) {
       redirect('home/index');
@@ -42,11 +41,6 @@ class Users extends CI_Controller {
     } else {
       $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
       $password = $this->input->post('password');
-
-      if ($this->session->userdata('Vahvistus') == 0) {
-        $this->session->set_flashdata('error', 'Vahvista sähköposti osoite ensin!');
-        redirect('home/index');
-      } else {
       $user_id = $this->User_model->login_user($username,$password);
 
     if($user_id){
@@ -61,7 +55,6 @@ class Users extends CI_Controller {
       } else {
         $this->session->set_flashdata('login_failed', 'Käyttäjä nimi tai salasana väärin :/');
         redirect('home/index');
-        }
       }
     }
   }
@@ -73,10 +66,7 @@ class Users extends CI_Controller {
     redirect('home/index');
   }
   public function C_Key() {
-    $data = array(
-      'Vahvistus' => 1
-    );
-      $this->session->set_userdata($data);
+
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
       redirect('home/index');
       return true;

@@ -1,49 +1,6 @@
 <?php
 class User_model extends CI_Model {
-  public function send_mail() {
-    // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
-    //
-    // $this->load->library('email');
-    //
-    // $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    // $this->email->to($this->input->post('email'));
-    // $this->email->subject('Vahvista käyttäjätilisi.');
-    // $this->email->message($message);
-    //
-    // if ($this->email->send()) {
-    $key = md5(uniqid());
-    $data = array(
-          'Vahvistus' =>  0,
-          'Key'       =>  $key
-        );
-        $this->session->set_userdata($data);
-      return True;
-    // }
-
-  //   $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
-  //
-  //   $this->email->from('osaamispankki@esedu.fi', "Osaamispankki");
-  //   $this->email->to($this->input->post('sposti'));
-  //   $this->email->subject("Vahvista käyttäjätilisi.");
-  //
-  //   $message = "";
-  //   $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
-  //
-  //   $this->email->message($message);
-  //
-  //   //Lähettää sähköpostivarmistuksen käyttäjälle
-  //   if ($this->model_sivu->add_temp_user($key)) {
-  //     if ($this->email->send()){
-  //       echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
-  //       echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
-  //   } else {
-  //     echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistunut.</h2>";
-  //     echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
-  //     echo "<a href='".base_url()."users/login' >Takaisin kirjautumiseen</a>";
-  //   }
-  // }
-  }
-  public function create_member() {
+  public function create_member($key) {
     $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
     $Email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
     $enc_password = md5($this->input->post('password'));
@@ -72,7 +29,7 @@ class User_model extends CI_Model {
           'Name'       => $Name,
           'Email'      => $Email,
           'Password'   => $enc_password,
-          'C_Key'      => $this->session->userdata('Key')
+          'C_Key'      => $key
       );
       $insert = $this->db->insert('users',$data);
       return $insert;
@@ -95,5 +52,35 @@ class User_model extends CI_Model {
     } else {
         return false;
     }
+  }
+  public function send_mail($key) {
+
+    // $message = "";
+    // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+    // $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
+    // $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
+    // $this->email->to($this->input->post('email'));
+    // $this->email->subject('Vahvista käyttäjätilisi.');
+    // $this->email->message($message);
+    //
+    // if ($this->email->send()) {
+    $data = array(
+          'Key'       =>  $key
+        );
+        $this->session->set_userdata($data);
+      return True;
+    // }
+
+  //   //Lähettää sähköpostivarmistuksen käyttäjälle
+  //   if ($this->model_sivu->add_temp_user($key)) {
+  //     if ($this->email->send()){
+  //       echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
+  //       echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
+  //   } else {
+  //     echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistunut.</h2>";
+  //     echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
+  //     echo "<a href='".base_url()."users/login' >Takaisin kirjautumiseen</a>";
+  //   }
+  // }
   }
 }

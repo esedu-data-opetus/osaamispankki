@@ -12,9 +12,7 @@
 <body>
   <div style="padding-top: 60px;"></div>
   <?php $this->load->view('templates/header'); ?>
-    <?php if ($this->session->userdata('Vahvistus') === 0) : ?>
-    <a onclick="alert('Vahvistetaanko käyttäjä?');" href="<?php echo base_url(); ?>users/C_Key">Vahvista</a>
-    <?php endif; ?>
+<?php print_r($this->session->userdata()); ?>
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>

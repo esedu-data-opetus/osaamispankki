@@ -7,7 +7,7 @@ class model_sivu extends CI_Model {
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->where('salasana', md5($this->input->post('salasana')));
 
-		
+
 		$query = $this->db->get('kirjautumistiedot');
 		if ($query->num_rows() == 1){
 			$time = array(
@@ -15,12 +15,12 @@ class model_sivu extends CI_Model {
 			);
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->update('kirjautumistiedot', $time);
-			return true;		
+			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public function last_login3()
 	{
 
@@ -28,10 +28,10 @@ class model_sivu extends CI_Model {
 				'lasttlogin' => date('d.n.Y H:i', strtotime('+1 hour')),
 				'sposti' => $this->session->userdata('sposti')
 			);
-		
+
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->insert('last_login', $time);
-	
+
 
 	}
 
@@ -42,7 +42,7 @@ class model_sivu extends CI_Model {
 				'lasttlogin' => date('d.n.Y H:i', strtotime('+1 hour')),
 				'sposti' => $this->session->userdata('sposti')
 			);
-		
+
 		$this->db->where('sposti', $this->input->post('sposti'));
 		$this->db->insert('last_login', $time);
 		$this->db->update('last_login', $time);
@@ -51,7 +51,7 @@ class model_sivu extends CI_Model {
 
 
 	}
-	
+
 	// Lisää käyttäjän vahvistamattomiinkäyttäjiin
 	public function add_temp_user($key)
 	{
@@ -70,12 +70,11 @@ class model_sivu extends CI_Model {
 			    'sposti ' => $this->input->post('sposti'),
 			    'ktyyppi' => ('1'),
 			    'pkuva' => ('default.png')
-		);		
-		
+		);
+
 		$data3 = array(
 			    'sposti ' => $this->input->post('sposti')
-			    
-		);	
+		);
 		
 		$query = $this->db->insert('henkilotiedot', $data2);
 		$query = $this->db->insert('kirjautumistiedot', $data);
@@ -138,7 +137,7 @@ class model_sivu extends CI_Model {
 			return FALSE;
 		}
 	}
-	
+
 
 
 	public function get_tyohistoria($id) {
@@ -175,7 +174,7 @@ class model_sivu extends CI_Model {
 
 	//Muokkaa tyohistoriaa
 	public function edit_tyohistoria($id)
-	{		
+	{
 
 		$data = array(
 			'tyopaikka' => $this->input->post('tyopaikka'),
@@ -184,14 +183,14 @@ class model_sivu extends CI_Model {
 			'loppui'	=> $this->input->post('loppui'),
 			'kuvaus'	=> $this->input->post('kuvaus')
 			);
-			
+
 		$this->db->where('id', $id);
 		$this->db->update('tyo', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
-		} 
-		else 
+		}
+		else
 		{
 			return false;
 		}
@@ -214,8 +213,8 @@ class model_sivu extends CI_Model {
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
-		} 
-		else 
+		}
+		else
 		{
 			return false;
 		}
@@ -232,14 +231,14 @@ class model_sivu extends CI_Model {
 			'alkoi' 	   => $this->input->post('alkoi'),
 			'loppui' 	   => $this->input->post('loppui')
 			);
-			
+
 		$this->db->where('id', $id);
 		$this->db->update('koulutukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
-		} 
-		else 
+		}
+		else
 		{
 			return false;
 		}
@@ -256,23 +255,23 @@ class model_sivu extends CI_Model {
 			'loppui' 	   => $this->input->post('loppui'),
 			'sposti'       => $this->session->userdata('sposti')
 			);
-			
-		
+
+
 		$this->db->insert('koulutukset', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
-		} 
-		else 
+		}
+		else
 		{
 			return false;
 		}
 	}
-	
+
 	//Muokkaa perustietoja
 	public function edit_members()
 	{
-		
+
 		$data = array(
 			'privSposti' => $this->input->post('privSposti'),
 			'etunimi'	 => $this->input->post('etunimi'),
@@ -283,13 +282,13 @@ class model_sivu extends CI_Model {
 			'lyhytKuvaus' => $this->input->post('lyhytKuvaus'),
 			'aktiivisuus' => $this->input->post('aktiivisuus')
 			);
-			
+
 		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->update('henkilotiedot', $data);
 
 
 		$hakusanat = explode(" ", $this->input->post('hakusanat'));
-		
+
 		//Poistetaan aikaisemmat hakusanat
 		$this->db->query("DELETE FROM hakusanat WHERE sposti ='".$this->session->userdata('sposti')."'");
 
@@ -307,12 +306,12 @@ class model_sivu extends CI_Model {
 			}
 		}
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
-		{return true;} 
-		else 
+		{return true;}
+		else
 		{return false;}
 	}
-	
-	
+
+
 	//Hakee kortit
 	public function get_kortit(){
 
@@ -330,14 +329,14 @@ class model_sivu extends CI_Model {
 			'kommentti'  => $this->input->post('kommentti'),
 			'sposti' => $this->session->userdata('sposti')
 			);
-			
+
 		$this->db->where('sposti', $this->session->userdata('sposti'));
 		$this->db->insert('opiskelijakortit', $data);
 		if ($this->db->affected_rows() == 0 || $this->db->affected_rows() == 1)
 		{
 			return true;
-		} 
-		else 
+		}
+		else
 		{
 			return false;
 		}
@@ -346,31 +345,31 @@ class model_sivu extends CI_Model {
 	//Poistaa kortin
 	public function delete_kortti($id)
 	{
-		
+
 		$this->db->where('id', $id);
 		$this->db->delete('opiskelijakortit');
-			
+
 	}
-	
+
 	//Poistaa tyohistoriarivin
 	public function delete_tyohistoria($id)
 	{
-		
+
 		$this->db->where('id', $id);
 		$this->db->delete('tyo');
-			
+
 	}
 
 	//Poistaa koulutusrivin
 	public function delete_koulutukset($id)
 	{
-		
+
 
 		$this->db->where('id', $id);
-		$this->db->delete('koulutukset');		
-	
+		$this->db->delete('koulutukset');
+
 	}
-	
+
 	public function paivitatiedot()
 		{
 			$tiedot = array(	'etunimi' 	 => $this->input->post('etunimi'),
@@ -403,7 +402,7 @@ class model_sivu extends CI_Model {
    		{
    			return 1;
    		}
-	
+
 	}
 
 		public function tee_haku() {
@@ -414,10 +413,10 @@ class model_sivu extends CI_Model {
 		if($str === '' OR $str === ' '){
 		$kysely ="
 		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-		FROM henkilotiedot 
+		FROM henkilotiedot
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		WHERE henkilotiedot.aktiivisuus = 1 
+		WHERE henkilotiedot.aktiivisuus = 1
 		LIKE '%%' ESCAPE '!'";
 		$query = $this->db->query($kysely);
 		return $query->result();
@@ -427,7 +426,7 @@ class model_sivu extends CI_Model {
 		$haku_explode = explode(' ', $str);
 		$kysely="
 		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-		FROM henkilotiedot 
+		FROM henkilotiedot
 		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
 		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
 		LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
@@ -438,10 +437,10 @@ class model_sivu extends CI_Model {
 		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
 		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
 		OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
-		
+
 
 		$query = $this->db->query($kysely);
-		
+
 		return $query->result();
 	}
 }

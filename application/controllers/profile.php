@@ -11,17 +11,18 @@ class Profile extends CI_Controller {
     }
 
     $this->form_validation->set_rules('Email', 'Henkilökohtainen sähköpostiosoite', 'valid_email|max_length[30]');
-		$this->form_validation->set_rules('F_Name', 'Etunimi', 'alpha|trim|max_length[30]');
-		$this->form_validation->set_rules('L_Name', 'Sukunimi', 'alpha|trim|max_length[30]');
-		$this->form_validation->set_rules('osoite', 'Osoite', 'trim|max_length[30]');
-		$this->form_validation->set_rules('postinro', 'Postinumero', 'trim');
-		$this->form_validation->set_rules('p_nro', 'Puhelinnumero', 'trim|numeric|max_length[12]');
+		$this->form_validation->set_rules('F_Name', 'Etunimi', 'trim|max_length[30]');
+		$this->form_validation->set_rules('L_Name', 'Sukunimi', 'trim|max_length[30]');
+		$this->form_validation->set_rules('Osoite', 'Osoite', 'trim|max_length[30]');
+		$this->form_validation->set_rules('Posti_Num', 'Postinumero', 'trim');
+		$this->form_validation->set_rules('Puh_Num', 'Puhelinnumero', 'trim|numeric|max_length[12]');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'users/set_profile';
       $this->load->view('layouts/main',$data);
     } else {
-      if ($this->Profile_model->add_prof()) {
+      $key = $this->session->userdata('Key');
+      if ($this->Profile_model->profile_setup($key)) {
         $this->session->set_flashdata('registered', 'Olet rekisteröitynyt ja valmis kirjautumaan');
         redirect('home/index');
       }
