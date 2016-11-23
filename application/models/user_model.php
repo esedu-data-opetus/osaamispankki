@@ -53,8 +53,20 @@ class User_model extends CI_Model {
         return false;
     }
   }
-  public function send_mail($key) {
+  public function fetch_key($username,$password) {
+    $enc_password = md5($password);
 
+    $this->db->where('Email',$username);
+    $this->db->where('Password',$enc_password);
+
+    $result = $this->db->get('users');
+    if($result->num_rows() == 1){
+        return $result->row(0)->C_Key;
+    } else {
+        return false;
+    }
+  }
+  public function send_mail($key) {
     // $message = "";
     // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
     // $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
@@ -62,25 +74,13 @@ class User_model extends CI_Model {
     // $this->email->to($this->input->post('email'));
     // $this->email->subject('Vahvista käyttäjätilisi.');
     // $this->email->message($message);
-    //
+
     // if ($this->email->send()) {
     $data = array(
           'Key'       =>  $key
         );
         $this->session->set_userdata($data);
-      return True;
+      return true;
     // }
-
-  //   //Lähettää sähköpostivarmistuksen käyttäjälle
-  //   if ($this->model_sivu->add_temp_user($key)) {
-  //     if ($this->email->send()){
-  //       echo "<center><h2 style='font-weight:bold;color:green;'>Vahvistus on lähetetty sähköpostiisi!</h2>";
-  //       echo "<p><a href='".base_url()."sivu/login' >Takaisin kirjautumiseen</a></p></center>";
-  //   } else {
-  //     echo "<h2 style='font-weight:bold;color:red;'>Sähköpostin lähetys ei onnistunut.</h2>";
-  //     echo '<h4>Mutta pystyt kuitenkin kirjautumaan sisään</h4>';
-  //     echo "<a href='".base_url()."users/login' >Takaisin kirjautumiseen</a>";
-  //   }
-  // }
   }
 }

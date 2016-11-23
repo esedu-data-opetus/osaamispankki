@@ -12,7 +12,6 @@
 <body>
   <div style="padding-top: 60px;"></div>
   <?php $this->load->view('templates/header'); ?>
-<?php print_r($this->session->userdata()); ?>
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>

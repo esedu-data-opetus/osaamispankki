@@ -18,6 +18,10 @@ class Users extends CI_Controller {
       $key = md5(uniqid());
       if ($this->User_model->send_mail($key)) {
         if ($this->User_model->create_member($key)) {
+          $data = array(
+  					'First_login' =>  True
+          );
+          $this->session->set_userdata($data);
           $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
           redirect('home/index');
         }
@@ -42,16 +46,25 @@ class Users extends CI_Controller {
       $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
       $password = $this->input->post('password');
       $user_id = $this->User_model->login_user($username,$password);
+      $user_key = $this->User_model->fetch_key($username,$password);
+
 
     if($user_id){
         $data = array(
+          'Key'          =>  $user_key,
           'user_id'      =>  $user_id,
           'sposti'       =>  $this->input->post('email'),
 					'is_logged_in' =>  1
         );
         $this->session->set_userdata($data);
-        $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
-        redirect('profile/set_profile');
+        if ($this->session->userdata('First_login')) {
+          $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');
+          redirect('profile/set_profile');
+        } else {
+          redirect('home/index');
+          $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
+          redirect('home/index');
+        }
       } else {
         $this->session->set_flashdata('login_failed', 'Käyttäjä nimi tai salasana väärin :/');
         redirect('home/index');

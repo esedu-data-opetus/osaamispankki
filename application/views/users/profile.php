@@ -1,4 +1,6 @@
-
+<?php if ($this->session->flashdata('success')) : ?>
+<p class="success"><?php echo $this->session->flashdata('success'); ?>
+<?php endif; ?>
 <!-- Modal HARRASTUKSET -->
 <div class="modal fade" id="myModalHarrastukset">
  <div class="vertical-alignment-helper">

@@ -6,16 +6,16 @@ class Profile extends CI_Controller {
   }
 
   public function set_profile() {
-    if ($this->session->userdata('is_logged_in') == 1) {
+    if ($this->session->userdata('is_logged_in') == 0) {
       redirect('home/index');
     }
 
-    $this->form_validation->set_rules('Email', 'Henkilökohtainen sähköpostiosoite', 'valid_email|max_length[30]');
-		$this->form_validation->set_rules('F_Name', 'Etunimi', 'trim|max_length[30]');
-		$this->form_validation->set_rules('L_Name', 'Sukunimi', 'trim|max_length[30]');
-		$this->form_validation->set_rules('Osoite', 'Osoite', 'trim|max_length[30]');
-		$this->form_validation->set_rules('Posti_Num', 'Postinumero', 'trim');
-		$this->form_validation->set_rules('Puh_Num', 'Puhelinnumero', 'trim|numeric|max_length[12]');
+    $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'valid_email|max_length[30]');
+		$this->form_validation->set_rules('f_name', 'Etunimi', 'trim|max_length[30]');
+		$this->form_validation->set_rules('l_name', 'Sukunimi', 'trim|max_length[30]');
+		$this->form_validation->set_rules('osoite', 'Osoite', 'trim|max_length[30]');
+		$this->form_validation->set_rules('posti_num', 'Postinumero', 'trim');
+		$this->form_validation->set_rules('puh_num', 'Puhelinnumero', 'trim|numeric|max_length[12]');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'users/set_profile';
@@ -23,8 +23,8 @@ class Profile extends CI_Controller {
     } else {
       $key = $this->session->userdata('Key');
       if ($this->Profile_model->profile_setup($key)) {
-        $this->session->set_flashdata('registered', 'Olet rekisteröitynyt ja valmis kirjautumaan');
-        redirect('home/index');
+        $this->session->set_flashdata('success', 'Perustiedot asetettu!');
+        redirect('profile/index');
       }
     }
   }
