@@ -1,6 +1,5 @@
 <?php
 class Profile extends CI_Controller {
-
   public function __construct(){
       parent::__construct();
 
@@ -9,7 +8,6 @@ class Profile extends CI_Controller {
         redirect('home/index');
       }
     }
-
   public function index() {
 
     $data['main_content'] = 'profile_page';
