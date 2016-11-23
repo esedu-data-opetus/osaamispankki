@@ -1,7 +1,18 @@
 <?php
 class Profile extends CI_Controller {
+
+  public function __construct(){
+      parent::__construct();
+
+      if (!$this->session->userdata('error')) {
+        $this->session->set_flashdata('error', 'Kirjaudu sisään!');
+        redirect('home/index');
+      }
+    }
+
   public function index() {
-    $data['main_content'] = 'users/profile';
+
+    $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
 

@@ -79,7 +79,6 @@ class Users extends CI_Controller {
     redirect('home/index');
   }
   public function C_Key() {
-
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
       redirect('home/index');
       return true;
