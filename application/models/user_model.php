@@ -76,11 +76,10 @@ class User_model extends CI_Model {
     // $this->email->message($message);
 
     // if ($this->email->send()) {
-    $data = array(
-          'Key'       =>  $key
-        );
-        $this->session->set_userdata($data);
-      return true;
+    return true;
     // }
+  }
+  public function C_Email($key) {
+      return true;
   }
 }

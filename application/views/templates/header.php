@@ -10,6 +10,7 @@ if ($this->session->userdata('is_logged_in') !== 1) {
 		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
 } else {
 		echo '<a id="takaisinprofiiliin" href="'.base_url().'profile'.'">Oma profiili</a>';
+		echo '<a href="'.base_url().'sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
 		echo '<a id="kirjauduulos" style="float:right;" href="'.base_url().'/users/logout">Kirjaudu ulos</a>';
 }
 

@@ -19,7 +19,8 @@ class Users extends CI_Controller {
       if ($this->User_model->send_mail($key)) {
         if ($this->User_model->create_member($key)) {
           $data = array(
-  					'First_login' =>  True
+  					'First_login' =>  True,
+            'C_Email'   =>    False
           );
           $this->session->set_userdata($data);
           $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
@@ -48,8 +49,7 @@ class Users extends CI_Controller {
       $user_id = $this->User_model->login_user($username,$password);
       $user_key = $this->User_model->fetch_key($username,$password);
 
-
-    if($user_id){
+        if($user_id){
         $data = array(
           'Key'          =>  $user_key,
           'user_id'      =>  $user_id,
@@ -78,9 +78,14 @@ class Users extends CI_Controller {
     $this->session->sess_destroy();
     redirect('home/index');
   }
-  public function C_Key() {
+  public function C_Key($key) {
+    if ($this->User_model->C_Email($key)) {
+      $data = array(
+            'C_Email'   =>    TRUE
+          );
+      $this->session->set_userdata($data);
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
       redirect('home/index');
-      return true;
+    }
   }
 }
