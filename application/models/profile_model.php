@@ -19,14 +19,11 @@ class Profile_model extends CI_Model {
     }
   }
   public function get_profile($user_id) {
-    $this->db->select('*');
-    $this->db->from('profile');
-    $this->db->where('User_id',$user_id);
-    $query = $this->db->get();
-    if ($query->num_rows() != 1) {
-      return False;
-    } else {
-      return $query->row();
-    }
+        $this->db->select('*');
+        $this->db->from('profile');
+        $this->db->where('User_id',$user_id);
+        $query = $this->db->get();
+        return $query->result();
+
   }
 }
