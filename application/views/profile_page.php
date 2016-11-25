@@ -12,6 +12,10 @@
 <?php endforeach; ?>
 
 <?php foreach($User_Info as $User) : ?>
+  <p>Sähköposti: <?php echo $User->Own_Email; ?></p>
+<?php endforeach; ?>
+
+<?php foreach($User_Info as $User) : ?>
   <p>Osoite: <?php echo $User->Osoite; ?></p>
 <?php endforeach; ?>
 
