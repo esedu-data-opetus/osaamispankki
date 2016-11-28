@@ -49,11 +49,9 @@
 <?php endforeach; ?>
 </div>
 
-<div style="position:relative; margin-left:340px; margin-top:-190px;">
+<div style="position:relative; margin-left:20px; margin-top:160px;">
 <?php
 //Harrastus
-echo '<div class="row">';
-echo '<div class="col-md-8 col-xs-8 col-md-offset-4">';
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
 echo '<div id="tyohistoria">';
@@ -69,15 +67,13 @@ $query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHE
 
 $bFound = false;
 
-foreach ($query->result() as $row)
-{
+foreach ($query->result() as $row) {
   $id 	   = "$row->id";
   $harrastus = "$row->harrastus";
   $vapaasana   = "$row->vapaasana";
 
 
-  if($harrastus != NULL)
-  {
+  if($harrastus != NULL) {
     $bFound = true;
 
     $harrastukset .= '<tr>';
@@ -87,11 +83,11 @@ foreach ($query->result() as $row)
   }
 }
 
-if($bFound)
+if($bFound) {
   echo $harrastukset;
-else
+} else {
   echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
-
+}
 echo '</table>';
 echo '</div>';
 echo '</div>';
@@ -148,7 +144,108 @@ echo '</table>';
 echo '</div>';
 echo '</div>';
 echo '</div>';
+
+//Koulutus
+echo '<div class="row">';
+echo '<div class="col-md-6 col-xs-8">';
+echo '<div id="koulutukset">';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p></li><br><br>';
+
+$koulutukset = "";
+
+$koulutukset .= '<table class="table" border="1">';
+$koulutukset .= '<thead><tr><th>Koulutusnimi</th><th>Koulutusaste</th><th>Oppilaitos</th><th>Alkoi</th><th>Loppui</th><th style="width:140px"></th></tr></thead>';
+
+$query = $this->db->query("SELECT id, koulutusnimi, koulutusaste, oppilaitos, alkoi, loppui, sposti FROM koulutukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+$bFound = false;
+
+foreach ($query->result() as $row)
+{
+  $id 		  = "$row->id";
+  $koulutusnimi = "$row->koulutusnimi";
+  $koulutusaste = "$row->koulutusaste";
+  $oppilaitos   = "$row->oppilaitos";
+  $alkoi2 	  = "$row->alkoi";
+  $loppui2 	  = "$row->loppui";
+  $sposti 	  = "$row->sposti";
+
+  if($koulutusnimi != NULL)
+  {
+    $bFound = true;
+
+    $koulutukset .= '<tr>';
+    $koulutukset .= '<td>'.$koulutusnimi.'</td>';
+    $koulutukset .= '<td>'.$koulutusaste.'</td>';
+    $koulutukset .= '<td>'.$oppilaitos.'</td>';
+    $koulutukset .= '<td>'.$alkoi2.'</td>';
+    $koulutukset .= '<td>'.$loppui2.'</td>';
+    $koulutukset .= '</tr>';
+  }
+}
+
+$koulutukset .= '</table>';
+
+if($bFound)
+  echo $koulutukset;
+else
+  echo "<p style='color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</p>";
+
 echo '</div>';
 echo '</div>';
+echo '</div>';
+
+
+//Kortit
+echo '<div class="row">';
+echo '<div class="col-md-6 col-xs-8">';
+echo '<div id="kortit">';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p></li><br><br>';
+
+$kortit = "";
+
+$kortit .= '<table class="table" border="1">';
+$kortit .= '<thead><tr><th>Kortti</th><th>Vanhenemispäivä</th><th>Kommentti</th><th style="width:30px"></th></tr></thead>';
+
+$query = $this->db->query("SELECT id, knimi, sposti, kommentti, voimassa FROM opiskelijakortit WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+$bFound = false;
+
+foreach ($query->result() as $row)
+{
+  $id 	= "$row->id";
+  $knimi 	 = "$row->knimi";
+  $voimassa = "$row->voimassa";
+  $kommentti = "$row->kommentti";
+
+  if($kortit != NULL)
+  {
+    $bFound = true;
+
+    $kortit .= '<tr>';
+    $kortit .= '<td>'.$knimi.'</td>';
+    $kortit .= '<td>'.$voimassa.'</td>';
+    $kortit .= '<td>'.$kommentti.'</td>';
+    $kortit .= '</tr>';
+  }
+}
+
+$kortit .= '</table>';
+
+if($bFound)
+  echo $kortit;
+else
+  echo "<p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>";
+
+echo '<br><br><br><br></div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
+//echo '</div>';
 ?>
 </div>
