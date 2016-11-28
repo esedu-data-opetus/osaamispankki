@@ -20,7 +20,10 @@
   echo "<input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/> ";
   echo "</form>";
 ?>
+</div>
+</div>
 
+<div style="position:relative; margin-left:240px; margin-top:-320px;">
 <?php foreach($User_Info as $User) : ?>
   <p>Nimi: <?php echo $User->F_Name." ".$User->L_Name; ?></p>
 <?php endforeach; ?>
@@ -45,4 +48,107 @@
   <p>Kuvaus: <?php echo $User->About; ?></p>
 <?php endforeach; ?>
 </div>
+
+<div style="position:relative; margin-left:340px; margin-top:-190px;">
+<?php
+//Harrastus
+echo '<div class="row">';
+echo '<div class="col-md-8 col-xs-8 col-md-offset-4">';
+echo '<div class="row">';
+echo '<div class="col-md-6 col-xs-8">';
+echo '<div id="tyohistoria">';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p></li><br><br>';
+
+$harrastukset = "";
+
+$harrastukset .= '<table class="table" border="1">';
+$harrastukset .= '<thead><tr><th>Harrastus</th><th>Vapaa sana</th><th style="width:150px;"></th></tr></thead>';
+
+
+$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+$bFound = false;
+
+foreach ($query->result() as $row)
+{
+  $id 	   = "$row->id";
+  $harrastus = "$row->harrastus";
+  $vapaasana   = "$row->vapaasana";
+
+
+  if($harrastus != NULL)
+  {
+    $bFound = true;
+
+    $harrastukset .= '<tr>';
+    $harrastukset .= '<td>'.$harrastus.'</td>';
+    $harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
+    $harrastukset .= '</tr>';
+  }
+}
+
+if($bFound)
+  echo $harrastukset;
+else
+  echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
+
+echo '</table>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</br>';
+
+//Tyohistoria
+echo '<div class="row">';
+echo '<div class="col-md-6 col-xs-8">';
+echo '<div id="tyohistoria">';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p></li><br><br>';
+
+$tyohistoria = "";
+
+$tyohistoria .= '<table class="table" border="1">';
+$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th style="width:140px"></th></tr></thead>';
+
+
+$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
+
+$bFound = false;
+
+foreach ($query->result() as $row)
+{
+  $id 	   = "$row->id";
+  $tyopaikka = "$row->tyopaikka";
+  $tehtava   = "$row->tehtava";
+  $alkoi     = "$row->alkoi";
+  $loppui    = "$row->loppui";
+  $kuvaus    = "$row->kuvaus";
+
+  if($tyopaikka != NULL)
+  {
+    $bFound = true;
+
+    $tyohistoria .= '<tr>';
+    $tyohistoria .= '<td>'.$tyopaikka.'</td>';
+    $tyohistoria .= '<td>'.$tehtava.'</td>';
+    $tyohistoria .= '<td>'.$alkoi.'</td>';
+    $tyohistoria .= '<td>'.$loppui.'</td>';
+    $tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
+    $tyohistoria .= '</tr>';
+    $tyohistoria .= '</tr>';
+  }
+}
+
+if($bFound)
+  echo $tyohistoria;
+else
+  echo "<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>";
+
+
+echo '</table>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+?>
 </div>
