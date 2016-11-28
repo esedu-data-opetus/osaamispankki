@@ -20,7 +20,6 @@ class Users extends CI_Controller {
         if ($this->User_model->create_member($key)) {
           $data = array(
   					'First_login' =>  True,
-            'C_Email'   =>    False
           );
           $this->session->set_userdata($data);
           $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
