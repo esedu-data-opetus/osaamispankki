@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ETURIVIN TAITAJAT - Osaajapankki</title>
+  <title>Osaajapankki</title>
   <link rel="icon" href="<?=base_url()?>/esedu_logo.ico" type="image/gif">
   <link href="<?php echo base_url();?>bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="<?php echo base_url();?>bootstrap/css/ownstyles.css" rel="stylesheet">

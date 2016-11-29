@@ -3,8 +3,7 @@
 	  <a style="margin: 0; padding: 0;" class="navbar-brand" href="<?php echo  base_url(); ?>"><img src="http://paja.esedu.fi/op/pictures/esedu_logo.png" style="max-height:50px; margin: 0; padding: 0;"></a>
 	</div>
 	<div class="Container">
-	<?php
-
+<?php
 if ($this->session->userdata('is_logged_in') !== 1) {
 		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
 		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
