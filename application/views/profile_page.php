@@ -55,7 +55,7 @@
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
 echo '<div id="tyohistoria">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p></li><br><br>';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p><a href="'.base_url().'sivu/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;margin-left:5px;" role="button"></a></li><br><br>';
 
 $harrastukset = "";
 
@@ -79,6 +79,8 @@ foreach ($query->result() as $row) {
     $harrastukset .= '<tr>';
     $harrastukset .= '<td>'.$harrastus.'</td>';
     $harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
+    $harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
+    $harrastukset .= '<button type="button" style="margin-left:5px;" class="btn btn-danger" data-toggle="modal" data-target="#myModalHarrastukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button>';//Poisto nappi
     $harrastukset .= '</tr>';
   }
 }
@@ -98,7 +100,7 @@ echo '</br>';
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
 echo '<div id="tyohistoria">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p></li><br><br>';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p><a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 $tyohistoria = "";
 
@@ -129,6 +131,8 @@ foreach ($query->result() as $row)
     $tyohistoria .= '<td>'.$alkoi.'</td>';
     $tyohistoria .= '<td>'.$loppui.'</td>';
     $tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
+    $tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
+    $tyohistoria .= '<button type="button" style="margin-left:5px;" class="btn btn-danger" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
     $tyohistoria .= '</tr>';
     $tyohistoria .= '</tr>';
   }
@@ -149,7 +153,7 @@ echo '</div>';
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
 echo '<div id="koulutukset">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p></li><br><br>';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p><a href="'.base_url().'sivu/koulutukset_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 $koulutukset = "";
 
@@ -180,6 +184,8 @@ foreach ($query->result() as $row)
     $koulutukset .= '<td>'.$oppilaitos.'</td>';
     $koulutukset .= '<td>'.$alkoi2.'</td>';
     $koulutukset .= '<td>'.$loppui2.'</td>';
+    $koulutukset .= '<td><a href="'.base_url().'sivu/edit_koulutukset/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
+    $koulutukset .= '<button type="button" style="margin-left:5px;" class="btn btn-danger" data-toggle="modal" data-target="#myModalKoulutukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
     $koulutukset .= '</tr>';
   }
 }
@@ -200,7 +206,7 @@ echo '</div>';
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
 echo '<div id="kortit">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p></li><br><br>';
+echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p><a href="'.base_url().'sivu/kortit_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
 
 $kortit = "";
 
@@ -226,6 +232,7 @@ foreach ($query->result() as $row)
     $kortit .= '<td>'.$knimi.'</td>';
     $kortit .= '<td>'.$voimassa.'</td>';
     $kortit .= '<td>'.$kommentti.'</td>';
+    $kortit .= '<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalKortit"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
     $kortit .= '</tr>';
   }
 }
