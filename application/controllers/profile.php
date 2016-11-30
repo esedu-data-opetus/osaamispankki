@@ -1,5 +1,13 @@
 <?php
 class Profile extends CI_Controller {
+  public function __construct(){
+  parent::__construct();
+
+  if (!$this->session->userdata('is_logged_in') && !$this->session->userdata('First_login')) {
+    $this->session->set_flashdata('error', 'Access Denaid!');
+    redirect('home/index');
+  }
+}
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
