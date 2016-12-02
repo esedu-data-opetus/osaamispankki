@@ -52,7 +52,6 @@
 <br>
 <br>
 <p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
-
 <table class="table" border="1">
 <thead>
   <tr>
@@ -72,7 +71,6 @@
   </tr>
 </tbody>
 </table>
-
 </div>
 </div>
 </div>
