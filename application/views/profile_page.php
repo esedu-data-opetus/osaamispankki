@@ -65,7 +65,7 @@
     <td><p>Magic</p></td>
     <td><p>Magsic</p></td>
     <td>
-      <a href="<?php echo base_url() ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+      <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
       <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </tr>
