@@ -28,80 +28,56 @@
 <div style="position:relative; margin-left:240px; margin-top:-340px;">
 <?php foreach($User_Info as $User) : ?>
   <p>Nimi: <?php echo $User->F_Name." ".$User->L_Name; ?></p>
-<?php endforeach; ?>
 
-<?php foreach($User_Info as $User) : ?>
   <p>Sähköposti: <?php echo $User->Own_Email; ?></p>
-<?php endforeach; ?>
 
-<?php foreach($User_Info as $User) : ?>
   <p>Osoite: <?php echo $User->Osoite; ?></p>
-<?php endforeach; ?>
 
-<?php foreach($User_Info as $User) : ?>
   <p>Postinumero: <?php echo $User->Posti_Num; ?></p>
-<?php endforeach; ?>
 
-<?php foreach($User_Info as $User) : ?>
   <p>Puhelinnumero: <?php echo $User->Puh_Num; ?></p>
-<?php endforeach; ?>
 
-<?php foreach($User_Info as $User) : ?>
   <p>Kuvaus: <?php echo $User->About; ?></p>
 <?php endforeach; ?>
-
-<?php
-echo '<a href="'.base_url().'profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>';
-?>
+<a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
 </div>
 
 <div style="position:relative; margin-left:20px; margin-top:160px;">
+
+<div class="row">
+<div class="col-md-6 col-xs-8">
+<div id="tyohistoria">
+<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p>
+<a href="<?php echo base_url() ?>profile/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;margin-left:5px;" role="button"></a>
+<br>
+<br>
+<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
+
+<table class="table" border="1">
+<thead>
+  <tr>
+    <th>Harrastus</th>
+    <th>Vapaa sana</th>
+    <th>Settings</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><p>Magic</p></td>
+    <td><p>Magsic</p></td>
+    <td>
+      <a href="<?php echo base_url() ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+      <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</br>
 <?php
-//Harrastus
-echo '<div class="row">';
-echo '<div class="col-md-6 col-xs-8">';
-echo '<div id="tyohistoria">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p><a href="'.base_url().'sivu/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;margin-left:5px;" role="button"></a></li><br><br>';
-
-$harrastukset = "";
-
-$harrastukset .= '<table class="table" border="1">';
-$harrastukset .= '<thead><tr><th>Harrastus</th><th>Vapaa sana</th><th style="width:150px;"></th></tr></thead>';
-
-
-$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-$bFound = false;
-
-foreach ($query->result() as $row) {
-  $id 	   = "$row->id";
-  $harrastus = "$row->harrastus";
-  $vapaasana   = "$row->vapaasana";
-
-
-  if($harrastus != NULL) {
-    $bFound = true;
-
-    $harrastukset .= '<tr>';
-    $harrastukset .= '<td>'.$harrastus.'</td>';
-    $harrastukset .= '<td style="max-width:500px;word-wrap: break-word;">'.$vapaasana.'</td>';
-    $harrastukset .= '<td><a href="'.base_url().'sivu/edit_harrastukset/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
-    $harrastukset .= '<button type="button" style="margin-left:5px;" class="btn btn-danger" data-toggle="modal" data-target="#myModalHarrastukset"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button>';//Poisto nappi
-    $harrastukset .= '</tr>';
-  }
-}
-
-if($bFound) {
-  echo $harrastukset;
-} else {
-  echo "<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>";
-}
-echo '</table>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</br>';
-
 //Tyohistoria
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
