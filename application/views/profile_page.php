@@ -41,14 +41,20 @@
 <?php endforeach; ?>
 <a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
 </div>
-
 <div style="position:relative; margin-left:20px; margin-top:160px;">
+
+<!-- <div class="panel panel-primary">
+  <div class=panel-heading>
+    <h3 class=panel-title>Panel title</h3>
+  </div>
+  <div class=panel-body> Panel content</div>
+</div> -->
 
 <div class="row">
 <div class="col-md-6 col-xs-8">
 <div id="tyohistoria">
 <p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p>
-<a href="<?php echo base_url() ?>profile/harrastukset_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;margin-left:5px;" role="button"></a>
+<a href="<?php echo base_url() ?>profile/prototype" class="btn btn-success glyphicon glyphicon-plus"></a>
 <br>
 <br>
 <p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
@@ -61,6 +67,13 @@
   </tr>
 </thead>
 <tbody>
+  <?php
+  // $query = $this->db->query("SELECT id, User_id,  FROM kokemus WHERE User_id = ".$this->session->userdata('user_id')."");
+  //
+  // foreach ($query->result() as $row) {
+  //
+  // }
+   ?>
   <tr>
     <td><p>Magic</p></td>
     <td><p>Magsic</p></td>

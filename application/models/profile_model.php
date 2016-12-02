@@ -26,4 +26,16 @@ class Profile_model extends CI_Model {
         return $query->result();
 
   }
+  public function prototype($user_id) {
+    $Prototype = array(
+        'User_id'       =>     $user_id,
+        'Aihe'          =>     $this->input->post('Aihe'),
+        'A_sr1'         =>     $this->input->post('harrastus'),
+        'Mielipide'     =>     $this->input->post('vapaasana')
+    );
+    $insert = $this->db->insert('kokemukset',$Prototype);
+    if ($insert) {
+      return true;
+    }
+  }
 }

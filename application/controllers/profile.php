@@ -45,4 +45,19 @@ class Profile extends CI_Controller {
     $data['main_content'] = 'users/profile_edit';
     $this->load->view('layouts/main',$data);
   }
+  public function prototype() {
+    $this->form_validation->set_rules('Aihe', 'Aihe', 'trim');
+    $this->form_validation->set_rules('harrastus', 'A_sr1', 'trim');
+    $this->form_validation->set_rules('vapaasana', 'Mielipide', 'trim');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'harrastukset';
+      $this->load->view('layouts/main',$data);
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      if ($this->Profile_model->prototype($user_id)) {
+        $this->session->set_flashdata('success', 'Harrastus lisätty!');
+        redirect('profile/index');
+      }
+    }
+  }
 }
