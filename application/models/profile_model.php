@@ -38,4 +38,9 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function Get_kokemukset($user_id) {
+    $this->db->where('User_id',$user_id);
+    $query = $this->db->get('kokemukset');
+    return $query->result();
+  }
 }

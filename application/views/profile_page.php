@@ -57,7 +57,7 @@
 <a href="<?php echo base_url() ?>profile/prototype" class="btn btn-success glyphicon glyphicon-plus"></a>
 <br>
 <br>
-<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
+<?php if(isset($kokemus)) : ?>
 <table class="table" border="1">
 <thead>
   <tr>
@@ -67,23 +67,23 @@
   </tr>
 </thead>
 <tbody>
-  <?php
-  // $query = $this->db->query("SELECT id, User_id,  FROM kokemus WHERE User_id = ".$this->session->userdata('user_id')."");
-  //
-  // foreach ($query->result() as $row) {
-  //
-  // }
-   ?>
+<?php foreach($kokemus as $hobby) : ?>
+  <?php if ($hobby->Aihe == 'Harrastus') : ?>
   <tr>
-    <td><p>Magic</p></td>
-    <td><p>Magsic</p></td>
+    <td><p><?php echo $hobby->A_sr1; ?></p></td>
+    <td><p><?php echo $hobby->Mielipide; ?></p></td>
     <td>
       <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
       <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </tr>
+<?php endif; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
+<?php else : ?>
+  <p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
+<?php endif; ?>
 </div>
 </div>
 </div>
