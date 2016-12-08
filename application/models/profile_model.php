@@ -30,7 +30,11 @@ class Profile_model extends CI_Model {
     $Prototype = array(
         'User_id'       =>     $user_id,
         'Aihe'          =>     $this->input->post('Aihe'),
-        'A_sr1'         =>     $this->input->post('harrastus'),
+        'A_sr1'         =>     $this->input->post('A_sr1'),
+        'A_sr2'         =>     $this->input->post('A_sr2'),
+        'A_sr3'         =>     $this->input->post('A_sr3'),
+        'Aloitit'       =>     $this->input->post('Aloitit'),
+        'Lopetit'       =>     $this->input->post('Lopetit'),
         'Mielipide'     =>     $this->input->post('vapaasana')
     );
     $insert = $this->db->insert('kokemukset',$Prototype);

@@ -48,11 +48,21 @@ class Profile extends CI_Controller {
     $this->load->view('layouts/main',$data);
   }
   public function prototype() {
-    $this->form_validation->set_rules('Aihe', 'Aihe', 'trim');
-    $this->form_validation->set_rules('harrastus', 'A_sr1', 'trim');
+    if (!isset($kokemus)) {
+      $kokemus = $this->uri->segment(3);
+    }
+    if (empty($kokemus)) {
+      $kokemus = $this->input->post('Aihe');
+    }
+    $this->form_validation->set_rules('Aihe', 'Aihe', 'trim|required');
+    $this->form_validation->set_rules('A_sr1', 'A_sr1', 'trim|required');
+    $this->form_validation->set_rules('A_sr2', 'A_sr2', 'trim|required');
+    $this->form_validation->set_rules('A_sr3', 'A_sr3', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'Mielipide', 'trim');
     if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = 'harrastukset';
+      $data['main_content'] = $kokemus;
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');

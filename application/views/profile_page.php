@@ -54,16 +54,24 @@
 <div class="col-md-6 col-xs-8">
 <div id="tyohistoria">
 <p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p>
-<a href="<?php echo base_url() ?>profile/prototype" class="btn btn-success glyphicon glyphicon-plus"></a>
+<a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success glyphicon glyphicon-plus"></a>
 <br>
 <br>
-<?php if(isset($kokemus)) : ?>
+<?php foreach($kokemus as $check) : ?>
+  <?php if($check->Aihe == "Harrastus") {
+    $exists = TRUE;
+  }
+  ?>
+<?php endforeach; ?>
+<?php if(!isset($exists)) : ?>
+<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
+<?php else : ?>
 <table class="table" border="1">
 <thead>
   <tr>
     <th>Harrastus</th>
     <th>Vapaa sana</th>
-    <th>Settings</th>
+    <th style="min-width: 110px;">Settings</th>
   </tr>
 </thead>
 <tbody>
@@ -81,21 +89,29 @@
 <?php endforeach; ?>
 </tbody>
 </table>
-<?php else : ?>
-  <p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
 <?php endif; ?>
 </div>
 </div>
 </div>
 </br>
+
 <div class="row">
 <div class="col-md-6 col-xs-8">
 <div id="tyohistoria">
 <p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p>
-<a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>
+<a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
+<br>
+<br>
 
-
-
+<?php foreach($kokemus as $check) : ?>
+  <?php if($check->Aihe == "Tyohistoria") {
+    $exists = TRUE;
+  }
+  ?>
+<?php endforeach; ?>
+<?php if(!isset($exists)) : ?>
+  <p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>
+<?php else : ?>
 <table class="table" border="1">
 <thead>
   <tr>
@@ -104,27 +120,28 @@
     <th>Alkoi</th>
     <th>Loppui</th>
     <th>Kuvaus</th>
-    <th style="width:140px"></th>
+    <th style="min-width: 110px;">Settings</th>
   </tr>
 </thead>
-
-<tr>
-<td>'.$tyopaikka.'</td>
-<td>'.$tehtava.'</td>
-<td>'.$alkoi.'</td>
-<td>'.$loppui.'</td>
-<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>
-<td>
-<a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>
-<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
-</tr>
-</tr>
-
-
-<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>
-
-
+<tbody>
+<?php foreach($kokemus as $work_h) : ?>
+  <?php if ($work_h->Aihe == 'Tyohistoria') : ?>
+  <tr>
+    <td><p><?php echo $work_h->A_sr1; ?></p></td>
+    <td><p><?php echo $work_h->A_sr2; ?></p></td>
+    <td><p><?php echo $work_h->Aloitit; ?></p></td>
+    <td><p><?php echo $work_h->Lopetit; ?></p></td>
+    <td><p><?php echo $work_h->Mielipide; ?></p></td>
+    <td>
+      <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+      <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+    </td>
+  </tr>
+<?php endif; ?>
+<?php endforeach; ?>
+</tbody>
 </table>
+<?php endif; ?>
 </div>
 </div>
 </div>
