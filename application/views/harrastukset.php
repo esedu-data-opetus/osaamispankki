@@ -1,6 +1,7 @@
 <style>
 #both {
 	width: 200px;
+	margin: 15px;
 }
 #kuvaus {
  resize: none;
@@ -18,8 +19,14 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+.header {
+	margin-top: 20px;
+}
 </style>
-<h1 style="font-weight:bold;">Harrastus</h1><br>
+<div class="panel panel-default header">
+<div class="panel-heading">
+<h1>Lisää harrastus</h1><br>
+</div>
 <script type="text/javascript">
 
 	 $(function() {
@@ -28,6 +35,7 @@
 	   });
 
 </script>
+<div class="panel-body>">
 <div id="both">
 <?php echo form_open('profile/prototype'); ?>
 <p>
@@ -65,4 +73,6 @@
 <?php echo form_submit($data); ?>
 </p>
 <?php echo form_close(); ?>
+</div>
+</div>
 </div>

@@ -13,7 +13,7 @@
   <img src="<?php echo base_url()."/images/profiili/"; echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
 <?php endforeach; ?>
 
-<div style="margin-top: 15px;">
+<!-- <div style="margin-top: 15px;">
 <?php
   echo form_open_multipart('Upload_controller/do_upload');
   echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
@@ -21,11 +21,11 @@
   echo "<input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/> ";
   echo "</form>";
 ?>
-</div>
+</div> -->
 </div>
 </div>
 
-<div style="position:relative; margin-left:240px; margin-top:-340px;">
+<div style="position:relative; margin-left:240px; margin-top:-235px;">
 <?php foreach($User_Info as $User) : ?>
   <p>Nimi: <?php echo $User->F_Name." ".$User->L_Name; ?></p>
 
@@ -41,7 +41,7 @@
 <?php endforeach; ?>
 <a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
 </div>
-<div style="position:relative; margin-left:20px; margin-top:160px;">
+<div style="position:relative; margin-left:20px; margin-top:50px;">
 
 <!-- <div class="panel panel-primary">
   <div class=panel-heading>
