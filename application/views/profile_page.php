@@ -88,60 +88,48 @@
 </div>
 </div>
 </br>
+<div class="row">
+<div class="col-md-6 col-xs-8">
+<div id="tyohistoria">
+<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p>
+<a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>
+
+
+
+<table class="table" border="1">
+<thead>
+  <tr>
+    <th>Työpaikka</th>
+    <th>Tehtävä</th>
+    <th>Alkoi</th>
+    <th>Loppui</th>
+    <th>Kuvaus</th>
+    <th style="width:140px"></th>
+  </tr>
+</thead>
+
+<tr>
+<td>'.$tyopaikka.'</td>
+<td>'.$tehtava.'</td>
+<td>'.$alkoi.'</td>
+<td>'.$loppui.'</td>
+<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>
+<td>
+<a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>
+<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
+</tr>
+</tr>
+
+
+<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>
+
+
+</table>
+</div>
+</div>
+</div>
+
 <?php
-//Tyohistoria
-echo '<div class="row">';
-echo '<div class="col-md-6 col-xs-8">';
-echo '<div id="tyohistoria">';
-echo '<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p><a href="'.base_url().'sivu/tyohistoria_lisaus" class="btn btn-success glyphicon glyphicon-plus" data-placement="top" style="font-size:1.2em;line-height:22px;height:35px;" role="button"></a></li><br><br>';
-
-$tyohistoria = "";
-
-$tyohistoria .= '<table class="table" border="1">';
-$tyohistoria .= '<thead><tr><th>Työpaikka</th><th>Tehtävä</th><th>Alkoi</th><th>Loppui</th><th>Kuvaus</th><th style="width:140px"></th></tr></thead>';
-
-
-$query = $this->db->query("SELECT id, tyopaikka, tehtava, alkoi, loppui, kuvaus FROM tyo WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-$bFound = false;
-
-foreach ($query->result() as $row)
-{
-  $id 	   = "$row->id";
-  $tyopaikka = "$row->tyopaikka";
-  $tehtava   = "$row->tehtava";
-  $alkoi     = "$row->alkoi";
-  $loppui    = "$row->loppui";
-  $kuvaus    = "$row->kuvaus";
-
-  if($tyopaikka != NULL)
-  {
-    $bFound = true;
-
-    $tyohistoria .= '<tr>';
-    $tyohistoria .= '<td>'.$tyopaikka.'</td>';
-    $tyohistoria .= '<td>'.$tehtava.'</td>';
-    $tyohistoria .= '<td>'.$alkoi.'</td>';
-    $tyohistoria .= '<td>'.$loppui.'</td>';
-    $tyohistoria .= '<td style="max-width:500px;word-wrap: break-word;">'.$kuvaus.'</td>';
-    $tyohistoria .= '<td><a href="'.base_url().'sivu/edit_tyohistoria/'.$id.'" class="btn btn-primary"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a>';//Muokkaus nappi
-    $tyohistoria .= '<button type="button" style="margin-left:5px;" class="btn btn-danger" data-toggle="modal" data-target="#myModalTyohistoria"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>';//Poisto nappi
-    $tyohistoria .= '</tr>';
-    $tyohistoria .= '</tr>';
-  }
-}
-
-if($bFound)
-  echo $tyohistoria;
-else
-  echo "<p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>";
-
-
-echo '</table>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-
 //Koulutus
 echo '<div class="row">';
 echo '<div class="col-md-6 col-xs-8">';
