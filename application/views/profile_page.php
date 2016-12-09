@@ -41,6 +41,8 @@
 <?php endforeach; ?>
 <a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
 </div>
+
+<!--Harrastukset-->
 <div class="panel panel-primary">
   <div class=panel-heading>
     <h3 class=panel-title>
@@ -86,8 +88,8 @@
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Ed" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Vs" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_1" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Mielipide" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
     <td>
     <?php echo $Save; ?>
       <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
@@ -103,23 +105,24 @@
 </div>
 </br>
 
-<div class="row">
-<div class="col-md-6 col-xs-8">
-<div id="tyohistoria">
-<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Työhistoria</p>
-<a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
-<br>
-<br>
-
-<?php foreach($kokemus as $check) : ?>
-  <?php if($check->Aihe == "Tyohistoria") {
-    $tyohistoryexists = TRUE;
-  }
-  ?>
-<?php endforeach; ?>
+<!--Työhistoria-->
+<div class="panel panel-primary">
+  <div class=panel-heading>
+    <h3 class=panel-title>
+      <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus"></a>
+      <span style="font-size: 22px;">Työhistoria</span>
+    </h3>
+  </div>
+  <?php foreach($kokemus as $check) : ?>
+    <?php if($check->Aihe == "Tyohistoria") {
+      $tyohistoryexists = TRUE;
+    }
+    ?>
+  <?php endforeach; ?>
 <?php if(!isset($tyohistoryexists)) : ?>
-  <p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Työhistoriaa ei ole lisätty</h1>
 <?php else : ?>
+<div class=panel-body>
 <table class="table">
 <thead>
   <tr>
@@ -135,15 +138,32 @@
 <?php foreach($kokemus as $work_h) : ?>
   <?php if ($work_h->Aihe == 'Tyohistoria') : ?>
   <tr>
-    <td><p><?php echo $work_h->Loota_1; ?></p></td>
-    <td><p><?php echo $work_h->Loota_2; ?></p></td>
-    <td><p><?php echo $work_h->Aloitit; ?></p></td>
-    <td><p><?php echo $work_h->Lopetit; ?></p></td>
-    <td><p><?php echo $work_h->Mielipide; ?></p></td>
+<?php
+  if (isset($_GET['Edit'])) {
+    if ($_GET['Edit'] !== $work_h->id) {
+      $Edit = ' readonly style="border: none;"';
+      $Save = '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    } else {
+      // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
+      $Save = '<input type="submit" class="btn btn-primary">';
+      $Edit = '';
+    }
+  } else {
+    $Edit = ' readonly style="border: none;"';
+    $Save = '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  }
+?>
+<form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_1" type="text" value="<?php echo $work_h->Loota_1; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_2" type="text" value="<?php echo $work_h->Loota_2; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Aloitit" type="text" value="<?php echo $work_h->Aloitit; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Lopetit" type="text" value="<?php echo $work_h->Lopetit; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Mielipide" type="text" value="<?php echo $work_h->Mielipide; ?>" /></td>
     <td>
-      <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-      <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+    <?php echo $Save; ?>
+      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $work_h->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
+  </form>
   </tr>
 <?php endif; ?>
 <?php endforeach; ?>
@@ -152,24 +172,26 @@
 <?php endif; ?>
 </div>
 </div>
-</div>
+</br>
 
-<div class="row">
-<div class="col-md-6 col-xs-8">
-<div id="koulutukset">
-  <p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Koulutukset</p>
-  <a href="<?php echo base_url(); ?>profile/prototype/Koulutus" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
-  <br>
-  <br>
+<!--Koulutukset-->
+<div class="panel panel-primary">
+  <div class=panel-heading>
+    <h3 class=panel-title>
+      <a href="<?php echo base_url() ?>profile/prototype/Koulutus" class="btn btn-success glyphicon glyphicon-plus"></a>
+      <span style="font-size: 22px;">Koulutukset</span>
+    </h3>
+  </div>
   <?php foreach($kokemus as $check) : ?>
     <?php if($check->Aihe == "Koulutus") {
       $koulutusexists = TRUE;
     }
     ?>
   <?php endforeach; ?>
-  <?php if(!isset($koulutusexists)) : ?>
-    <p style='color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</p>
-  <?php else : ?>
+<?php if(!isset($koulutusexists)) : ?>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</h1>
+<?php else : ?>
+<div class=panel-body>
 <table class="table">
 <thead>
   <tr>
@@ -178,22 +200,39 @@
     <th>Oppilaitos</th>
     <th>Alkoi</th>
     <th>Loppui</th>
-    <th style="min-width:110px">Settings</th>
+    <th style="min-width: 110px;">Settings</th>
   </tr>
 </thead>
 <tbody>
 <?php foreach($kokemus as $koulutus) : ?>
   <?php if ($koulutus->Aihe == 'Koulutus') : ?>
   <tr>
-    <td><p><?php echo $koulutus->Loota_1; ?></p></td>
-    <td><p><?php echo $koulutus->Loota_2; ?></p></td>
-    <td><p><?php echo $koulutus->Loota_3; ?></p></td>
-    <td><p><?php echo $koulutus->Aloitit; ?></p></td>
-    <td><p><?php echo $koulutus->Lopetit; ?></p></td>
+<?php
+  if (isset($_GET['Edit'])) {
+    if ($_GET['Edit'] !== $koulutus->id) {
+      $Edit = ' readonly style="border: none;"';
+      $Save = '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    } else {
+      // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
+      $Save = '<input type="submit" class="btn btn-primary">';
+      $Edit = '';
+    }
+  } else {
+    $Edit = ' readonly style="border: none;"';
+    $Save = '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  }
+?>
+<form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $koulutus->id; ?>" enctype="multipart/form-data" method="post">
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_1" type="text" value="<?php echo $koulutus->Loota_1; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_2" type="text" value="<?php echo $koulutus->Loota_2; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_3" type="text" value="<?php echo $koulutus->Loota_3; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Aloitit" type="text" value="<?php echo $koulutus->Aloitit; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Lopetit" type="text" value="<?php echo $koulutus->Lopetit; ?>" /></td>
     <td>
-      <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-      <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+    <?php echo $Save; ?>
+      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $koulutus->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
+  </form>
   </tr>
 <?php endif; ?>
 <?php endforeach; ?>
@@ -202,8 +241,7 @@
 <?php endif; ?>
 </div>
 </div>
-</div>
-
+</br>
 
 <div class="row">
 <div class="col-md-6 col-xs-8">

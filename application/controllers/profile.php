@@ -74,8 +74,12 @@ class Profile extends CI_Controller {
   }
   public function kokemus_update($id) {
     $data = array(
-        'Loota_1'       =>     $this->input->post('Ed'),
-        'Mielipide'     =>     $this->input->post('Vs')
+        'Loota_1'       =>     $this->input->post('Loota_1'),
+        'Loota_2'       =>     $this->input->post('Loota_2'),
+        'Loota_3'       =>     $this->input->post('Loota_3'),
+        'Aloitit'       =>     $this->input->post('Aloitit'),
+        'Lopetit'       =>     $this->input->post('Lopetit'),
+        'Mielipide'     =>     $this->input->post('Mielipide')
     );
     if ($this->Profile_model->update_kokemus($id,$data)) {
       redirect('profile/index');
