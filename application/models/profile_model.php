@@ -47,4 +47,9 @@ class Profile_model extends CI_Model {
     $query = $this->db->get('kokemukset');
     return $query->result();
   }
+  public function update_kokemus($id,$data) {
+    $this->db->where('id',$id);
+    $this->db->update('kokemukset',$data);
+    return TRUE;
+  }
 }

@@ -71,20 +71,28 @@
   <?php if ($hobby->Aihe == 'Harrastus') : ?>
   <tr>
 <?php
-  if (!isset($_GET['Edit'])) {
-    $Edit = ' readonly style="border: none;"';
-    $Save = '<a href="profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  if (isset($_GET['Edit'])) {
+    if ($_GET['Edit'] !== $hobby->id) {
+      $Edit = ' readonly style="border: none;"';
+      $Save = '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    } else {
+      // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
+      $Save = '<input type="submit" class="btn btn-primary">';
+      $Edit = '';
+    }
   } else {
-    $Save = '<a href="'.base_url().'profile" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-    $Edit = '';
+    $Edit = ' readonly style="border: none;"';
+    $Save = '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Edit" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Edit" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
+<form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Ed" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Vs" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
     <td>
-      <?php echo $Save; ?>
+    <?php echo $Save; ?>
       <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
+  </form>
   </tr>
 <?php endif; ?>
 <?php endforeach; ?>
