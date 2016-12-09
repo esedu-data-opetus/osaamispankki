@@ -81,4 +81,8 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  public function delete($id) {
+    $this->Profile_model->delete($id);
+    redirect('profile/index');
+  }
 }

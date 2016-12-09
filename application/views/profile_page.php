@@ -90,7 +90,7 @@
     <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Vs" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
     <td>
     <?php echo $Save; ?>
-      <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>

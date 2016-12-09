@@ -52,4 +52,9 @@ class Profile_model extends CI_Model {
     $this->db->update('kokemukset',$data);
     return TRUE;
   }
+  public function delete($id){
+    $this->db->where('id',$id);
+    $this->db->delete('kokemukset');
+    return true;
+  }
 }
