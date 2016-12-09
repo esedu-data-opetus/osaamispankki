@@ -49,22 +49,22 @@
 <p>
 <?php echo form_label('Työpaikka:'); ?>
 <?php
-	$data = array('name'		 		=> 'A_sr1',
-								'value'       => set_value('A_sr1'));
+	$data = array('name'		 		=> 'Loota_1',
+								'value'       => set_value('Loota_1'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php echo form_label('Tehtävä:'); ?>
 <?php
-	$data = array('name'		 		=> 'A_sr2',
-								'value'       => set_value('A_sr2'));
+	$data = array('name'		 		=> 'Loota_2',
+								'value'       => set_value('Loota_2'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php
-	$data = array('name'		 		=> 'A_sr3',
+	$data = array('name'		 		=> 'Loota_3',
 								'style'				=> 'display: none;',
 								'value'       => 'Empty');
 	?>

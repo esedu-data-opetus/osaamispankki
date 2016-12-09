@@ -55,9 +55,9 @@ class Profile extends CI_Controller {
       $kokemus = $this->input->post('Aihe');
     }
     $this->form_validation->set_rules('Aihe', 'Aihe', 'trim|required');
-    $this->form_validation->set_rules('A_sr1', 'A_sr1', 'trim|required');
-    $this->form_validation->set_rules('A_sr2', 'A_sr2', 'trim|required');
-    $this->form_validation->set_rules('A_sr3', 'A_sr3', 'trim|required');
+    $this->form_validation->set_rules('Loota_1', 'Loota_1', 'trim|required');
+    $this->form_validation->set_rules('Loota_2', 'Loota_2', 'trim|required');
+    $this->form_validation->set_rules('Loota_3', 'Loota_3', 'trim|required');
     $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'Mielipide', 'trim');

@@ -30,9 +30,9 @@ class Profile_model extends CI_Model {
     $Prototype = array(
         'User_id'       =>     $user_id,
         'Aihe'          =>     $this->input->post('Aihe'),
-        'A_sr1'         =>     $this->input->post('A_sr1'),
-        'A_sr2'         =>     $this->input->post('A_sr2'),
-        'A_sr3'         =>     $this->input->post('A_sr3'),
+        'Loota_1'       =>     $this->input->post('Loota_1'),
+        'Loota_2'       =>     $this->input->post('Loota_2'),
+        'Loota_3'       =>     $this->input->post('Loota_3'),
         'Aloitit'       =>     $this->input->post('Aloitit'),
         'Lopetit'       =>     $this->input->post('Lopetit'),
         'Mielipide'     =>     $this->input->post('vapaasana')

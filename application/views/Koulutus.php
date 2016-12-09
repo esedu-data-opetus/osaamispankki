@@ -32,7 +32,8 @@
 </style>
 <div class="panel panel-default header">
 <div class="panel-heading">
-<h1>Lisää Harrastus</h1><br>
+<h1>Lisää Koulutus</h1>
+<br>
 </div>
 <div class="panel-body>">
 <div id="both">
@@ -42,12 +43,12 @@
 <?php
 	$data = array('name'		 		=> 'Aihe',
 								'style' 			=> 'display: none;',
-								'value'       => 'Harrastus');
+								'value'       => 'Koulutus');
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
-<?php echo form_label('Harrastus:'); ?>
+<?php echo form_label('Koulutus:'); ?>
 <?php
 	$data = array('name'		 		=> 'Loota_1',
 								'value'       => set_value('Loota_1'));
@@ -55,51 +56,50 @@
 <?php echo form_input($data); ?>
 </p>
 <p>
+<?php echo form_label('Koulutusaste:'); ?>
 <?php
 	$data = array('name'		 		=> 'Loota_2',
-								'style' 			=> 'display: none;',
-								'value'       => 'Empty');
+								'value'       => set_value('Loota_2'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
+<?php echo form_label('Oppilaitos:'); ?>
 <?php
 	$data = array('name'		 		=> 'Loota_3',
-								'style' 			=> 'display: none;',
-								'value'       => 'Empty');
+								'value'       => set_value('Loota_3'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
+	<?php echo form_label('Alkoi:'); ?>
 <?php
 	$data = array('name'		 		=> 'Aloitit',
-								'style' 			=> 'display: none;',
-								'value'       => 'Empty');
+								'value'       => set_value('Aloitit'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
+	<?php echo form_label('Loppui:'); ?>
 <?php
 	$data = array('name'		 		=> 'Lopetit',
-								'style' 			=> 'display: none;',
-								'value'       => 'Empty');
+								'value'       => set_value('Lopetit'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
-<?php echo form_label('Vapaasana:'); ?>
 <?php
     $data = array('name' 		    => 'vapaasana',
-							    'id'   		    => 'vapaasana',
+									'style'				=> 'display: none;',
                   'value'       => set_value('vapaasana'));
 ?>
 <?php echo form_textarea($data); ?>
   </p>
 	<p>
 <?php
-	$data = array('name' 		=> 		'submit',
-								'id' 			=> 		'nappi',
-								'value' 	=> 		'Lisää harrastus');
+	$data = array('name' => 'submit',
+								'id' => 'nappi',
+								'value' => "Lisää harrastus");
 ?>
 <?php echo form_submit($data); ?>
 </p>
