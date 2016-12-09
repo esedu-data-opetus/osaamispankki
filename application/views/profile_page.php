@@ -41,22 +41,13 @@
 <?php endforeach; ?>
 <a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
 </div>
-<div style="position:relative; margin-left:20px; margin-top:50px;">
-
-<!-- <div class="panel panel-primary">
+<div class="panel panel-primary">
   <div class=panel-heading>
-    <h3 class=panel-title>Panel title</h3>
+    <h3 class=panel-title>
+      <a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success glyphicon glyphicon-plus"></a>
+      <span style="font-size: 22px;">Harrastukset</span>
+    </h3>
   </div>
-  <div class=panel-body> Panel content</div>
-</div> -->
-
-<div class="row">
-<div class="col-md-6 col-xs-8">
-<div id="tyohistoria">
-<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Harrastukset</p>
-<a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success glyphicon glyphicon-plus"></a>
-<br>
-<br>
 <?php foreach($kokemus as $check) : ?>
   <?php if($check->Aihe == "Harrastus") {
     $hobbyexists = TRUE;
@@ -64,8 +55,9 @@
   ?>
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
-<p style='color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</p>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
+<div class=panel-body>
 <table class="table" border="1">
 <thead>
   <tr>
@@ -78,10 +70,19 @@
 <?php foreach($kokemus as $hobby) : ?>
   <?php if ($hobby->Aihe == 'Harrastus') : ?>
   <tr>
-    <td><p><?php echo $hobby->Loota_1; ?></p></td>
-    <td><p><?php echo $hobby->Mielipide; ?></p></td>
+<?php
+  if (!isset($_GET['Edit'])) {
+    $Edit = ' readonly style="border: none;"';
+    $Save = '<a href="profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  } else {
+    $Save = '<a href="'.base_url().'profile" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
+    $Edit = '';
+  }
+?>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Edit" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
+    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Edit" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
     <td>
-      <a href="<?php echo base_url(); ?>profile/edit_harrastukset/1" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+      <?php echo $Save; ?>
       <a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </tr>
@@ -90,7 +91,6 @@
 </tbody>
 </table>
 <?php endif; ?>
-</div>
 </div>
 </div>
 </br>
@@ -242,6 +242,5 @@
 <br>
 <br>
 <br>
-</div>
 </div>
 </div>
