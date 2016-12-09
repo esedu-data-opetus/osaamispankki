@@ -205,45 +205,43 @@
 <br>
 <br>
 <?php foreach($kokemus as $check) : ?>
-  <?php if($check->Aihe == "Koulutus") {
-    $koulutusexists = TRUE;
+  <?php if($check->Aihe == "Kortit") {
+    $Kortitexists = TRUE;
   }
   ?>
 <?php endforeach; ?>
-<?php if(!isset($koulutusexists)) : ?>
+<?php if(!isset($Kortitexists)) : ?>
   <p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>
 <?php else : ?>
 <table class="table" border="1">
 <thead>
   <tr>
-    <th>Kortti</th>
-    <th>Vanhenemispäivä</th>
-    <th>Kommentti</th>
+    <th style="min-width:150px">Kortti</th>
+    <th style="min-width:150px">Vanhenemispäivä</th>
+    <th style="min-width:150px">Kommentti</th>
     <th style="min-width:81px">Settings</th>
   </tr>
 </thead>
-
-    <tr>
-    <td>'.$knimi.'</td>
-    <td>'.$voimassa.'</td>
-    <td>'.$kommentti.'</td>
-    <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalKortit"><span style="line-height:10px;" class="glyphicon glyphicon-trash"></span></button></td>
-    </tr>
-
+<tbody>
+<?php foreach($kokemus as $kortit) : ?>
+  <?php if ($kortit->Aihe == 'Kortit') : ?>
+  <tr>
+    <td><p><?php echo $kortit->Loota_1; ?></p></td>
+    <td><p><?php echo $kortit->Lopetit; ?></p></td>
+    <td><p><?php echo $kortit->Mielipide; ?></p></td>
+    <td>
+      <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+    </td>
+  </tr>
+<?php endif; ?>
+<?php endforeach; ?>
+</tbody>
 </table>
 <?php endif; ?>
 <br>
 <br>
 <br>
 <br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

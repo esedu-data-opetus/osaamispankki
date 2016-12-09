@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Harrastus</title>
-	<h1 style="text-align:center;font-weight:bold;">Harrastus</h1><br>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
-     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
-     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>    
-     <script src="http://paja.esedu.fi/data13/riku.ronka/harjoitus/js/jquery.js"></script>
-</head>
-<body>
 <style>
-#both 
-{
- text-align:center;
+#both {
+	width: 200px;
+	margin: 15px;
 }
 #kuvaus {
  resize: none;
@@ -23,7 +10,6 @@
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #4CAF50;
-  width: 8%;
   height:5.5%;
   border: 0;
   padding: 15px;
@@ -33,8 +19,18 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+.error {
+	color: #ff0000;
+	border: 1px solid #ff0000;
+	margin: 0;
+	padding: 5px;
+	border-radius: 10px;
+}
+.header {
+	margin-top: 20px;
+}
 </style>
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 	 $(function() {
 	    $("#alkoi").datepicker();
@@ -42,49 +38,111 @@
 	   });
 
 </script>
+<div class="panel panel-default header">
+<div class="panel-heading">
+<h1>Lisää Kortti</h1>
+<br>
+</div>
+<div class="panel-body>">
+<div id="both">
+<?php echo validation_errors('<p class="error">'); ?>
+<?php echo form_open('profile/prototype'); ?>
+<p>
 <?php
-
-$query = $this->db->query("SELECT id, harrastus, vapaasana FROM harrastukset WHERE sposti ='".$this->session->userdata('sposti'). "'");
-
-foreach ($query->result() as $row)
-{
-	$id 	   = "$row->id";
-	$kNimi = "$row->kNimi";
-	$voimassaoloaika = "$row->voimassaoloaika";
-	
-
-}
-
-
- echo '<div id="both">';
- 
-$inputkNimi = array('value'   =>''.$kNimi.'',
-				  	   'placeholder' => 'Kortti',
-				  	   'name'		 => 'kortti',
-				 	   'id'  		 => 'kortti'
-				    );
- 
-$inputvoimassaoloaika = array('value'   =>''.$voimassaoloaika.'',
-					'placeholder'    => 'Voimassaoloaika',
-				    'name' 		     => 'voimassaoloaika',
-				    'id'   		     => 'voimassaoloaika'
-				    );
- 
-
-
-
-	echo form_open('sivu/edit_harrastukset/'.$id.'');
-	echo validation_errors();
-	echo '<h5 style="font-weight:bold;">Harrastus</h5>';
-	echo form_input($inputharrastus);
-	echo "<br>";
-	echo '<h5 style="font-weight:bold;">Vapaasana</h5>';
-	echo form_input($inputvapaasana);
-	echo "<br>";
-	echo "<br>";
-	echo form_submit('submit', 'Päivitä harrastus', 'id="nappi"');
-	echo '</div>';
-
+	$data = array('name'		 		=> 'Aihe',
+								'style' 			=> 'display: none;',
+								'value'       => 'Kortit');
+	?>
+<?php echo form_input($data); ?>
+</p>
+<p>
+	<?php echo form_label('Kortti:'); ?>
+	<select name="Loota_1" id="select" onchange="validateDropdown();" class="form-control col-md-4 col-md-push-0">
+					 <?php
+					 $query = $this->db->query('SELECT id, knimi FROM kortit');
+					 echo '<option disabled selected value="0">Valitse kortti</option>';
+					 foreach($query->result() as $row) {
+						 $id = '$row->id';
+						 $knimi = '$row->knimi';
+						 echo '<option name="knimi" value="'.$row->knimi.'">'.$row->knimi.'</option>';
+					 }
+					 ?>
+	</select>
+</p>
+<p>
+<?php
+	$data = array('name'		 		=> 'Loota_2',
+								'style' 			=> 'display: none;',
+								'value'       => 'Empty');
+	?>
+<?php echo form_input($data); ?>
+</p>
+<p>
+<?php
+	$data = array('name'		 		=> 'Loota_3',
+								'style' 			=> 'display: none;',
+								'value'       => 'Empty');
+	?>
+<?php echo form_input($data); ?>
+</p>
+<p>
+<?php
+	$data = array('name'		 		=> 'Aloitit',
+								'style' 			=> 'display: none;',
+								'value'       => 'Empty');
+	?>
+<?php echo form_input($data); ?>
+</p>
+<p>
+	<?php echo form_label('Voimassaoloaika:'); ?>
+<?php
+	$data = array('name'		 		=> 'Lopetit',
+								'id'					=> 'loppui',
+								'value'       => set_value('Lopetit'));
+	?>
+<?php echo form_input($data); ?>
+</p>
+<p>
+		<?php echo form_label('Kommentti:'); ?>
+<?php
+    $data = array('name' 		    => 'vapaasana',
+                  'value'       => set_value('vapaasana'));
 ?>
-</body>
-</html>
+<?php echo form_textarea($data); ?>
+  </p>
+	<p>
+<?php
+	$data = array('name' => 'submit',
+								'id' => 'nappi',
+								'value' => "Lisää kortti");
+?>
+<?php echo form_submit($data); ?>
+</p>
+<?php echo form_close(); ?>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+	 $(function() {
+	    $("#alkoi").datepicker();
+	    $("#loppui").datepicker();
+	   });
+
+	 function validateDropdown()
+		{
+			var e = document.getElementById("select");
+			var strUser = e.options[e.selectedIndex].value;
+
+			console.log(strUser);
+
+				if(strUser == '0')
+			{
+				document.getElementById('nappi').disabled = true;
+			} else {
+				document.getElementById('nappi').disabled = false;
+			}
+		}
+
+</script>
