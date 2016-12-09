@@ -58,7 +58,7 @@
   <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
 <div class=panel-body>
-<table class="table" border="1">
+<table class="table">
 <thead>
   <tr>
     <th>Harrastus</th>
@@ -120,7 +120,7 @@
 <?php if(!isset($tyohistoryexists)) : ?>
   <p style='color:red;font-weight:bold;'>Tyohistoriaa ei ole lisätty</p>
 <?php else : ?>
-<table class="table" border="1">
+<table class="table">
 <thead>
   <tr>
     <th>Työpaikka</th>
@@ -170,7 +170,7 @@
   <?php if(!isset($koulutusexists)) : ?>
     <p style='color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</p>
   <?php else : ?>
-<table class="table" border="1">
+<table class="table">
 <thead>
   <tr>
     <th>Koulutusnimi</th>
@@ -221,7 +221,7 @@
 <?php if(!isset($Kortitexists)) : ?>
   <p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>
 <?php else : ?>
-<table class="table" border="1">
+<table class="table">
 <thead>
   <tr>
     <th style="min-width:150px">Kortti</th>
