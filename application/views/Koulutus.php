@@ -30,6 +30,14 @@
 	margin-top: 20px;
 }
 </style>
+<script type="text/javascript">
+
+	 $(function() {
+	    $("#alkoi").datepicker();
+	    $("#loppui").datepicker();
+	   });
+
+</script>
 <div class="panel panel-default header">
 <div class="panel-heading">
 <h1>Lisää Koulutus</h1>
@@ -75,6 +83,7 @@
 	<?php echo form_label('Alkoi:'); ?>
 <?php
 	$data = array('name'		 		=> 'Aloitit',
+								'id'					=> 'alkoi',
 								'value'       => set_value('Aloitit'));
 	?>
 <?php echo form_input($data); ?>
@@ -83,6 +92,7 @@
 	<?php echo form_label('Loppui:'); ?>
 <?php
 	$data = array('name'		 		=> 'Lopetit',
+								'id'					=> 'loppui',
 								'value'       => set_value('Lopetit'));
 	?>
 <?php echo form_input($data); ?>

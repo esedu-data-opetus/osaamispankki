@@ -5,14 +5,14 @@
 	<title>Harrastuksen lisäys</title>
 	<h1 style="text-align:center;font-weight:bold;">Harrastuksen lisäys</h1><br>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>      
-     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">   
-     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>    
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
      <script src="http://paja.esedu.fi/data13/riku.ronka/harjoitus/js/jquery.js"></script>
 </head>
 <body>
 <style>
-#both 
+#both
 {
  text-align:center;
 }
@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 </style>
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 	 $(function() {
 	    $("#alkoi").datepicker();
@@ -48,7 +48,7 @@
 echo '<div id="both">';
 
 
-	
+
 
 	$inputharrastukset = array('value'   =>'',
 				  	   'placeholder' => 'Harrastukset',
@@ -63,7 +63,7 @@ echo '<div id="both">';
 				    'cols'           => '22',
 				    'rows'           => '6'
 				    );
-	 
+
 
 	echo form_open('sivu/harrastukset_lisaus');
 	echo validation_errors();
