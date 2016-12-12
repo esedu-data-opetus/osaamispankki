@@ -286,7 +286,3 @@
     <?php endif; ?>
 </div>
 </div>
-<br>
-<br>
-<br>
-<br>

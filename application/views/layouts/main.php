@@ -18,20 +18,7 @@
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>
-
-<footer class="footer">
-  <div class="footer navbar-fixed-bottom">
-  	  <a href="http://www.esedu.fi/" target="_blank" >
-        <img src="<?php echo base_url(); ?>pictures/esedu_logo.png" style="width:２０0px; height:90px;" />
-      </a>
-      <a href ="<?php echo base_url(); ?>sivu/welcome_message_english">
-        <img src="<?php echo base_url(); ?>pictures/English_flag.png" class="col-md-5" style="width:75px; height:30px; float:right;" />
-      </a>
-      <span class="text-muted"><br>
-        <p style="text-align: center; margin-top:-30px;"><b>Tekijät:</b> Riku, Miika ja Valtteri</p>
-      </span>
-    </div>
-</footer>
-
+<div style="padding-top: 70px;"></div>
+<?php $this->load->view('templates/footer'); ?>
 </body>
 </html>
