@@ -109,7 +109,7 @@
 <?php
 	$data = array('name' => 'submit',
 								'id' => 'nappi',
-								'value' => "Lisää harrastus");
+								'value' => "Lisää koulutus");
 ?>
 <?php echo form_submit($data); ?>
 </p>
