@@ -1,4 +1,3 @@
-
 <br>
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -50,6 +49,7 @@
       <span style="font-size: 22px;">Harrastukset</span>
     </h3>
   </div>
+  <div class=panel-body>
 <?php foreach($kokemus as $check) : ?>
   <?php if($check->Aihe == "Harrastus") {
     $hobbyexists = TRUE;
@@ -59,7 +59,6 @@
 <?php if(!isset($hobbyexists)) : ?>
   <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
-<div class=panel-body>
 <table class="table">
 <thead>
   <tr>
@@ -103,16 +102,17 @@
 <?php endif; ?>
 </div>
 </div>
-</br>
+<br>
 
 <!--Työhistoria-->
 <div class="panel panel-primary">
   <div class=panel-heading>
-    <h3 class=panel-title>
-      <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus"></a>
-      <span style="font-size: 22px;">Työhistoria</span>
-    </h3>
-  </div>
+   <h3 class=panel-title>
+    <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus"></a>
+    <span style="font-size: 22px;">Työhistoria</span>
+  </h3>
+</div>
+<div class=panel-body>
   <?php foreach($kokemus as $check) : ?>
     <?php if($check->Aihe == "Tyohistoria") {
       $tyohistoryexists = TRUE;
@@ -122,7 +122,6 @@
 <?php if(!isset($tyohistoryexists)) : ?>
   <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Työhistoriaa ei ole lisätty</h1>
 <?php else : ?>
-<div class=panel-body>
 <table class="table">
 <thead>
   <tr>
@@ -172,7 +171,7 @@
 <?php endif; ?>
 </div>
 </div>
-</br>
+<br>
 
 <!--Koulutukset-->
 <div class="panel panel-primary">
@@ -182,6 +181,7 @@
       <span style="font-size: 22px;">Koulutukset</span>
     </h3>
   </div>
+  <div class=panel-body>
   <?php foreach($kokemus as $check) : ?>
     <?php if($check->Aihe == "Koulutus") {
       $koulutusexists = TRUE;
@@ -191,7 +191,6 @@
 <?php if(!isset($koulutusexists)) : ?>
   <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</h1>
 <?php else : ?>
-<div class=panel-body>
 <table class="table">
 <thead>
   <tr>
@@ -241,52 +240,53 @@
 <?php endif; ?>
 </div>
 </div>
-</br>
+<br>
 
-<div class="row">
-<div class="col-md-6 col-xs-8">
-<div id="kortit">
-<p style="font-weight:Bold;margin-right:10px;font-size:2em;display:inline;">Kortit</p>
-<a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
-<br>
-<br>
-<?php foreach($kokemus as $check) : ?>
-  <?php if($check->Aihe == "Kortit") {
-    $Kortitexists = TRUE;
-  }
-  ?>
-<?php endforeach; ?>
-<?php if(!isset($Kortitexists)) : ?>
-  <p style='color:red;font-weight:bold;'>Kortteja ei ole lisätty</p>
-<?php else : ?>
-<table class="table">
-<thead>
-  <tr>
-    <th style="min-width:150px">Kortti</th>
-    <th style="min-width:150px">Vanhenemispäivä</th>
-    <th style="min-width:150px">Kommentti</th>
-    <th style="min-width:81px">Settings</th>
-  </tr>
-</thead>
-<tbody>
-<?php foreach($kokemus as $kortit) : ?>
-  <?php if ($kortit->Aihe == 'Kortit') : ?>
-  <tr>
-    <td><p><?php echo $kortit->Loota_1; ?></p></td>
-    <td><p><?php echo $kortit->Lopetit; ?></p></td>
-    <td><p><?php echo $kortit->Mielipide; ?></p></td>
-    <td>
-      <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-    </td>
-  </tr>
-<?php endif; ?>
-<?php endforeach; ?>
-</tbody>
-</table>
-<?php endif; ?>
-<br>
-<br>
-<br>
-<br>
+<!--Koulutukset-->
+<div class="panel panel-primary">
+  <div class=panel-heading>
+    <h3 class=panel-title>
+      <a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
+      <span style="font-size: 22px;">Kortit</span>
+    </h3>
+  </div>
+  <div class=panel-body>
+    <?php foreach($kokemus as $check) : ?>
+      <?php if($check->Aihe == "Kortit") {
+        $Kortitexists = TRUE;
+      }
+      ?>
+    <?php endforeach; ?>
+    <?php if(!isset($Kortitexists)) : ?>
+      <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Kortteja ei ole lisätty</h1>
+    <?php else : ?>
+    <table class="table">
+    <thead>
+      <tr>
+        <th style="min-width:150px">Kortti</th>
+        <th style="min-width:150px">Vanhenemispäivä</th>
+        <th style="min-width:150px">Kommentti</th>
+        <th style="min-width:81px">Settings</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php foreach($kokemus as $kortit) : ?>
+      <?php if ($kortit->Aihe == 'Kortit') : ?>
+      <tr>
+        <td><p><?php echo $kortit->Loota_1; ?></p></td>
+        <td><p><?php echo $kortit->Lopetit; ?></p></td>
+        <td><p><?php echo $kortit->Mielipide; ?></p></td>
+        <td>
+          <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $kortit->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>        </td>
+      </tr>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    </tbody>
+    </table>
+    <?php endif; ?>
 </div>
 </div>
+<br>
+<br>
+<br>
+<br>

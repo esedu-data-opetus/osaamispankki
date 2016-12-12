@@ -18,6 +18,7 @@
   <div class="container">
     <?php $this->load->view($main_content); ?>
   </div>
+
 <footer class="footer">
   <div class="footer navbar-fixed-bottom">
   	  <a href="http://www.esedu.fi/" target="_blank" >
@@ -31,5 +32,6 @@
       </span>
     </div>
 </footer>
+
 </body>
 </html>
