@@ -90,7 +90,7 @@ td {
       $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-      $Harrastus  =   '<input name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
+      $Harrastus  =   '<input style="max-width: 190px;" name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
       $Mielipide  =   '<input name="Mielipide" type="text" value="'.$hobby->Mielipide.'" />';
       $Save       =   '<input type="submit" class="btn btn-primary">';
     }
@@ -163,11 +163,11 @@ td {
       $Save       =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-      $Työpaikka  =  '<input style="width: 100px;" name="Loota_1" type="text" value="'.$work_h->Loota_1.'" />';
-      $Tehtävä    =  '<input style="width: 85px;" name="Loota_2" type="text" value="'.$work_h->Loota_2.'" />';
-      $Alkoi      =  '<input style="width: 85px;" name="Aloitit" type="text" value="'.$work_h->Aloitit.'" />';
-      $Loppui     =  '<input style="width: 85px;" name="Lopetit" type="text" value="'.$work_h->Lopetit.'" />';
-      $Kuvaus     =  '<input style="width: 85px;" name="Mielipide" type="text" value="'.$work_h->Mielipide.'" />';
+      $Työpaikka  =  '<input style="width: 110px;" name="Loota_1" type="text" value="'.$work_h->Loota_1.'" />';
+      $Tehtävä    =  '<input style="width: 95px;" name="Loota_2" type="text" value="'.$work_h->Loota_2.'" />';
+      $Alkoi      =  '<input style="width: 95px;" name="Aloitit" type="text" value="'.$work_h->Aloitit.'" />';
+      $Loppui     =  '<input style="width: 95px;" name="Lopetit" type="text" value="'.$work_h->Lopetit.'" />';
+      $Kuvaus     =  '<input style="width: 95px;" name="Mielipide" type="text" value="'.$work_h->Mielipide.'" />';
       $Save       =  '<input type="submit" class="btn btn-primary">';
     }
   } else {
@@ -252,12 +252,12 @@ td {
       $Save          =  '<input type="submit" class="btn btn-primary">';
     }
   } else {
-    $Koulutusnimi   =  $koulutus->Loota_1;
-    $Koulutusaste   =  $koulutus->Loota_2;
-    $Oppilaitos     =  $koulutus->Loota_3;
-    $Alkoi          =  $koulutus->Aloitit;
-    $Loppui         =  $koulutus->Lopetit;
-    $Save           =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Koulutusnimi    =  $koulutus->Loota_1;
+    $Koulutusaste    =  $koulutus->Loota_2;
+    $Oppilaitos      =  $koulutus->Loota_3;
+    $Alkoi           =  $koulutus->Aloitit;
+    $Loppui          =  $koulutus->Lopetit;
+    $Save            =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $koulutus->id; ?>" enctype="multipart/form-data" method="post">
