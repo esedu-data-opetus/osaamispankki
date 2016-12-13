@@ -1,3 +1,14 @@
+<style>
+.table td:hover {
+  overflow-x: auto;
+}
+.table td {
+  overflow: hidden;
+}
+.table td input {
+  max-width: 176px;
+}
+</style>
 <br>
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -74,24 +85,28 @@
 <?php
   if (isset($_GET['Edit'])) {
     if ($_GET['Edit'] !== $hobby->id) {
-      $Edit = ' readonly style="border: none;"';
+      $Harrastus = $hobby->Loota_1;
+      $Mielipide = $hobby->Mielipide;
       $Save = '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Save = '<input type="submit" class="btn btn-primary">';
-      $Edit = '';
+      $Harrastus = '<input name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
+      $Mielipide = '<input name="Mielipide" type="text" value="'.$hobby->Mielipide.'" />';
     }
   } else {
-    $Edit = ' readonly style="border: none;"';
+    $Harrastus = $hobby->Loota_1;
+    $Mielipide = $hobby->Mielipide;
     $Save = '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
+
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_1" type="text" value="<?php echo $hobby->Loota_1; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Mielipide" type="text" value="<?php echo $hobby->Mielipide; ?>" /></td>
+    <td style="max-width: 80px;"><?php echo $Harrastus; ?></td>
+    <td style="max-width: 80px;"><?php echo $Mielipide; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Oletko Varma!?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -140,24 +155,36 @@
 <?php
   if (isset($_GET['Edit'])) {
     if ($_GET['Edit'] !== $work_h->id) {
-      $Edit = ' readonly style="border: none;"';
+      $Työpaikka = $work_h->Loota_1;
+      $Tehtävä = $work_h->Loota_2;
+      $Alkoi = $work_h->Aloitit;
+      $Loppui = $work_h->Lopetit;
+      $Kuvaus = $work_h->Mielipide;
       $Save = '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Save = '<input type="submit" class="btn btn-primary">';
-      $Edit = '';
+      $Työpaikka = '<input style="width: 100px;" name="Loota_1" type="text" value="'.$work_h->Loota_1.'" />';
+      $Tehtävä = '<input style="width: 80px;" name="Loota_2" type="text" value="'.$work_h->Loota_2.'" />';
+      $Alkoi = '<input style="width: 80px;" name="Aloitit" type="text" value="'.$work_h->Aloitit.'" />';
+      $Loppui = '<input style="width: 80px;" name="Lopetit" type="text" value="'.$work_h->Lopetit.'" />';
+      $Kuvaus = '<input style="width: 80px;" name="Mielipide" type="text" value="'.$work_h->Mielipide.'" />';
     }
   } else {
-    $Edit = ' readonly style="border: none;"';
+    $Työpaikka = $work_h->Loota_1;
+    $Tehtävä = $work_h->Loota_2;
+    $Alkoi = $work_h->Aloitit;
+    $Loppui = $work_h->Lopetit;
+    $Kuvaus = $work_h->Mielipide;
     $Save = '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_1" type="text" value="<?php echo $work_h->Loota_1; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Loota_2" type="text" value="<?php echo $work_h->Loota_2; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Aloitit" type="text" value="<?php echo $work_h->Aloitit; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Lopetit" type="text" value="<?php echo $work_h->Lopetit; ?>" /></td>
-    <td style="max-width: 80px;"><input <?php echo $Edit; ?> name="Mielipide" type="text" value="<?php echo $work_h->Mielipide; ?>" /></td>
+    <td style="max-width: 80px;"><?php echo $Työpaikka; ?></td>
+    <td style="max-width: 80px;"><?php echo $Tehtävä; ?></td>
+    <td style="max-width: 80px;"><?php echo $Alkoi; ?></td>
+    <td style="max-width: 80px;"><?php echo $Loppui; ?></td>
+    <td style="max-width: 80px;"><?php echo $Kuvaus; ?></td>
     <td>
     <?php echo $Save; ?>
       <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $work_h->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
