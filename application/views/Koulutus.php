@@ -40,7 +40,7 @@
 </script>
 <div class="panel panel-default header">
 <div class="panel-heading">
-<h1>Lisää Koulutus</h1>
+<h1>Lisää koulutus</h1>
 <br>
 </div>
 <div class="panel-body>">

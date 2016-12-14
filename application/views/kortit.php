@@ -40,7 +40,7 @@
 </script>
 <div class="panel panel-default header">
 <div class="panel-heading">
-<h1>Lisää Kortti</h1>
+<h1>Lisää kortti</h1>
 <br>
 </div>
 <div class="panel-body>">

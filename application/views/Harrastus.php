@@ -32,7 +32,7 @@
 </style>
 <div class="panel panel-default header">
 <div class="panel-heading">
-<h1>Lisää Harrastus</h1><br>
+<h1>Lisää harrastus</h1><br>
 </div>
 <div class="panel-body>">
 <div id="both">

@@ -8,6 +8,14 @@ td {
 .table td input {
 
 }
+/*top, right, bottom, left*/
+.plus {
+  margin: -2 -2 0 0;
+}
+
+.add-btn {
+  float: right;
+}
 </style>
 <br>
 <div class="panel panel-default">
@@ -56,8 +64,8 @@ td {
 <div class="panel panel-primary">
   <div class=panel-heading>
     <h3 class=panel-title>
-      <a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success glyphicon glyphicon-plus"></a>
       <span style="font-size: 22px;">Harrastukset</span>
+      <a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success add-btn" title="Lisää harrastus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -87,17 +95,17 @@ td {
     if ($_GET['Edit'] !== $hobby->id) {
       $Harrastus  =   $hobby->Loota_1;
       $Mielipide  =   $hobby->Mielipide;
-      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Harrastus  =   '<input style="max-width: 190px;" name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
       $Mielipide  =   '<input name="Mielipide" type="text" value="'.$hobby->Mielipide.'" />';
-      $Save       =   '<input type="submit" class="btn btn-primary">';
+      $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
     }
   } else {
     $Harrastus    =   $hobby->Loota_1;
     $Mielipide    =   $hobby->Mielipide;
-    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 
@@ -106,7 +114,7 @@ td {
     <td style="padding: 8px 0 0 0; max-width: 80px;"><?php echo $Mielipide; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Oletko Varma!?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Oletko Varma!?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -123,8 +131,8 @@ td {
 <div class="panel panel-primary">
   <div class=panel-heading>
    <h3 class=panel-title>
-    <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success glyphicon glyphicon-plus"></a>
     <span style="font-size: 22px;">Työhistoria</span>
+    <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success add-btn" title="Lisää työhistoria"><span class="glyphicon glyphicon-plus plus"></span></a>
   </h3>
 </div>
 <div class=panel-body>
@@ -160,7 +168,7 @@ td {
       $Alkoi      =   $work_h->Aloitit;
       $Loppui     =   $work_h->Lopetit;
       $Kuvaus     =   $work_h->Mielipide;
-      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Työpaikka  =  '<input style="width: 110px;" name="Loota_1" type="text" value="'.$work_h->Loota_1.'" />';
@@ -168,7 +176,7 @@ td {
       $Alkoi      =  '<input style="width: 95px;" name="Aloitit" type="text" value="'.$work_h->Aloitit.'" />';
       $Loppui     =  '<input style="width: 95px;" name="Lopetit" type="text" value="'.$work_h->Lopetit.'" />';
       $Kuvaus     =  '<input style="width: 95px;" name="Mielipide" type="text" value="'.$work_h->Mielipide.'" />';
-      $Save       =  '<input type="submit" class="btn btn-primary">';
+      $Save       =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
     }
   } else {
     $Työpaikka    =   $work_h->Loota_1;
@@ -176,7 +184,7 @@ td {
     $Alkoi        =   $work_h->Aloitit;
     $Loppui       =   $work_h->Lopetit;
     $Kuvaus       =   $work_h->Mielipide;
-    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
@@ -187,7 +195,7 @@ td {
     <td style="padding: 8px 0 0 0; max-width: 80px;"><?php echo $Kuvaus; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $work_h->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -204,8 +212,8 @@ td {
 <div class="panel panel-primary">
   <div class=panel-heading>
     <h3 class=panel-title>
-      <a href="<?php echo base_url() ?>profile/prototype/Koulutus" class="btn btn-success glyphicon glyphicon-plus"></a>
       <span style="font-size: 22px;">Koulutukset</span>
+      <a href="<?php echo base_url() ?>profile/prototype/Koulutus" class="btn btn-success add-btn" title="Lisää koulutus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -241,7 +249,7 @@ td {
       $Oppilaitos    =  $koulutus->Loota_3;
       $Alkoi         =  $koulutus->Aloitit;
       $Loppui        =  $koulutus->Lopetit;
-      $Save          =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save          =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Koulutusnimi  =  '<input style="width: 125px;" name="Loota_1" type="text" value="'.$koulutus->Loota_1.'" />';
@@ -249,7 +257,7 @@ td {
       $Oppilaitos    =  '<input style="width: 100px;" name="Loota_3" type="text" value="'.$koulutus->Loota_3.'" />';
       $Alkoi         =  '<input style="width: 90px;" name="Aloitit" type="text" value="'.$koulutus->Aloitit.'" />';
       $Loppui        =  '<input style="width: 90px;" name="Lopetit" type="text" value="'.$koulutus->Lopetit.'" />';
-      $Save          =  '<input type="submit" class="btn btn-primary">';
+      $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
     }
   } else {
     $Koulutusnimi    =  $koulutus->Loota_1;
@@ -257,7 +265,7 @@ td {
     $Oppilaitos      =  $koulutus->Loota_3;
     $Alkoi           =  $koulutus->Aloitit;
     $Loppui          =  $koulutus->Lopetit;
-    $Save            =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save            =  '<a href="'.base_url().'profile/index?Edit='.$koulutus->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $koulutus->id; ?>" enctype="multipart/form-data" method="post">
@@ -268,7 +276,7 @@ td {
   <td style="padding: 8px 0 0 0; max-width: 86px;"><?php echo $Loppui; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $koulutus->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $koulutus->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -281,12 +289,12 @@ td {
 </div>
 <br>
 
-<!--Koulutukset-->
+<!--Kortit-->
 <div class="panel panel-primary">
   <div class=panel-heading>
     <h3 class=panel-title>
-      <a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success glyphicon glyphicon-plus" style="font-size:1.2em;line-height:22px;height:35px;"></a>
       <span style="font-size: 22px;">Kortit</span>
+      <a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -316,7 +324,7 @@ td {
         <td style="max-width: 86px"><p><?php echo $kortit->Lopetit; ?></p></td>
         <td style="max-width: 86px"><p><?php echo $kortit->Mielipide; ?></p></td>
         <td>
-          <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $kortit->id; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>        </td>
+          <a onclick="return confirm('Haluatko varmasti poistaa tuon?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $kortit->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
     <?php endif; ?>
     <?php endforeach; ?>
