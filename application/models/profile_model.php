@@ -24,7 +24,6 @@ class Profile_model extends CI_Model {
         $this->db->where('User_id',$user_id);
         $query = $this->db->get();
         return $query->result();
-
   }
   public function prototype($user_id) {
     $Prototype = array(

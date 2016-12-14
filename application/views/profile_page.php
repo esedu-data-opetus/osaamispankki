@@ -26,7 +26,7 @@ td {
 <?php endforeach; ?>
 </div>
 
-<div class="panel-body">
+<div class="panel-body p_pic">
 <?php foreach($User_Info as $User) : ?>
   <img src="<?php echo base_url()."/images/profiili/"; echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
 <?php endforeach; ?>
@@ -45,9 +45,28 @@ td {
 
 <div style="position:relative; margin-left:240px; margin-top:-235px;">
 <?php foreach($User_Info as $User) : ?>
-  <p>Nimi: <?php echo $User->F_Name." ".$User->L_Name; ?></p>
+<?php
+if (isset($_GET['Prof_Edit'])) {
+  if ($_GET['Prof_Edit'] == $User->User_id) {
+    $nimi = "<input type='text' value='".$User->F_Name."'><input type='text' value='".$User->L_Name."'>";
+    $s_posti = "<input type='text' value='".$User->Own_Email."'>";
+    $address = "<input type='text' value='".$User->Osoite."'>";
+    $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary">Tallenna</a>';
+  } else {
+    $nimi = $User->F_Name." ".$User->L_Name;
+    $s_posti = $User->Own_Email;
+    $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  }
+} else {
+  $nimi = $User->F_Name." ".$User->L_Name;
+  $s_posti = $User->Own_Email;
+  $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+}
+?>
 
-  <p>Sähköposti: <?php echo $User->Own_Email; ?></p>
+  <p>Nimi: <?php echo $nimi; ?></p>
+
+  <p>Sähköposti: <?php echo $s_posti; ?></p>
 
   <p>Osoite: <?php echo $User->Osoite; ?></p>
 
@@ -56,8 +75,10 @@ td {
   <p>Puhelinnumero: <?php echo $User->Puh_Num; ?></p>
 
   <p>Kuvaus: <?php echo $User->About; ?></p>
+<?php echo $btn; ?>
 <?php endforeach; ?>
-<a href="<?php echo base_url(); ?>profile/edit" class="btn btn-primary" style="margin-left: 5px;"><span style="line-height:14px;" class="glyphicon glyphicon-pencil"></span></a><br><br>
+<br>
+<br>
 </div>
 
 <!--Harrastukset-->

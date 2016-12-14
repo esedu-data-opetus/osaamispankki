@@ -20,23 +20,5 @@
   </div>
 <div style="padding-top: 70px;"></div>
 <?php $this->load->view('templates/footer'); ?>
-<!-- <script>
-$(document).ready(function() {
-
-    // If cookie is set, scroll to the position saved in the cookie.
-    if ( $.cookie("scroll") !== null ) {
-        $(document).scrollTop( $.cookie("scroll") );
-    }
-
-    // When a button is clicked...
-    $('#submit').on("click", function() {
-
-        // Set a cookie that holds the scroll position.
-        $.cookie("scroll", $(document).scrollTop() );
-
-    });
-
-});
-</script> -->
 </body>
 </html>
