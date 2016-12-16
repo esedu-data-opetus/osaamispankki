@@ -89,4 +89,17 @@ class Profile extends CI_Controller {
     $this->Profile_model->delete($id);
     redirect('profile/index');
   }
+  public function haku() {
+    $this->form_validation->set_rules('haku', 'hakusana', 'trim');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'haku_uusi';
+      $this->load->view('layouts/main',$data);
+    } else {
+      if ($this->Profile_model->hakee()) {
+        $data['main_content'] = 'haku_uusi';
+        $this->load->view('layouts/main',$data);
+        return true;
+      }
+    }
+  }
 }

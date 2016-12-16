@@ -49,12 +49,22 @@ class Users extends CI_Controller {
       $user_key = $this->User_model->fetch_key($username,$password);
 
         if($user_id){
-        $data = array(
-          'Key'          =>  $user_key,
-          'user_id'      =>  $user_id,
-          'sposti'       =>  $this->input->post('email'),
-					'is_logged_in' =>  1
-        );
+          if ($this->input->post('email') == "marko.knuutinen@esedulainen.fi" || "joonas.myllärinen@esedulainen.fi") {
+            $data = array(
+              'Key'          =>  $user_key,
+              'user_id'      =>  $user_id,
+              'sposti'       =>  $this->input->post('email'),
+              'admin'        =>  true,
+    					'is_logged_in' =>  1
+            );
+          } else {
+            $data = array(
+              'Key'          =>  $user_key,
+              'user_id'      =>  $user_id,
+              'sposti'       =>  $this->input->post('email'),
+              'is_logged_in' =>  1
+            );
+          }
         $this->session->set_userdata($data);
         if ($this->session->userdata('First_login')) {
           $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');

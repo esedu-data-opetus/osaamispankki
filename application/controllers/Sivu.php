@@ -15,7 +15,7 @@ class Sivu extends CI_Controller {
 		$this->load->template('welcome_message_english');
 
 	}
-
+ 
 	public function login()
 	{
 		$this->load->helper('url');

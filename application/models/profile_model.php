@@ -51,9 +51,23 @@ class Profile_model extends CI_Model {
     $this->db->update('kokemukset',$data);
     return TRUE;
   }
-  public function delete($id){
+  public function delete($id) {
     $this->db->where('id',$id);
     $this->db->delete('kokemukset');
     return true;
+  }
+  public function hakee() {
+    $haku = $this->input->post('haku');
+    $data = array(
+      'harrastukset',
+      'kkortit',
+      'kortit',
+      'koulutus',
+      'profile',
+      'tyohistoria',
+    );
+    foreach ($data as $haku) {
+      echo "<h1><i>".$haku."</i></h1>";
+    }
   }
 }

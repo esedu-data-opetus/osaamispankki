@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo '<div class="col-md-6 col-md-offset-5">';
 
 echo form_open('sivu/hakutulokset');

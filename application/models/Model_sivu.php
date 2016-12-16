@@ -75,7 +75,7 @@ class model_sivu extends CI_Model {
 		$data3 = array(
 			    'sposti ' => $this->input->post('sposti')
 		);
-		
+
 		$query = $this->db->insert('henkilotiedot', $data2);
 		$query = $this->db->insert('kirjautumistiedot', $data);
 		$query = $this->db->insert('last_login', $data3);

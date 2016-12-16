@@ -7,7 +7,7 @@
         <img src="<?php echo base_url(); ?>pictures/English_flag.png" class="col-md-5" style="width:75px; height:30px; float:right;" />
       </a>
       <span class="text-muted"><br>
-        <p style="text-align: center; margin-top:-30px;"><b>Tekijät:</b> Riku, Miika ja Valtteri</p>
+        <p style="text-align: center; margin-top:-30px;"><b>Tekijät:</b> Riku, Miika, Valtteri, Joonas & Marko</p>
       </span>
     </div>
 </footer>

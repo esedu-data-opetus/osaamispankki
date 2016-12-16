@@ -127,7 +127,7 @@ if (isset($_GET['Prof_Edit'])) {
       $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-      $Harrastus  =   '<input style="max-width: 190px;" name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
+      $Harrastus  =   '<input style="max-width: 180px;" name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
       $Mielipide  =   '<input name="Mielipide" type="text" value="'.$hobby->Mielipide.'" />';
       $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
     }
