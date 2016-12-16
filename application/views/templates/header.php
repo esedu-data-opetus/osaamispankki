@@ -7,9 +7,7 @@
 		<a id="kirjautuminen" href="<?php echo base_url(); ?>users/login">Kirjautuminen</a><a id="luotili" href="<?php echo base_url(); ?>users/register">Luo tili</a>
 <?php else : ?>
 		<a id="takaisinprofiiliin" href="<?php echo base_url(); ?>profile">Oma profiili</a>
-		<?php if ($this->session->userdata('admin')) : ?>
 		<a  href="<?php echo base_url(); ?>profile/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Protoryyppi_Haku</span></a>
-		<?php endif; ?>
 		<a  href="<?php echo base_url(); ?>sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Hakuun</span></a>
 		<a id="kirjauduulos" class="btn btn-default" href="<?php echo base_url(); ?>users/logout"  style="float:right;">Kirjaudu ulos</a>
 <?php endif; ?>

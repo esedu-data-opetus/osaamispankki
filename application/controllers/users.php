@@ -54,17 +54,8 @@ class Users extends CI_Controller {
               'Key'          =>  $user_key,
               'user_id'      =>  $user_id,
               'sposti'       =>  $this->input->post('email'),
-              'admin'        =>  true,
-    					'is_logged_in' =>  1
-            );
-          } else {
-            $data = array(
-              'Key'          =>  $user_key,
-              'user_id'      =>  $user_id,
-              'sposti'       =>  $this->input->post('email'),
               'is_logged_in' =>  1
             );
-          }
         $this->session->set_userdata($data);
         if ($this->session->userdata('First_login')) {
           $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');
@@ -80,6 +71,7 @@ class Users extends CI_Controller {
       }
     }
   }
+}
   public function logout() {
     $this->session->unset_userdata('is_logged_in');
     $this->session->unset_userdata('user_id');
