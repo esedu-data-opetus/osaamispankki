@@ -3,20 +3,27 @@
 	  <a style="margin: 0; padding: 0;" class="navbar-brand" href="<?php echo  base_url(); ?>"><img src="http://paja.esedu.fi/op/pictures/esedu_logo.png" style="max-height:50px; margin: 0; padding: 0;"></a>
 	</div>
 	<div class="Container">
-<?php
-if ($this->session->userdata('is_logged_in') !== 1) {
-		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
-		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
-} else {
-		echo '<a id="takaisinprofiiliin" href="'.base_url().'profile'.'">Oma profiili</a>';
-		echo '<a href="'.base_url().'sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
-		echo '<a id="kirjauduulos" style="float:right;" href="'.base_url().'/users/logout">Kirjaudu ulos</a>';
-}
+<?php if ($this->session->userdata('is_logged_in') !== 1) :?>
+		<a id="kirjautuminen" href="<?php echo base_url(); ?>users/login">Kirjautuminen</a><a id="luotili" href="<?php echo base_url(); ?>users/register">Luo tili</a>
+<?php else : ?>
+		<a id="takaisinprofiiliin" href="<?php echo base_url(); ?>profile">Oma profiili</a>
+		<a  href="<?php echo base_url(); ?>sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Hakuun</span></a>
+		<a id="kirjauduulos" class="btn btn-default" href="<?php echo base_url(); ?>users/logout"  style="float:right;">Kirjaudu ulos</a>
+<?php endif; ?>
 
+<?php
+//  if ($this->session->userdata('is_logged_in') !== 1) {
+// 		echo '<a id="kirjautuminen" href="'.base_url().'users/login">Kirjautuminen</a>';
+// 		echo '<a id="luotili" href="'.base_url().'users/register">Luo tili</a>';
+// } else {
+// 		echo '<a id="takaisinprofiiliin" href="'.base_url().'profile'.'">Oma profiili</a>';
+// 		echo '<a href="'.base_url().'sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
+// 		echo '<a id="kirjauduulos" style="float:right;" href="'.base_url().'/users/logout">Kirjaudu ulos</a>';
+// }
 
 // echo '<a role="button" id="osaamispankki"  href="'.base_url().'">Osaamispankki</a>';
 // //echo '</div>';
-// echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>';
+// echo '<a href="haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete" ><span class="glyphicon glyphicon-search">Hakuun</span></a>
 // //echo '<div class="col-sm-1 col-md-pull-3>';
 // echo '<a role="button" id="kirjauduulos" style="float:right;" href="'.base_url().'sivu/logout'.'" >Kirjaudu ulos</button></a>';
 //

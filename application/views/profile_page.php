@@ -28,7 +28,7 @@ td {
 
 <div class="panel-body p_pic">
 <?php foreach($User_Info as $User) : ?>
-  <img src="<?php echo base_url()."/images/profiili/"; echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
+  <img style="float: left; margin: 0 20px 0 0;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
 <?php endforeach; ?>
 
 <!-- <div style="margin-top: 15px;">
@@ -40,10 +40,7 @@ td {
   echo "</form>";
 ?>
 </div> -->
-</div>
-</div>
 
-<div style="position:relative; margin-left:240px; margin-top:-235px;">
 <?php foreach($User_Info as $User) : ?>
 <?php
 if (isset($_GET['Prof_Edit'])) {
@@ -77,9 +74,9 @@ if (isset($_GET['Prof_Edit'])) {
   <p>Kuvaus: <?php echo $User->About; ?></p>
 <?php echo $btn; ?>
 <?php endforeach; ?>
-<br>
-<br>
 </div>
+</div>
+<br>
 
 <!--Harrastukset-->
 <div class="panel panel-primary">
