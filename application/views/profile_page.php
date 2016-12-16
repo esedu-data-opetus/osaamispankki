@@ -26,7 +26,7 @@ td {
 <?php endforeach; ?>
 </div>
 
-<div class="panel-body p_pic">
+<div class="panel-body">
 <?php foreach($User_Info as $User) : ?>
   <img style="float: left; margin: 0 20px 0 0;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
 <?php endforeach; ?>
@@ -47,16 +47,27 @@ if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
     $nimi = "<input type='text' value='".$User->F_Name."'><input type='text' value='".$User->L_Name."'>";
     $s_posti = "<input type='text' value='".$User->Own_Email."'>";
-    $address = "<input type='text' value='".$User->Osoite."'>";
+    $osoite = "<input type='text' value='".$User->Osoite."'>";
+    $p_num = "<input type='text' value='".$User->Posti_Num."'>";
+    $puh = "<input type='text' value='".$User->Puh_Num."'>";
+    $kuvaus = "<input type='text' value='".$User->About."'>";
     $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary">Tallenna</a>';
   } else {
     $nimi = $User->F_Name." ".$User->L_Name;
     $s_posti = $User->Own_Email;
+    $osoite = $User->Osoite;
+    $p_num = $User->Posti_Num;
+    $puh = $User->Puh_Num;
+    $kuvaus = $User->About;
     $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 } else {
   $nimi = $User->F_Name." ".$User->L_Name;
   $s_posti = $User->Own_Email;
+  $osoite = $User->Osoite;
+  $p_num = $User->Posti_Num;
+  $puh = $User->Puh_Num;
+  $kuvaus = $User->About;
   $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
 }
 ?>
@@ -65,13 +76,13 @@ if (isset($_GET['Prof_Edit'])) {
 
   <p>Sähköposti: <?php echo $s_posti; ?></p>
 
-  <p>Osoite: <?php echo $User->Osoite; ?></p>
+  <p>Osoite: <?php echo $osoite; ?></p>
 
-  <p>Postinumero: <?php echo $User->Posti_Num; ?></p>
+  <p>Postinumero: <?php echo $p_num; ?></p>
 
-  <p>Puhelinnumero: <?php echo $User->Puh_Num; ?></p>
+  <p>Puhelinnumero: <?php echo $puh; ?></p>
 
-  <p>Kuvaus: <?php echo $User->About; ?></p>
+  <p>Kuvaus: <?php echo $kuvaus; ?></p>
 <?php echo $btn; ?>
 <?php endforeach; ?>
 </div>
