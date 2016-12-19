@@ -97,6 +97,30 @@ if (isset($_GET['Prof_Edit'])) {
   <p><?php echo $kuva; ?></p>
 <?php echo $btn; ?>
 <?php endforeach; ?>
+<div class="panel panel-default" style="margin: 20px 0 0 0;">
+  <div class="panel-heading">
+    <a class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+    <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
+  </div>
+  <div class="panel-boody" style="padding: 10px;">
+    <?php
+    $n = 1;
+    $r = array('11','21','31','41','51','61','71','81','91','101');
+      while ($n <= 100) {
+
+        if (in_array($n, $r)) {
+          echo '<br>';
+        }
+
+        if ($n <= 100) {
+          echo '<a style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;">#meta'.$n++.'</a>';
+        }
+
+      }
+    ?>
+  </div>
+</div>
 </div>
 </div>
 <br>
