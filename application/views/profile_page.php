@@ -16,6 +16,10 @@ td {
 .add-btn {
   float: right;
 }
+
+.save-btn {
+  margin: -80px 0 0 260px;
+}
 </style>
 <br>
 <div class="panel panel-default">
@@ -45,13 +49,15 @@ td {
 <?php
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $nimi = "<input type='text' value='".$User->F_Name."'><input type='text' value='".$User->L_Name."'>";
+    $nimi = "<input type='text' value='".$User->F_Name."'> <input type='text' value='".$User->L_Name."'>";
     $s_posti = "<input type='text' value='".$User->Own_Email."'>";
     $osoite = "<input type='text' value='".$User->Osoite."'>";
     $p_num = "<input type='text' value='".$User->Posti_Num."'>";
     $puh = "<input type='text' value='".$User->Puh_Num."'>";
     $kuvaus = "<input type='text' value='".$User->About."'>";
-    $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary">Tallenna</a>';
+    $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/></br>
+            <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
+    $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary save-btn" title="Tallenna muutokset">Tallenna</a>';
   } else {
     $nimi = $User->F_Name." ".$User->L_Name;
     $s_posti = $User->Own_Email;
@@ -59,7 +65,8 @@ if (isset($_GET['Prof_Edit'])) {
     $p_num = $User->Posti_Num;
     $puh = $User->Puh_Num;
     $kuvaus = $User->About;
-    $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $kuva = "";
+    $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 } else {
   $nimi = $User->F_Name." ".$User->L_Name;
@@ -68,10 +75,10 @@ if (isset($_GET['Prof_Edit'])) {
   $p_num = $User->Posti_Num;
   $puh = $User->Puh_Num;
   $kuvaus = $User->About;
-  $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+  $kuva = "";
+  $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
 }
 ?>
-
   <p>Nimi: <?php echo $nimi; ?></p>
 
   <p>Sähköposti: <?php echo $s_posti; ?></p>
@@ -83,6 +90,8 @@ if (isset($_GET['Prof_Edit'])) {
   <p>Puhelinnumero: <?php echo $puh; ?></p>
 
   <p>Kuvaus: <?php echo $kuvaus; ?></p>
+
+  <p><?php echo $kuva; ?></p>
 <?php echo $btn; ?>
 <?php endforeach; ?>
 </div>
@@ -105,7 +114,7 @@ if (isset($_GET['Prof_Edit'])) {
   ?>
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Harrastuksia ei ole lisätty</h1>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -172,7 +181,7 @@ if (isset($_GET['Prof_Edit'])) {
     ?>
   <?php endforeach; ?>
 <?php if(!isset($tyohistoryexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Työhistoriaa ei ole lisätty</h1>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Työhistoriaa ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -253,7 +262,7 @@ if (isset($_GET['Prof_Edit'])) {
     ?>
   <?php endforeach; ?>
 <?php if(!isset($koulutusexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Koulutuksia ei ole lisätty</h1>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Koulutuksia ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -334,7 +343,7 @@ if (isset($_GET['Prof_Edit'])) {
       ?>
     <?php endforeach; ?>
     <?php if(!isset($Kortitexists)) : ?>
-      <h1 style='margin:0;padding:0;color:red;font-weight:bold;'>Kortteja ei ole lisätty</h1>
+      <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Kortteja ei ole lisätty</h1>
     <?php else : ?>
     <table class="table">
     <thead>
