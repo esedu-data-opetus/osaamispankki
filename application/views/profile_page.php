@@ -18,7 +18,10 @@ td {
 }
 
 .save-btn {
-  margin: -80px 0 0 260px;
+  margin: -70px 0 0 260px;
+}
+.upload-btn {
+  margin: 0 0 -10px 0;
 }
 </style>
 <br>
@@ -56,7 +59,7 @@ if (isset($_GET['Prof_Edit'])) {
     $puh = "<input type='text' value='".$User->Puh_Num."'>";
     $kuvaus = "<input type='text' value='".$User->About."'>";
     $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/></br>
-            <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
+            <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success upload-btn' disabled/>";
     $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary save-btn" title="Tallenna muutokset">Tallenna</a>';
   } else {
     $nimi = $User->F_Name." ".$User->L_Name;
