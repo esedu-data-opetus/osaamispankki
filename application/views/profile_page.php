@@ -145,7 +145,7 @@ if (isset($_GET['Prof_Edit'])) {
     <?php if (isset($_GET['add_meta'])) : ?>
     <div style="padding: 10px;">
       <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">
-        <input id="meta" autofocus type="text" name="Tieto">
+        <input id="meta" autofocus type="text" name="Tieto" maxlength="50">
         <input id="luo" type="submit" value="Luo">
         <p style="display: inline;" class="counter">50</p>
       </form>
