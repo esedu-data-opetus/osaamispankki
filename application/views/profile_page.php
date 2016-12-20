@@ -1,4 +1,9 @@
 <style>
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: .65;
+}
 .table td:hover {
   overflow-x: auto;
 }
@@ -24,6 +29,29 @@ td {
   margin: 0 0 -10px 0;
 }
 </style>
+<script>
+var main = function() {
+    $('#luo').click(function() {
+        $('.counter').text('50');
+        $('#luo').addClass('disabled');
+    });
+    $('#meta').keyup(function() {
+        var postLength = $(this).val().length;
+        var charactersLeft = 50 - postLength;
+        $('.counter').text(charactersLeft);
+        if (charactersLeft < 0) {
+            $('#luo').addClass('disabled');
+        } else if (charactersLeft == 50) {
+            $('#luo').addClass('disabled');
+        } else {
+            $('#luo').removeClass('disabled');
+        }
+    });
+    $('#luo').addClass('disabled');
+};
+
+$(document).ready(main);
+</script>
 <br>
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -112,8 +140,9 @@ if (isset($_GET['Prof_Edit'])) {
     <?php if (isset($_GET['add_meta'])) : ?>
     <div style="padding: 10px;">
       <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">
-        <input autofocus type="text" name="Tieto">
-        <input type="submit" value="Luo">
+        <input id="meta" autofocus type="text" name="Tieto">
+        <input id="luo" type="submit" value="Luo">
+        <p style="display: inline;" class="counter">50</p>
       </form>
       <hr>
     </div>
@@ -126,14 +155,14 @@ if (isset($_GET['Prof_Edit'])) {
         if (isset($_GET['select'])) {
           if ($_GET['select'] == $meta->id) {
             // $this->session->set_userdata('selected', $meta->id);
-            $style = 'style="cursor: pointer; background-color: #337ab7; display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+            $style = 'style="cursor: pointer; background-color: #337ab7; display: inline-block; margin: 0 0 5px 0; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
             $sel = 'style="text-decoration: none; color: white;"';
           } else {
-            $style = 'style="cursor: pointer; display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+            $style = 'style="cursor: pointer; display: inline-block; padding: 4px 10px 4px 10px; margin: 0 0 5px 0; border: 1px solid black; border-radius: 10px;"';
             $sel = 'style="text-decoration: none; color: black;"';
           }
         } else {
-          $style = 'cursor: pointer; style="display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+          $style = 'cursor: pointer; style="display: inline-block; padding: 4px 10px 4px 10px; margin: 0 0 5px 0; border: 1px solid black; border-radius: 10px;"';
           $sel = 'style="text-decoration: none; color: black;"';
         }
 
