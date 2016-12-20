@@ -125,23 +125,41 @@ if (isset($_GET['Prof_Edit'])) {
     foreach ($meta_tieto as $meta) {
         if (isset($_GET['select'])) {
           if ($_GET['select'] == $meta->id) {
-            $this->session->set_userdata('selected', $meta->id);
-            $style = 'style="background-color: #337ab7; text-decoration: none; color: white; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
+            // $this->session->set_userdata('selected', $meta->id);
+            $style = 'style="cursor: pointer; background-color: #337ab7; display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+            $sel = 'style="text-decoration: none; color: white;"';
           } else {
-            $style = 'style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
+            $style = 'style="cursor: pointer; display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+            $sel = 'style="text-decoration: none; color: black;"';
           }
         } else {
-          $style = 'style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
+          $style = 'cursor: pointer; style="display: inline; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+          $sel = 'style="text-decoration: none; color: black;"';
         }
 
           if (isset($_GET['select'])) {
             if ($_GET['select'] == $meta->id) {
-              echo '<a '.$style.' href="'.base_url().'profile">'.$meta->Tieto.'</a>';
+              echo '
+              <div '.$style.' >
+              <a '.$sel.' href="'.base_url().'profile">'.$meta->Tieto.'</a>
+              <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a>
+              </div>
+              ';
             } else {
-              echo '<a '.$style.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>';
+              echo '
+              <div '.$style.' >
+              <a '.$sel.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>
+              <!-- <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a> -->
+              </div>
+              ';
             }
           } else {
-            echo '<a '.$style.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>';
+            echo '
+            <div '.$style.' >
+            <a '.$sel.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>
+            <!-- <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a> -->
+            </div>
+            ';
           }
         }
     ?>
