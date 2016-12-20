@@ -99,26 +99,53 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endforeach; ?>
 <div class="panel panel-default" style="margin: 20px 0 0 0;">
   <div class="panel-heading">
-    <a class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+    <?php if (isset($_GET['select'])) : ?>
+    <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+    <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+<?php else : ?>
+  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+<?php endif; ?>
     <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
   </div>
   <div class="panel-boody" style="padding: 10px;">
+    <?php if (isset($_GET['add_meta'])) : ?>
+    <div style="padding: 10px;">
+      <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">
+        <input autofocus type="text" name="Tieto">
+        <input type="submit" value="Luo">
+      </form>
+      <hr>
+    </div>
+  <?php endif; ?>
+<?php if (empty($meta_tieto)) : ?>
+  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Metatietoja ei ole lisätty</h1>
+<?php else : ?>
     <?php
-    $n = 1;
-    $r = array('11','21','31','41','51','61','71','81','91','101');
-      while ($n <= 100) {
-
-        if (in_array($n, $r)) {
-          echo '<br>';
+    foreach ($meta_tieto as $meta) {
+        if (isset($_GET['select'])) {
+          if ($_GET['select'] == $meta->id) {
+            $this->session->set_userdata('selected', $meta->id);
+            $style = 'style="background-color: #337ab7; text-decoration: none; color: white; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
+          } else {
+            $style = 'style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
+          }
+        } else {
+          $style = 'style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;"';
         }
 
-        if ($n <= 100) {
-          echo '<a style="text-decoration: none; color: black; padding: 0 4px 0 4px; border: 1px solid black; border-radius: 10px;">#meta'.$n++.'</a>';
+          if (isset($_GET['select'])) {
+            if ($_GET['select'] == $meta->id) {
+              echo '<a '.$style.' href="'.base_url().'profile">'.$meta->Tieto.'</a>';
+            } else {
+              echo '<a '.$style.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>';
+            }
+          } else {
+            echo '<a '.$style.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>';
+          }
         }
-
-      }
     ?>
+  <?php endif; ?>
   </div>
 </div>
 </div>

@@ -18,6 +18,13 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function get_meta($user_id) {
+    $this->db->select('*');
+    $this->db->from('metatieto');
+    $this->db->where('User_id',$user_id);
+    $query = $this->db->get();
+    return $query->result();
+  }
   public function get_profile($user_id) {
         $this->db->select('*');
         $this->db->from('profile');
@@ -56,6 +63,11 @@ class Profile_model extends CI_Model {
     $this->db->delete('kokemukset');
     return true;
   }
+  public function delete_meta($id) {
+    $this->db->where('id',$id);
+    $this->db->delete('metatieto');
+    return true;
+  }
   public function hakee() {
     $haku = $this->input->post('haku');
     $data = array(
@@ -68,6 +80,12 @@ class Profile_model extends CI_Model {
     );
     foreach ($data as $haku) {
       echo "<h1><i>".$haku."</i></h1>";
+    }
+  }
+  public function meta_add($data) {
+    $insert = $this->db->insert('metatieto',$data);
+    if ($insert) {
+      return true;
     }
   }
 }

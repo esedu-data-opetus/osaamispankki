@@ -11,6 +11,8 @@ class Profile extends CI_Controller {
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
+    $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
+
     $data['kokemus'] = $this->Profile_model->Get_kokemukset($user_id);
 
     $data['User_Info'] = $this->Profile_model->get_profile($user_id);
@@ -101,5 +103,23 @@ class Profile extends CI_Controller {
         return true;
       }
     }
+  }
+  public function add_meta() {
+    if (empty($this->input->post('Tieto'))) {
+      $this->session->set_flashdata('error', 'Sinun pitää täyttää loota!');
+      redirect('profile/index');
+    } else {
+      $data = array(
+          'User_id'     =>     $this->session->userdata('user_id'),
+          'Tieto'       =>     $this->input->post('Tieto')
+      );
+      if ($this->Profile_model->meta_add($data)) {
+        redirect('profile/index');
+      }
+    }
+  }
+  public function delete_meta($id) {
+    $this->Profile_model->delete_meta($id);
+    redirect('profile/index');
   }
 }
