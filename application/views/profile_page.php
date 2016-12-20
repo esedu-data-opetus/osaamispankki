@@ -80,7 +80,8 @@ $(document).ready(main);
 <?php
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $nimi = "<input type='text' value='".$User->F_Name."'> <input type='text' value='".$User->L_Name."'>";
+    $etunimi = "<input type='text' value='".$User->F_Name."'>";
+    $sukunimi = " <input type='text' value='".$User->L_Name."'>";
     $s_posti = "<input type='text' value='".$User->Own_Email."'>";
     $osoite = "<input type='text' value='".$User->Osoite."'>";
     $p_num = "<input type='text' value='".$User->Posti_Num."'>";
@@ -88,9 +89,10 @@ if (isset($_GET['Prof_Edit'])) {
     $kuvaus = "<input type='text' value='".$User->About."'>";
     $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/></br>
             <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success upload-btn' disabled/>";
-    $btn = '<a href="'.base_url().'profile/index" class="btn btn-primary save-btn" title="Tallenna muutokset">Tallenna</a>';
+    $btn = '<input type="submit" class="btn btn-primary save-btn" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
-    $nimi = $User->F_Name." ".$User->L_Name;
+    $etunimi = $User->F_Name;
+    $sukunimi = $User->L_Name;
     $s_posti = $User->Own_Email;
     $osoite = $User->Osoite;
     $p_num = $User->Posti_Num;
@@ -100,7 +102,8 @@ if (isset($_GET['Prof_Edit'])) {
     $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 } else {
-  $nimi = $User->F_Name." ".$User->L_Name;
+  $etunimi = $User->F_Name;
+  $sukunimi = $User->L_Name;
   $s_posti = $User->Own_Email;
   $osoite = $User->Osoite;
   $p_num = $User->Posti_Num;
@@ -110,7 +113,8 @@ if (isset($_GET['Prof_Edit'])) {
   $btn = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
 }
 ?>
-  <p>Nimi: <?php echo $nimi; ?></p>
+<form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
+  <p>Nimi: <?php echo $etunimi." ".$sukunimi; ?></p>
 
   <p>Sähköposti: <?php echo $s_posti; ?></p>
 
@@ -124,6 +128,7 @@ if (isset($_GET['Prof_Edit'])) {
 
   <p><?php echo $kuva; ?></p>
 <?php echo $btn; ?>
+</form>
 <?php endforeach; ?>
 <div class="panel panel-default" style="margin: 20px 0 0 0;">
   <div class="panel-heading">
