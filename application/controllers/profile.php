@@ -87,6 +87,22 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+
+  public function profile_update($user_id) {
+    $data = array(
+      'F_Name'          =>    $this->input->post('etunimi'),
+      'L_Name'          =>    $this->input->post('sukunimi'),
+      'Own_Email'       =>    $this->input->post('s_posti'),
+      'Osoite'          =>    $this->input->post('osoite'),
+      'Posti_Num'       =>    $this->input->post('p_num'),
+      'Puh_Num'         =>    $this->input->post('puh'),
+      'About'           =>    $this->input->post('kuvaus')
+    );
+    if ($this->Profile_model->update_profile($user_id,$data)) {
+      redirect('profile/index');
+    }
+  }
+
   public function delete($id) {
     $this->Profile_model->delete($id);
     redirect('profile/index');

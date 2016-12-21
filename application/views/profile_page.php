@@ -23,10 +23,7 @@ td {
 }
 
 .save-btn {
-  margin: -70px 0 0 260px;
-}
-.upload-btn {
-  margin: 0 0 -10px 0;
+  margin: -30px 0 0 260px;
 }
 </style>
 <script>
@@ -80,15 +77,14 @@ $(document).ready(main);
 <?php
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $etunimi = "<input type='text' value='".$User->F_Name."'>";
-    $sukunimi = " <input type='text' value='".$User->L_Name."'>";
-    $s_posti = "<input type='text' value='".$User->Own_Email."'>";
-    $osoite = "<input type='text' value='".$User->Osoite."'>";
-    $p_num = "<input type='text' value='".$User->Posti_Num."'>";
-    $puh = "<input type='text' value='".$User->Puh_Num."'>";
-    $kuvaus = "<input type='text' value='".$User->About."'>";
-    $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/></br>
-            <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success upload-btn' disabled/>";
+    $etunimi = "<input name='etunimi' type='text' value='".$User->F_Name."'>";
+    $sukunimi = " <input name='sukunimi' type='text' value='".$User->L_Name."'>";
+    $s_posti = "<input name='s_posti' type='text' value='".$User->Own_Email."'>";
+    $osoite = "<input name='osoite' type='text' value='".$User->Osoite."'>";
+    $p_num = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
+    $puh = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
+    $kuvaus = "<input name='kuvaus' type='text' value='".$User->About."'>";
+    $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
     $btn = '<input type="submit" class="btn btn-primary save-btn" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
     $etunimi = $User->F_Name;
