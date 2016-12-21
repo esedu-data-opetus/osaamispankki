@@ -90,13 +90,13 @@ class Profile extends CI_Controller {
 
   public function profile_update($user_id) {
     $data = array(
-      'F_Name'          =>    $this->input->post('etunimi'),
-      'L_Name'          =>    $this->input->post('sukunimi'),
-      'Own_Email'       =>    $this->input->post('s_posti'),
-      'Osoite'          =>    $this->input->post('osoite'),
+      'F_Name'          =>    $this->input->post('f_name'),
+      'L_Name'          =>    $this->input->post('l_name'),
+      'Own_Email'       =>    $this->input->post('email'),
+      'Osoite'          =>    $this->input->post('address'),
       'Posti_Num'       =>    $this->input->post('p_num'),
       'Puh_Num'         =>    $this->input->post('puh'),
-      'About'           =>    $this->input->post('kuvaus')
+      'About'           =>    $this->input->post('about')
     );
     if ($this->Profile_model->update_profile($user_id,$data)) {
       redirect('profile/index');
