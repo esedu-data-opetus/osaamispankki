@@ -6,29 +6,6 @@
 #kuvaus {
  resize: none;
 }
-#nappi {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #4CAF50;
-  height:5.5%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 15px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-.error {
-	color: #ff0000;
-	border: 1px solid #ff0000;
-	margin: 0;
-	padding: 5px;
-	border-radius: 10px;
-}
-.header {
-	margin-top: 20px;
-}
 </style>
 <script type="text/javascript">
 
@@ -38,43 +15,28 @@
 	   });
 
 </script>
-<div class="panel panel-default header">
+<div style="margin: 20px 0 0 0;"></div>
+<div class="panel panel-default">
 <div class="panel-heading">
-<h1>Lisää työhistoria</h1><br>
+<h1>Lisää Työhistoria</h1>
 </div>
 <div class="panel-body>">
+<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
-<?php echo validation_errors('<p class="error">'); ?>
-<?php echo form_open('profile/prototype'); ?>
-<p>
-<?php
-	$data = array('name'		 		=> 'Aihe',
-								'style' 			=> 'display: none;',
-								'value'       => 'Tyohistoria');
-	?>
-<?php echo form_input($data); ?>
-</p>
+<?php echo form_open('profile/Tyohistoria'); ?>
 <p>
 <?php echo form_label('Työpaikka:'); ?>
 <?php
-	$data = array('name'		 		=> 'Loota_1',
-								'value'       => set_value('Loota_1'));
+	$data = array('name'		 		=> 'tyopaikka',
+								'value'       => set_value('tyopaikka'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php echo form_label('Tehtävä:'); ?>
 <?php
-	$data = array('name'		 		=> 'Loota_2',
-								'value'       => set_value('Loota_2'));
-	?>
-<?php echo form_input($data); ?>
-</p>
-<p>
-<?php
-	$data = array('name'		 		=> 'Loota_3',
-								'style'				=> 'display: none;',
-								'value'       => 'Empty');
+	$data = array('name'		 		=> 'tehtava',
+								'value'       => set_value('tehtava'));
 	?>
 <?php echo form_input($data); ?>
 </p>
@@ -100,16 +62,16 @@
 <?php echo form_label('Vapaasana:'); ?>
 <?php
     $data = array('name' 		    => 'vapaasana',
-							    'id'   		    => 'vapaasana',
+							    'id'   		    => 'kuvaus',
                   'value'       => set_value('vapaasana'));
 ?>
 <?php echo form_textarea($data); ?>
   </p>
 	<p>
 <?php
-	$data = array('name' => 'submit',
-								'id' => 'nappi',
-								'value' => "Lisää työhistoria");
+	$data = array('name' 			=> 	'submit',
+								'class' 		=> 	'btn btn-success',
+								'value' 		=> 	"Lisää Työhistoria");
 ?>
 <?php echo form_submit($data); ?>
 </p>

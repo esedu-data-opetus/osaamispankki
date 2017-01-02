@@ -74,11 +74,11 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function harrastus() {
+  public function Harrastus() {
     $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
     if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = 'Kokemukset/harrastus';
+      $data['main_content'] = 'Kokemukset/Harrastus';
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
@@ -93,6 +93,8 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('tehtava', 'tehtava', 'trim|required');
     $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
+
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'Kokemukset/tyohistoria';
       $this->load->view('layouts/main',$data);
@@ -104,14 +106,15 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function koulutukset() {
+  public function koulutus() {
     $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
     $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
     $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
     $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+
     if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = 'Kokemukset/koulutukset';
+      $data['main_content'] = 'Kokemukset/koulutus';
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
@@ -121,7 +124,7 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function kortit() {
+  public function Kortit() {
     $this->form_validation->set_rules('kortti', 'kortti', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');

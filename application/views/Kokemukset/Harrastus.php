@@ -6,26 +6,21 @@
 #kuvaus {
  resize: none;
 }
-.error {
-	color: #ff0000;
-	margin: 0;
-	padding: 5px;
-}
 </style>
 <div style="margin: 20px 0 0 0;"></div>
 <div class="panel panel-default">
 <div class="panel-heading">
-<h1>Lisää harrastus</h1>
+<h1>Lisää Harrastus</h1>
 </div>
 <div class="panel-body>">
+	<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
-<?php echo validation_errors('<p class="error">'); ?>
-<?php echo form_open('profile/prototype'); ?>
+<?php echo form_open('profile/Harrastus'); ?>
 <p>
 <?php echo form_label('Harrastus:'); ?>
 <?php
-	$data = array('name'		 		=> 'Harrastus',
-								'value'       => set_value('Harrastus'));
+	$data = array('name'		 		=> 'harrastus',
+								'value'       => set_value('harrastus'));
 	?>
 <?php echo form_input($data); ?>
 </p>

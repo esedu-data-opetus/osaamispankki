@@ -232,7 +232,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Harrastukset</span>
-      <a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success add-btn" title="Lisää harrastus"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url() ?>profile/Harrastus" class="btn btn-success add-btn" title="Lisää harrastus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -299,7 +299,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
    <h3 class=panel-title>
     <span style="font-size: 22px;">Työhistoria</span>
-    <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success add-btn" title="Lisää työhistoria"><span class="glyphicon glyphicon-plus plus"></span></a>
+    <a href="<?php echo base_url() ?>profile/Tyohistoria" class="btn btn-success add-btn" title="Lisää työhistoria"><span class="glyphicon glyphicon-plus plus"></span></a>
   </h3>
 </div>
 <div class=panel-body>
@@ -380,7 +380,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Koulutukset</span>
-      <a href="<?php echo base_url() ?>profile/prototype/Koulutus" class="btn btn-success add-btn" title="Lisää koulutus"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url() ?>profile/Koulutus" class="btn btn-success add-btn" title="Lisää koulutus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -461,7 +461,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Kortit</span>
-      <a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url(); ?>profile/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>

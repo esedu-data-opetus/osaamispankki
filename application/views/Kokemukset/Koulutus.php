@@ -6,29 +6,6 @@
 #kuvaus {
  resize: none;
 }
-#nappi {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #4CAF50;
-  height:5.5%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 15px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-.error {
-	color: #ff0000;
-	border: 1px solid #ff0000;
-	margin: 0;
-	padding: 5px;
-	border-radius: 10px;
-}
-.header {
-	margin-top: 20px;
-}
 </style>
 <script type="text/javascript">
 
@@ -38,23 +15,15 @@
 	   });
 
 </script>
-<div class="panel panel-default header">
+<div style="margin: 20px 0 0 0;"></div>
+<div class="panel panel-default">
 <div class="panel-heading">
-<h1>Lisää koulutus</h1>
-<br>
+<h1>Lisää Koulutus</h1>
 </div>
 <div class="panel-body>">
+	<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
-<?php echo validation_errors('<p class="error">'); ?>
-<?php echo form_open('profile/prototype'); ?>
-<p>
-<?php
-	$data = array('name'		 		=> 'Aihe',
-								'style' 			=> 'display: none;',
-								'value'       => 'Koulutus');
-	?>
-<?php echo form_input($data); ?>
-</p>
+<?php echo form_open('profile/koulutus'); ?>
 <p>
 <?php echo form_label('Koulutus:'); ?>
 <?php
