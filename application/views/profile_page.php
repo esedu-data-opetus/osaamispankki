@@ -132,9 +132,12 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endforeach; ?>
 <div class="panel panel-default" style="margin: 20px 0 0 0;">
   <div class="panel-heading">
-    <?php if (isset($_GET['select'])) : ?>
-    <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
-    <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+<?php if (isset($_GET['select'])) : ?>
+  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+  <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+<?php elseif(isset($_GET['add_meta'])) : ?>
+  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
+  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
 <?php else : ?>
   <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
   <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>

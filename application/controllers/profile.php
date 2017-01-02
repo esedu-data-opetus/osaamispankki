@@ -114,7 +114,7 @@ class Profile extends CI_Controller {
           'Tieto'       =>     $this->input->post('Tieto')
       );
       if ($this->Profile_model->meta_add($data)) {
-        redirect('profile/index');
+        redirect('profile?add_meta');
       }
     }
   }
