@@ -122,8 +122,8 @@ class Profile extends CI_Controller {
   }
   public function add_meta() {
     if (empty($this->input->post('Tieto'))) {
-      $this->session->set_flashdata('error', 'Sinun pitää täyttää loota!');
-      redirect('profile/index');
+      $this->session->set_flashdata('error', 'Täytä Tyhjä Kohta!');
+      redirect('profile?add_meta');
     } else {
       $data = array(
           'User_id'     =>     $this->session->userdata('user_id'),
@@ -133,6 +133,13 @@ class Profile extends CI_Controller {
         redirect('profile?add_meta');
       }
     }
+  }
+  public function delete_all_meta($user_id) {
+    $this->Profile_model->delete_all_meta($user_id);
+    redirect('profile/index');
+  }
+  public function test_meta($id) {
+    echo $id;
   }
   public function delete_meta($id) {
     $this->Profile_model->delete_meta($id);
