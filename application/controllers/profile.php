@@ -13,7 +13,7 @@ class Profile extends CI_Controller {
 
     $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
 
-    $data['kokemus'] = $this->Profile_model->Get_kokemukset($user_id);
+    $data['harrastus'] = $this->Profile_model->Get_harrastus($user_id);
 
     $data['User_Info'] = $this->Profile_model->get_profile($user_id);
 
@@ -74,7 +74,7 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function Harrastus() {
+  public function harrastus() {
     $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
     if ($this->form_validation->run() == FALSE) {
@@ -82,10 +82,23 @@ class Profile extends CI_Controller {
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
+      if ($this->Profile_model->harrastus($user_id)) {
         $this->session->set_flashdata('success', 'Harrastus lisätty!');
         redirect('profile/index');
       }
+    }
+  }
+  public function harrastus_delete($id) {
+    $this->Profile_model->harrastus_delete($id);
+    redirect('profile/index');
+  }
+  public function harrastus_update($id) {
+    $data = array(
+        'harrastus'       =>     $this->input->post('harrastus'),
+        'vapaasana'       =>     $this->input->post('vapaasana')
+    );
+    if ($this->Profile_model->harrastus_update($id,$data)) {
+      redirect('profile/index');
     }
   }
   public function tyohistoria() {

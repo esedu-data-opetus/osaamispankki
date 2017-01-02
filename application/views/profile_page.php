@@ -233,11 +233,11 @@ if (isset($_GET['Prof_Edit'])) {
     </h3>
   </div>
   <div class=panel-body>
-<?php foreach($kokemus as $check) : ?>
-  <?php if($check->Aihe == "Harrastus") {
-    $hobbyexists = TRUE;
-  }
-  ?>
+    <?php foreach($harrastus as $hobby) : ?>
+      <?php if ($hobby->User_id == $this->session->userdata('user_id')) {
+        $hobbyexists = TRUE;
+      }
+      ?>
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
   <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Harrastuksia ei ole lisätty</h1>
@@ -251,38 +251,36 @@ if (isset($_GET['Prof_Edit'])) {
   </tr>
 </thead>
 <tbody>
-<?php foreach($kokemus as $hobby) : ?>
-  <?php if ($hobby->Aihe == 'Harrastus') : ?>
+<?php foreach($harrastus as $hobby) : ?>
   <tr>
 <?php
   if (isset($_GET['Edit'])) {
     if ($_GET['Edit'] !== $hobby->id) {
-      $Harrastus  =   $hobby->Loota_1;
-      $Mielipide  =   $hobby->Mielipide;
+      $Harrastus  =   $hobby->harrastus;
+      $Mielipide  =   $hobby->vapaasana;
       $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-      $Harrastus  =   '<input style="max-width: 180px;" name="Loota_1" type="text" value="'.$hobby->Loota_1.'" />';
-      $Mielipide  =   '<input name="Mielipide" type="text" value="'.$hobby->Mielipide.'" />';
+      $Harrastus  =   '<input style="max-width: 180px;" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
+      $Mielipide  =   '<input name="vapaasana" type="text" value="'.$hobby->vapaasana.'" />';
       $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
     }
   } else {
-    $Harrastus    =   $hobby->Loota_1;
-    $Mielipide    =   $hobby->Mielipide;
+    $Harrastus    =   $hobby->harrastus;
+    $Mielipide    =   $hobby->vapaasana;
     $Save         =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 
-<form action="<?php echo base_url(); ?>profile/kokemus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
+<form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
     <td style="padding: 8px 0 0 0; max-width: 80px;"><?php echo $Harrastus; ?></td>
     <td style="padding: 8px 0 0 0; max-width: 80px;"><?php echo $Mielipide; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Oletko Varma!?');" href="<?php echo base_url(); ?>profile/delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Oletko Varma!?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
-<?php endif; ?>
 <?php endforeach; ?>
 </tbody>
 </table>

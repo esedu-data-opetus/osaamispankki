@@ -18,6 +18,11 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function Get_harrastus($user_id) {
+    $this->db->where('User_id',$user_id);
+    $query = $this->db->get('harrastukset');
+    return $query->result();
+  }
   public function get_meta($user_id) {
     $this->db->select('*');
     $this->db->from('metatieto');
@@ -31,6 +36,27 @@ class Profile_model extends CI_Model {
         $this->db->where('User_id',$user_id);
         $query = $this->db->get();
         return $query->result();
+  }
+  public function harrastus($user_id) {
+    $data = array(
+        'User_id'       =>     $user_id,
+        'harrastus'     =>     $this->input->post('harrastus'),
+        'vapaasana'     =>     $this->input->post('vapaasana')
+    );
+    $insert = $this->db->insert('harrastukset',$data);
+    if ($insert) {
+      return true;
+    }
+  }
+  public function harrastus_update($id,$data) {
+    $this->db->where('id',$id);
+    $this->db->update('harrastukset',$data);
+    return TRUE;
+  }
+  public function harrastus_delete($id) {
+    $this->db->where('id',$id);
+    $this->db->delete('harrastukset');
+    return true;
   }
   public function prototype($user_id) {
     $Prototype = array(

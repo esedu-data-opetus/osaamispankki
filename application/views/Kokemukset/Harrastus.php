@@ -14,7 +14,7 @@
 <div class="panel-body>">
 <?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
-<?php echo form_open('profile/Harrastus'); ?>
+<?php echo form_open('profile/harrastus'); ?>
 <p>
 <?php echo form_label('Harrastus:'); ?>
 <?php
