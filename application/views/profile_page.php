@@ -145,7 +145,7 @@ if (isset($_GET['Prof_Edit'])) {
 <?php if (isset($_GET['select'])) : ?>
   <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
 <?php if ($_GET['select'] == 'all') : ?>
-  <a href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+  <a onclick="return confirm('Haluatko Poitaa kaiken?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
 <?php else : ?>
   <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
 <?php endif; ?>
