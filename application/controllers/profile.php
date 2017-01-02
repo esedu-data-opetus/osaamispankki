@@ -75,25 +75,9 @@ class Profile extends CI_Controller {
     }
   }
 
-  public function harrastus() {
-    if (!isset($kokemus)) {
-      $kokemus = $this->uri->segment(3);
-    }
-    if (empty($kokemus)) {
-      $kokemus = $this->input->post('Aihe');
-    }
-    $this->form_validation->set_rules('harrastus', 'Harrastus', 'trim|required');
-    $this->form_validation->set_rules('vapaasana', 'Vapaasana', 'trim');
-    if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = $kokemus;
+  public function Harrastus() {
+      $data['main_content'] = 'Kokemukset/Harrastus';
       $this->load->view('layouts/main',$data);
-    } else {
-      $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
-        $this->session->set_flashdata('success', 'Harrastus lisätty!');
-        redirect('profile/index');
-      }
-    }
   }
 
   public function kokemus_update($id) {
