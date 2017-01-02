@@ -68,6 +68,11 @@ class Profile_model extends CI_Model {
     $this->db->delete('kokemukset');
     return true;
   }
+  public function delete_all_meta($user_id) {
+    $this->db->where('User_id',$user_id);
+    $this->db->delete('metatieto');
+    return true;
+  }
   public function delete_meta($id) {
     $this->db->where('id',$id);
     $this->db->delete('metatieto');
