@@ -15,36 +15,35 @@
 	   });
 
 </script>
-<div style="margin: 20px 0 0 0;"></div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h1>Lisää Koulutus</h1>
 </div>
 <div class="panel-body>">
-	<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
+<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
 <?php echo form_open('profile/koulutus'); ?>
 <p>
 <?php echo form_label('Koulutus:'); ?>
 <?php
-	$data = array('name'		 		=> 'Loota_1',
-								'value'       => set_value('Loota_1'));
+	$data = array('name'		 		=> 'koulutus_nimi',
+								'value'       => set_value('koulutus_nimi'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php echo form_label('Koulutusaste:'); ?>
 <?php
-	$data = array('name'		 		=> 'Loota_2',
-								'value'       => set_value('Loota_2'));
+	$data = array('name'		 		=> 'koulutusaste',
+								'value'       => set_value('koulutusaste'));
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php echo form_label('Oppilaitos:'); ?>
 <?php
-	$data = array('name'		 		=> 'Loota_3',
-								'value'       => set_value('Loota_3'));
+	$data = array('name'		 		=> 'oppilaitos',
+								'value'       => set_value('oppilaitos'));
 	?>
 <?php echo form_input($data); ?>
 </p>
@@ -66,14 +65,6 @@
 	?>
 <?php echo form_input($data); ?>
 </p>
-<p>
-<?php
-    $data = array('name' 		    => 'vapaasana',
-									'style'				=> 'display: none;',
-                  'value'       => set_value('vapaasana'));
-?>
-<?php echo form_textarea($data); ?>
-  </p>
 	<p>
 <?php
 	$data = array('name' => 'submit',

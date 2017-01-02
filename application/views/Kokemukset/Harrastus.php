@@ -7,13 +7,12 @@
  resize: none;
 }
 </style>
-<div style="margin: 20px 0 0 0;"></div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h1>Lisää Harrastus</h1>
 </div>
 <div class="panel-body>">
-	<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
+<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
 <div id="both">
 <?php echo form_open('profile/Harrastus'); ?>
 <p>

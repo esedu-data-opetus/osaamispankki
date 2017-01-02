@@ -107,7 +107,7 @@ class Profile extends CI_Controller {
     }
   }
   public function koulutus() {
-    $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
+    $this->form_validation->set_rules('koulutus_nimi', 'koulutusnimi', 'trim|required');
     $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
     $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
     $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');

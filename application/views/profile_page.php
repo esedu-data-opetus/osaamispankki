@@ -1,19 +1,17 @@
 <?php if ($this->session->flashdata('error')) : ?>
-  <div class="panel panel-danger">
-    <div class="panel-heading">Virhe</div>
-      <div class="panel-body">
-        <p><?php echo $this->session->flashdata('error'); ?></p>
-      </div>
-    </div>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Virhe:</span>
+    <?php echo $this->session->flashdata('error'); ?>
+  </div>
 <?php endif; ?>
 
 <?php if ($this->session->flashdata('success')) : ?>
-  <div class="panel panel-success">
-    <div class="panel-heading">Onnistui</div>
-      <div class="panel-body">
-        <p><?php echo $this->session->flashdata('success'); ?></p>
-      </div>
-    </div>
+  <div class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    <span class="sr-only">Onnistui:</span>
+    <?php echo $this->session->flashdata('success'); ?>
+  </div>
 <?php endif; ?>
 <style>
 .disabled {
@@ -139,7 +137,7 @@ if (isset($_GET['Prof_Edit'])) {
 <?php echo $btn; ?>
 </form>
 <?php endforeach; ?>
-<div class="panel panel-default" style="margin: 20px 0 0 0;">
+<div class="panel panel-default">
   <div class="panel-heading">
 <?php if (isset($_GET['select'])) : ?>
   <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>

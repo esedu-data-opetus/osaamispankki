@@ -1,16 +1,25 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
-	  <a style="margin: 0; padding: 0;" class="navbar-brand" href="<?php echo  base_url(); ?>"><img src="http://paja.esedu.fi/op/pictures/esedu_logo.png" style="max-height:50px; margin: 0; padding: 0;"></a>
+	  <a href="<?php echo  base_url(); ?>"><h1 class="btn btn-info btn-lg" style="margin: 10px;">Osaajapankki</h1></a>
+	</div>
+	<div class="navbar-right">
+		<?php if ($this->session->userdata('is_logged_in') == 1) :?>
+			<a class="btn btn-danger btn-lg" style="float: right; margin: 10px 30px; 10px 10px" href="<?php echo base_url(); ?>users/logout">Kirjaudu ulos</a>
+		<?php endif; ?>
 	</div>
 	<div class="Container">
 <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
-		<a id="kirjautuminen" href="<?php echo base_url(); ?>users/login">Kirjautuminen</a><a id="luotili" href="<?php echo base_url(); ?>users/register">Luo tili</a>
+		<a class="btn btn-primary btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>users/login">Kirjautuminen</a>
+		<a class="btn btn-success btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>users/register">Luo tili</a>
 <?php else : ?>
-		<a id="takaisinprofiiliin" href="<?php echo base_url(); ?>profile">Oma profiili</a>
-		<a  href="<?php echo base_url(); ?>profile/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Protoryyppi_Haku</span></a>
-		<a  href="<?php echo base_url(); ?>sivu/haku" class="btn btn-success" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Hakuun</span></a>
-		<a id="kirjauduulos" class="btn btn-default" href="<?php echo base_url(); ?>users/logout"  style="float:right;">Kirjaudu ulos</a>
+		<a class="btn btn-primary btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
+		<a class="btn btn-success btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>profile/haku"><span class="glyphicon glyphicon-search"></span> Protoryyppi_Haku</a>
+		<a class="btn btn-success" href="<?php echo base_url(); ?>sivu/haku" style="text-decoration:none;font-size:1.5em;" id="confirm-delete"><span class="glyphicon glyphicon-search">Hakuun</span></a>
 <?php endif; ?>
+</div>
+</nav>
+
+	<div style="margin: 0 0 30px 0"></div>
 
 <?php
 //  if ($this->session->userdata('is_logged_in') !== 1) {
@@ -104,6 +113,3 @@
 // 			}
 
 	?>
-</div>
-</nav>
-<div style="margin: 0 0 60px 0"></div>
