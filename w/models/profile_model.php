@@ -58,19 +58,9 @@ class Profile_model extends CI_Model {
     $this->db->update('kokemukset',$data);
     return TRUE;
   }
-  public function update_profile($user_id,$data) {
-    $this->db->where('User_id',$user_id);
-    $this->db->update('profile',$data);
-    return TRUE;
-  }
   public function delete($id) {
     $this->db->where('id',$id);
     $this->db->delete('kokemukset');
-    return true;
-  }
-  public function delete_all_meta($user_id) {
-    $this->db->where('User_id',$user_id);
-    $this->db->delete('metatieto');
     return true;
   }
   public function delete_meta($id) {

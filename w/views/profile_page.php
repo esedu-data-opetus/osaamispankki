@@ -1,20 +1,3 @@
-<?php if ($this->session->flashdata('error')) : ?>
-  <div class="panel panel-danger">
-    <div class="panel-heading">Virhe</div>
-      <div class="panel-body">
-        <p><?php echo $this->session->flashdata('error'); ?></p>
-      </div>
-    </div>
-<?php endif; ?>
-
-<?php if ($this->session->flashdata('success')) : ?>
-  <div class="panel panel-success">
-    <div class="panel-heading">Onnistui</div>
-      <div class="panel-body">
-        <p><?php echo $this->session->flashdata('success'); ?></p>
-      </div>
-    </div>
-<?php endif; ?>
 <style>
 .disabled {
   pointer-events: none;
@@ -27,6 +10,9 @@
 td {
   overflow: hidden;
 }
+.table td input {
+
+}
 /*top, right, bottom, left*/
 .plus {
   margin: -2 -2 0 0;
@@ -37,7 +23,10 @@ td {
 }
 
 .save-btn {
-  margin: -30px 0 0 260px;
+  margin: -70px 0 0 260px;
+}
+.upload-btn {
+  margin: 0 0 -10px 0;
 }
 </style>
 <script>
@@ -63,6 +52,7 @@ var main = function() {
 
 $(document).ready(main);
 </script>
+<br>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h1>Oma profiili</h1>
@@ -90,14 +80,15 @@ $(document).ready(main);
 <?php
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $etunimi = "<input name='f_name' type='text' value='".$User->F_Name."'>";
-    $sukunimi = " <input name='l_name' type='text' value='".$User->L_Name."'>";
-    $s_posti = "<input name='email' type='text' value='".$User->Own_Email."'>";
-    $osoite = "<input name='address' type='text' value='".$User->Osoite."'>";
-    $p_num = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
-    $puh = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
-    $kuvaus = "<input name='about' type='text' value='".$User->About."'>";
-    $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+    $etunimi = "<input type='text' value='".$User->F_Name."'>";
+    $sukunimi = " <input type='text' value='".$User->L_Name."'>";
+    $s_posti = "<input type='text' value='".$User->Own_Email."'>";
+    $osoite = "<input type='text' value='".$User->Osoite."'>";
+    $p_num = "<input type='text' value='".$User->Posti_Num."'>";
+    $puh = "<input type='text' value='".$User->Puh_Num."'>";
+    $kuvaus = "<input type='text' value='".$User->About."'>";
+    $kuva = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/></br>
+            <input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success upload-btn' disabled/>";
     $btn = '<input type="submit" class="btn btn-primary save-btn" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
     $etunimi = $User->F_Name;
@@ -141,21 +132,14 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endforeach; ?>
 <div class="panel panel-default" style="margin: 20px 0 0 0;">
   <div class="panel-heading">
-<?php if (isset($_GET['select'])) : ?>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-<?php if ($_GET['select'] == 'all') : ?>
-  <a onclick="return confirm('Haluatko Poitaa kaiken?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+    <?php if (isset($_GET['select'])) : ?>
+    <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+    <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
 <?php else : ?>
-  <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
-<?php endif; ?>
-<?php elseif (isset($_GET['add_meta'])) : ?>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-<?php else : ?>
-  <a href="<?php echo base_url(); ?>profile?select=all" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-th"></span></a>
+  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
   <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
 <?php endif; ?>
-  <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
+    <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
   </div>
   <div class="panel-boody" style="padding: 10px;">
     <?php if (isset($_GET['add_meta'])) : ?>
@@ -175,46 +159,40 @@ if (isset($_GET['Prof_Edit'])) {
     foreach ($meta_tieto as $meta) {
         if (isset($_GET['select'])) {
           if ($_GET['select'] == $meta->id) {
-            $style = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-            $sel = 'style="color: white; margin: 0; display: inline;"';
-          } elseif ($_GET['select'] == 'all') {
-            $style = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-            $sel = 'style="color: white; margin: 0; display: inline;"';
+            // $this->session->set_userdata('selected', $meta->id);
+            $style = 'style="cursor: pointer; background-color: #337ab7; display: inline-block; margin: 0 0 5px 0; padding: 4px 10px 4px 10px; border: 1px solid black; border-radius: 10px;"';
+            $sel = 'style="text-decoration: none; color: white;"';
           } else {
-            $style = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-            $sel = 'style="color: black; margin: 0;"';
+            $style = 'style="cursor: pointer; display: inline-block; padding: 4px 10px 4px 10px; margin: 0 0 5px 0; border: 1px solid black; border-radius: 10px;"';
+            $sel = 'style="text-decoration: none; color: black;"';
           }
         } else {
-          $style = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-          $sel = 'style="color: black; margin: 0;"';
+          $style = 'cursor: pointer; style="display: inline-block; padding: 4px 10px 4px 10px; margin: 0 0 5px 0; border: 1px solid black; border-radius: 10px;"';
+          $sel = 'style="text-decoration: none; color: black;"';
         }
 
           if (isset($_GET['select'])) {
             if ($_GET['select'] == $meta->id) {
               echo '
-              <a href="'.base_url().'profile">
-                <div '.$style.' >
-                  <p '.$sel.' >'.$meta->Tieto.'</p>
-                  <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-remove"></span></a>
-                </div>
-              </a>
+              <div '.$style.' >
+              <a '.$sel.' href="'.base_url().'profile">'.$meta->Tieto.'</a>
+              <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a>
+              </div>
               ';
             } else {
               echo '
-              <a href="'.base_url().'profile?select='.$meta->id.'">
-                <div '.$style.' >
-                  <p '.$sel.' >'.$meta->Tieto.'</p>
-                  </div>
-              </a>
+              <div '.$style.' >
+              <a '.$sel.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>
+              <!-- <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a> -->
+              </div>
               ';
             }
           } else {
             echo '
-            <a href="'.base_url().'profile?select='.$meta->id.'">
-              <div '.$style.' >
-                <p '.$sel.' >'.$meta->Tieto.'</p>
-              </div>
-            </a>
+            <div '.$style.' >
+            <a '.$sel.' href="'.base_url().'profile?select='.$meta->id.'">'.$meta->Tieto.'</a>
+            <!-- <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-trash"></span></a> -->
+            </div>
             ';
           }
         }
@@ -231,7 +209,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Harrastukset</span>
-      <a href="<?php echo base_url() ?>profile/Harrastus" class="btn btn-success add-btn" title="Lisää harrastus"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url() ?>profile/prototype/Harrastus" class="btn btn-success add-btn" title="Lisää harrastus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -298,7 +276,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
    <h3 class=panel-title>
     <span style="font-size: 22px;">Työhistoria</span>
-    <a href="<?php echo base_url() ?>profile/Tyohistoria" class="btn btn-success add-btn" title="Lisää työhistoria"><span class="glyphicon glyphicon-plus plus"></span></a>
+    <a href="<?php echo base_url() ?>profile/prototype/Tyohistoria" class="btn btn-success add-btn" title="Lisää työhistoria"><span class="glyphicon glyphicon-plus plus"></span></a>
   </h3>
 </div>
 <div class=panel-body>
@@ -379,7 +357,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Koulutukset</span>
-      <a href="<?php echo base_url() ?>profile/Koulutus" class="btn btn-success add-btn" title="Lisää koulutus"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url() ?>profile/prototype/Koulutus" class="btn btn-success add-btn" title="Lisää koulutus"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
@@ -460,7 +438,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Kortit</span>
-      <a href="<?php echo base_url(); ?>profile/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url(); ?>profile/prototype/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
