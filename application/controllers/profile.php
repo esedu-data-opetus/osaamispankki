@@ -74,12 +74,68 @@ class Profile extends CI_Controller {
       }
     }
   }
-
-  public function Harrastus() {
-      $data['main_content'] = 'Kokemukset/Harrastus';
+  public function harrastus() {
+    $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
+    $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'Kokemukset/harrastus';
       $this->load->view('layouts/main',$data);
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      if ($this->Profile_model->prototype($user_id)) {
+        $this->session->set_flashdata('success', 'Harrastus lisätty!');
+        redirect('profile/index');
+      }
+    }
   }
-
+  public function tyohistoria() {
+    $this->form_validation->set_rules('tyopaikka', 'tyopaikka', 'trim|required');
+    $this->form_validation->set_rules('tehtava', 'tehtava', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'Kokemukset/tyohistoria';
+      $this->load->view('layouts/main',$data);
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      if ($this->Profile_model->prototype($user_id)) {
+        $this->session->set_flashdata('success', 'Työhistoria lisätty!');
+        redirect('profile/index');
+      }
+    }
+  }
+  public function koulutukset() {
+    $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
+    $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
+    $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'Kokemukset/koulutukset';
+      $this->load->view('layouts/main',$data);
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      if ($this->Profile_model->prototype($user_id)) {
+        $this->session->set_flashdata('success', 'Koulutus lisätty!');
+        redirect('profile/index');
+      }
+    }
+  }
+  public function kortit() {
+    $this->form_validation->set_rules('kortti', 'kortti', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'Kokemukset/kortit';
+      $this->load->view('layouts/main',$data);
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      if ($this->Profile_model->prototype($user_id)) {
+        $this->session->set_flashdata('success', 'Kortti lisätty!');
+        redirect('profile/index');
+      }
+    }
+  }
   public function kokemus_update($id) {
     $data = array(
         'Loota_1'       =>     $this->input->post('Loota_1'),
