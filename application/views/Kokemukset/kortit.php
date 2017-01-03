@@ -20,7 +20,7 @@
 <h1>Lisää kortti</h1>
 </div>
 <div class="panel-body>">
-<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
+<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <div id="both">
 <?php echo form_open('profile/Kortit'); ?>
 <p>
@@ -58,7 +58,7 @@
 	<p>
 <?php
 	$data = array('name' => 'submit',
-								'id' => 'nappi',
+								'class' => 'btn btn-success btn-lg',
 								'value' => "Lisää Kortti");
 ?>
 <?php echo form_submit($data); ?>

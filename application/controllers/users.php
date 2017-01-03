@@ -22,11 +22,11 @@ class Users extends CI_Controller {
   					'First_login' =>  True,
           );
           $this->session->set_userdata($data);
-          $this->session->set_flashdata('registered', 'Sähköposti lähetetty! <br>Käy vahvistamassa se sähköpostissasi!');
+          $this->session->set_flashdata('success', 'Käyttäjä Luotu!');
           redirect('home/index');
         }
       } else {
-        $this->session->set_flashdata('error', 'Sähköpostin lähetyksessä on ongelma!');
+        $this->session->set_flashdata('error', 'Unknown!');
         redirect('home/index');
       }
     }
@@ -49,7 +49,6 @@ class Users extends CI_Controller {
       $user_key = $this->User_model->fetch_key($username,$password);
 
         if($user_id){
-          if ($this->input->post('email') == "marko.knuutinen@esedulainen.fi" || "joonas.myllärinen@esedulainen.fi") {
             $data = array(
               'Key'          =>  $user_key,
               'user_id'      =>  $user_id,
@@ -58,20 +57,18 @@ class Users extends CI_Controller {
             );
         $this->session->set_userdata($data);
         if ($this->session->userdata('First_login')) {
-          $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');
+          $this->session->set_flashdata('success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');
           redirect('profile/set_profile');
         } else {
-          redirect('home/index');
-          $this->session->set_flashdata('login_success', 'Kirjautuminen onnistui!');
+          $this->session->set_flashdata('success', 'Kirjautuminen onnistui!');
           redirect('home/index');
         }
       } else {
-        $this->session->set_flashdata('login_failed', 'Käyttäjä nimi tai salasana väärin :/');
+        $this->session->set_flashdata('error', 'Käyttäjä nimi tai salasana väärin :/');
         redirect('home/index');
+        }
       }
     }
-  }
-}
   public function logout() {
     $this->session->unset_userdata('is_logged_in');
     $this->session->unset_userdata('user_id');

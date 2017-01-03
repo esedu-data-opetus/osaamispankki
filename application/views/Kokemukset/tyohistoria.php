@@ -19,8 +19,8 @@
 <h1>Lisää Työhistoria</h1>
 </div>
 <div class="panel-body>">
+	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 	<div id="both">
-		<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php echo form_open('profile/Tyohistoria'); ?>
 <p>
 <?php echo form_label('Työpaikka:'); ?><br>

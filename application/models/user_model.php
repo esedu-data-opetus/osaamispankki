@@ -36,7 +36,7 @@ class User_model extends CI_Model {
       echo "email was not found!<br>";
     } else {
       echo "email was found!<br>";
-      $this->session->set_flashdata('Email',$C);
+      $this->session->set_flashdata('error',$C);
       redirect('users/register');
     }
   }

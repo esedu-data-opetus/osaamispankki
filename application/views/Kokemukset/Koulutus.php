@@ -20,14 +20,14 @@
 <h1>Lisää Koulutus</h1>
 </div>
 <div class="panel-body>">
-<?php echo validation_errors('<b style="color:red;">','</b><br>'); ?>
+	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <div id="both">
 <?php echo form_open('profile/koulutus'); ?>
 <p>
 <?php echo form_label('Koulutus:'); ?>
 <?php
-	$data = array('name'		 		=> 'koulutus_nimi',
-								'value'       => set_value('koulutus_nimi'));
+	$data = array('name'		 		=> 'koulutusnimi',
+								'value'       => set_value('koulutusnimi'));
 	?>
 <?php echo form_input($data); ?>
 </p>
@@ -67,8 +67,8 @@
 </p>
 	<p>
 <?php
-	$data = array('name' => 'submit',
-								'id' => 'nappi',
+	$data = array('name' 	=> 'submit',
+								'class' 		=> 'btn btn-success btn-lg',
 								'value' => "Lisää koulutus");
 ?>
 <?php echo form_submit($data); ?>

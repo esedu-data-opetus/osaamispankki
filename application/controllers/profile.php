@@ -15,6 +15,12 @@ class Profile extends CI_Controller {
 
     $data['harrastus'] = $this->Profile_model->Get_harrastus($user_id);
 
+    $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($user_id);
+
+    $data['koulutus'] = $this->Profile_model->Get_koulutus($user_id);
+
+    $data['kortit'] = $this->Profile_model->Get_kortit($user_id);
+
     $data['User_Info'] = $this->Profile_model->get_profile($user_id);
 
     $data['main_content'] = 'profile_page';
@@ -44,35 +50,9 @@ class Profile extends CI_Controller {
       }
     }
   }
-
   public function edit() {
     $data['main_content'] = 'users/profile_edit';
     $this->load->view('layouts/main',$data);
-  }
-  public function prototype() {
-    if (!isset($kokemus)) {
-      $kokemus = $this->uri->segment(3);
-    }
-    if (empty($kokemus)) {
-      $kokemus = $this->input->post('Aihe');
-    }
-    $this->form_validation->set_rules('Aihe', 'Aihe', 'trim|required');
-    $this->form_validation->set_rules('Loota_1', 'Loota_1', 'trim|required');
-    $this->form_validation->set_rules('Loota_2', 'Loota_2', 'trim|required');
-    $this->form_validation->set_rules('Loota_3', 'Loota_3', 'trim|required');
-    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
-    $this->form_validation->set_rules('vapaasana', 'Mielipide', 'trim');
-    if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = $kokemus;
-      $this->load->view('layouts/main',$data);
-    } else {
-      $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
-        $this->session->set_flashdata('success', 'Harrastus lisätty!');
-        redirect('profile/index');
-      }
-    }
   }
   public function harrastus() {
     $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
@@ -104,8 +84,8 @@ class Profile extends CI_Controller {
   public function tyohistoria() {
     $this->form_validation->set_rules('tyopaikka', 'tyopaikka', 'trim|required');
     $this->form_validation->set_rules('tehtava', 'tehtava', 'trim|required');
-    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
 
     if ($this->form_validation->run() == FALSE) {
@@ -113,31 +93,63 @@ class Profile extends CI_Controller {
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
+      if ($this->Profile_model->tyohistoria($user_id)) {
         $this->session->set_flashdata('success', 'Työhistoria lisätty!');
         redirect('profile/index');
       }
     }
   }
+  public function tyohistoria_delete($id) {
+    $this->Profile_model->tyohistoria_delete($id);
+    redirect('profile/index');
+  }
+  public function tyohistoria_update($id) {
+    $data = array(
+      'tyopaikka'     =>     $this->input->post('tyopaikka'),
+      'tehtava'       =>     $this->input->post('tehtava'),
+      'alkoi'         =>     $this->input->post('Aloitit'),
+      'loppui'        =>     $this->input->post('Lopetit'),
+      'kuvaus'        =>     $this->input->post('vapaasana')
+    );
+    if ($this->Profile_model->tyohistoria_update($id,$data)) {
+      redirect('profile/index');
+    }
+  }
   public function koulutus() {
-    $this->form_validation->set_rules('koulutus_nimi', 'koulutusnimi', 'trim|required');
+    $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
     $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
     $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
-    $this->form_validation->set_rules('Aloitit', 'Aloitit', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim|required');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'Kokemukset/koulutus';
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
-        $this->session->set_flashdata('success', 'Koulutus lisätty!');
+      if ($this->Profile_model->koulutus($user_id)) {
+        $this->session->set_flashdata('success', 'Koulutus Lisätty!');
         redirect('profile/index');
       }
     }
   }
-  public function Kortit() {
+  public function koulutus_delete($id) {
+      $this->Profile_model->koulutus_delete($id);
+      redirect('profile/index');
+  }
+  public function koulutus_update($id) {
+    $data = array(
+        'koulutusnimi'    =>     $this->input->post('koulutusnimi'),
+        'koulutusaste'    =>     $this->input->post('koulutusaste'),
+        'oppilaitos'      =>     $this->input->post('oppilaitos'),
+        'alkoi'           =>     $this->input->post('alkoi'),
+        'loppui'          =>     $this->input->post('loppui')
+    );
+    if ($this->Profile_model->koulutus_update($id,$data)) {
+      redirect('profile/index');
+    }
+  }
+  public function kortit() {
     $this->form_validation->set_rules('kortti', 'kortti', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
@@ -146,26 +158,16 @@ class Profile extends CI_Controller {
       $this->load->view('layouts/main',$data);
     } else {
       $user_id = $this->session->userdata('user_id');
-      if ($this->Profile_model->prototype($user_id)) {
-        $this->session->set_flashdata('success', 'Kortti lisätty!');
+      if ($this->Profile_model->kortit($user_id)) {
+        $this->session->set_flashdata('success', 'Kortti Lisätty!');
         redirect('profile/index');
       }
     }
   }
-  public function kokemus_update($id) {
-    $data = array(
-        'Loota_1'       =>     $this->input->post('Loota_1'),
-        'Loota_2'       =>     $this->input->post('Loota_2'),
-        'Loota_3'       =>     $this->input->post('Loota_3'),
-        'Aloitit'       =>     $this->input->post('Aloitit'),
-        'Lopetit'       =>     $this->input->post('Lopetit'),
-        'Mielipide'     =>     $this->input->post('Mielipide')
-    );
-    if ($this->Profile_model->update_kokemus($id,$data)) {
-      redirect('profile/index');
-    }
+  public function kortit_delete($id) {
+    $this->Profile_model->kortit_delete($id);
+    redirect('profile/index');
   }
-
   public function profile_update($user_id) {
     $data = array(
       'F_Name'          =>    $this->input->post('f_name'),
@@ -179,11 +181,6 @@ class Profile extends CI_Controller {
     if ($this->Profile_model->update_profile($user_id,$data)) {
       redirect('profile/index');
     }
-  }
-
-  public function delete($id) {
-    $this->Profile_model->delete($id);
-    redirect('profile/index');
   }
   public function haku() {
     $this->form_validation->set_rules('haku', 'hakusana', 'trim');
@@ -215,9 +212,6 @@ class Profile extends CI_Controller {
   public function delete_all_meta($user_id) {
     $this->Profile_model->delete_all_meta($user_id);
     redirect('profile/index');
-  }
-  public function test_meta($id) {
-    echo $id;
   }
   public function delete_meta($id) {
     $this->Profile_model->delete_meta($id);
