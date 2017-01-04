@@ -168,10 +168,22 @@ class Profile extends CI_Controller {
     $this->Profile_model->kortit_delete($id);
     redirect('profile/index');
   }
+  public function hide($tila, $user_id) {
+    if ($tila == 'Kylla') {
+      $data = array('Näytä_Profiili'  =>  'Kylla');
+      $fd = $this->session->set_flashdata('success', 'Profiili Näkyy Muilla');
+    } else {
+      $data = array('Näytä_Profiili'  =>  'Ei');
+      $fd = $this->session->set_flashdata('error', 'Profiili Ei Näy Muilla');
+    }
+
+    if ($this->Profile_model->hide($user_id,$data)) {
+      $fb;
+      redirect('profile/index');
+    }
+  }
   public function profile_update($user_id) {
     $data = array(
-      'F_Name'          =>    $this->input->post('f_name'),
-      'L_Name'          =>    $this->input->post('l_name'),
       'Own_Email'       =>    $this->input->post('email'),
       'Osoite'          =>    $this->input->post('address'),
       'Posti_Num'       =>    $this->input->post('p_num'),

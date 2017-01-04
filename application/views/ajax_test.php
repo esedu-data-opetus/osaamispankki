@@ -17,7 +17,7 @@ function loadDoc() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "foodstore.php?test", true);
+  xhttp.open("GET", "teststore.php?test", true);
   xhttp.send();
 }
 function loadDocb() {
@@ -28,7 +28,7 @@ function loadDocb() {
       this.responseText;
     }
   };
-  xhttp.open("GET", "foodstore.php?back", true);
+  xhttp.open("GET", "teststore.php?back", true);
   xhttp.send();
 }
 </script>

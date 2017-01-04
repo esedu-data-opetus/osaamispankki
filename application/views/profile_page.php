@@ -46,7 +46,16 @@ var main = function() {
 
 $(document).ready(main);
 </script>
-<div class="panel panel-default">
+<?php
+foreach($User_Info as $User) {
+  if ($User->Näytä_Profiili == "Ei") {
+    $Col = "default";
+  } else {
+    $Col = "success";
+  }
+}
+?>
+<div class="panel panel-<?php echo $Col; ?>">
 <div class="panel-heading">
 <?php foreach($User_Info as $User) : ?>
 <img style="float: right;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="100" width="100">
@@ -68,55 +77,79 @@ $(document).ready(main);
 
 <?php foreach($User_Info as $User) : ?>
 <?php
+$C_Day     = $User->Create_date;
+$etunimi   = $User->F_Name;
+$sukunimi  = $User->L_Name;
+if ($User->Näytä_Profiili == "Ei") {
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Kylla/'.$User->User_id.'" class="btn btn-success" title="Näytä Profiilisi Kailikke"><span class="glyphicon glyphicon-globe"></span></a>';
+} else {
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Ei/'.$User->User_id.'" class="btn btn-danger" title="Estä Muita Näkemästä Profiilisi"><span class="glyphicon glyphicon-globe"></span></a>';
+}
+
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $etunimi  = "<input name='f_name' type='text' value='".$User->F_Name."'>";
-    $sukunimi = "<input name='l_name' type='text' value='".$User->L_Name."'>";
     $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
     $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
     $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
-    $kuvaus   = "<input name='about' type='text' value='".$User->About."'>";
+    $kuvaus   = "<textarea name='about' type='text'>".$User->About."</textarea>";
     $kuva     = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-    $btn      = '<input type="submit" class="btn btn-primary save-btn" value="Tallenna" title="Tallenna muutokset"/>';
+    $btn      = '<input style="float: right;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
-    $etunimi  = $User->F_Name;
-    $sukunimi = $User->L_Name;
     $s_posti  = $User->Own_Email;
     $osoite   = $User->Osoite;
     $p_num    = $User->Posti_Num;
     $puh      = $User->Puh_Num;
     $kuvaus   = $User->About;
     $kuva     = "";
-    $btn      = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $btn      = '<a style="float: right;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 } else {
-  $etunimi  = $User->F_Name;
-  $sukunimi = $User->L_Name;
   $s_posti  = $User->Own_Email;
   $osoite   = $User->Osoite;
   $p_num    = $User->Posti_Num;
   $puh      = $User->Puh_Num;
   $kuvaus   = $User->About;
   $kuva     = "";
-  $btn      = '<a href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
+  $btn      = '<a style="float: right;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-cog"></span></a>';
 }
 ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
-  <p>Nimi: <?php echo $etunimi." ".$sukunimi; ?></p>
-
-  <p>Sähköposti: <?php echo $s_posti; ?></p>
-
-  <p>Osoite: <?php echo $osoite; ?></p>
-
-  <p>Postinumero: <?php echo $p_num; ?></p>
-
-  <p>Puhelinnumero: <?php echo $puh; ?></p>
-
-  <p>Kuvaus: <?php echo $kuvaus; ?></p>
-
-  <p><?php echo $kuva; ?></p>
-<?php echo $btn; ?>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tili luotu:</th>
+        <th><?php echo $C_Day; ?></th>
+        <th><?php echo $btn; ?><?php echo $Prof_hide; ?></th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr>
+          <td>Nimi:</td>
+          <td colspan="2"><?php echo $etunimi." ".$sukunimi; ?></td>
+        </tr>
+        <tr>
+          <td>Sähköposti:</td>
+          <td colspan="2"><?php echo $s_posti; ?></td>
+        </tr>
+        <tr>
+          <td>Osoite:</td>
+          <td colspan="2"><?php echo $osoite; ?></td>
+        </tr>
+        <tr>
+          <td>Postinumero:</td>
+          <td colspan="2"><?php echo $p_num; ?></td>
+        </tr>
+        <tr>
+          <td>Puhelinnumero:</td>
+          <td colspan="2"><?php echo $puh; ?></td>
+        </tr>
+        <tr>
+          <td>Kuvaus:</td>
+          <td colspan="2"><?php echo $kuvaus; ?></td>
+        </tr>
+      </tbody>
+    </table>
 </form>
 <?php endforeach; ?>
 <div class="panel panel-default">

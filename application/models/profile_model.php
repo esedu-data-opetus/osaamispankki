@@ -128,6 +128,11 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function hide($user_id, $data) {
+    $this->db->where('User_id',$user_id);
+    $this->db->update('profile',$data);
+    return TRUE;
+  }
   public function harrastus_update($id,$data) {
     $this->db->where('id',$id);
     $this->db->update('harrastukset',$data);
@@ -138,41 +143,10 @@ class Profile_model extends CI_Model {
     $this->db->delete('harrastukset');
     return true;
   }
-  public function prototype($user_id) {
-    $Prototype = array(
-        'User_id'       =>     $user_id,
-        'Aihe'          =>     $this->input->post('Aihe'),
-        'Loota_1'       =>     $this->input->post('Loota_1'),
-        'Loota_2'       =>     $this->input->post('Loota_2'),
-        'Loota_3'       =>     $this->input->post('Loota_3'),
-        'Aloitit'       =>     $this->input->post('Aloitit'),
-        'Lopetit'       =>     $this->input->post('Lopetit'),
-        'Mielipide'     =>     $this->input->post('vapaasana')
-    );
-    $insert = $this->db->insert('kokemukset',$Prototype);
-    if ($insert) {
-      return true;
-    }
-  }
-  public function Get_kokemukset($user_id) {
-    $this->db->where('User_id',$user_id);
-    $query = $this->db->get('kokemukset');
-    return $query->result();
-  }
-  public function update_kokemus($id,$data) {
-    $this->db->where('id',$id);
-    $this->db->update('kokemukset',$data);
-    return TRUE;
-  }
   public function update_profile($user_id,$data) {
     $this->db->where('User_id',$user_id);
     $this->db->update('profile',$data);
     return TRUE;
-  }
-  public function delete($id) {
-    $this->db->where('id',$id);
-    $this->db->delete('kokemukset');
-    return true;
   }
   public function delete_all_meta($user_id) {
     $this->db->where('User_id',$user_id);
