@@ -48,17 +48,14 @@ $(document).ready(main);
 </script>
 <div class="panel panel-default">
 <div class="panel-heading">
-<h1>Oma profiili</h1>
 <?php foreach($User_Info as $User) : ?>
-  <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
+<img style="float: right;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="100" width="100">
+<h1>Oma profiili</h1>
+<p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
 <?php endforeach; ?>
 </div>
 
 <div class="panel-body">
-<?php foreach($User_Info as $User) : ?>
-  <img style="float: left; margin: 0 20px 0 0;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="200" width="200">
-<?php endforeach; ?>
-
 <!-- <div style="margin-top: 15px;">
 <?php
   echo form_open_multipart('Upload_controller/do_upload');
@@ -74,7 +71,7 @@ $(document).ready(main);
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
     $etunimi  = "<input name='f_name' type='text' value='".$User->F_Name."'>";
-    $sukunimi = " <input name='l_name' type='text' value='".$User->L_Name."'>";
+    $sukunimi = "<input name='l_name' type='text' value='".$User->L_Name."'>";
     $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
     $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
