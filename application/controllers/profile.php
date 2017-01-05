@@ -50,10 +50,6 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function edit() {
-    $data['main_content'] = 'users/profile_edit';
-    $this->load->view('layouts/main',$data);
-  }
   public function harrastus() {
     $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
@@ -64,7 +60,7 @@ class Profile extends CI_Controller {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->harrastus($user_id)) {
         $this->session->set_flashdata('success', 'Harrastus lisätty!');
-        redirect('profile/index');
+        redirect('profile/harrastus');
       }
     }
   }

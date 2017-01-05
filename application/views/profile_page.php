@@ -43,9 +43,9 @@ var main = function() {
     });
     $('#luo').addClass('disabled');
 };
-
 $(document).ready(main);
 </script>
+
 <?php
 foreach($User_Info as $User) {
   if ($User->Näytä_Profiili == "Ei") {
@@ -165,7 +165,11 @@ if (isset($_GET['Prof_Edit'])) {
   <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
   <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
 <?php else : ?>
-  <a href="<?php echo base_url(); ?>profile?select=all" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-th"></span></a>
+  <?php if (empty($meta_tieto)) : ?>
+    <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+  <?php else : ?>
+    <a href="<?php echo base_url(); ?>profile?select=all" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-th"></span></a>
+  <?php endif; ?>
   <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
 <?php endif; ?>
   <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
@@ -275,7 +279,6 @@ if (isset($_GET['Prof_Edit'])) {
       $Mielipide  =   $hobby->vapaasana;
       $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
-      // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Harrastus  =   '<input style="max-width: 180px;" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
       $Mielipide  =   '<input name="vapaasana" type="text" value="'.$hobby->vapaasana.'" />';
       $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
@@ -286,7 +289,6 @@ if (isset($_GET['Prof_Edit'])) {
     $Save         =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
-
 <form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
     <td><?php echo $Harrastus; ?></td>
     <td style="max-width: 350px; hover: overflow: auto;"><?php echo $Mielipide; ?></td>
