@@ -13,16 +13,26 @@
   <script src="http://paja.esedu.fi/data13/riku.ronka/harjoitus/js/jquery.js"></script>
 </head>
 <body>
+
+  <?php if ($this->session->flashdata('error') || $this->session->flashdata('success')) : ?>
+  <script>
+  var main = function() {
+    $('#F_MSG').delay(1000).fadeOut(1000);
+  };
+  $(document).ready(main);
+  </script>
+  <?php endif; ?>
+
   <div style="padding-top: 60px;"></div>
   <?php if ($this->session->flashdata('error')) : ?>
-    <div style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-danger" role="alert">
+    <div id="F_MSG" style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Virhe:</span>
       <?php echo $this->session->flashdata('error'); ?>
     </div>
   <?php endif; ?>
   <?php if ($this->session->flashdata('success')) : ?>
-    <div style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-success" role="alert">
+    <div id="F_MSG" style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-success" role="alert">
       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
       <span class="sr-only">Onnistui:</span>
       <?php echo $this->session->flashdata('success'); ?>
