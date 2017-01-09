@@ -4,12 +4,15 @@
   cursor: not-allowed;
   opacity: .65;
 }
+
 .table td:hover {
   overflow-x: auto;
 }
+
 td {
   overflow: hidden;
 }
+
 /*top, right, bottom, left*/
 .plus {
   margin: -2 -2 0 0;
