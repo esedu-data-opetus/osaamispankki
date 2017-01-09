@@ -43,6 +43,7 @@
 <?php
 	$data = array('name'		 		=> 'Aloitit',
 								'id'					=> 'alkoi',
+								'readonly'		=> 'readonly',
 								'value'       => set_value('Aloitit'));
 	?>
 <?php echo form_input($data); ?>
@@ -52,6 +53,7 @@
 <?php
 	$data = array('name'		 		=> 'Lopetit',
 								'id'					=> 'loppui',
+								'readonly'		=> 'readonly',
 								'value'       => set_value('Lopetit'));
 	?>
 <?php echo form_input($data); ?>
