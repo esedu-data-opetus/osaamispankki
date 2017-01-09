@@ -91,19 +91,16 @@ if ($User->Näytä_Profiili == "Ei") {
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $s_posti  = $User->Own_Email;
-    $osoite   = $User->Osoite;
-    $p_num    = $User->Posti_Num;
-    $puh      = $User->Puh_Num;
-
-    // $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
-    // $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
-    // $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
-    // $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
+    $name  = "<input name='F_Name' type='text' value='".$User->F_Name."'><input name='L_Name' type='text' value='".$User->L_Name."'>";
+    $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
+    $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
+    $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
+    $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
     $kuvaus   = "<textarea name='about' type='text' style='max-width: 537px; max-height: 100px;'>".$User->About."</textarea>";
     $kuva     = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
     $btn      = '<input style="float: right;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
+    $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
     $osoite   = $User->Osoite;
     $p_num    = $User->Posti_Num;
@@ -113,6 +110,7 @@ if (isset($_GET['Prof_Edit'])) {
     $btn      = '<a style="float: right;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 } else {
+  $name     = $etunimi." ".$sukunimi;
   $s_posti  = $User->Own_Email;
   $osoite   = $User->Osoite;
   $p_num    = $User->Posti_Num;
@@ -134,7 +132,7 @@ if (isset($_GET['Prof_Edit'])) {
       <tbody>
         <tr>
           <td>Nimi:</td>
-          <td colspan="2"><?php echo $etunimi." ".$sukunimi; ?></td>
+          <td colspan="2"><?php echo $name; ?></td>
         </tr>
         <tr>
           <td>Sähköposti:</td>

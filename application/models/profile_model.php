@@ -11,7 +11,7 @@ class Profile_model extends CI_Model {
         'Own_Email'     =>     $this->input->post('own_email'),
         'Osoite'        =>     $this->input->post('osoite'),
         'Posti_Num'     =>     $this->input->post('posti_num'),
-        'SukuP'         =>     'Muu'
+        'Näytä_Profiili'=>     'Ei'
     );
     $insert = $this->db->insert('profile',$Profile);
     if ($insert) {

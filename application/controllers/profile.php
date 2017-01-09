@@ -180,6 +180,8 @@ class Profile extends CI_Controller {
   }
   public function profile_update($user_id) {
     $data = array(
+      'F_Name'          =>    $this->input->post('F_Name'),
+      'L_Name'          =>    $this->input->post('L_Name'),
       'Own_Email'       =>    $this->input->post('email'),
       'Osoite'          =>    $this->input->post('address'),
       'Posti_Num'       =>    $this->input->post('p_num'),
