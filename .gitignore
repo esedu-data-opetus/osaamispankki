@@ -1,3 +1,5 @@
+database.php
+
 .DS_Store
 
 application/cache/*
@@ -25,5 +27,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
 application/config/database.php
-system/libraries/Email.php
