@@ -91,11 +91,16 @@ if ($User->Näytä_Profiili == "Ei") {
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
-    $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
-    $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
-    $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
-    $kuvaus   = "<textarea name='about' type='text'>".$User->About."</textarea>";
+    $s_posti  = $User->Own_Email;
+    $osoite   = $User->Osoite;
+    $p_num    = $User->Posti_Num;
+    $puh      = $User->Puh_Num;
+
+    // $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
+    // $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
+    // $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
+    // $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
+    $kuvaus   = "<textarea name='about' type='text' style='max-width: 537px; max-height: 100px;'>".$User->About."</textarea>";
     $kuva     = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
     $btn      = '<input style="float: right;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
@@ -276,11 +281,11 @@ if (isset($_GET['Prof_Edit'])) {
 <?php foreach($harrastus as $hobby) : ?>
   <tr>
 <?php
-  if (isset($_GET['Edit'])) {
-    if ($_GET['Edit'] !== $hobby->id) {
+  if (isset($_GET['EditHobby'])) {
+    if ($_GET['EditHobby'] !== $hobby->id) {
       $Harrastus  =   $hobby->harrastus;
       $Mielipide  =   $hobby->vapaasana;
-      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save       =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       $Harrastus  =   '<input style="max-width: 180px;" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
       $Mielipide  =   '<input name="vapaasana" type="text" value="'.$hobby->vapaasana.'" />';
@@ -289,7 +294,7 @@ if (isset($_GET['Prof_Edit'])) {
   } else {
     $Harrastus    =   $hobby->harrastus;
     $Mielipide    =   $hobby->vapaasana;
-    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save         =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
@@ -342,14 +347,14 @@ if (isset($_GET['Prof_Edit'])) {
 <?php foreach($tyohistoria as $work_h) : ?>
   <tr>
 <?php
-  if (isset($_GET['Edit'])) {
-    if ($_GET['Edit'] !== $work_h->id) {
+  if (isset($_GET['EditTyo'])) {
+    if ($_GET['EditTyo'] !== $work_h->id) {
       $Työpaikka  =   $work_h->tyopaikka;
       $Tehtävä    =   $work_h->tehtava;
       $Alkoi      =   $work_h->alkoi;
       $Loppui     =   $work_h->loppui;
       $Kuvaus     =   $work_h->kuvaus;
-      $Save       =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
       $width      =   "max-width: 100px;";
     } else {
       $width      =   "max-width: 220px;";
@@ -367,7 +372,7 @@ if (isset($_GET['Prof_Edit'])) {
     $Alkoi      =   $work_h->alkoi;
     $Loppui     =   $work_h->loppui;
     $Kuvaus     =   $work_h->kuvaus;
-    $Save         =   '<a href="'.base_url().'profile/index?Edit='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save         =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/tyohistoria_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
@@ -423,14 +428,14 @@ if (isset($_GET['Prof_Edit'])) {
 <?php foreach($koulutus as $koulut) : ?>
   <tr>
 <?php
-  if (isset($_GET['Edit'])) {
-    if ($_GET['Edit'] !== $koulut->id) {
+  if (isset($_GET['EditKoulutus'])) {
+    if ($_GET['EditKoulutus'] !== $koulut->id) {
       $Koulutusnimi  =  $koulut->koulutusnimi;
       $Koulutusaste  =  $koulut->koulutusaste;
       $Oppilaitos    =  $koulut->oppilaitos;
       $Alkoi         =  $koulut->alkoi;
       $Loppui        =  $koulut->loppui;
-      $Save          =  '<a href="'.base_url().'profile/index?Edit='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+      $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
     } else {
       // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
       $Koulutusnimi  =  '<input style="width: 125px;" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
@@ -446,7 +451,7 @@ if (isset($_GET['Prof_Edit'])) {
     $Oppilaitos    =  $koulut->oppilaitos;
     $Alkoi         =  $koulut->alkoi;
     $Loppui        =  $koulut->loppui;
-    $Save            =  '<a href="'.base_url().'profile/index?Edit='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+    $Save            =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
   }
 ?>
 <form action="<?php echo base_url(); ?>profile/koulutus_update/<?php echo $koulut->id; ?>" enctype="multipart/form-data" method="post">
