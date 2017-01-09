@@ -91,7 +91,7 @@ if ($User->Näytä_Profiili == "Ei") {
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $name  = "<input name='F_Name' type='text' value='".$User->F_Name."'><input name='L_Name' type='text' value='".$User->L_Name."'>";
+    $name     = "<input name='F_Name' type='text' value='".$User->F_Name."'><input name='L_Name' type='text' value='".$User->L_Name."'>";
     $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
     $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
