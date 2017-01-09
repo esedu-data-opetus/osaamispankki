@@ -91,7 +91,7 @@ class Profile extends CI_Controller {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->tyohistoria($user_id)) {
         $this->session->set_flashdata('success', 'Työhistoria lisätty!');
-        redirect('profile/index');
+        redirect('profile/tyohistoria');
       }
     }
   }
@@ -125,7 +125,7 @@ class Profile extends CI_Controller {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->koulutus($user_id)) {
         $this->session->set_flashdata('success', 'Koulutus Lisätty!');
-        redirect('profile/index');
+        redirect('profile/koulutus');
       }
     }
   }
@@ -156,7 +156,7 @@ class Profile extends CI_Controller {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->kortit($user_id)) {
         $this->session->set_flashdata('success', 'Kortti Lisätty!');
-        redirect('profile/index');
+        redirect('profile/kortit');
       }
     }
   }
