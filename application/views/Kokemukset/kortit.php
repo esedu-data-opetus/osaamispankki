@@ -42,6 +42,7 @@
 <?php
 	$data = array('name'		 		=> 'Lopetit',
 								'id'					=> 'loppui',
+								'readonly'		=> 'readonly',
 								'value'       => set_value('Lopetit'));
 	?>
 <?php echo form_input($data); ?>
