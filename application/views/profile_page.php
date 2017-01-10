@@ -67,8 +67,8 @@ foreach($User_Info as $User) {
 <?php if (isset($_GET['Prof_Edit'])) {
   echo "<div style='float:right;'>";
   echo form_open_multipart('Upload_controller/do_upload');
-  echo "<input style='margin-top:-100px;' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-  echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success'/>";
+  echo "<input style='margin-top:-100px;' onChange='check_user(1);' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+  echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
   echo "</form>";
   echo "</div>";
 } else {
@@ -78,16 +78,20 @@ foreach($User_Info as $User) {
 <?php endforeach; ?>
 </div>
 
+<script>
+function check_user() {
+
+if( document.getElementById("uploadBox").files.length == 0 ){
+    console.log("no files selected");
+} else {
+  document.getElementById("nappi").disabled = 'true';
+
+  nappi.disabled = 'false';
+}
+}
+</script>
+
 <div class="panel-body">
-<!-- <div style="margin-top: 15px;">
-<?php
-  echo form_open_multipart('Upload_controller/do_upload');
-  echo "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-  echo '<br>';
-  echo "<input type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/> ";
-  echo "</form>";
-?>
-</div> -->
 
 <?php foreach($User_Info as $User) : ?>
 <?php
