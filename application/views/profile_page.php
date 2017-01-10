@@ -15,7 +15,7 @@ td {
 
 /*top, right, bottom, left*/
 .plus {
-  margin: -2 -2 0 0;
+  margin: -2px -2px 0 0;
 }
 
 .add-btn {
@@ -61,9 +61,20 @@ foreach($User_Info as $User) {
 <div class="panel panel-<?php echo $Col; ?>">
 <div class="panel-heading">
 <?php foreach($User_Info as $User) : ?>
-<img style="float: right;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" title="<?php echo $User->Prof_Pic; ?>" height="100" width="100">
+<img style="float: right;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" height="100" width="100">
 <h1>Oma profiili</h1>
 <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
+<?php if (isset($_GET['Prof_Edit'])) {
+  echo "<div style='float:right;'>";
+  echo form_open_multipart('Upload_controller/do_upload');
+  echo "<input style='margin-top:-100px;' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+  echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success'/>";
+  echo "</form>";
+  echo "</div>";
+} else {
+  echo "";
+}
+?>
 <?php endforeach; ?>
 </div>
 
@@ -163,7 +174,7 @@ if (isset($_GET['Prof_Edit'])) {
 <?php if (isset($_GET['select'])) : ?>
   <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
 <?php if ($_GET['select'] == 'all') : ?>
-  <a onclick="return confirm('Haluatko Poitaa Kaikki Metatiedot?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+  <a onclick="return confirm('Haluatko poistaa kaikki metatiedot?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
 <?php else : ?>
   <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
 <?php endif; ?>

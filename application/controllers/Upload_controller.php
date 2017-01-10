@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Upload_Controller extends CI_Controller {
-	
+
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function file_view(){
-		$this->load->view('members', array('error' => ' ' ));
+		$this->load->view('profile_page', array('error' => ' ' ));
 	}
-	
+
 	public function do_upload(){
 		$config = array(
 			'upload_path' => "./images/profiili/",
@@ -17,10 +17,10 @@ class Upload_Controller extends CI_Controller {
 			'overwrite' => TRUE,
 			'max_size' => "20480000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
 			'max_height' => "",
-			'max_width' => "",	
+			'max_width' => "",
 		);
 		$this->load->library('upload', $config);
-		
+
 		if($this->upload->do_upload())
 		{
 			$upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
@@ -28,18 +28,18 @@ class Upload_Controller extends CI_Controller {
 			$data = array(
 					//			md5 häshätään		tiedoston nimi			tiedoston pääte
 					//'pkuva' => md5($this->session->userdata('sposti')).'.'. end((explode(".", $_FILES['userfile']['name'])))
-					'pkuva' => $file_name
+					'Prof_Pic' => $file_name
 			);
-			
-			$this->db->where('sposti', $this->session->userdata('sposti'));
-			$this->db->update('henkilotiedot',$data);
+
+			$this->db->where('Sposti', $this->session->userdata('sposti'));
+			$this->db->update('profile',$data);
 			//print_r($this->upload->data());
-			redirect('sivu/members');
+			redirect('profile/index');
 		}
 		else
 		{
 			$error = array('error' => $this->upload->display_errors());
-			$this->load->template('members');
+			$this->load->template('layouts/main');
 		}
 	}
 }
