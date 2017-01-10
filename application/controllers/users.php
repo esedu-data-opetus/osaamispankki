@@ -98,7 +98,18 @@ public function index() {
       $data['main_content'] = "Palaute";
       $this->load->view('layouts/main', $data);
     } else {
-      echo "Good Bye!";
+      if ($this->session->userdata('user_id')) {
+        $User_id = $this->session->userdata('user_id');
+      } else {
+        $User_id = 0;
+      }
+      if($this->User_model->Palaute($User_id)) {
+        $this->session->set_flashdata('success', 'Kiitos Palautteesta! Hyvää Päivän Jatkoa :3');
+        redirect('Home/index');
+      } else {
+        $this->session->set_flashdata('error', 'Jotain Meni Pieleen :/');
+        redirect('Home/index');
+      }
     }
   }
 }

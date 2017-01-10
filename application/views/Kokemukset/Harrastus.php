@@ -35,7 +35,7 @@
 	<p>
 <?php
 	$data = array('name' 		=> 		'submit',
-								'class' 	=> 		'btn btn-success',
+								'class' 	=> 		'btn btn-success btn-lg',
 								'value' 	=> 		'Lisää Harrastus');
 ?>
 <?php echo form_submit($data); ?>

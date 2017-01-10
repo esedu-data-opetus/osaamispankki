@@ -84,4 +84,15 @@ class User_model extends CI_Model {
   public function C_Email($key) {
       return true;
   }
+  public function Palaute($User_id) {
+    $data = array(
+      'User_id'   =>    $User_id,
+      'Sposti'    =>    $this->input->post('Sposti'),
+      'palaute'   =>    $this->input->post('Palaute')
+    );
+    $insert = $this->db->insert('palaute',$data);
+    if ($insert) {
+      return True;
+    }
+  }
 }
