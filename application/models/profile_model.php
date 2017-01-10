@@ -1,3 +1,5 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+
 <?php
 class Profile_model extends CI_Model {
   public function profile_setup() {
@@ -49,6 +51,13 @@ class Profile_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('profile');
         $this->db->where('User_id',$user_id);
+        $query = $this->db->get();
+        return $query->result();
+  }
+  public function get_user($user_id) {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id',$user_id);
         $query = $this->db->get();
         return $query->result();
   }

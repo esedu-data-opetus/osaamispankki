@@ -13,9 +13,7 @@
 		<a class="btn btn-success btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>users/register">Luo tili</a>
 <?php else : ?>
 		<a class="btn btn-primary btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
-<?php if ($this->session->userdata('Admin')) : ?>
 		<a class="btn btn-success btn-lg" style="margin: 10px;" href="<?php echo base_url(); ?>profile/haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
-<?php endif; ?>
 <?php endif; ?>
 </div>
 </nav>

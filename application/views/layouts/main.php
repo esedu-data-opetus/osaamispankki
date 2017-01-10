@@ -24,6 +24,7 @@
   <?php endif; ?>
 
   <div style="padding-top: 60px;"></div>
+
   <?php if ($this->session->flashdata('error')) : ?>
     <div id="F_MSG" style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -31,6 +32,7 @@
       <?php echo $this->session->flashdata('error'); ?>
     </div>
   <?php endif; ?>
+
   <?php if ($this->session->flashdata('success')) : ?>
     <div id="F_MSG" style="position: fixed; margin: 0 0 0 45%; top: 70px; box-shadow: 0 0 20px;" class="alert alert-success" role="alert">
       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
@@ -38,6 +40,7 @@
       <?php echo $this->session->flashdata('success'); ?>
     </div>
   <?php endif; ?>
+
   <?php $this->load->view('templates/header'); ?>
   <div class="container">
     <?php $this->load->view($main_content); ?>
