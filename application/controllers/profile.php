@@ -197,11 +197,11 @@ class Profile extends CI_Controller {
   public function haku() {
     $this->form_validation->set_rules('haku', 'hakusana', 'trim');
     if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = 'haku_uusi';
+      $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);
     } else {
       if ($this->Profile_model->hakee()) {
-        $data['main_content'] = 'haku_uusi';
+        $data['main_content'] = 'haku';
         $this->load->view('layouts/main',$data);
         return true;
       }
