@@ -36,7 +36,7 @@
 </style>
 
 <div class="styling">
-<?php echo validation_errors('<p class="error">'); ?>
+	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php echo form_open('users/register'); ?>
 <p>
 	<?php echo form_label('Etunimi:'); ?>

@@ -2,7 +2,9 @@
 
 <?php
 class Users extends CI_Controller {
-
+public function index() {
+  redirect('home/index');
+}
   public function register() {
     if ($this->session->userdata('is_logged_in') == 1) {
       redirect('home/index');
@@ -86,6 +88,17 @@ class Users extends CI_Controller {
       $this->session->set_userdata($data);
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
       redirect('home/index');
+    }
+  }
+  public function palaute() {
+    $this->form_validation->set_rules('Sposti', 'Sposti', 'trim|required|valid_email');
+    $this->form_validation->set_rules('Palaute', 'Palaute', 'trim|required');
+
+    if ($this->form_validation->run() !== True) {
+      $data['main_content'] = "Palaute";
+      $this->load->view('layouts/main', $data);
+    } else {
+      echo "Good Bye!";
     }
   }
 }

@@ -17,7 +17,7 @@
   <?php if ($this->session->flashdata('error') || $this->session->flashdata('success')) : ?>
   <script>
   var main = function() {
-    $('#F_MSG').delay(1000).fadeOut(1000);
+    $('#F_MSG').delay(3000).fadeOut(1000);
   };
   $(document).ready(main);
   </script>
