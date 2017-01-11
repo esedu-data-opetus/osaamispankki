@@ -52,7 +52,7 @@ public function index() {
       $user_id = $this->User_model->login_user($username,$password);
       $user_key = $this->User_model->fetch_key($username,$password);
 
-        if($user_id && $user_profile){
+        if($user_id){
             $data = array(
               'Key'          =>  $user_key,
               'user_id'      =>  $user_id,
