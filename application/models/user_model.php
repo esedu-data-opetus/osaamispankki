@@ -87,8 +87,8 @@ class User_model extends CI_Model {
   public function Palaute($User_id) {
     $data = array(
       'User_id'   =>    $User_id,
-      'Sposti'    =>    $this->input->post('Sposti'),
-      'palaute'   =>    $this->input->post('Palaute')
+      'Sposti'    =>    filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING),
+      'palaute'   =>    filter_var($this->input->post('Palaute'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('palaute',$data);
     if ($insert) {

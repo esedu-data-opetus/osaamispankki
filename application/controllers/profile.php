@@ -72,8 +72,8 @@ class Profile extends CI_Controller {
   }
   public function harrastus_update($id) {
     $data = array(
-        'harrastus'       =>     $this->input->post('harrastus'),
-        'vapaasana'       =>     $this->input->post('vapaasana')
+        'harrastus'       =>     filter_var($this->input->post('harrastus'), FILTER_SANITIZE_STRING),
+        'vapaasana'       =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->harrastus_update($id,$data)) {
       redirect('profile/index');
@@ -103,11 +103,11 @@ class Profile extends CI_Controller {
   }
   public function tyohistoria_update($id) {
     $data = array(
-      'tyopaikka'     =>     $this->input->post('tyopaikka'),
-      'tehtava'       =>     $this->input->post('tehtava'),
-      'alkoi'         =>     $this->input->post('Aloitit'),
-      'loppui'        =>     $this->input->post('Lopetit'),
-      'kuvaus'        =>     $this->input->post('vapaasana')
+      'tyopaikka'     =>     filter_var($this->input->post('tyopaikka'), FILTER_SANITIZE_STRING),
+      'tehtava'       =>     filter_var($this->input->post('tehtava'), FILTER_SANITIZE_STRING),
+      'alkoi'         =>     filter_var($this->input->post('Aloitit'), FILTER_SANITIZE_STRING),
+      'loppui'        =>     filter_var($this->input->post('Lopetit'), FILTER_SANITIZE_STRING),
+      'kuvaus'        =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->tyohistoria_update($id,$data)) {
       redirect('profile/index');
@@ -137,11 +137,11 @@ class Profile extends CI_Controller {
   }
   public function koulutus_update($id) {
     $data = array(
-        'koulutusnimi'    =>     $this->input->post('koulutusnimi'),
-        'koulutusaste'    =>     $this->input->post('koulutusaste'),
-        'oppilaitos'      =>     $this->input->post('oppilaitos'),
-        'alkoi'           =>     $this->input->post('alkoi'),
-        'loppui'          =>     $this->input->post('loppui')
+        'koulutusnimi'    =>     filter_var($this->input->post('koulutusnimi'), FILTER_SANITIZE_STRING),
+        'koulutusaste'    =>     filter_var($this->input->post('koulutusaste'), FILTER_SANITIZE_STRING),
+        'oppilaitos'      =>     filter_var($this->input->post('oppilaitos'), FILTER_SANITIZE_STRING),
+        'alkoi'           =>     filter_var($this->input->post('alkoi'), FILTER_SANITIZE_STRING),
+        'loppui'          =>     filter_var($this->input->post('loppui'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->koulutus_update($id,$data)) {
       redirect('profile/index');
@@ -182,13 +182,13 @@ class Profile extends CI_Controller {
   }
   public function profile_update($user_id) {
     $data = array(
-      'F_Name'          =>    $this->input->post('F_Name'),
-      'L_Name'          =>    $this->input->post('L_Name'),
-      'Own_Email'       =>    $this->input->post('email'),
-      'Osoite'          =>    $this->input->post('address'),
-      'Posti_Num'       =>    $this->input->post('p_num'),
-      'Puh_Num'         =>    $this->input->post('puh'),
-      'About'           =>    $this->input->post('about')
+      'F_Name'          =>    filter_var($this->input->post('F_Name'), FILTER_SANITIZE_STRING),
+      'L_Name'          =>    filter_var($this->input->post('L_Name'), FILTER_SANITIZE_STRING),
+      'Own_Email'       =>    filter_var($this->input->post('email'), FILTER_SANITIZE_STRING),
+      'Osoite'          =>    filter_var($this->input->post('address'), FILTER_SANITIZE_STRING),
+      'Posti_Num'       =>    filter_var($this->input->post('p_num'), FILTER_SANITIZE_STRING),
+      'Puh_Num'         =>    filter_var($this->input->post('puh'), FILTER_SANITIZE_STRING),
+      'About'           =>    filter_var($this->input->post('about'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->update_profile($user_id,$data)) {
       redirect('profile/index');
@@ -214,7 +214,7 @@ class Profile extends CI_Controller {
     } else {
       $data = array(
           'User_id'     =>     $this->session->userdata('user_id'),
-          'Tieto'       =>     $this->input->post('Tieto')
+          'Tieto'       =>     filter_var($this->input->post('Tieto'), FILTER_SANITIZE_STRING)
       );
       if ($this->Profile_model->meta_add($data)) {
         redirect('profile?add_meta');

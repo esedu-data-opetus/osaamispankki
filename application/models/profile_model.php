@@ -4,16 +4,16 @@
 class Profile_model extends CI_Model {
   public function profile_setup() {
     $Profile = array(
-        'User_id'       =>     $this->session->userdata('user_id'),
-        'F_Name'        =>     $this->input->post('f_name'),
-        'L_Name'        =>     $this->input->post('l_name'),
-        'C_Key'         =>     $this->session->userdata('Key'),
-        'Puh_Num'       =>     $this->input->post('puh_num'),
+        'User_id'       =>     filter_var($this->session->userdata('user_id'), FILTER_SANITIZE_STRING),
+        'F_Name'        =>     filter_var($this->input->post('f_name'), FILTER_SANITIZE_STRING),
+        'L_Name'        =>     filter_var($this->input->post('l_name'), FILTER_SANITIZE_STRING),
+        'C_Key'         =>     filter_var($this->session->userdata('Key'), FILTER_SANITIZE_STRING),
+        'Puh_Num'       =>     filter_var($this->input->post('puh_num'), FILTER_SANITIZE_STRING),
         'About'         =>     'Muu',
-        'Own_Email'     =>     $this->input->post('own_email'),
-        'Sposti'        =>     $this->session->userdata('sposti'),
-        'Osoite'        =>     $this->input->post('osoite'),
-        'Posti_Num'     =>     $this->input->post('posti_num'),
+        'Own_Email'     =>     filter_var($this->input->post('own_email'), FILTER_SANITIZE_STRING),
+        'Sposti'        =>     filter_var($this->session->userdata('sposti'), FILTER_SANITIZE_STRING),
+        'Osoite'        =>     filter_var($this->input->post('osoite'), FILTER_SANITIZE_STRING),
+        'Posti_Num'     =>     filter_var($this->input->post('posti_num'), FILTER_SANITIZE_STRING),
         'Näytä_Profiili'=>     'Ei'
     );
     $insert = $this->db->insert('profile',$Profile);
@@ -65,11 +65,11 @@ class Profile_model extends CI_Model {
   public function tyohistoria($user_id) {
     $data = array(
         'User_id'       =>     $user_id,
-        'tyopaikka'     =>     $this->input->post('tyopaikka'),
-        'tehtava'       =>     $this->input->post('tehtava'),
-        'alkoi'         =>     $this->input->post('Aloitit'),
-        'loppui'        =>     $this->input->post('Lopetit'),
-        'kuvaus'        =>     $this->input->post('vapaasana')
+        'tyopaikka'     =>     filter_var($this->input->post('tyopaikka'), FILTER_SANITIZE_STRING),
+        'tehtava'       =>     filter_var($this->input->post('tehtava'), FILTER_SANITIZE_STRING),
+        'alkoi'         =>     filter_var($this->input->post('Aloitit'), FILTER_SANITIZE_STRING),
+        'loppui'        =>     filter_var($this->input->post('Lopetit'), FILTER_SANITIZE_STRING),
+        'kuvaus'        =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('tyohistoria',$data);
     if ($insert) {
@@ -79,11 +79,11 @@ class Profile_model extends CI_Model {
   public function koulutus($user_id) {
     $data = array(
         'User_id'         =>     $user_id,
-        'koulutusnimi'    =>     $this->input->post('koulutusnimi'),
-        'koulutusaste'    =>     $this->input->post('koulutusaste'),
-        'oppilaitos'      =>     $this->input->post('oppilaitos'),
-        'alkoi'           =>     $this->input->post('Aloitit'),
-        'loppui'          =>     $this->input->post('Lopetit')
+        'koulutusnimi'    =>     filter_var($this->input->post('koulutusnimi'), FILTER_SANITIZE_STRING),
+        'koulutusaste'    =>     filter_var($this->input->post('koulutusaste'), FILTER_SANITIZE_STRING),
+        'oppilaitos'      =>     filter_var($this->input->post('oppilaitos'), FILTER_SANITIZE_STRING),
+        'alkoi'           =>     filter_var($this->input->post('Aloitit'), FILTER_SANITIZE_STRING),
+        'loppui'          =>     filter_var($this->input->post('Lopetit'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('koulutus',$data);
     if ($insert) {
@@ -93,9 +93,9 @@ class Profile_model extends CI_Model {
   public function kortit($user_id) {
     $data = array(
         'User_id'     =>     $user_id,
-        'kortti'      =>     $this->input->post('kortti'),
-        'loppuu'      =>     $this->input->post('Lopetit'),
-        'vapaasana'   =>     $this->input->post('vapaasana')
+        'kortti'      =>     filter_var($this->input->post('kortti'), FILTER_SANITIZE_STRING),
+        'loppuu'      =>     filter_var($this->input->post('Lopetit'), FILTER_SANITIZE_STRING),
+        'vapaasana'   =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('kkortit',$data);
     if ($insert) {
@@ -130,8 +130,8 @@ class Profile_model extends CI_Model {
   public function harrastus($user_id) {
     $data = array(
         'User_id'       =>     $user_id,
-        'harrastus'     =>     $this->input->post('harrastus'),
-        'vapaasana'     =>     $this->input->post('vapaasana')
+        'harrastus'     =>     filter_var($this->input->post('harrastus'), FILTER_SANITIZE_STRING),
+        'vapaasana'     =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('harrastukset',$data);
     if ($insert) {
@@ -171,12 +171,12 @@ class Profile_model extends CI_Model {
   public function hakee() {
     $haku = $this->input->post('haku');
     $data = array(
-      'harrastukset',
-      'kkortit',
-      'kortit',
-      'koulutus',
-      'profile',
-      'tyohistoria',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
     );
     foreach ($data as $haku) {
       echo "<h1><i>".$haku."</i></h1>";
