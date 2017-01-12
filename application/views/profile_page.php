@@ -51,7 +51,7 @@ $(document).ready(main);
 
 <?php
 if (!$User_Info) {
-  redirect('users/logout?profile=false');
+  redirect('users/Proff_error');
 }
 
 foreach($User_Info as $User) {

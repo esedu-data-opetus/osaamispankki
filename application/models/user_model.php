@@ -55,6 +55,16 @@ class User_model extends CI_Model {
         return false;
     }
   }
+  public function User_type($username) {
+    $this->db->where('Sposti',$username);
+
+    $result = $this->db->get('profile');
+    if($result->num_rows() == 1){
+        return $result->row(0)->KT;
+    } else {
+        return false;
+    }
+  }
   public function fetch_key($username,$password) {
     $enc_password = md5($password);
 
@@ -88,6 +98,7 @@ class User_model extends CI_Model {
     $data = array(
       'User_id'   =>    $User_id,
       'Sposti'    =>    filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING),
+      'Aihe'      =>    filter_var($this->input->post('Aihe'), FILTER_SANITIZE_STRING),
       'palaute'   =>    filter_var($this->input->post('Palaute'), FILTER_SANITIZE_STRING)
     );
     $insert = $this->db->insert('palaute',$data);

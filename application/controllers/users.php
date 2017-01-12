@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <?php
+// $this->uri->segment('');
 class Users extends CI_Controller {
 public function index() {
   redirect('home/index');
@@ -50,12 +51,14 @@ public function index() {
       $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
       $password = $this->input->post('password');
       $user_id = $this->User_model->login_user($username,$password);
+      $KT = $this->User_model->User_type($username);
       $user_key = $this->User_model->fetch_key($username,$password);
 
         if($user_id){
             $data = array(
               'Key'          =>  $user_key,
               'user_id'      =>  $user_id,
+              'KT'           =>  $KT,
               'sposti'       =>  $this->input->post('email'),
               'is_logged_in' =>  1
             );
@@ -73,16 +76,27 @@ public function index() {
         }
       }
     }
-  public function logout() {
-    if ($this->url->url('profile')) {
-      $this->session->set_flashdata('error', 'Sinulla Ei ole Profiilia! Lähetä Palaute Ja Odota Kunnes Vastaamme!');
+  public function Proff_error() {
+    $data = array(
+      'Key'          =>  'undefined',
+      'user_id'      =>  'undefined',
+      'sposti'       =>  'undefined',
+      'is_logged_in' =>  0
+    );
+      $this->session->set_userdata($data);
+      $this->session->set_flashdata('error', 'Profiilisi Ei Ole Sinun!<br>Jos Lulet Toisin Lähetä Palautetta');
       redirect('home/index');
-    }
+  }
+  public function logout() {
     $this->session->unset_userdata('is_logged_in');
     $this->session->unset_userdata('user_id');
     $this->session->unset_userdata('sposti');
     $this->session->sess_destroy();
-    redirect('home/index');
+    if ($this->uri->segment('proff')) {
+      redirect('home/index');
+    } else {
+      redirect('home/index');
+    }
   }
   public function C_Key($key) {
     if ($this->User_model->C_Email($key)) {
@@ -96,6 +110,7 @@ public function index() {
   }
   public function palaute() {
     $this->form_validation->set_rules('Sposti', 'Sposti', 'trim|required|valid_email');
+    $this->form_validation->set_rules('Aihe', 'Aihe', 'trim|required');
     $this->form_validation->set_rules('Palaute', 'Palaute', 'trim|required');
 
     if ($this->form_validation->run() !== True) {

@@ -42,6 +42,21 @@
   <?php echo form_input($data); ?>
 </p>
 <?php endif; ?>
+<p>
+	<?php echo form_label('Aihe:'); ?>
+	<select name="Aihe" id="select" onchange="validateDropdown();" style="width: 200px;" class="form-control">
+    <option disabled selected value="0">Valitse Aihe</option>
+    <option name="knimi" value="Negativinen">Negativinen</option>
+    <option name="knimi" value="Positiivinen">Positiivinen</option>
+    <option name="knimi" value="Update">Parantaa</option>
+    <option name="knimi" value="Salsana">Salsana</option>
+    <option name="knimi" value="Profiili">Profiili</option>
+    <option name="knimi" value="Kortit">Kortit</option>
+    <option name="knimi" value="Koulutus">Koulutus</option>
+    <option name="knimi" value="Tyohistoria">Työhistoria</option>
+    <option name="knimi" value="Harrastukset">Harrastukset</option>
+	</select>
+</p>
 <p style="width: 100px;">
 <?php echo form_label('palaute:'); ?>
 <?php
