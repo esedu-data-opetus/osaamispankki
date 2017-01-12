@@ -1,5 +1,3 @@
-<div class="row">
-<div class="col-md-6 col-md-offset-5">
 <style>
 #nappi {
   font-family: Roboto, sans-serif;
@@ -15,23 +13,14 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-
-.error {
-	color: #ff0000;
-	border: 1px solid #ff0000;
-	margin: 0;
-	padding: 5px;
-	border-radius: 10px;
-}
-
 .styling {
 	max-width: 200px;
 }
 </style>
-<h1>Päivitä perustietoja tai jatka profiilisivulle</h1>
+<h1>Täytä perustiedot ja jatka profiilisivulle</h1>
 
 <div class="styling">
-<?php echo validation_errors('<p class="error">'); ?>
+<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php echo form_open('profile/set_profile'); ?>
 <p>
   <?php echo form_label('Henkilökohtainen sähköposti:'); ?>
@@ -104,6 +93,4 @@
 	<?php echo form_submit($data); ?>
 </p>
 <?php echo form_close(); ?>
-</div>
-</div>
 </div>

@@ -108,7 +108,7 @@ public function index() {
         $User_id = 0;
       }
       if($this->User_model->Palaute($User_id)) {
-        $this->session->set_flashdata('success', 'Kiitos Palautteesta! Hyvää Päivän Jatkoa :3');
+        $this->session->set_flashdata('success', 'Kiitos Palautteesta!');
         redirect('Home/index');
       } else {
         $this->session->set_flashdata('error', 'Jotain Meni Pieleen :/');
