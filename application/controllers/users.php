@@ -74,6 +74,10 @@ public function index() {
       }
     }
   public function logout() {
+    if ($this->url->url('profile')) {
+      $this->session->set_flashdata('error', 'Sinulla Ei ole Profiilia! Lähetä Palaute Ja Odota Kunnes Vastaamme!');
+      redirect('home/index');
+    }
     $this->session->unset_userdata('is_logged_in');
     $this->session->unset_userdata('user_id');
     $this->session->unset_userdata('sposti');

@@ -50,6 +50,10 @@ $(document).ready(main);
 </script>
 
 <?php
+if (!$User_Info) {
+  redirect('users/logout?profile=false');
+}
+
 foreach($User_Info as $User) {
   if ($User->Näytä_Profiili == "Ei") {
     $Col = "default";
