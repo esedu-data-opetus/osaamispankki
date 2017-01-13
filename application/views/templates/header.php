@@ -22,7 +22,7 @@
 		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
 	<?php if ($this->session->userdata('KT') == 3) :?>
 		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile/haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
-		<a class="btn btn-success btn-lg disabled" style="margin: 10px;" href="<?php echo base_url(); ?>profile/palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a>
+		<a class="btn btn-success btn-lg /*disabled*/" style="margin: 10px;" href="<?php echo base_url(); ?>profile/hae_palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a>
 	<?php endif; ?>
 <?php endif; ?>
 </div>

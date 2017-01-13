@@ -188,4 +188,8 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function hae_palaute() {
+    $query = $this->db->get('palaute');
+    return $query->result();
+  }
 }

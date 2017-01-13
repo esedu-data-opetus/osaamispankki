@@ -229,4 +229,10 @@ class Profile extends CI_Controller {
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
   }
+  public function hae_palaute() {
+    $data['Palautteet'] = $this->Profile_model->hae_palaute();
+
+    $data['main_content'] = 'Palautteet';
+    $this->load->view('layouts/main',$data);
+  }
 }
