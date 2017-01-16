@@ -13,6 +13,8 @@ class Profile extends CI_Controller {
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
+    $data['Palautteet'] = $this->Profile_model->hae_palaute();
+
     $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
 
     $data['harrastus'] = $this->Profile_model->Get_harrastus($user_id);
@@ -229,10 +231,35 @@ class Profile extends CI_Controller {
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
   }
+  public function hae_palaute_user($user_id) {
+    $data['Palautteet'] = $this->Profile_model->hae_palaute_user($user_id);
+
+    $data['main_content'] = 'Palautteesi';
+    $this->load->view('layouts/main',$data);
+  }
   public function hae_palaute() {
     $data['Palautteet'] = $this->Profile_model->hae_palaute();
 
     $data['main_content'] = 'Palautteet';
     $this->load->view('layouts/main',$data);
+  }
+  public function palaute_tila($Tila, $id) {
+    $data = array(
+      'Tila' => $Tila,
+    );
+    if ($this->Profile_model->palaute_tila($data, $id)) {
+      $this->session->set_flashdata('success', 'Palaute Luettu!');
+    } else {
+      $this->session->set_flashdata('error', 'Tuli Ongelma!');
+    }
+    redirect('profile/hae_palaute');
+  }
+  public function palaute_delete($id) {
+    if ($this->Profile_model->palaute_delete($id)) {
+      $this->session->set_flashdata('success', 'Palaute Poistettu!');
+    } else {
+      $this->session->set_flashdata('error', 'Palautetta Ei voitu Poistaa!');
+    }
+    redirect('profile/hae_palaute');
   }
 }

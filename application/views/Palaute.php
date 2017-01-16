@@ -49,7 +49,7 @@
     <option name="knimi" value="Negativinen">Negativinen</option>
     <option name="knimi" value="Positiivinen">Positiivinen</option>
     <option name="knimi" value="Update">Parantaa</option>
-    <option name="knimi" value="Salsana">Salsana</option>
+    <option name="knimi" value="Salsana">Salasana</option>
     <option name="knimi" value="Profiili">Profiili</option>
     <option name="knimi" value="Kortit">Kortit</option>
     <option name="knimi" value="Koulutus">Koulutus</option>

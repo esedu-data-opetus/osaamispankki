@@ -188,8 +188,23 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function hae_palaute_user($user_id) {
+    $this->db->where('User_id', $user_id);
+    $query = $this->db->get('palaute');
+    return $query->result();
+  }
   public function hae_palaute() {
     $query = $this->db->get('palaute');
     return $query->result();
+  }
+  public function palaute_delete($id) {
+    $this->db->where('id', $id);
+    $this->db->delete('palaute');
+    return true;
+  }
+  public function palaute_tila($data, $id) {
+    $this->db->where('id', $id);
+    $this->db->update('palaute', $data);
+    return true;
   }
 }
