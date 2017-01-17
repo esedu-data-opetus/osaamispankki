@@ -131,4 +131,52 @@ public function index() {
       }
     }
   }
+  public function haku() {
+    $this->form_validation->set_rules('haku', 'hakusana', 'trim');
+
+    if (empty($data['haku'])) {
+      $data['haku'] = $this->User_model->hae_profiilit();
+    }
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'haku';
+      $this->load->view('layouts/main',$data);
+    } else {
+      if ($this->User_model->hakee()) {
+      $data['haku'] = $this->User_model->hakee();
+      $data['main_content'] = 'haku';
+      $this->load->view('layouts/main',$data);
+    } else {
+      $data['haku'] = "Ei haku paria!";
+
+      $data['main_content'] = 'haku';
+      $this->load->view('layouts/main',$data);
+      }
+    }
+  }
+  // public function haku()
+  //  	{
+  // 	  	//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
+  //  		//if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
+  //  		$this->load->model('model_sivu');
+  //  		//$data['query'] = $this->model_sivu->tee_haku();
+  //  		$this->load->template('haku');
+  //  		//}
+  //  		//else {
+  // 		//redirect('sivu/restricted');
+  // 	//}
+  //  	//}
+  //  }
+  //  	public function hakutulokset()
+  //  	{
+  //  		//Hakuun vaadittua käyttäjätyyppia voi vaihtaa
+  //  		//if ($this->session->userdata('is_logged_in') && $this->session->userdata('usertype') >= 1) {
+  //  	 	$this->load->model('model_sivu');
+  //  		$data['query'] = $this->model_sivu->tee_haku();
+  //  		$this->load->template('hakutulokset', $data);
+  //  	//}
+  //  	//else
+  // 	 	//{
+  // 	 	//redirect('sivu/restricted');
+  // 	 	//}
+  //  	}
 }

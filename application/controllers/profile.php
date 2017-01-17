@@ -196,19 +196,6 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
-  public function haku() {
-    $this->form_validation->set_rules('haku', 'hakusana', 'trim');
-    if ($this->form_validation->run() == FALSE) {
-      $data['main_content'] = 'haku';
-      $this->load->view('layouts/main',$data);
-    } else {
-      if ($this->Profile_model->hakee()) {
-        $data['main_content'] = 'haku';
-        $this->load->view('layouts/main',$data);
-        return true;
-      }
-    }
-  }
   public function add_meta() {
     if (empty($this->input->post('Tieto'))) {
       $this->session->set_flashdata('error', 'Täytä Tyhjä Kohta!');
