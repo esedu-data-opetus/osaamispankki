@@ -112,8 +112,9 @@ class User_model extends CI_Model {
     return $query->result();
   }
   public function hakee() {
-    $this->input->post('haku');
-    // Esimerkki
+    $data = $this->input->post('haku'); 
+    return $data;
+  // Esimerkki
   //   $this->db->select('
   //                     ci_tasks.Task_Name,
   //                     ci_tasks.Task_Body,

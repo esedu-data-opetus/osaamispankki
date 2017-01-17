@@ -142,11 +142,11 @@ public function index() {
       $this->load->view('layouts/main',$data);
     } else {
       if ($this->User_model->hakee()) {
-      $data['haku'] = $this->User_model->hakee();
+      $data['haut'] = $this->User_model->hakee();
       $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);
     } else {
-      $data['haku'] = "Ei haku paria!";
+      $data['haut'] = "Ei haku paria!";
 
       $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);
