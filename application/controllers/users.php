@@ -134,9 +134,12 @@ public function index() {
   public function haku() {
     $this->form_validation->set_rules('haku', 'hakusana', 'trim');
 
-    if (empty($data['haku'])) {
-      $data['haku'] = $this->User_model->hae_profiilit();
-    }
+    $data['Profile'] = $this->User_model->Hae_Profiilit();
+    $data['Harrastukset'] = $this->User_model->Hae_Harrastukset();
+    // $data['Tyohistoria'] = $this->User_model->Hae_Tyohistoria();
+    // $data['Koulutus'] = $this->User_model->Hae_Koulutus();
+    // $data['KKortit'] = $this->User_model->Hae_KKortit();
+
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);
@@ -146,7 +149,7 @@ public function index() {
       $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);
     } else {
-      $data['haut'] = "Ei haku paria!";
+      $data['Prof'] = $this->User_model->hae_profiilit();
 
       $data['main_content'] = 'haku';
       $this->load->view('layouts/main',$data);

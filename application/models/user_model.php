@@ -106,73 +106,68 @@ class User_model extends CI_Model {
       return True;
     }
   }
-  public function hae_profiilit() {
+  public function Hae_Harrastukset() {
+    $this->db->select('
+    harrastukset.harrastus,
+    harrastukset.vapaasana,
+    harrastukset.id as hobby_id,
+    harrastukset.User_id,
+    profile.Näytä_Profiili,
+    profile.User_id
+    ');
+    $this->db->from('harrastukset');
+    $this->db->join('profile','profile.User_id = harrastukset.User_id');
+    $this->db->where('profile.Näytä_Profiili', "Kylla");
+    $query = $this->db->get();
+    if ($query->num_rows() < 1) {
+    return FALSE;
+    }
+  return $query->result();
+  }
+  public function Hae_Profiilit() {
     $this->db->where('Näytä_Profiili', "Kylla");
     $query = $this->db->get('profile');
     return $query->result();
   }
   public function hakee() {
-    $data = $this->input->post('haku'); 
+    $data = $this->input->post('haku');
     return $data;
+  }
   // Esimerkki
-  //   $this->db->select('
-  //                     ci_tasks.Task_Name,
-  //                     ci_tasks.Task_Body,
-  //                     ci_tasks.id as task_id,
-  //                     ci_tasks.List_Id,
-  //                     ci_list.List_Name,
-  //                     ci_list.List_Body
-  //           ');
-  //   $this->db->from('ci_tasks');
-  //   $this->db->join('ci_list','ci_list.id = ci_tasks.List_Id');
-  //   $this->db->where('ci_tasks.List_Id',$list_id);
-  //   if ($active == TRUE) {
-  //     $this->db->where('ci_tasks.Is_Completed',0);
-  //   } else {
-  //     $this->db->where('ci_tasks.Is_Completed',1);
-  //   }
-  //   $query = $this->db->get();
-  //   if ($query->num_rows() < 1) {
-  //     return FALSE;
-  //   }
-  //   return $query->result();
-  // }
-  //
-  // }
-  // public function tee_haku() {
-	// 	$match = trim($this->input->post('haku'));
-	// 	$str = preg_replace( "/\s+/", " ", $match);
-	// 	if($str === '' OR $str === ' '){
-	// 	$kysely ="
-	// 	SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-	// 	FROM henkilotiedot
-	// 	LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-	// 	LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-	// 	WHERE henkilotiedot.aktiivisuus = 1
-	// 	LIKE '%%' ESCAPE '!'";
-	// 	$query = $this->db->query($kysely);
-	// 	return $query->result();
-	// 	}
-	// 	else
-	// 	{
-	// 	$haku_explode = explode(' ', $str);
-	// 	$kysely="
-	// 	SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-	// 	FROM henkilotiedot
-	// 	LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-	// 	LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-	// 	LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
-	// 	LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
-	// 	WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
-	// 	OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
-	// 	OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
-	// 	OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
-	// 	OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
-	// 	OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
-  //
-	// 	$query = $this->db->query($kysely);
-  //
-	// 	return $query->result();
-	// }
-}
+  public function tee_haku() {
+		$match = trim($this->input->post('haku'));
+		$str = preg_replace( "/\s+/", " ", $match);
+		if($str === '' OR $str === ' '){
+		$kysely ="
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
+		FROM henkilotiedot
+		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
+		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
+		WHERE henkilotiedot.aktiivisuus = 1
+		LIKE '%%' ESCAPE '!'";
+		$query = $this->db->query($kysely);
+		return $query->result();
+		}
+		else
+		{
+		$haku_explode = explode(' ', $str);
+		$kysely="
+		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
+		FROM henkilotiedot
+		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
+		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
+		LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
+		LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
+		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
+		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
+		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
+		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
+		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
+		OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
+
+		$query = $this->db->query($kysely);
+
+		return $query->result();
+	 }
+  }
 }

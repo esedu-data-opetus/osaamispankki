@@ -209,7 +209,7 @@ if (isset($_GET['Prof_Edit'])) {
     </div>
   <?php endif; ?>
 <?php if (empty($meta_tieto)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Metatietoja ei ole lisätty</h1>
+  <h1 class="error-message">Metatietoja ei ole lisätty</h1>
 <?php else : ?>
   <?php
   foreach ($meta_tieto as $meta) {
@@ -282,7 +282,7 @@ if (isset($_GET['Prof_Edit'])) {
       ?>
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Harrastuksia ei ole lisätty</h1>
+  <h1 class="error-message">Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -345,7 +345,7 @@ if (isset($_GET['Prof_Edit'])) {
     ?>
 <?php endforeach; ?>
 <?php if(!isset($work_hexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Työhistoriaa ei ole lisätty</h1>
+  <h1 class="error-message">Työhistoriaa ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -426,7 +426,7 @@ if (isset($_GET['Prof_Edit'])) {
       ?>
   <?php endforeach; ?>
 <?php if(!isset($koulutusexists)) : ?>
-  <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Koulutuksia ei ole lisätty</h1>
+  <h1 class="error-message">Koulutuksia ei ole lisätty</h1>
 <?php else : ?>
 <table class="table">
 <thead>
@@ -506,7 +506,7 @@ if (isset($_GET['Prof_Edit'])) {
       ?>
     <?php endforeach; ?>
     <?php if(!isset($Kortitexists)) : ?>
-      <h1 style='margin:0;padding:0;color:red;font-weight:bold;font-size:25px;'>Kortteja ei ole lisätty</h1>
+      <h1 class="error-message">Kortteja ei ole lisätty</h1>
     <?php else : ?>
     <table class="table">
     <thead>
