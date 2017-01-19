@@ -36,6 +36,8 @@
 			</div>
 		</div>
 <div class="panel-body">
+
+<!-- HARRASTUKSET -->
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3>Harrastukset</h3>
@@ -43,6 +45,7 @@
 	<div class="panel-body">
 <?php if($Harrastukset) : ?>
 	<?php	foreach($Harrastukset as $Hobby) : ?>
+		<?php if($Prof->User_id == $Hobby->User_id) : ?>
 		<table class="table">
 			<thead>
 			<tr>
@@ -57,12 +60,50 @@
 			</tr>
 		</tbody>
 	</table>
-	<?php endforeach; ?>
+<?php endif;?>
+<?php endforeach; ?>
 <?php else : ?>
-	<h1 class="error-message">Käyttäjällä ei ole harrastuksia!</h1>
+	<p class="error-message">Error</p>
 <?php endif;?>
 </div>
 </div>
+
+<!-- TYÖHISTORIA -->
+<!-- <div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3>Työhistoria</h3>
+	</div>
+	<div class="panel-body">
+<?php if($Tyohistoria) : ?>
+	<?php	foreach($Tyohistoria as $Tyo) : ?>
+		<table class="table">
+			<thead>
+			<tr>
+				<td><p>Työpaikka</p></td>
+				<td><p>Tehtävä</p></td>
+				<td><p>Alkoi</p></td>
+				<td><p>Loppui</p></td>
+				<td><p>Vapaasana</p></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><p><?php echo $Tyo->tyopaikka; ?></p></td>
+				<td><p><?php echo $Tyo->tehtava; ?></p></td>
+				<td><p><?php echo $Tyo->alkoi; ?></p></td>
+				<td><p><?php echo $Tyo->loppui; ?></p></td>
+				<td><p><?php echo $Tyo->kuvaus; ?></p></td>
+			</tr>
+		</tbody>
+	</table>
+	<?php endforeach; ?>
+<?php else : ?>
+	<h1 class="error-message">Käyttäjällä ei ole Työhistoriaa!</h1>
+<?php endif;?>
+</div>
+</div> -->
+
+
 </div>
 </div>
 <?php endforeach; ?>
