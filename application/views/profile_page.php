@@ -101,14 +101,14 @@ $C_Day     = $User->Create_date;
 $etunimi   = $User->F_Name;
 $sukunimi  = $User->L_Name;
 if ($User->Näytä_Profiili == "Ei") {
-  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Kylla/'.$User->User_id.'" class="btn btn-success" title="Näytä Profiilisi Kailikke"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Kylla/'.$User->User_id.'" class="btn btn-success" title="Näytä profiili hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 } else {
-  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Ei/'.$User->User_id.'" class="btn btn-danger" title="Estä Muita Näkemästä Profiilisi"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Ei/'.$User->User_id.'" class="btn btn-danger" title="Estä profiilin näkyminen hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 }
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $name     = "<input name='F_Name' type='text' value='".$User->F_Name."'><input name='L_Name' type='text' value='".$User->L_Name."'>";
+    $name     = "<input name='F_Name' type='text' value='".$User->F_Name."'> <input name='L_Name' type='text' value='".$User->L_Name."'>";
     $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
     $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
