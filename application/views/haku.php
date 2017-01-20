@@ -43,7 +43,7 @@
 		<h3>Harrastukset</h3>
 	</div>
 	<div class="panel-body">
-<?php if(isset($Harrastukset)) : ?>
+<?php if($Harrastukset) : ?>
 	<?php	foreach($Harrastukset as $Hobby) : ?>
 		<?php if($Hobby->User_id == $Prof->User_id) : ?>
 		<table class="table">
@@ -74,7 +74,7 @@
 		<h3>Työhistoria</h3>
 	</div>
 	<div class="panel-body">
-	<?php if(isset($Tyohistoria)) : ?>
+	<?php if($Tyohistoria) : ?>
 			<?php	foreach($Tyohistoria as $Tyo) : ?>
 		<?php if($Tyo->User_id == $Prof->User_id) : ?>
 		<table class="table">
