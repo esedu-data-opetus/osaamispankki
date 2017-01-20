@@ -11,13 +11,13 @@
 	</div>
 	<div class="navbar-right">
 		<?php if ($this->session->userdata('is_logged_in') == 1) :?>
-			<a class="btn btn-danger btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px" href="<?php echo base_url(); ?>users/logout">Kirjaudu ulos</a>
+			<a class="btn btn-danger btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px" href="<?php echo base_url(); ?>Users/Logout">Kirjaudu ulos</a>
 		<?php endif; ?>
 	</div>
 	<div class="Container">
 <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
-		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>users/login">Kirjautuminen</a>
-		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>users/register">Luo tili</a>
+		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a>
+		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a>
 <?php else : ?>
 		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
 <?php if ($this->session->userdata('KT') == 3) :?>
