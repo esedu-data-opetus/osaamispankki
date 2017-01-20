@@ -235,17 +235,17 @@ class Profile extends CI_Controller {
       'Tila' => $Tila,
     );
     if ($this->Profile_model->palaute_tila($data, $id)) {
-      $this->session->set_flashdata('success', 'Palaute Luettu!');
+      $this->session->set_flashdata('success', 'Palaute luettu!');
     } else {
-      $this->session->set_flashdata('error', 'Tuli Ongelma!');
+      $this->session->set_flashdata('error', 'Tuli ongelma!');
     }
     redirect('profile/hae_palaute');
   }
   public function palaute_delete($id) {
     if ($this->Profile_model->palaute_delete($id)) {
-      $this->session->set_flashdata('success', 'Palaute Poistettu!');
+      $this->session->set_flashdata('success', 'Palaute poistettu!');
     } else {
-      $this->session->set_flashdata('error', 'Palautetta Ei voitu Poistaa!');
+      $this->session->set_flashdata('error', 'Palautetta ei voitu poistaa!');
     }
     redirect('profile/hae_palaute');
   }
