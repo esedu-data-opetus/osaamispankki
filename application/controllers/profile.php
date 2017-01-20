@@ -128,7 +128,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->koulutus($user_id)) {
-        $this->session->set_flashdata('success', 'Koulutus Lisätty!');
+        $this->session->set_flashdata('success', 'Koulutus lisätty!');
         redirect('profile/koulutus');
       }
     }
@@ -159,7 +159,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->kortit($user_id)) {
-        $this->session->set_flashdata('success', 'Kortti Lisätty!');
+        $this->session->set_flashdata('success', 'Kortti lisätty!');
         redirect('profile/kortit');
       }
     }
@@ -171,10 +171,10 @@ class Profile extends CI_Controller {
   public function hide($tila, $user_id) {
     if ($tila == 'Kylla') {
       $data = array('Näytä_Profiili'  =>  'Kylla');
-      $fd = $this->session->set_flashdata('success', 'Profiili Näkyy Muilla');
+      $fd = $this->session->set_flashdata('success', 'Profiili näkyy muilla');
     } else {
       $data = array('Näytä_Profiili'  =>  'Ei');
-      $fd = $this->session->set_flashdata('error', 'Profiili Ei Näy Muilla');
+      $fd = $this->session->set_flashdata('error', 'Profiili ei näy muilla');
     }
 
     if ($this->Profile_model->hide($user_id,$data)) {
@@ -198,7 +198,7 @@ class Profile extends CI_Controller {
   }
   public function add_meta() {
     if (empty($this->input->post('Tieto'))) {
-      $this->session->set_flashdata('error', 'Täytä Tyhjä Kohta!');
+      $this->session->set_flashdata('error', 'Täytä tyhjä kohta!');
       redirect('profile?add_meta');
     } else {
       $data = array(

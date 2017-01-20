@@ -317,7 +317,7 @@ if (isset($_GET['Prof_Edit'])) {
     <td style="max-width: 350px; hover: overflow: auto;"><?php echo $Mielipide; ?></td>
     <td>
       <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko Poistaa Harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko poistaa harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -398,7 +398,7 @@ if (isset($_GET['Prof_Edit'])) {
     <td style="<?php echo $width; ?> hover: overflow: auto;"><?php echo $Kuvaus; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko Poistaa Työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko poistaa työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -477,7 +477,7 @@ if (isset($_GET['Prof_Edit'])) {
   <td><?php echo $Loppui; ?></td>
     <td>
     <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko Poistaa Koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Haluatko poistaa koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </form>
   </tr>
@@ -524,7 +524,7 @@ if (isset($_GET['Prof_Edit'])) {
         <td><p><?php echo $kortti->loppuu; ?></p></td>
         <td style="max-width: 86px"><p><?php echo $kortti->vapaasana; ?></p></td>
         <td>
-          <a onclick="return confirm('Haluatko Poistaa Kortin <?php echo $kortti->kortti; ?>?');" href="<?php echo base_url(); ?>profile/kortit_delete/<?php echo $kortti->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <a onclick="return confirm('Haluatko poistaa kortin <?php echo $kortti->kortti; ?>?');" href="<?php echo base_url(); ?>profile/kortit_delete/<?php echo $kortti->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
     <?php endforeach; ?>
     </tbody>
