@@ -136,7 +136,7 @@ public function index() {
 
     $data['Profile'] = $this->User_model->Hae_Profiilit();
     $data['Harrastukset'] = $this->User_model->Hae_Harrastukset();
-    // $data['Tyohistoria'] = $this->User_model->Hae_Tyohistoria();
+    $data['Tyohistoria'] = $this->User_model->Hae_Tyohistoria();
     // $data['Koulutus'] = $this->User_model->Hae_Koulutus();
     // $data['KKortit'] = $this->User_model->Hae_KKortit();
 
