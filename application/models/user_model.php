@@ -106,44 +106,21 @@ class User_model extends CI_Model {
       return True;
     }
   }
-  public function Hae_Tyohistoria() {
-    $this->db->select('
-    tyohistoria.tyopaikka,
-    tyohistoria.tehtava,
-    tyohistoria.alkoi,
-    tyohistoria.loppui,
-    tyohistoria.kuvaus,
-    tyohistoria.id as tyo_id,
-    tyohistoria.User_id,
-    profile.Näytä_Profiili,
-    profile.User_id
-    ');
-    $this->db->from('tyohistoria');
-    $this->db->join('profile','profile.User_id = tyohistoria.User_id');
-    $this->db->where('profile.Näytä_Profiili', "Kylla");
-    $query = $this->db->get();
-    if ($query->num_rows() < 1) {
-    return FALSE;
-    }
-  return $query->result();
-  }
   public function Hae_Harrastukset() {
-    $this->db->select('
-    harrastukset.harrastus,
-    harrastukset.vapaasana,
-    harrastukset.id,
-    harrastukset.User_id,
-    profile.Näytä_Profiili,
-    profile.User_id as U_id
-    ');
-    $this->db->from('harrastukset');
-    $this->db->join('profile','profile.User_id = harrastukset.User_id');
-    $this->db->where('profile.Näytä_Profiili', "Kylla");
-    $query = $this->db->get();
-    if ($query->num_rows() < 1) {
-    return FALSE;
-    }
-  return $query->result();
+    $query = $this->db->get('harrastukset');
+    return $query->result();
+  }
+  public function Hae_Tyohistoria() {
+    $query = $this->db->get('tyohistoria');
+    return $query->result();
+  }
+  public function Hae_Koulutukset() {
+    $query = $this->db->get('tyohistoria');
+    return $query->result();
+  }
+  public function Hae_KKortit() {
+    $query = $this->db->get('tyohistoria');
+    return $query->result();
   }
   public function Hae_Profiilit() {
     $this->db->where('Näytä_Profiili', "Kylla");
