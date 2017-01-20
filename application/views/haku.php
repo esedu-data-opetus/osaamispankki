@@ -20,7 +20,7 @@
 <?php echo form_close(); ?>
 
 
-<h1>↓H↓A↓K↓U↓T↓U↓L↓O↓K↓S↓E↓T↓</h1>
+<h3>Tulokset haulla <?php echo $this->input->post('haku'); ?></h3>
 <?php if($Profile) : ?>
 <?php	foreach($Profile as $Prof) : ?>
 	<div class="panel panel-default">
