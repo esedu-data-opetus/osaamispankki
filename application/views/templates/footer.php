@@ -15,7 +15,7 @@
         <p style="text-align: center; margin-top:-30px;"><b>Tekijät:</b> Riku, Miika, Valtteri, Joonas & Marko</p>
       </span>
       <div class="footer navbar-fixed-bottom">
-          <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px;" href="<?php echo base_url(); ?>users/palaute">Anna palautetta!</a>
+          <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px;" href="<?php echo base_url(); ?>Palaute/Palautteesi">Anna palautetta!</a>
       </div>
     </div>
 </footer>

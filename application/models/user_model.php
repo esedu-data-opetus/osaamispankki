@@ -80,7 +80,7 @@ class User_model extends CI_Model {
   }
   public function send_mail($key) {
     // $message = "";
-    // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+    // $message = "<a href='".base_url()."$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
     // $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     // $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     // $this->email->to($this->input->post('email'));
@@ -93,18 +93,6 @@ class User_model extends CI_Model {
   }
   public function C_Email($key) {
       return true;
-  }
-  public function Palaute($User_id) {
-    $data = array(
-      'User_id'   =>    $User_id,
-      'Sposti'    =>    filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING),
-      'Aihe'      =>    filter_var($this->input->post('Aihe'), FILTER_SANITIZE_STRING),
-      'palaute'   =>    filter_var($this->input->post('Palaute'), FILTER_SANITIZE_STRING)
-    );
-    $insert = $this->db->insert('palaute',$data);
-    if ($insert) {
-      return True;
-    }
   }
   public function Hae_Harrastukset() {
     $query = $this->db->get('harrastukset');

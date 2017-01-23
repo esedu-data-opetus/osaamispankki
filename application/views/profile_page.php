@@ -197,7 +197,7 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endif; ?>
   <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
   </div>
-  <div class="panel-boody" style="padding: 10px;">
+  <div class="panel-body">
     <?php if (isset($_GET['add_meta'])) : ?>
     <div style="padding: 10px;">
       <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">

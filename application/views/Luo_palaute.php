@@ -1,20 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<?php echo form_open('users/palaute'); ?>
+<?php echo form_open('Palaute/Palautteesi'); ?>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <p style="float: right; margin: 12px 10px 20px 0;">
-    <?php
-    	$data = array('name'    =>    'submit',
-    								'class'   =>    'btn btn-success btn-lg',
-    								'value'   =>    'Lähetä Palaute'
-                   );
-    ?>
-    <?php echo form_submit($data); ?>
-    </p>
-    <h1>Palaute</h1>
-  </div>
-  <div class="panel-body">
-    <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
+  <p style="float: right; margin: 12px 10px 20px 0;">
+  <?php
+  	$data = array('name'    =>    'submit',
+  								'class'   =>    'btn btn-success btn-lg',
+  								'value'   =>    'Lähetä Palaute'
+                 );
+  ?>
+  <?php echo form_submit($data); ?>
+  </p>
+  <h1>Palaute</h1>
+</div>
+<div class="panel-body">
+<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php if($this->session->userdata('is_logged_in')) : ?>
   <p style="width: 100px;">
   <?php echo form_label('Sähköposti:'); ?>
