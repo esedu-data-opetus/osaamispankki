@@ -65,7 +65,7 @@ foreach($User_Info as $User) {
 <div class="panel panel-<?php echo $Col; ?>">
 <div class="panel-heading">
 <?php foreach($User_Info as $User) : ?>
-<img style="float: right;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail" height="100" width="100">
+<img style="float: right; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
 <h1>Oma profiili</h1>
 <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
 <?php if (isset($_GET['Prof_Edit'])) {
