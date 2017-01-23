@@ -99,18 +99,21 @@ if ($this->uri->segment('proff')) {
     redirect('home/index');
   }
 }
-
+//Jos käyttäjä ei ole tehnyt profiilia hänet ohjataan tänne
+//Ja profiili kirjautuu ulos ja antaa mahdollisuuden luoda profiilin uudestaan
 public function Proff_error() {
   $data = array(
     'Key'          =>  'undefined',
     'user_id'      =>  'undefined',
     'sposti'       =>  'undefined',
+    'First_login'  =>  True,
     'is_logged_in' =>  0
   );
     $this->session->set_userdata($data);
-    $this->session->set_flashdata('error', 'Profiilisi Ei Ole Sinun!<br>Jos Lulet Toisin Lähetä Palautetta');
+    $this->session->set_flashdata('error', 'Profiilisi Ei Ole Sinun!<br>Jos Luulet Toisin Lähetä Palautetta');
     redirect('home/index');
 }
+//Sähköpostin varmennus
 public function C_Key($key) {
   if ($this->User_model->C_Email($key)) {
     $data = array(
@@ -121,6 +124,7 @@ public function C_Key($key) {
     redirect('home/index');
   }
 }
+//Hakee profiilit, metatiedot ja kaikki kokemukset(Harrastukset, Työhistoria, Koulutukset ja Kortit)
 public function haku() {
   $this->form_validation->set_rules('haku', 'hakusana', 'trim');
   $data['Profile'] = $this->User_model->Hae_Profiilit();

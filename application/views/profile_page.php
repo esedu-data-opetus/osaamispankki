@@ -288,8 +288,8 @@ if (isset($_GET['Prof_Edit'])) {
 <thead>
   <tr>
     <th>Harrastus</th>
-    <th>Vapaa sana</th>
-    <th>Settings</th>
+    <th>Kuvaus</th>
+    <th>Asetukset</th>
   </tr>
 </thead>
 <tbody>
@@ -355,7 +355,7 @@ if (isset($_GET['Prof_Edit'])) {
     <th>Alkoi</th>
     <th>Loppui</th>
     <th>Kuvaus</th>
-    <th style="min-width: 110px;">Settings</th>
+    <th style="min-width: 110px;">Asetukset</th>
   </tr>
 </thead>
 <tbody>
@@ -436,7 +436,7 @@ if (isset($_GET['Prof_Edit'])) {
     <th>Oppilaitos</th>
     <th>Alkoi</th>
     <th>Loppui</th>
-    <th style="min-width: 110px;">Settings</th>
+    <th style="min-width: 110px;">Asetukset</th>
   </tr>
 </thead>
 <tbody>
@@ -513,8 +513,8 @@ if (isset($_GET['Prof_Edit'])) {
       <tr>
         <th style="min-width:150px">Kortti</th>
         <th style="min-width:150px">Vanhenemispäivä</th>
-        <th style="min-width:150px">Kommentti</th>
-        <th style="min-width:81px">Settings</th>
+        <th style="min-width:150px">Kuvaus</th>
+        <th style="min-width:81px">Asetukset</th>
       </tr>
     </thead>
     <tbody>

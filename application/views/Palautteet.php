@@ -21,7 +21,7 @@
     <th>Sähköposti</th>
     <th>Aihe</th>
     <th>Palaute</th>
-    <th>Options</th>
+    <th>Asetukset</th>
   </tr>
 </thead>
 <tbody>

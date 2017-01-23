@@ -1,7 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-<?php
 class User_model extends CI_Model {
+  //Luo käyttäjän niilä vaatimuksilla mitä on asetettu
   public function create_member($key) {
     $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
     $Email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
