@@ -42,6 +42,7 @@ class User_model extends CI_Model {
       redirect('users/register');
     }
   }
+  //Kirjaa käyttäjän sivulle
   public function login_user($username,$password) {
     $enc_password = md5($password);
 
@@ -55,6 +56,7 @@ class User_model extends CI_Model {
         return false;
     }
   }
+  //Hakee käyttäjän tyypin
   public function User_type($username) {
     $this->db->where('Sposti',$username);
 
@@ -65,6 +67,7 @@ class User_model extends CI_Model {
         return false;
     }
   }
+  //Hakee käyttäjän avaimen
   public function fetch_key($username,$password) {
     $enc_password = md5($password);
 
@@ -78,6 +81,7 @@ class User_model extends CI_Model {
         return false;
     }
   }
+  //Lähettää Sähköposti varmennuksen
   public function send_mail($key) {
     // $message = "";
     // $message = "<a href='".base_url()."$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
@@ -91,30 +95,37 @@ class User_model extends CI_Model {
     return true;
     // }
   }
+  //Varmistaa sähköpostin
   public function C_Email($key) {
       return true;
   }
+  //Hakee Harrastukset
   public function Hae_Harrastukset() {
     $query = $this->db->get('harrastukset');
     return $query->result();
   }
+  //Hakee Työhistorian
   public function Hae_Tyohistoria() {
     $query = $this->db->get('tyohistoria');
     return $query->result();
   }
+  //Hakee Koulutukset
   public function Hae_Koulutukset() {
     $query = $this->db->get('tyohistoria');
     return $query->result();
   }
+  //Hakee Käyttäjien Kortit
   public function Hae_KKortit() {
     $query = $this->db->get('tyohistoria');
     return $query->result();
   }
+  //Hakee Profiilit
   public function Hae_Profiilit() {
     $this->db->where('Näytä_Profiili', "Kylla");
     $query = $this->db->get('profile');
     return $query->result();
   }
+  //Hakee hakutulokset
   public function hakee() {
     $data = $this->input->post('haku');
     return $data;

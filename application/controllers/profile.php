@@ -2,6 +2,7 @@
 
 <?php
 class Profile extends CI_Controller {
+//Varmistaa että käyttäjä on kirjautunu sisälle
   public function __construct(){
   parent::__construct();
 
@@ -10,6 +11,7 @@ class Profile extends CI_Controller {
     redirect('home/index');
   }
 }
+//Hakee käyttäjäntiedot, metatiedot ja kokemukset ja näkymän profiilisivulle
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
@@ -30,7 +32,7 @@ class Profile extends CI_Controller {
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
-
+//Hakee profiilin luonnin näkymän ja asettaa inputeille säännöt
   public function set_profile() {
     if ($this->session->userdata('is_logged_in') == 0) {
       redirect('home/index');
@@ -54,6 +56,7 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Hakee Harrastuksen lisäys näkymän
   public function harrastus() {
     $this->form_validation->set_rules('harrastus', 'harrastus', 'trim|required');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
@@ -68,10 +71,12 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Poistaa harrastuksen
   public function harrastus_delete($id) {
     $this->Profile_model->harrastus_delete($id);
     redirect('profile/index');
   }
+  //Muokkaa harrastuksen
   public function harrastus_update($id) {
     $data = array(
         'harrastus'       =>     filter_var($this->input->post('harrastus'), FILTER_SANITIZE_STRING),
@@ -81,6 +86,7 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  //Hakee Työhistorian lisäys näkymäm
   public function tyohistoria() {
     $this->form_validation->set_rules('tyopaikka', 'tyopaikka', 'trim|required');
     $this->form_validation->set_rules('tehtava', 'tehtava', 'trim|required');
@@ -99,10 +105,12 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Poistaa Työhistorian
   public function tyohistoria_delete($id) {
     $this->Profile_model->tyohistoria_delete($id);
     redirect('profile/index');
   }
+  //Muokkaa Työhistorian
   public function tyohistoria_update($id) {
     $data = array(
       'tyopaikka'     =>     filter_var($this->input->post('tyopaikka'), FILTER_SANITIZE_STRING),
@@ -115,6 +123,7 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  //Hakee Koulutuksen lisäämis näkymän
   public function koulutus() {
     $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
     $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
@@ -133,10 +142,12 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Poistaa Koulutuksen
   public function koulutus_delete($id) {
       $this->Profile_model->koulutus_delete($id);
       redirect('profile/index');
   }
+  //Päivittää Koulutuksen
   public function koulutus_update($id) {
     $data = array(
         'koulutusnimi'    =>     filter_var($this->input->post('koulutusnimi'), FILTER_SANITIZE_STRING),
@@ -149,6 +160,7 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  //Hakee Korttien lisäys näkymän
   public function kortit() {
     $this->form_validation->set_rules('kortti', 'kortti', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
@@ -164,17 +176,19 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Poistaa Korttien
   public function kortit_delete($id) {
     $this->Profile_model->kortit_delete($id);
     redirect('profile/index');
   }
+  //Vaihtaa progiilin tilaa
   public function hide($tila, $user_id) {
     if ($tila == 'Kylla') {
       $data = array('Näytä_Profiili'  =>  'Kylla');
-      $fd = $this->session->set_flashdata('success', 'Profiili näkyy muilla');
+      $fd = $this->session->set_flashdata('success', 'Profiilisi on julkinen!');
     } else {
       $data = array('Näytä_Profiili'  =>  'Ei');
-      $fd = $this->session->set_flashdata('error', 'Profiili ei näy muilla');
+      $fd = $this->session->set_flashdata('error', 'Profiilisi ei ole julkinen!');
     }
 
     if ($this->Profile_model->hide($user_id,$data)) {
@@ -182,6 +196,7 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  //Päivittää profiilin
   public function profile_update($user_id) {
     $data = array(
       'F_Name'          =>    filter_var($this->input->post('F_Name'), FILTER_SANITIZE_STRING),
@@ -196,6 +211,7 @@ class Profile extends CI_Controller {
       redirect('profile/index');
     }
   }
+  //Lisää Metatiedon
   public function add_meta() {
     if (empty($this->input->post('Tieto'))) {
       $this->session->set_flashdata('error', 'Täytä tyhjä kohta!');
@@ -210,10 +226,12 @@ class Profile extends CI_Controller {
       }
     }
   }
+  //Poistaa kaikki Metatiedot
   public function delete_all_meta($user_id) {
     $this->Profile_model->delete_all_meta($user_id);
     redirect('profile/index');
   }
+  //Poistaa Metatiedon
   public function delete_meta($id) {
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
