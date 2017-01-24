@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+ 
+>>>>>>> e5e0353cbe89637ddd79bdd8b2bf7e23afa13332
 <?php
 class Profile_model extends CI_Model {
   public function profile_setup() {

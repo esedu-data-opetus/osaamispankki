@@ -19,7 +19,7 @@ class User_model extends CI_Model {
         $needs = "esedulainen.fi";
         $pos = strpos($from, $needs);
         if ($pos === false) {
-          $C = "Sinun pitää käyttää sinun esedulainen sähköpostia!";
+          $C = "Sinun pitää käyttää esedulainen sähköpostia!";
           echo "The string '$needs' was not found in the string '$from'<br>";
         } else {
           echo "The string '$needs' was found in the string '$from'<br>";
@@ -33,9 +33,9 @@ class User_model extends CI_Model {
       );
       $insert = $this->db->insert('users',$data);
       return $insert;
-      echo "email was not found!<br>";
+      echo "Email was not found!<br>";
     } else {
-      echo "email was found!<br>";
+      echo "Email was found!<br>";
       $this->session->set_flashdata('error',$C);
       redirect('users/register');
     }
