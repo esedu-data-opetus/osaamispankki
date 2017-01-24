@@ -67,9 +67,9 @@ if (!isset($Harrastus)) {
 	foreach($Hakutulokset as $Haut) {
 		$pos = strpos($Haut, $Hakusana);
 		if ($pos == True) {
-			echo '<b>"'.$Hakusana.'" Löyti Täältä->|</b>';
+			echo '<b>"'.$Hakusana.'" Löyti Täältä<span class="glyphicon glyphicon-chevron-right"></span>|</b>';
 			$r_pos = $pos - 1;
-			$is = "<b>|<-kirjaimen ".$r_pos." jälkeen!</b>";
+			$is = "<b>|<span class='glyphicon glyphicon-chevron-left'></span>".$r_pos." kirjaimen jälkeen!</b>";
 			$col = "color: red; font-weight: bold;";
 		} else {
 			$is = "";

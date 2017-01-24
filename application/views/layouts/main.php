@@ -13,7 +13,7 @@
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://paja.esedu.fi/data13/riku.ronka/harjoitus/js/jquery.js"></script>
 </head>
-<body onload="LoadFunction()">
+<body>
 
   <?php if ($this->session->flashdata('error') || $this->session->flashdata('success')) : ?>
   <script>
