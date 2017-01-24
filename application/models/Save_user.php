@@ -1,4 +1,5 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 class User_model extends CI_Model {
   public function create_member($key) {
     $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
@@ -19,7 +20,7 @@ class User_model extends CI_Model {
         $needs = "esedulainen.fi";
         $pos = strpos($from, $needs);
         if ($pos === false) {
-          $C = "Sinun pitää käyttää sinun esedulainen sähköpostia!";
+          $C = "Sinun pitää käyttää esedulainen sähköpostia!";
           echo "The string '$needs' was not found in the string '$from'<br>";
         } else {
           echo "The string '$needs' was found in the string '$from'<br>";
@@ -33,9 +34,9 @@ class User_model extends CI_Model {
       );
       $insert = $this->db->insert('users',$data);
       return $insert;
-      echo "email was not found!<br>";
+      echo "Email was not found!<br>";
     } else {
-      echo "email was found!<br>";
+      echo "Email was found!<br>";
       $this->session->set_flashdata('error',$C);
       redirect('users/register');
     }
@@ -53,7 +54,17 @@ class User_model extends CI_Model {
         return false;
     }
   }
-  public function fetch_key($username,$password) {
+  //Hakee käyttäjän tyypin
+   public function User_type($username) {
+     $this->db->where('Sposti',$username);
+     $result = $this->db->get('profile');
+     if($result->num_rows() == 1){
+         return $result->row(0)->KT;
+     } else {
+         return false;
+     }
+   }
+   public function fetch_key($username,$password) {
     $enc_password = md5($password);
 
     $this->db->where('Email',$username);

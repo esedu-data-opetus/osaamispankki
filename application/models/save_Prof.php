@@ -158,20 +158,6 @@ class Profile_model extends CI_Model {
     $this->db->delete('metatieto');
     return true;
   }
-  public function hakee() {
-    $haku = $this->input->post('haku');
-    $data = array(
-      'harrastukset',
-      'kkortit',
-      'kortit',
-      'koulutus',
-      'profile',
-      'tyohistoria',
-    );
-    foreach ($data as $haku) {
-      echo "<h1><i>".$haku."</i></h1>";
-    }
-  }
   public function meta_add($data) {
     $insert = $this->db->insert('metatieto',$data);
     if ($insert) {
