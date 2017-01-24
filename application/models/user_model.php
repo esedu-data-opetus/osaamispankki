@@ -35,9 +35,9 @@ class User_model extends CI_Model {
       );
       $insert = $this->db->insert('users',$data);
       return $insert;
-      echo "email was not found!<br>";
+      echo "Email was not found!<br>";
     } else {
-      echo "email was found!<br>";
+      echo "Email was found!<br>";
       $this->session->set_flashdata('error',$C);
       redirect('users/register');
     }
