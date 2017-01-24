@@ -1,7 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php
 class User_model extends CI_Model {
-  //Luo käyttäjän niilä vaatimuksilla mitä on asetettu
   public function create_member($key) {
     $Name = filter_var($this->input->post('name'), FILTER_SANITIZE_STRING);
     $Email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
@@ -42,7 +40,6 @@ class User_model extends CI_Model {
       redirect('users/register');
     }
   }
-  //Kirjaa käyttäjän sivulle
   public function login_user($username,$password) {
     $enc_password = md5($password);
 
@@ -57,18 +54,15 @@ class User_model extends CI_Model {
     }
   }
   //Hakee käyttäjän tyypin
-  public function User_type($username) {
-    $this->db->where('Sposti',$username);
-
-    $result = $this->db->get('profile');
-    if($result->num_rows() == 1){
-        return $result->row(0)->KT;
-    } else {
-        return false;
-    }
-  }
-  //Hakee käyttäjän avaimen
-  public function fetch_key($username,$password) {
+   public function User_type($username) {
+     $this->db->where('Sposti',$username);
+     $result = $this->db->get('profile');
+     if($result->num_rows() == 1){
+         return $result->row(0)->KT;
+     } else {
+         return false;
+     }
+   }  public function fetch_key($username,$password) {
     $enc_password = md5($password);
 
     $this->db->where('Email',$username);
@@ -81,10 +75,9 @@ class User_model extends CI_Model {
         return false;
     }
   }
-  //Lähettää Sähköposti varmennuksen
   public function send_mail($key) {
     // $message = "";
-    // $message = "<a href='".base_url()."$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+    // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
     // $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     // $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     // $this->email->to($this->input->post('email'));
@@ -95,76 +88,7 @@ class User_model extends CI_Model {
     return true;
     // }
   }
-  //Varmistaa sähköpostin
   public function C_Email($key) {
       return true;
-  }
-  //Hakee Harrastukset
-  public function Hae_Harrastukset() {
-    $query = $this->db->get('harrastukset');
-    return $query->result();
-  }
-  //Hakee Työhistorian
-  public function Hae_Tyohistoria() {
-    $query = $this->db->get('tyohistoria');
-    return $query->result();
-  }
-  //Hakee Koulutukset
-  public function Hae_Koulutukset() {
-    $query = $this->db->get('tyohistoria');
-    return $query->result();
-  }
-  //Hakee Käyttäjien Kortit
-  public function Hae_KKortit() {
-    $query = $this->db->get('tyohistoria');
-    return $query->result();
-  }
-  //Hakee Profiilit
-  public function Hae_Profiilit() {
-    $this->db->where('Näytä_Profiili', "Kylla");
-    $query = $this->db->get('profile');
-    return $query->result();
-  }
-  //Hakee hakutulokset
-  public function hakee() {
-    $data = $this->input->post('haku');
-    return $data;
-  }
-  // Esimerkki
-  public function tee_haku() {
-		$match = trim($this->input->post('haku'));
-		$str = preg_replace( "/\s+/", " ", $match);
-		if($str === '' OR $str === ' '){
-		$kysely ="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-		FROM henkilotiedot
-		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		WHERE henkilotiedot.aktiivisuus = 1
-		LIKE '%%' ESCAPE '!'";
-		$query = $this->db->query($kysely);
-		return $query->result();
-		}
-		else
-		{
-		$haku_explode = explode(' ', $str);
-		$kysely="
-		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-		FROM henkilotiedot
-		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-		LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
-		LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
-		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
-		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
-		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
-		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
-		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
-		OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
-
-		$query = $this->db->query($kysely);
-
-		return $query->result();
-	 }
   }
 }

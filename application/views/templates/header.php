@@ -21,7 +21,7 @@
 <?php else : ?>
 		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
 <?php if ($this->session->userdata('KT') == 3) :?>
-		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>users/haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
+		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
 <?php
 	$num = "?";
 	$n = 1;
@@ -31,7 +31,7 @@ if (isset($Palautteet)) {
 	}
 }
 ?>
-		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute <?php echo $num; ?>!</a>
+		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute <?php echo $num; ?>!</a>
 <?php else : ?>
 		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a>
 <?php endif; ?>

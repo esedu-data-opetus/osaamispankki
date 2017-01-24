@@ -1,4 +1,4 @@
-<?php echo form_open('users/haku'); ?>
+<?php echo form_open('Haku'); ?>
 <p style="display: inline">
 <?php
 	$data = array('name'        => 'haku',
@@ -19,93 +19,121 @@
 </p>
 <?php echo form_close(); ?>
 
-
-<h3>Tulokset haulla <?php echo $this->input->post('haku'); ?></h3>
+<h3>Tulokset haulla <?php echo filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING); ?></h3>
 <?php if($Profile) : ?>
 <?php	foreach($Profile as $Prof) : ?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="prof">
-				<img class="img-rounded prof-img" src="<?php echo base_url(); ?>images/profiili/<?php echo $Prof->Prof_Pic ?>" />
-				<div class="prof-info">
-					<p><?php echo $Prof->F_Name." ".$Prof->L_Name ?></p>
-					<p><?php echo $Prof->Puh_Num; ?></p>
-					<p><?php echo $Prof->Sposti; ?></p>
-					<p><?php echo $Prof->About; ?></p>
+	<?php if(empty($this->input->post('haku'))) : ?>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="prof">
+			<img class="img-rounded prof-img" src="<?php echo base_url(); ?>images/profiili/<?php echo $Prof->Prof_Pic ?>" />
+			<div class="prof-info">
+				<p><?php echo $Prof->F_Name." ".$Prof->L_Name ?></p>
+				<p><?php echo $Prof->Puh_Num; ?></p>
+				<p><?php echo $Prof->Sposti; ?></p>
+				<p><?php echo $Prof->About; ?></p>
+			</div>
+		</div>
+	</div>
+<!-- <div class="panel-body">
+
+</div> -->
+</div>
+<?php else : ?>
+	<?php
+	$Hakusana = filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING);
+	$Hakutulokset = array(
+		$Prof->F_Name,
+		$Prof->L_Name,
+	  $Prof->Sposti,
+		$Prof->Puh_Num,
+		$Prof->About,
+	);
+	if(in_array($Hakusana, $Hakutulokset)) : ?>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="prof">
+					<img class="img-rounded prof-img" src="<?php echo base_url(); ?>images/profiili/<?php echo $Prof->Prof_Pic ?>" />
+					<div class="prof-info">
+						<p><?php echo $Prof->F_Name." ".$Prof->L_Name ?></p>
+						<p><?php echo $Prof->Puh_Num; ?></p>
+						<p><?php echo $Prof->Sposti; ?></p>
+						<p><?php echo $Prof->About; ?></p>
+					</div>
 				</div>
 			</div>
 		</div>
+	<?php endif; ?>
+<?php endif; ?>
+<?php endforeach; ?>
+<?php endif;?>
+
+
+
+<!-- HARRASTUKSET
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3>Harrastukset</h3>
+</div>
 <div class="panel-body">
-
-<!-- HARRASTUKSET -->
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3>Harrastukset</h3>
-	</div>
-	<div class="panel-body">
 <?php if($Harrastukset) : ?>
-	<?php	foreach($Harrastukset as $Hobby) : ?>
-		<?php if($Hobby->User_id == $Prof->User_id) : ?>
-		<table class="table">
-			<thead>
-			<tr>
-				<th><p>Harrastus</p></th>
-				<th><p>Vapaasana</p></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><p><?php echo $Hobby->harrastus; ?></p></td>
-				<td><p><?php echo $Hobby->vapaasana; ?></p></td>
-			</tr>
-		</tbody>
-	</table>
+<?php	foreach($Harrastukset as $Hobby) : ?>
+<?php if($Hobby->User_id == $Prof->User_id) : ?>
+<table class="table">
+<thead>
+<tr>
+<th><p>Harrastus</p></th>
+<th><p>Vapaasana</p></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p><?php echo $Hobby->harrastus; ?></p></td>
+<td><p><?php echo $Hobby->vapaasana; ?></p></td>
+</tr>
+</tbody>
+</table>
 <?php endif;?>
 <?php endforeach; ?>
 <?php else : ?>
-	<p class="error-message">Käyttäjällä ei ole harrastuksia!</p>
+<p class="error-message">Käyttäjällä ei ole harrastuksia!</p>
 <?php endif;?>
 </div>
-</div>
+</div> -->
 
-<!-- TYÖHISTORIA -->
+<!-- TYÖHISTORIA
 <div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3>Työhistoria</h3>
-	</div>
-	<div class="panel-body">
-	<?php if($Tyohistoria) : ?>
-			<?php	foreach($Tyohistoria as $Tyo) : ?>
-		<?php if($Tyo->User_id == $Prof->User_id) : ?>
-		<table class="table">
-			<thead>
-				<tr>
-					<td><p>Työpaikka</p></td>
-					<td><p>Tehtävä</p></td>
-					<td><p>Alkoi</p></td>
-					<td><p>Loppui</p></td>
-					<td><p>Vapaasana</p></td>
-				</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><p><?php echo $Tyo->tyopaikka; ?></p></td>
-				<td><p><?php echo $Tyo->tehtava; ?></p></td>
-				<td><p><?php echo $Tyo->alkoi; ?></p></td>
-				<td><p><?php echo $Tyo->loppui; ?></p></td>
-				<td><p><?php echo $Tyo->kuvaus; ?></p></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="panel-heading">
+<h3>Työhistoria</h3>
+</div>
+<div class="panel-body">
+<?php if($Tyohistoria) : ?>
+<?php	foreach($Tyohistoria as $Tyo) : ?>
+<?php if($Tyo->User_id == $Prof->User_id) : ?>
+<table class="table">
+<thead>
+<tr>
+<td><p>Työpaikka</p></td>
+<td><p>Tehtävä</p></td>
+<td><p>Alkoi</p></td>
+<td><p>Loppui</p></td>
+<td><p>Vapaasana</p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p><?php echo $Tyo->tyopaikka; ?></p></td>
+<td><p><?php echo $Tyo->tehtava; ?></p></td>
+<td><p><?php echo $Tyo->alkoi; ?></p></td>
+<td><p><?php echo $Tyo->loppui; ?></p></td>
+<td><p><?php echo $Tyo->kuvaus; ?></p></td>
+</tr>
+</tbody>
+</table>
 <?php endif;?>
 <?php endforeach; ?>
 <?php else : ?>
-	<p class="error-message">Käyttäjällä ei ole harrastuksia!</p>
+<p class="error-message">Käyttäjällä ei ole harrastuksia!</p>
 <?php endif;?>
 </div>
-</div>
-
-</div>
-</div>
-<?php endforeach; ?>
-<?php endif;?>
+</div> -->

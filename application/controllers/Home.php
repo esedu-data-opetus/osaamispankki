@@ -1,5 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Home extends CI_Controller {
   //Ensimmäinen asia mikä tapahtuu koko sivulla!
   //index method hakee Welcome_message:n.

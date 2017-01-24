@@ -15,7 +15,7 @@ class Profile extends CI_Controller {
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
-    $data['Palautteet'] = $this->Profile_model->hae_palaute();
+    $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
     $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
 
