@@ -42,14 +42,44 @@
 <?php else : ?>
 	<?php
 	$Hakusana = filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING);
+
+if (!isset($Harrastus)) {
+	$Harrastus = "";
+}
+
+	foreach($Harrastukset as $Hobby) {
+		if ($Prof->User_id == $Hobby->User_id) {
+			$Harrastus = "Harrastus";
+		} else {
+			$Harrastus = "";
+		}
+	}
+
 	$Hakutulokset = array(
-		$Prof->F_Name,
-		$Prof->L_Name,
-	  $Prof->Sposti,
-		$Prof->Puh_Num,
-		$Prof->About,
+		' '.$Prof->F_Name,
+		' '.$Prof->L_Name,
+	  ' '.$Prof->Sposti,
+		' '.$Prof->Puh_Num,
+		' '.$Prof->About,
+		' '.$Harrastus,
 	);
-	if(in_array($Hakusana, $Hakutulokset)) : ?>
+//↓Testausta↓
+	foreach($Hakutulokset as $Haut) {
+		$pos = strpos($Haut, $Hakusana);
+		if ($pos == True) {
+			echo '<b>"'.$Hakusana.'" Löyti Täältä->|</b>';
+			$r_pos = $pos - 1;
+			$is = "<b>|<-kirjaimen ".$r_pos." jälkeen!</b>";
+			$col = "color: red; font-weight: bold;";
+		} else {
+			$is = "";
+			$col = "";
+		}
+		echo "<span style='".$col."'>".trim($Haut)."</span>".$is."<br>";
+	}
+	echo "<br>";
+//↑Testausta↑
+	if(in_array($Hakusana, $Hakutulokset) || $pos == true) : ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="prof">
@@ -67,8 +97,6 @@
 <?php endif; ?>
 <?php endforeach; ?>
 <?php endif;?>
-
-
 
 <!-- HARRASTUKSET
 <div class="panel panel-primary">

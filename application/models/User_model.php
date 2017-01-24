@@ -16,7 +16,7 @@ class User_model extends CI_Model {
               echo $n++.". non match found<br>";
             }
         }
-        $from = $this->input->post('email');
+        $from = $Email;
         $needs = "esedulainen.fi";
         $pos = strpos($from, $needs);
         if ($pos === false) {
@@ -56,7 +56,7 @@ class User_model extends CI_Model {
   }
   //Hakee käyttäjän tyypin
    public function User_type($username) {
-     $this->db->where('Sposti',$username);
+     $this->db->where('Sposti', $username);
      $result = $this->db->get('profile');
      if($result->num_rows() == 1){
          return $result->row(0)->KT;

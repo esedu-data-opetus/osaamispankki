@@ -31,11 +31,6 @@ class Haku_model extends CI_Model {
       $query = $this->db->get('tyohistoria');
       return $query->result();
     }
-    //Hakee hakutulokset
-    public function Hakusi() {
-      $data = $this->input->post('haku');
-      return $data;
-    }
     // Esimerkki
     public function tee_haku() {
   		$match = trim($this->input->post('haku'));

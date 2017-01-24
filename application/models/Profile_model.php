@@ -9,6 +9,7 @@ class Profile_model extends CI_Model {
         'Puh_Num'       =>     $this->input->post('puh_num'),
         'About'         =>     'Muu',
         'Own_Email'     =>     $this->input->post('own_email'),
+        'Sposti'        =>     $this->session->userdata('sposti'),
         'Osoite'        =>     $this->input->post('osoite'),
         'Posti_Num'     =>     $this->input->post('posti_num'),
         'Näytä_Profiili'=>     'Ei'

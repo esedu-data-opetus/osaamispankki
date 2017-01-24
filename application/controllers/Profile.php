@@ -38,7 +38,7 @@ class Profile extends CI_Controller {
       redirect('home/index');
     }
 
-    $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[30]');
+    $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[100]');
 		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[30]');
 		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[30]');
 		$this->form_validation->set_rules('osoite', 'Osoite', 'required|trim|max_length[30]');
