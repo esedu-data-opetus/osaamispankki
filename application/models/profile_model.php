@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-
+ 
 <?php
 class Profile_model extends CI_Model {
 //Luo Profiilin

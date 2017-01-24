@@ -21,7 +21,7 @@ class User_model extends CI_Model {
         $needs = "esedulainen.fi";
         $pos = strpos($from, $needs);
         if ($pos === false) {
-          $C = "Sinun pitää käyttää sinun esedulainen sähköpostia!";
+          $C = "Sinun pitää käyttää esedulainen sähköpostia!";
           echo "The string '$needs' was not found in the string '$from'<br>";
         } else {
           echo "The string '$needs' was found in the string '$from'<br>";
