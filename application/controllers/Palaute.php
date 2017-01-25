@@ -3,6 +3,11 @@
 class Palaute extends CI_Controller {
   //Hakee kaikki palautteet
   public function index() {
+    if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+      $this->session->set_flashdata('error', 'Access Denaid!');
+      redirect('home/index');
+    }
+
     $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
     $data['main_content'] = 'Palautteet';
@@ -40,6 +45,10 @@ public function hae_palaute_user() {
 }
 //Vaihtaa palautteen tilaa
 public function palaute_tila($Tila, $id) {
+  if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+    $this->session->set_flashdata('error', 'Access Denaid!');
+    redirect('home/index');
+  }
   $data = array(
     'Tila' => $Tila,
   );
@@ -52,6 +61,10 @@ public function palaute_tila($Tila, $id) {
 }
 //Poistaa palautteen
 public function palaute_delete($id) {
+  if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+    $this->session->set_flashdata('error', 'Access Denaid!');
+    redirect('home/index');
+  }
   if ($this->Palaute_model->palaute_delete($id)) {
     $this->session->set_flashdata('success', 'Palaute poistettu!');
   } else {

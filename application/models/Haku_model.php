@@ -12,58 +12,28 @@ class Haku_model extends CI_Model {
     return true;
   }
   //Hakee Harrastukset
-    public function Hae_Harrastukset() {
-      $query = $this->db->get('harrastukset');
-      return $query->result();
-    }
-    //Hakee Työhistorian
-    public function Hae_Tyohistoria() {
-      $query = $this->db->get('tyohistoria');
-      return $query->result();
-    }
-    //Hakee Koulutukset
-    public function Hae_Koulutukset() {
-      $query = $this->db->get('tyohistoria');
-      return $query->result();
-    }
-    //Hakee Käyttäjien Kortit
-    public function Hae_KKortit() {
-      $query = $this->db->get('tyohistoria');
-      return $query->result();
-    }
-    // Esimerkki
-    public function tee_haku() {
-  		$match = trim($this->input->post('haku'));
-  		$str = preg_replace( "/\s+/", " ", $match);
-  		if($str === '' OR $str === ' '){
-  		$kysely ="
-  		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi, henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-  		FROM henkilotiedot
-  		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-  		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-  		WHERE henkilotiedot.aktiivisuus = 1
-  		LIKE '%%' ESCAPE '!'";
-  		$query = $this->db->query($kysely);
-  		return $query->result();
-  		}
-  		else
-  		{
-  		$haku_explode = explode(' ', $str);
-  		$kysely="
-  		SELECT DISTINCT henkilotiedot.sposti, henkilotiedot.privSposti, henkilotiedot.etunimi, henkilotiedot.osoite, henkilotiedot.postinro, henkilotiedot.puhelinnro, henkilotiedot.sNimi,  henkilotiedot.lyhytKuvaus, henkilotiedot.pkuva, henkilotiedot.aktiivisuus
-  		FROM henkilotiedot
-  		LEFT JOIN tyo ON henkilotiedot.sposti = tyo.sposti
-  		LEFT JOIN koulutukset ON henkilotiedot.sposti = koulutukset.sposti
-  		LEFT JOIN hakusanat ON henkilotiedot.sposti = hakusanat.sposti
-  		LEFT JOIN harrastukset ON henkilotiedot.sposti = harrastukset.sposti
-  		WHERE henkilotiedot.etunimi REGEXP '".implode("|", $haku_explode)."'
-  		OR henkilotiedot.sNimi REGEXP'".implode("|", $haku_explode)."'
-  		OR koulutukset.koulutusnimi REGEXP'".implode("|", $haku_explode)."'
-  		OR tyo.tyopaikka REGEXP'".implode("|", $haku_explode)."'
-  		OR harrastukset.harrastus REGEXP'".implode("|", $haku_explode)."'
-  		OR hakusanat.hakusana REGEXP'".implode("|", $haku_explode)."'";
-  		$query = $this->db->query($kysely);
-  		return $query->result();
-  	 }
+  public function Hae_Harrastukset() {
+    $query = $this->db->get('harrastukset');
+    return $query->result();
+  }
+  //Hakee Työhistorian
+  public function Hae_Tyohistoriat() {
+    $query = $this->db->get('tyohistoria');
+    return $query->result();
+  }
+  //Hakee Koulutukset
+  public function Hae_Koulutukset() {
+    $query = $this->db->get('koulutus');
+    return $query->result();
+  }
+  //Hakee Käyttäjien Kortit
+  public function Hae_KKortit() {
+    $query = $this->db->get('kkortit');
+    return $query->result();
+  }
+  //Hakee Käyttäjien Kortit
+  public function Hae_Metatiedot() {
+    $query = $this->db->get('metatieto');
+    return $query->result();
   }
 }
