@@ -4,7 +4,7 @@
     <a class="btn btn-success btn-lg" style="float: right; margin: 0;" href="<?php echo base_url(); ?>Palaute/Palautteesi"><span class="glyphicon glyphicon-plus"></span></a>
     <h1 style="margin: 0; padding: 0;">Palautteet</h1>
   </div>
-  <div class="panel-body">
+  <div style="padding: 0;" class="panel-body">
   <?php foreach($Palautteet as $Palaute) : ?>
     <?php
     if ($Palaute) {
@@ -13,7 +13,7 @@
     ?>
 <?php endforeach; ?>
 <?php if(!isset($Palaute_E)) : ?>
-<h1 class="error-message">Palautteita ei ole lisätty!</h1>
+<h1 style="padding: 15px;" class="error-message">Palautteita ei ole lisätty!</h1>
 <?php else : ?>
 <table style="margin: 0;" class="table">
   <thead>
@@ -28,7 +28,7 @@
 <?php foreach($Palautteet as $Palaute) : ?>
 <?php
 if ($Palaute->Tila == 1) {
-  $Tila = "warning";
+  $Tila = "default";
 } else if ($Palaute->Tila == 2) {
   $Tila = "success";
 } else {
@@ -40,7 +40,7 @@ if ($Palaute->Tila == 1) {
     <td><p><?php echo $Palaute->Aihe; ?></p></td>
     <td><p><?php echo $Palaute->Palaute; ?></p></td>
     <td>
-      <a class="btn btn-warning" title="Luettu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/1/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-pushpin"></span></a>
+      <a class="btn btn-default" title="Luettu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/1/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-pushpin"></span></a>
       <a class="btn btn-success" title="Korjattu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/2/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-ok"></span></a>
       <a onclick="return confirm('Halutako Poistaa Palautteen?');" href="<?php echo base_url(); ?>Palaute/palaute_delete/<?php echo $Palaute->id; ?>" class="btn btn-danger" title="Hylätty!"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
