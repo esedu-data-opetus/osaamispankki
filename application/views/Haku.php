@@ -1,3 +1,5 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
 <?php echo form_open('Haku'); ?>
 <p style="display: inline">
 <?php

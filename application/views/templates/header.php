@@ -22,6 +22,7 @@
 		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
 <?php if ($this->session->userdata('KT') == 3) :?>
 		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
+		<a class="btn btn-info btn-lg" href="<?php echo base_url(); ?>Loki" style="padding: 10px;"><span class="glyphicon glyphicon-backward"></span> Loki</a>
 <?php
 	$num = "?";
 	$n = 1;
