@@ -22,6 +22,7 @@
 		<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>profile">Oma profiili</a>
 <?php if ($this->session->userdata('KT') == 3) :?>
 		<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
+<?php endif; ?>
 		<a class="btn btn-info btn-lg" href="<?php echo base_url(); ?>Loki" style="padding: 10px;"><span class="glyphicon glyphicon-backward"></span> Loki</a>
 <?php
 	$num = "?";
@@ -32,6 +33,7 @@ if (isset($Palautteet)) {
 	}
 }
 ?>
+<?php if ($this->session->userdata('KT') == 3) :?>
 		<a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute <?php echo $num; ?>!</a>
 <?php else : ?>
 		<a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a>

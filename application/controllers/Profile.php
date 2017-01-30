@@ -50,11 +50,11 @@ class Profile extends CI_Controller {
     } else {
       $key = $this->session->userdata('Key');
       if ($this->Profile_model->profile_setup($key)) {
+        $this->Loki_model->Uusi_toiminta('Asetit perustiedot');
         $this->session->set_flashdata('success', 'Perustiedot asetettu!');
         redirect('profile/index');
       }
     }
-    $this->Loki_model->Uusi_toiminta('Loit käyttäjän');
   }
   //Hakee Harrastuksen lisäys näkymän
   public function harrastus() {
@@ -66,6 +66,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->harrastus($user_id)) {
+        $this->Profile_model->Historiaa('Lisäsit harrastuksen');
         $this->session->set_flashdata('success', 'Harrastus lisätty!');
         redirect('profile/harrastus');
       }
@@ -73,6 +74,7 @@ class Profile extends CI_Controller {
   }
   //Poistaa harrastuksen
   public function harrastus_delete($id) {
+    $this->Profile_model->Historiaa('Poistit harrastuksen');
     $this->Profile_model->harrastus_delete($id);
     redirect('profile/index');
   }
@@ -83,6 +85,7 @@ class Profile extends CI_Controller {
         'vapaasana'       =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->harrastus_update($id,$data)) {
+      $this->Profile_model->Historiaa('Päivitit harrastukset');
       redirect('profile/index');
     }
   }
@@ -100,6 +103,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->tyohistoria($user_id)) {
+        $this->Profile_model->Historiaa('Lisäsit työhistorian');
         $this->session->set_flashdata('success', 'Työhistoria lisätty!');
         redirect('profile/tyohistoria');
       }
@@ -107,6 +111,7 @@ class Profile extends CI_Controller {
   }
   //Poistaa Työhistorian
   public function tyohistoria_delete($id) {
+    $this->Profile_model->Historiaa('Poistit työhistorian');
     $this->Profile_model->tyohistoria_delete($id);
     redirect('profile/index');
   }
@@ -120,6 +125,7 @@ class Profile extends CI_Controller {
       'kuvaus'        =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->tyohistoria_update($id,$data)) {
+      $this->Profile_model->Historiaa('Päivitit työhistorian');
       redirect('profile/index');
     }
   }
@@ -137,6 +143,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->koulutus($user_id)) {
+        $this->Profile_model->Historiaa('Lisäsit koulutuksen');
         $this->session->set_flashdata('success', 'Koulutus lisätty!');
         redirect('profile/koulutus');
       }
@@ -144,8 +151,9 @@ class Profile extends CI_Controller {
   }
   //Poistaa Koulutuksen
   public function koulutus_delete($id) {
-      $this->Profile_model->koulutus_delete($id);
-      redirect('profile/index');
+    $this->Profile_model->Historiaa('Poistit koulutuksen');
+    $this->Profile_model->koulutus_delete($id);
+    redirect('profile/index');
   }
   //Päivittää Koulutuksen
   public function koulutus_update($id) {
@@ -157,6 +165,7 @@ class Profile extends CI_Controller {
         'loppui'          =>     filter_var($this->input->post('loppui'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->koulutus_update($id,$data)) {
+      $this->Profile_model->Historiaa('Päivitit koulutuksen');
       redirect('profile/index');
     }
   }
@@ -171,6 +180,7 @@ class Profile extends CI_Controller {
     } else {
       $user_id = $this->session->userdata('user_id');
       if ($this->Profile_model->kortit($user_id)) {
+        $this->Profile_model->Historiaa('Lisäsit kortin');
         $this->session->set_flashdata('success', 'Kortti lisätty!');
         redirect('profile/kortit');
       }
@@ -178,6 +188,7 @@ class Profile extends CI_Controller {
   }
   //Poistaa Korttien
   public function kortit_delete($id) {
+    $this->Profile_model->Historiaa('Poistit kortin');
     $this->Profile_model->kortit_delete($id);
     redirect('profile/index');
   }
@@ -208,13 +219,14 @@ class Profile extends CI_Controller {
       'About'           =>    filter_var($this->input->post('about'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->update_profile($user_id,$data)) {
+      $this->Profile_model->Historiaa('Päivitit profiilisi');
       redirect('profile/index');
     }
-    $this->Loki_model->Uusi_toiminta('Päivitit profiilisi');
   }
   //Lisää Metatiedon
   public function add_meta() {
     if (empty($this->input->post('Tieto'))) {
+      $this->Profile_model->Historiaa('Yritit lisätä tyhjän metatiedon');
       $this->session->set_flashdata('error', 'Täytä tyhjä kohta!');
       redirect('profile?add_meta');
     } else {
@@ -222,6 +234,7 @@ class Profile extends CI_Controller {
           'User_id'     =>     $this->session->userdata('user_id'),
           'Tieto'       =>     filter_var($this->input->post('Tieto'), FILTER_SANITIZE_STRING)
       );
+      $this->Profile_model->Historiaa('Lisäsit metatiedon "'.filter_var($this->input->post('Tieto'), FILTER_SANITIZE_STRING).'"');
       if ($this->Profile_model->meta_add($data)) {
         redirect('profile?add_meta');
       }
@@ -229,11 +242,13 @@ class Profile extends CI_Controller {
   }
   //Poistaa kaikki Metatiedot
   public function delete_all_meta($user_id) {
+    $this->Profile_model->Historiaa('Poistit kaikki metatiedot');
     $this->Profile_model->delete_all_meta($user_id);
     redirect('profile/index');
   }
   //Poistaa Metatiedon
   public function delete_meta($id) {
+    $this->Profile_model->Historiaa('Poistit metatiedon');
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
   }

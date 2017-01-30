@@ -6,7 +6,12 @@ class Loki_model extends CI_Model {
     $query = $this->db->get('loki');
     return $query->result();
   }
-  public function Uusi_toiminta($Toiminta) {
+  public function Clear($User_id) {
+    $this->db->where('User_id', $User_id);
+    $this->db->delete('loki');
+    return true;
+  }
+  public function Uusi_toiminto($Toiminta) {
     $User_id = $this->session->userdata('user_id');
     $Sposti = $this->session->userdata('sposti');
     $Time = date('H') + 1 . date(':i');

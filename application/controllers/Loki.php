@@ -8,4 +8,12 @@ class Loki extends CI_Controller {
     $data['main_content'] = "Loki";
     $this->load->view('layouts/main', $data);
   }
+  public function Clear($User_id) {
+    if($this->Loki_model->Clear($User_id)) {
+      $this->session->set_flashdata('success', 'Historia tyhjennetty!');
+      redirect('Loki/Index');
+    } else {
+      redirect('Home/Index');
+    }
+  }
 }

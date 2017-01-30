@@ -165,4 +165,23 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  //Lisää historiaa
+  public function Historiaa($Toiminta) {
+    $User_id = $this->session->userdata('user_id');
+    $Sposti = $this->session->userdata('sposti');
+    $Time = date('H') + 1 . date(':i');
+    $Date = date('d.m.Y');
+
+    $data = array(
+      'User_id'   =>    $User_id,
+      'Sposti'    =>    $Sposti,
+      'Aika'      =>    $Time,
+      'Paiva'     =>    $Date,
+      'Toiminta'  =>    $Toiminta,
+    );
+    $insert = $this->db->insert('loki', $data);
+    if ($insert) {
+      return true;
+    }
+  }
 }
