@@ -33,9 +33,8 @@ class Palaute_model extends CI_Model {
   }
   //Lisää historiaa
   public function Historiaa($Toiminta) {
-    if ($this->session->userdata()) {
-      $User_id = $this->session->userdata('user_id');
-      $Sposti = $this->session->userdata('sposti');
+    $User_id = $this->session->userdata('user_id');
+    $Sposti = $this->session->userdata('sposti');
     $Time = date('H') + 1 . date(':i');
     $Date = date('d.m.Y');
 
@@ -50,8 +49,5 @@ class Palaute_model extends CI_Model {
     if ($insert) {
       return true;
     }
-  } else {
-    return false;
-  }
   }
 }

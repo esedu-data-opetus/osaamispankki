@@ -23,12 +23,12 @@ public function Palautteesi() {
     $this->load->view('layouts/main', $data);
   } else {
     if ($this->session->userdata('user_id')) {
+      $this->Palaute_model->Historiaa('Lisäsit palautteen aiheella "'.filter_var($this->input->post('Aihe'), FILTER_SANITIZE_STRING).'"');
       $User_id = $this->session->userdata('user_id');
     } else {
       $User_id = 0;
     }
     if($this->Palaute_model->Palaute($User_id)) {
-      $this->Palaute_model->Historiaa('Lisäsit palautteen aiheella "'.filter_var($this->input->post('Aihe'), FILTER_SANITIZE_STRING).'"');
       $this->session->set_flashdata('success', 'Kiitos Palautteesta!');
       redirect('Home/index');
     } else {

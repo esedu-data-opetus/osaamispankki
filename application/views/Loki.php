@@ -2,7 +2,7 @@
 <div class="panel panel-info">
   <div class="panel-heading" style="overflow: hidden;">
     <h1 style="float: left; margin:0; padding:0;">Historia</h1>
-    <a href="<?php echo base_url(); ?>Loki/Clear/<?php echo $this->session->userdata('user_id'); ?>" style="float: right;" class="btn btn-danger btn-lg" ><span class="glyphicon glyphicon-trash"></span></a>
+    <a href="<?php echo base_url(); ?>Loki/Clear/<?php echo $this->session->userdata('user_id'); ?>" title="Tyhjennä tapahtuma historia!" style="float: right;" class="btn btn-danger btn-lg" ><span class="glyphicon glyphicon-trash"></span></a>
   </div>
   <div class="panel-body" style="margin:0; padding:0;">
     <table class="table" style="margin:0; padding:0;">
