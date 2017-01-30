@@ -48,7 +48,7 @@
     <option disabled selected value="0">Valitse Aihe</option>
     <option name="knimi" value="Negativinen">Negativinen</option>
     <option name="knimi" value="Positiivinen">Positiivinen</option>
-    <option name="knimi" value="Update">Parantaa</option>
+    <option name="knimi" value="Parantaa">Parantaa</option>
     <option name="knimi" value="Salsana">Salasana</option>
     <option name="knimi" value="Profiili">Profiili</option>
     <option name="knimi" value="Kortit">Kortit</option>

@@ -15,7 +15,7 @@ class Profile extends CI_Controller {
   public function index() {
     $user_id = $this->session->userdata('user_id');
 
-    $data['Palautteet'] = $this->Profile_model->hae_palaute();
+    $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
     $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
 
@@ -38,12 +38,12 @@ class Profile extends CI_Controller {
       redirect('home/index');
     }
 
-    $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[30]');
-		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[30]');
-		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[30]');
-		$this->form_validation->set_rules('osoite', 'Osoite', 'required|trim|max_length[30]');
+    $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[100]');
+		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[100]');
+		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[100]');
+		$this->form_validation->set_rules('osoite', 'Osoite', 'required|trim|max_length[100]');
 		$this->form_validation->set_rules('posti_num', 'Postinumero', 'required|trim');
-		$this->form_validation->set_rules('puh_num', 'Puhelinnumero', 'required|trim|numeric|max_length[12]');
+		$this->form_validation->set_rules('puh_num', 'Puhelinnumero', 'required|trim|numeric|max_length[100]');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'users/set_profile';

@@ -4,7 +4,7 @@
     <a class="btn btn-success btn-lg" style="float: right; margin: 0;" href="<?php echo base_url(); ?>Palaute/Palautteesi"><span class="glyphicon glyphicon-plus"></span></a>
     <h1 style="margin: 0; padding: 0;">Palautteet</h1>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" style="padding: 0;">
   <?php foreach($Palautteet as $Palaute) : ?>
     <?php
     if ($Palaute->Sposti == $this->session->userdata('sposti')) {
@@ -13,9 +13,9 @@
     ?>
 <?php endforeach; ?>
 <?php if(!isset($Palaute_E)) : ?>
-<h1 class="error-message">Palautteita ei ole lisätty!</h1>
+<h1 style="padding: 15px;" class="error-message">Palautteita ei ole lisätty!</h1>
 <?php else : ?>
-  <table style="margin: 0;" class="table">
+  <table style="margin: 0; padding: 0;" class="table">
     <thead>
     <tr>
       <th>SähköPosti</th>
@@ -29,11 +29,11 @@
     <?php if (md5($Palaute->Sposti) == $this->uri->segment('3')) : ?>
   <?php
   if ($Palaute->Tila == 1) {
-    $Tila = "warning";
-    $Tilasi = "Luettu!";
+    $Tila = "default";
+    $Tilasi = "Huomattu!";
   } else if ($Palaute->Tila == 2) {
     $Tila = "success";
-    $Tilasi = "Asia hoidettu!";
+    $Tilasi = "Luettu!";
   } else {
     $Tila = "";
     $Tilasi = "Lähetetty!";

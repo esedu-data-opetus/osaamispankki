@@ -1,10 +1,18 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Palaute extends CI_Controller {
-//Vie pois palautteista
-public function index() {
-  redirect('home/index');
-}
+  //Hakee kaikki palautteet
+  public function index() {
+    if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+      $this->session->set_flashdata('error', 'Access Denaid!');
+      redirect('home/index');
+    }
+
+    $data['Palautteet'] = $this->Palaute_model->hae_palaute();
+
+    $data['main_content'] = 'Palautteet';
+    $this->load->view('layouts/main',$data);
+  }
 //Asettaa inputeilla säännot ja hakee palautteen lisäys näkymän
 public function Palautteesi() {
   $this->form_validation->set_rules('Sposti', 'Sposti', 'trim|required|valid_email');
@@ -30,37 +38,38 @@ public function Palautteesi() {
 }
 //Hakee käyttäjille palautteensa
 public function hae_palaute_user() {
-  $data['Palautteet'] = $this->Profile_model->hae_palaute();
+  $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
   $data['main_content'] = 'Palautteesi';
   $this->load->view('layouts/main',$data);
 }
-//Hakee kaikki palautteet
-public function hae_palaute() {
-  $data['Palautteet'] = $this->Profile_model->hae_palaute();
-
-  $data['main_content'] = 'Palautteet';
-  $this->load->view('layouts/main',$data);
-}
 //Vaihtaa palautteen tilaa
 public function palaute_tila($Tila, $id) {
+  if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+    $this->session->set_flashdata('error', 'Access Denaid!');
+    redirect('home/index');
+  }
   $data = array(
     'Tila' => $Tila,
   );
-  if ($this->Profile_model->palaute_tila($data, $id)) {
+  if ($this->Palaute_model->palaute_tila($data, $id)) {
     $this->session->set_flashdata('success', 'Palaute luettu!');
   } else {
     $this->session->set_flashdata('error', 'Tuli ongelma!');
   }
-  redirect('Palaute/hae_palaute');
+  redirect('Palaute');
 }
 //Poistaa palautteen
 public function palaute_delete($id) {
-  if ($this->Profile_model->palaute_delete($id)) {
+  if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+    $this->session->set_flashdata('error', 'Access Denaid!');
+    redirect('home/index');
+  }
+  if ($this->Palaute_model->palaute_delete($id)) {
     $this->session->set_flashdata('success', 'Palaute poistettu!');
   } else {
     $this->session->set_flashdata('error', 'Palautetta ei voitu poistaa!');
   }
-  redirect('Palaute/hae_palaute');
+  redirect('Palaute');
   }
 }

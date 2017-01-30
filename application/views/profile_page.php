@@ -1,3 +1,4 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <style>
 .disabled {
   pointer-events: none;
@@ -62,6 +63,7 @@ foreach($User_Info as $User) {
   }
 }
 ?>
+<div class="panel-group">
 <div class="panel panel-<?php echo $Col; ?>">
 <div class="panel-heading">
 <?php foreach($User_Info as $User) : ?>
@@ -530,5 +532,6 @@ if (isset($_GET['Prof_Edit'])) {
     </tbody>
     </table>
     <?php endif; ?>
+</div>
 </div>
 </div>
