@@ -37,7 +37,6 @@ class Profile extends CI_Controller {
     if ($this->session->userdata('is_logged_in') == 0) {
       redirect('home/index');
     }
-
     $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[100]');
 		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[100]');
 		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[100]');
@@ -55,6 +54,7 @@ class Profile extends CI_Controller {
         redirect('profile/index');
       }
     }
+    $this->Loki_model->Uusi_toiminta('Loit käyttäjän');
   }
   //Hakee Harrastuksen lisäys näkymän
   public function harrastus() {
@@ -210,6 +210,7 @@ class Profile extends CI_Controller {
     if ($this->Profile_model->update_profile($user_id,$data)) {
       redirect('profile/index');
     }
+    $this->Loki_model->Uusi_toiminta('Päivitit profiilisi');
   }
   //Lisää Metatiedon
   public function add_meta() {
