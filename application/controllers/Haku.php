@@ -11,16 +11,27 @@ class Haku extends CI_Controller {
 //Hakee profiilit, metatiedot ja kaikki kokemukset(Harrastukset, Työhistoria, Koulutukset ja Kortit)
 public function index() {
   $this->form_validation->set_rules('haku', 'Hakusana', 'trim');
+
+
+/*
   $data['Profile'] = $this->Haku_model->Hae_Profiilit();
   $data['Harrastukset'] = $this->Haku_model->Hae_Harrastukset();
   $data['Tyohistoria'] = $this->Haku_model->Hae_Tyohistoriat();
   $data['Koulutus'] = $this->Haku_model->Hae_Koulutukset();
   $data['Kortit'] = $this->Haku_model->Hae_KKortit();
   $data['Metatieto'] = $this->Haku_model->Hae_Metatiedot();
+*/
   if ($this->form_validation->run() == FALSE) {
-    $data['main_content'] = 'Haku';
+    $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
   } else {
+    $hakusana =  $this->input->post('haku');
+    $data['haku_tulokset'] = $this->Haku_model->haku($hakusana);
+    $data['main_content'] = 'Haku2';
+    $this->load->view('layouts/main',$data);
+
+
+/*
     if ($this->Haku_model->hakee()) {
       $data['haut'] = $this->Haku_model->hakee();
       $data['main_content'] = 'Haku';
@@ -30,6 +41,7 @@ public function index() {
       $data['main_content'] = 'Haku';
       $this->load->view('layouts/main',$data);
       }
+    */
     }
   }
 }

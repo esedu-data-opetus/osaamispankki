@@ -1,6 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Haku_model extends CI_Model {
+  public function haku($value = '')
+  {
+    $this->db->select('*');
+    $this->db->from('profile');
+    $this->db->join('harrastukset', 'harrastukset.User_id = profile.User_id');
+    $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
+    $this->db->join('koulutus', 'koulutus.User_id = profile.User_id');
+    $this->db->join('kkortit', 'kkortit.User_id = profile.User_id');
+    $this->db->where('');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+
   //Hakee Profiilit
   public function Hae_Profiilit() {
     $this->db->where('Näytä_Profiili', "Kylla");
