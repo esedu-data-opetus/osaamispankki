@@ -13,7 +13,7 @@ parent::__construct();
   //Hakee kaikki palautteet
   public function index() {
     if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-      $this->session->set_flashdata('error', 'Access Denaid!');
+      $this->session->set_flashdata('error', 'Access Denied!');
       redirect('home/index');
     }
 
@@ -56,7 +56,7 @@ public function hae_palaute_user() {
 //Vaihtaa palautteen tilaa
 public function palaute_tila($Tila, $id) {
   if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
   $data = array(
@@ -72,7 +72,7 @@ public function palaute_tila($Tila, $id) {
 //Poistaa palautteen
 public function palaute_delete($id) {
   if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
   if ($this->Palaute_model->palaute_delete($id)) {
