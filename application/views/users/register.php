@@ -1,79 +1,52 @@
-<div class="row">
-<div class="col-md-6 col-md-offset-5">
-
+<div class="panel panel-default">
+	<div class="panel-heading">
 	<?php if ($this->session->flashdata('Email')) : ?>
-	<p class="unsuccess"><?php echo $this->session->flashdata('Email'); ?>
+		<p class="unsuccess"><?php echo $this->session->flashdata('Email'); ?>
 	<?php endif; ?>
-
-	<h1>Rekisteröityminen</h1><br>
-<style>
-#nappi {
-  font-family: Roboto, sans-serif;
-  outline: 0;
-  background: #31c398;
-  width: 150px;
-  height:50px;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 15px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-
-.error {
-	color: #ff0000;
-	border: 1px solid #ff0000;
-	margin: 0;
-	padding: 5px;
-	border-radius: 10px;
-}
-
-.styling {
-	max-width: 200px;
-}
-</style>
-
-<div class="styling">
-	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
+	<h1>Rekisteröityminen</h1>
+</div>
+<div class="panel-body">
+<?php echo validation_errors('<p style="font-weight: bold;" class="text-danger bg-danger">','</p><br>'); ?>
 <?php echo form_open('users/register'); ?>
 <p>
-	<?php echo form_label('Etunimi:'); ?>
 	<?php
 	$data = array(
 		'name' => 'name',
-		'id'	 => 'etunimi',
+		'class'	 => 'form-control',
+		'placeholder' => 'Etunimi',
 		'value'=> set_value('name')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('sähköposti:'); ?>
 	<?php
 	$data = array(
 		'name' => 'email',
+		'class'	 => 'form-control',
+		'placeholder' => 'sähköposti',
 		'value'=> set_value('email')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('Salasana:'); ?>
 	<?php
 	$data = array(
 		'name' => 'password',
+		'class'	 => 'form-control',
+		'placeholder' => 'Salasana',
 		'value'=> set_value('password')
 	);
 	?>
 	<?php echo form_password($data); ?>
 </p>
 <p>
-	<?php echo form_label('Salasana uudestaan:'); ?>
 	<?php
 	$data = array(
 		'name' => 'confirmpassword',
+		'class'	 => 'form-control',
+		'placeholder' => 'Salasana uudestaan',
 		'value'=> set_value('confirmpassword')
 	);
 	?>
@@ -82,14 +55,13 @@
 <p>
 	<?php
 	$data = array(
-		'name' => 'submit',
-		'id'	 => 'nappi',
-		'value'=> 'Rekisteröidy'
+		'name'  => 'submit',
+		'class'	=> 'btn btn-success btn-lg',
+		'value' => 'Rekisteröidy'
 	);
 	?>
 	<?php echo form_submit($data); ?>
 </p>
 <?php echo form_close(); ?>
-</div>
 </div>
 </div>
