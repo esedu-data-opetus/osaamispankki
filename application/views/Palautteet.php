@@ -38,7 +38,7 @@ if ($Palaute->Tila == 1) {
   <tr class="<?php echo $Tila; ?>">
     <td><p><?php echo $Palaute->Sposti; ?></p></td>
     <td><p><?php echo $Palaute->Aihe; ?></p></td>
-    <td><p><?php echo $Palaute->Palaute; ?></p></td>
+    <td><p><?php echo $Palaute->Palaute ?></p></td>
     <td>
       <a class="btn btn-default" title="Luettu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/1/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-pushpin"></span></a>
       <a class="btn btn-success" title="Korjattu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/2/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-ok"></span></a>
