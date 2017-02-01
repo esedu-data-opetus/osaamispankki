@@ -7,7 +7,7 @@ class Profile extends CI_Controller {
   parent::__construct();
 
   if (!$this->session->userdata('is_logged_in') && !$this->session->userdata('First_login')) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
 }

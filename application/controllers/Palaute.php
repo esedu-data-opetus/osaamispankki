@@ -1,6 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Palaute extends CI_Controller {
+
+public function __construct(){
+parent::__construct();
+
+  if (!$this->session->userdata('is_logged_in')) {
+    $this->session->set_flashdata('error', 'Access Denied!');
+    redirect('home/index');
+  }
+}
   //Hakee kaikki palautteet
   public function index() {
     if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {

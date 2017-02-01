@@ -1,6 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Loki extends CI_Controller {
+
+  public function __construct(){
+  parent::__construct();
+
+    if (!$this->session->userdata('is_logged_in')) {
+      $this->session->set_flashdata('error', 'Access Denied!');
+      redirect('home/index');
+    }
+  }
+
   public function index() {
     $User_id = $this->session->userdata('user_id');
     $data['Historia'] = $this->Loki_model->Hae_historia($User_id);
