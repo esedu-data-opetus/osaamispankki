@@ -4,7 +4,7 @@ class Haku extends CI_Controller {
   public function __construct() {
   parent::__construct();
   if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
 }

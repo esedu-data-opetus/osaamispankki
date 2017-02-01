@@ -1,10 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Palaute extends CI_Controller {
+
   //Hakee kaikki palautteet
   public function index() {
     if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-      $this->session->set_flashdata('error', 'Access Denaid!');
+      $this->session->set_flashdata('error', 'Access Denied!');
       redirect('home/index');
     }
 
@@ -39,6 +40,10 @@ public function Palautteesi() {
 }
 //Hakee käyttäjille palautteensa
 public function hae_palaute_user() {
+  if (!$this->session->userdata('is_logged_in')) {
+    $this->session->set_flashdata('error', 'Access Denied!');
+    redirect('home/index');
+  }
   $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
   $data['main_content'] = 'Palautteesi';
@@ -47,7 +52,7 @@ public function hae_palaute_user() {
 //Vaihtaa palautteen tilaa
 public function palaute_tila($Tila, $id) {
   if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
   $data = array(
@@ -63,7 +68,7 @@ public function palaute_tila($Tila, $id) {
 //Poistaa palautteen
 public function palaute_delete($id) {
   if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denaid!');
+    $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
   if ($this->Palaute_model->palaute_delete($id)) {
