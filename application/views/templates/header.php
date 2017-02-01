@@ -16,34 +16,35 @@
         <li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a></li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a></li>
 			<?php else : ?>
-				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a></li>
+				<li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Profile"><button class="btn btn-primary btn-lg">Oma profiili</button></a></li>
 			<?php if ($this->session->userdata('KT') == 3) :?>
-				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a></li>
+				<li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Haku"><button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-search"></span> Haku</button></a></li>
 			<?php endif; ?>
-        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a></li>
+        <li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Loki"><button class="btn btn-info btn-lg"><span class="glyphicon glyphicon-backward"></span> Loki</button></a></li>
       <?php if ($this->session->userdata('KT') == 3) :?>
-        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a></li>
+        <li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Palaute"><button class="btn btn-info btn-lg"><span class="glyphicon glyphicon-list-alt"></span> Palaute</button></a></li>
       <?php else : ?>
-        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a></li>
+        <li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><button class="btn btn-info btn-lg"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</button></a></li>
       <?php endif; ?>
       <?php endif; ?>
     </ul>
 
       <!-- <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
-				<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a>
-				<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a>
+				<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a>
+				<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a>
 			<?php else : ?>
-				<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a>
+				<a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a>
 			<?php if ($this->session->userdata('KT') == 3) :?>
-				<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
+				<a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
 			<?php endif; ?>
-        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a>
+        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a>
       <?php if ($this->session->userdata('KT') == 3) :?>
-        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a>
+        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a>
       <?php else : ?>
-        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a>
+        <a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a>
       <?php endif; ?>
       <?php endif; ?> -->
+
       <ul class="nav navbar-nav navbar-right">
 				<?php if ($this->session->userdata('is_logged_in') == 1) :?>
 					<a class="btn btn-danger btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px" href="<?php echo base_url(); ?>Users/Logout">Kirjaudu ulos</a>
