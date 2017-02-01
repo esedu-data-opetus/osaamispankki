@@ -60,6 +60,7 @@ public function palaute_tila($Tila, $id) {
   );
   if ($this->Palaute_model->palaute_tila($data, $id)) {
     $this->session->set_flashdata('success', 'Palaute luettu!');
+    $this->Palaute_model->Historiaa('Luit palautteen');
   } else {
     $this->session->set_flashdata('error', 'Tuli ongelma!');
   }
@@ -73,6 +74,7 @@ public function palaute_delete($id) {
   }
   if ($this->Palaute_model->palaute_delete($id)) {
     $this->session->set_flashdata('success', 'Palaute poistettu!');
+    $this->Palaute_model->Historiaa('Poistit palautteen');
   } else {
     $this->session->set_flashdata('error', 'Palautetta ei voitu poistaa!');
   }

@@ -50,7 +50,7 @@ class Profile extends CI_Controller {
     } else {
       $key = $this->session->userdata('Key');
       if ($this->Profile_model->profile_setup($key)) {
-        $this->Loki_model->Uusi_toiminta('Asetit perustiedot');
+        $this->Profile_model->Historiaa('Asetit perustietosi');
         $this->session->set_flashdata('success', 'Perustiedot asetettu!');
         redirect('profile/index');
       }

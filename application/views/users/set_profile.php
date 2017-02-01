@@ -1,82 +1,71 @@
-<style>
-#nappi {
-  font-family: Roboto, sans-serif;
-  outline: 0;
-  background: #31c398;
-  width: 150px;
-  height:50px;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 15px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-.styling {
-	max-width: 200px;
-}
-</style>
-<h1>Täytä perustiedot ja jatka profiilisivulle</h1>
-
-<div class="styling">
+<div class="panel panel-default">
+<div class="panel-heading">
+  <h4>Täytä perustiedot ja jatka profiilisivulle!</h4>
+</div>
+<div class="panel-body">
 <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php echo form_open('profile/set_profile'); ?>
 <p>
-  <?php echo form_label('Henkilökohtainen sähköposti:'); ?>
   <?php
   $data = array(
-    'name' => 'own_email',
-    'value'=> set_value('own_email')
+    'name'  => 'own_email',
+    'class' => 'form-control',
+    'placeholder' => 'Henkilökohtainen sähköposti',
+    'value' => set_value('own_email')
   );
   ?>
   <?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('Etunimi:'); ?>
 	<?php
 	$data = array(
 		'name' => 'f_name',
+    'class' => 'form-control',
+    'placeholder' => 'Etunimi',
 		'value'=> set_value('f_name')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('Sukunimi:'); ?>
 	<?php
 	$data = array(
 		'name' => 'l_name',
+    'class' => 'form-control',
+    'placeholder' => 'Sukunimi',
 		'value'=> set_value('l_name')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('Osoite:'); ?>
 	<?php
 	$data = array(
 		'name' => 'osoite',
+    'class' => 'form-control',
+    'placeholder' => 'Osoite',
 		'value'=> set_value('osoite')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-	<?php echo form_label('Postinumero:'); ?>
 	<?php
 	$data = array(
 		'name' => 'posti_num',
+    'class' => 'form-control',
+    'placeholder' => 'Postinumero',
 		'value'=> set_value('posti_num')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
 <p>
-  <?php echo form_label('Puhelinnumero:'); ?>
   <?php
   $data = array(
     'name'    =>  'puh_num',
+    'class' => 'form-control',
+    'placeholder' => 'Puhelinnumero',
     'value'   =>  set_value('puh_num')
   );
   ?>
@@ -86,7 +75,7 @@
 	<?php
 	$data = array(
 		'name' => 'submit',
-		'id'	 => 'nappi',
+		'class'	 => 'btn btn-success btn-lg',
 		'value'=> 'Rekisteröidy'
 	);
 	?>

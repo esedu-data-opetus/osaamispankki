@@ -12,7 +12,9 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      <!-- <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
+
+        <?php if(1 == 2) : ?>
+      <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
         <li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a></li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a></li>
 			<?php else : ?>
@@ -26,13 +28,14 @@
       <?php else : ?>
         <li><a style="padding: 0; margin: 10px;" class="<?php echo $disabled; ?>" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><button class="btn btn-info btn-lg"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</button></a></li>
       <?php endif; ?>
-      <?php endif; ?> -->
+      <?php endif; ?>
+      <?php endif; ?>
 
       <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
 				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
-				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
+				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
 			<?php else : ?>
-				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a><li>
+				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a></li>
 			<?php if ($this->session->userdata('KT') == 3) :?>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a></li>
 			<?php endif; ?>
@@ -53,4 +56,4 @@
     </div>
   </div>
 </nav>
-<div style="margin: 0 0 80px 0"></div>
+<div style="margin: 0 0 90px 0"></div>
