@@ -1,7 +1,24 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');	if ($this->session->userdata('First_login') && $this->uri->segment(2) == "set_profile") { $disabled = "disabled"; } else { $disabled = ""; } ?>
-<div style="margin: 100px 0 0 0"></div>
 
-<footer class="navbar navbar-default navbar-fixed-bottom" role="navbar">
+<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2"> -->
+<?php
+if ($this->uri->segment(1) == "Profile" ) {
+  $Fter = "";
+  $mg = "";
+} else {
+  $mg = "margin: 80px 0 0 0;";
+  $Fter = "navbar-fixed-bottom";
+}
+?>
+<style>
+@media screen and (max-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+</style>
+<div style="<?php echo $mg;?>"></div>
+<footer style="margin: 0;" class="navbar navbar-default <?php echo $Fter; ?>" role="navbar">
   <span style="position: absolute; left:0; right:0; bottom: 0;" class="text-muted">
     <p style="text-align: center; margin: 0;"><b>Tekijät:</b> Riku, Miika, Valtteri, Joonas & Marko</p>
   </span>
@@ -14,3 +31,5 @@
          </ul>
      </div>
    </footer>
+
+   <!-- </div> -->
