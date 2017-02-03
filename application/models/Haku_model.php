@@ -9,6 +9,7 @@ class Haku_model extends CI_Model {
     $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
     $this->db->join('koulutus', 'koulutus.User_id = profile.User_id');
     $this->db->join('kkortit', 'kkortit.User_id = profile.User_id');
+    $this->db->join('metatieto', 'metatieto.User_id = profile.User_id');
     $this->db->where("
       profile.F_Name LIKE '%$value%' OR
       profile.L_Name LIKE '%$value%' OR
@@ -22,7 +23,10 @@ class Haku_model extends CI_Model {
       tyohistoria.kuvaus LIKE '%$value%' OR
       koulutus.koulutusnimi LIKE '%$value%' OR
       koulutus.koulutusaste LIKE '%$value%' OR
-      koulutus.oppilaitos LIKE '%$value%'
+      koulutus.oppilaitos LIKE '%$value%' OR
+      kkortit.kortti LIKE '%$value%' OR
+      kkortit.vapaasana LIKE '%$value%' OR
+      metatieto.Tieto LIKE '%$value%'
     ");
     $query = $this->db->get();
     return $query->result();
