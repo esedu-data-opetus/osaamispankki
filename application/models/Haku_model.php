@@ -9,7 +9,21 @@ class Haku_model extends CI_Model {
     $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
     $this->db->join('koulutus', 'koulutus.User_id = profile.User_id');
     $this->db->join('kkortit', 'kkortit.User_id = profile.User_id');
-    $this->db->where('');
+    $this->db->where("
+      profile.F_Name LIKE '%$value%' OR
+      profile.L_Name LIKE '%$value%' OR
+      profile.Sposti LIKE '%$value%' OR
+      profile.Own_Email LIKE '%$value%' OR
+      profile.About LIKE '%$value%' OR
+      harrastukset.harrastus LIKE '%$value%' OR
+      harrastukset.vapaasana LIKE '%$value%' OR
+      tyohistoria.tyopaikka LIKE '%$value%' OR
+      tyohistoria.tehtava LIKE '%$value%' OR
+      tyohistoria.kuvaus LIKE '%$value%' OR
+      koulutus.koulutusnimi LIKE '%$value%' OR
+      koulutus.koulutusaste LIKE '%$value%' OR
+      koulutus.oppilaitos LIKE '%$value%'
+    ");
     $query = $this->db->get();
     return $query->result();
   }

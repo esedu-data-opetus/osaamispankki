@@ -22,7 +22,7 @@
 <?php echo form_close(); ?>
 
 <?php if(!empty($this->input->post('haku'))) : ?>
-<h3>Tulokset haulla <?php echo filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING); ?></h3>
+<h3>Tulokset haulla "<?php echo filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING); ?>"</h3>
 <?php endif ; ?>
 
 <?php
@@ -38,12 +38,10 @@ foreach($haku_tulokset as $haut) {
 			<p>'.$haut->F_Name.' '. $haut->L_Name.'</p>
 			</div>
 				<div class="prof">
-				<img class="img-rounded prof-img" src="'.base_url().'images/profiili/'.$haut->Prof_Pic.'" />
 					<div class="prof-info panel-body">
-						<p>'.$haut->Puh_Num.'</p>
-						<p>'.$haut->Osoite.'</p>
-						<p>'.$haut->harrastus.'</p>
-						<p>'.$haut->vapaasana.'</p>
+					<img class="img-rounded prof-img img-thumbnail" src="'.base_url().'images/profiili/'.$haut->Prof_Pic.'" />
+						<p>'.$haut->Sposti.'</p>
+						<p>'.$haut->About.'</p>
 					</div>
 			</div>
 		</div>';
