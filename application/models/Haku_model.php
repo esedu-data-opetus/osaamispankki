@@ -3,7 +3,8 @@
 class Haku_model extends CI_Model {
   public function haku($value = '')
   {
-    $this->db->select('*');
+    $this->db->select('F_Name, L_Name, Prof_Pic, Sposti, About, Näytä_Profiili');
+    $this->db->distinct();
     $this->db->from('profile');
     $this->db->join('harrastukset', 'harrastukset.User_id = profile.User_id');
     $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
@@ -14,7 +15,6 @@ class Haku_model extends CI_Model {
       profile.F_Name LIKE '%$value%' OR
       profile.L_Name LIKE '%$value%' OR
       profile.Sposti LIKE '%$value%' OR
-      profile.Own_Email LIKE '%$value%' OR
       profile.About LIKE '%$value%' OR
       harrastukset.harrastus LIKE '%$value%' OR
       harrastukset.vapaasana LIKE '%$value%' OR
