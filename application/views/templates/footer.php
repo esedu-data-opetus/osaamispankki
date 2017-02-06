@@ -1,22 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');	if ($this->session->userdata('First_login') && $this->uri->segment(2) == "set_profile") { $disabled = "disabled"; } else { $disabled = ""; } ?>
 
-<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2"> -->
 <?php
-if ($this->uri->segment(1) == "Profile" ) {
+if ($this->uri->segment(1) == "Profile" || $this->uri->segment(1) == "profile") {
   $Fter = "";
-  $mg = "";
+  $mg = "margin: 0;";
 } else {
   $mg = "margin: 80px 0 0 0;";
   $Fter = "navbar-fixed-bottom";
 }
 ?>
-<style>
-@media screen and (max-width: 480px) {
-  body {
-    background-color: lightgreen;
-  }
-}
-</style>
 <div style="<?php echo $mg;?>"></div>
 <footer style="margin: 0;" class="navbar navbar-default <?php echo $Fter; ?>" role="navbar">
   <span style="position: absolute; left:0; right:0; bottom: 0;" class="text-muted">
@@ -31,5 +23,3 @@ if ($this->uri->segment(1) == "Profile" ) {
          </ul>
      </div>
    </footer>
-
-   <!-- </div> -->

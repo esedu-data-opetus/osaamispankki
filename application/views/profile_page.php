@@ -1,58 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<style>
-.disabled {
-  pointer-events: none;
-  cursor: not-allowed;
-  opacity: .65;
-}
-
-.table td:hover {
-  overflow-x: auto;
-}
-
-td {
-  overflow: hidden;
-}
-
-/*top, right, bottom, left*/
-.plus {
-  margin: -2px -2px 0 0;
-}
-
-.add-btn {
-  float: right;
-}
-
-.save-btn {
-  margin: -30px 0 0 260px;
-}
-</style>
-<script>
-var main = function() {
-    $('#luo').click(function() {
-        $('.counter').text('50');
-        $('#luo').addClass('disabled');
-    });
-    $('#meta').keyup(function() {
-        var postLength = $(this).val().length;
-        var charactersLeft = 50 - postLength;
-        $('.counter').text(charactersLeft);
-        if (charactersLeft < 0) {
-            $('#luo').addClass('disabled');
-        } else if (charactersLeft == 50) {
-            $('#luo').addClass('disabled');
-        } else {
-            $('#luo').removeClass('disabled');
-        }
-    });
-    $('#luo').addClass('disabled');
-};
-$(document).ready(main);
-</script>
 
 <?php
 if (!$User_Info) {
-  redirect('users/Proff_error');
+  redirect('Users/Proff_error');
 }
 
 foreach($User_Info as $User) {
@@ -64,39 +14,26 @@ foreach($User_Info as $User) {
 }
 ?>
 <div class="panel-group">
-<div class="panel panel-<?php echo $Col; ?>">
-<div class="panel-heading">
-<?php foreach($User_Info as $User) : ?>
-<img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
-<h1>Oma profiili</h1>
-<p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
-<?php if (isset($_GET['Prof_Edit'])) {
-  echo "<div style='float:right;'>";
-  echo form_open_multipart('Upload_controller/do_upload');
-  echo "<input style='margin-top:-100px;' onChange='check_user();' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-  echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
-  echo "</form>";
-  echo "</div>";
-} else {
-  echo "";
-}
-?>
-<?php endforeach; ?>
-</div>
-
-<script>
-function check_user() {
-
-if( document.getElementById("uploadBox").files.length == 0 ){
-    document.getElementById("nappi").disabled = true;
-} else {
-  document.getElementById("nappi").disabled = false;
-}
-}
-</script>
-
+  <div class="panel panel-<?php echo $Col; ?>">
+    <div class="panel-heading">
+      <?php foreach($User_Info as $User) : ?>
+        <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
+        <h1>Oma profiili</h1>
+        <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
+        <?php if (isset($_GET['Prof_Edit'])) {
+          echo "<div style='float:right;'>";
+          echo form_open_multipart('Upload_controller/do_upload');
+          echo "<input style='margin-top:-100px;' onChange='check_user();' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+          echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
+          echo "</form>";
+          echo "</div>";
+        } else {
+          echo "";
+        }
+        ?>
+      <?php endforeach; ?>
+    </div>
 <div class="panel-body">
-
 <?php foreach($User_Info as $User) : ?>
 <?php
 $C_Day     = $User->Create_date;
@@ -140,133 +77,135 @@ if (isset($_GET['Prof_Edit'])) {
 }
 ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Tili luotu:</th>
-        <th><?php echo $C_Day; ?></th>
-        <th><?php echo $btn; ?><?php echo $Prof_hide; ?></th>
-      </tr>
-    </thead>
-      <tbody>
-        <tr>
-          <td>Nimi:</td>
-          <td colspan="2"><?php echo $name; ?></td>
-        </tr>
-        <tr>
-          <td>Sähköposti:</td>
-          <td colspan="2"><?php echo $s_posti; ?></td>
-        </tr>
-        <tr>
-          <td>Osoite:</td>
-          <td colspan="2"><?php echo $osoite; ?></td>
-        </tr>
-        <tr>
-          <td>Postinumero:</td>
-          <td colspan="2"><?php echo $p_num; ?></td>
-        </tr>
-        <tr>
-          <td>Puhelinnumero:</td>
-          <td colspan="2"><?php echo $puh; ?></td>
-        </tr>
-        <tr>
-          <td>Kuvaus:</td>
-          <td colspan="2"><?php echo $kuvaus; ?></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="Profile-Information">
+    <p>
+      <b>Tili luotu:
+        <?php echo $C_Day; ?></b>
+        <?php echo $btn; ?>
+        <?php echo $Prof_hide; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Nimi:</b>
+      <?php echo $name; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Sähköposti:</b>
+      <?php echo $s_posti; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Osoite:</b>
+      <?php echo $osoite; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Postinumero:</b>
+      <?php echo $p_num; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Puhelinnumero:</b>
+      <?php echo $puh; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Kuvaus:</b>
+      <?php echo $kuvaus; ?>
+    </p>
+    <hr>
+  </div>
 </form>
 <?php endforeach; ?>
-  <div class="panel panel-default">
-  <div class="panel-heading">
-<?php if (isset($_GET['select'])) : ?>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-<?php if ($_GET['select'] == 'all') : ?>
-  <a onclick="return confirm('Haluatko poistaa kaikki metatiedot?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
-<?php else : ?>
-  <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
-<?php endif; ?>
-<?php elseif (isset($_GET['add_meta'])) : ?>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-  <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
-<?php else : ?>
-<?php if (empty($meta_tieto)) : ?>
-  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
-<?php else : ?>
-  <a href="<?php echo base_url(); ?>profile?select=all" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-th"></span></a>
-  <?php endif; ?>
-  <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
-<?php endif; ?>
-  <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
-  </div>
-  <div class="panel-body">
-    <?php if (isset($_GET['add_meta'])) : ?>
-    <div style="padding: 10px;">
-      <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">
-        <input id="meta" autofocus type="text" name="Tieto" maxlength="50">
-        <input id="luo" type="submit" value="Luo">
-        <p style="display: inline;" class="counter">50</p>
-      </form>
-      <hr>
-    </div>
-  <?php endif; ?>
-<?php if (empty($meta_tieto)) : ?>
-  <h1 class="error-message">Metatietoja ei ole lisätty</h1>
-<?php else : ?>
-  <?php
-  foreach ($meta_tieto as $meta) {
-    if (isset($_GET['select'])) {
-      if ($_GET['select'] == $meta->id) {
-        $style  = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-        $sel    = 'style="color: white; margin: 0; display: inline;"';
-      } else if ($_GET['select'] == 'all') {
-        $style  = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-        $sel    = 'style="color: white; margin: 0; display: inline;"';
-      } else {
-        $style  = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-        $sel    = 'style="color: black; margin: 0;"';
-     }
-    } else {
-      $style = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
-      $sel   = 'style="color: black; margin: 0;"';
-    }
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <?php if (isset($_GET['select'])) : ?>
+      <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
+      <?php if ($_GET['select'] == 'all') : ?>
+        <a onclick="return confirm('Haluatko poistaa kaikki metatiedot?');" href="<?php echo base_url(); ?>profile/delete_all_meta/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+      <?php else : ?>
+        <a href="<?php echo base_url(); ?>profile/delete_meta/<?php echo $_GET['select']; ?>" class="btn btn-danger" style="float: left;"><span class="glyphicon glyphicon-trash"></span></a>
+      <?php endif; ?>
+
+    <?php elseif (isset($_GET['add_meta'])) : ?>
+      <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
+      <a href="<?php echo base_url(); ?>profile" class="btn btn-primary" style="float: right; display: inline;"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    <?php else : ?>
+      <?php if (empty($meta_tieto)) : ?>
+        <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: left; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+      <?php else : ?>
+        <a href="<?php echo base_url(); ?>profile?select=all" class="btn btn-primary" style="float: left; display: inline;"><span class="glyphicon glyphicon-th"></span></a>
+      <?php endif; ?>
+      <a href="<?php echo base_url(); ?>profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
+    <?php endif; ?>
+    <h1 style="text-align: center; margin: 0; padding: 0;">Metatieto!</h1>
+    </div>
+    <div class="panel-body">
+      <?php if (isset($_GET['add_meta'])) : ?>
+        <div style="padding: 10px;">
+          <form action="<?php echo base_url(); ?>profile/add_meta" method="post" enctype="multipart/form-data">
+            <input id="meta" autofocus type="text" name="Tieto" maxlength="50">
+            <input id="luo" type="submit" value="Luo">
+            <p style="display: inline;" class="counter">50</p>
+          </form>
+          <hr>
+        </div>
+      <?php endif; ?>
+      <?php if (empty($meta_tieto)) : ?>
+        <h1 class="error-message">Metatietoja ei ole lisätty</h1>
+      <?php else : ?>
+        <?php
+        foreach ($meta_tieto as $meta) {
           if (isset($_GET['select'])) {
             if ($_GET['select'] == $meta->id) {
-              echo '
-              <a href="'.base_url().'profile">
-                <div '.$style.' >
-                  <p '.$sel.' >'.$meta->Tieto.'</p>
-                  <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-remove"></span></a>
-                </div>
-              </a>
-              ';
+              $style  = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
+              $sel    = 'style="color: white; margin: 0; display: inline;"';
+            } else if ($_GET['select'] == 'all') {
+              $style  = 'class="btn btn-primary" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
+              $sel    = 'style="color: white; margin: 0; display: inline;"';
             } else {
-              echo '
+              $style  = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
+              $sel    = 'style="color: black; margin: 0;"';
+            }
+          } else {
+            $style = 'class="btn btn-default" style="margin: 0 0 5px 0; padding: 4px 10px 4px 10px;"';
+            $sel   = 'style="color: black; margin: 0;"';
+          }
+
+            if (isset($_GET['select'])) {
+              if ($_GET['select'] == $meta->id) {
+                echo '
+                <a href="'.base_url().'profile">
+                  <div '.$style.' >
+                    <p '.$sel.' >'.$meta->Tieto.'</p>
+                    <a '.$sel.' href="'.base_url().'profile/delete_meta/'.$meta->id.'"><span class="glyphicon glyphicon-remove"></span></a>
+                  </div>
+                </a>';
+              } else {
+                echo '
               <a href="'.base_url().'profile?select='.$meta->id.'">
                 <div '.$style.' >
                   <p '.$sel.' >'.$meta->Tieto.'</p>
-                  </div>
-              </a>
-              ';
+                </div>
+              </a>';
+              }
+              } else {
+                echo '
+              <a href="'.base_url().'profile?select='.$meta->id.'">
+                <div '.$style.' >
+                  <p '.$sel.' >'.$meta->Tieto.'</p>
+                </div>
+              </a>';
             }
-          } else {
-            echo '
-            <a href="'.base_url().'profile?select='.$meta->id.'">
-              <div '.$style.' >
-                <p '.$sel.' >'.$meta->Tieto.'</p>
-              </div>
-            </a>
-            ';
           }
-        }
-    ?>
-  <?php endif; ?>
+          ?>
+        <?php endif; ?>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-<br>
 
 <!--Harrastukset-->
 <div class="panel panel-primary">
@@ -278,7 +217,8 @@ if (isset($_GET['Prof_Edit'])) {
   </div>
   <div class=panel-body>
     <?php foreach($harrastus as $hobby) : ?>
-      <?php if ($hobby->User_id == $this->session->userdata('user_id')) {
+      <?php
+      if ($hobby->User_id == $this->session->userdata('user_id')) {
         $hobbyexists = TRUE;
       }
       ?>
@@ -286,50 +226,39 @@ if (isset($_GET['Prof_Edit'])) {
 <?php if(!isset($hobbyexists)) : ?>
   <h1 class="error-message">Harrastuksia ei ole lisätty</h1>
 <?php else : ?>
-<table class="table">
-<thead>
-  <tr>
-    <th>Harrastus</th>
-    <th>Kuvaus</th>
-    <th>Asetukset</th>
-  </tr>
-</thead>
-<tbody>
-<?php foreach($harrastus as $hobby) : ?>
-  <tr>
-<?php
-  if (isset($_GET['EditHobby'])) {
-    if ($_GET['EditHobby'] !== $hobby->id) {
-      $Harrastus  =   $hobby->harrastus;
-      $Mielipide  =   $hobby->vapaasana;
-      $Save       =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-    } else {
-      $Harrastus  =   '<input style="max-width: 180px;" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
-      $Mielipide  =   '<input name="vapaasana" type="text" value="'.$hobby->vapaasana.'" />';
-      $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
-    }
-  } else {
-    $Harrastus    =   $hobby->harrastus;
-    $Mielipide    =   $hobby->vapaasana;
-    $Save         =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-  }
-?>
-<form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
-    <td><?php echo $Harrastus; ?></td>
-    <td style="max-width: 350px; hover: overflow: auto;"><?php echo $Mielipide; ?></td>
-    <td>
-      <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko poistaa harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
-    </td>
-  </form>
-  </tr>
-<?php endforeach; ?>
-</tbody>
-</table>
-<?php endif; ?>
+  <div class="Profile-Information">
+    <p>
+      <?php foreach($harrastus as $hobby) : ?>
+      <?php
+        if (isset($_GET['EditHobby'])) {
+          if ($_GET['EditHobby'] !== $hobby->id) {
+            $Harrastus  =   $hobby->harrastus;
+            $Mielipide  =   $hobby->vapaasana;
+            $Save       =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+          } else {
+            $Harrastus  =   '<input class="form-control" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
+            $Mielipide  =   '<textarea class="form-control" name="vapaasana" type="text" value="'.$hobby->vapaasana.'">'.$hobby->vapaasana.'</textarea>';
+            $Save       =   '<input class="btn btn-primary" type="submit" value="Tallenna" title="Tallenna muutokset">';
+          }
+        } else {
+          $Harrastus    =   $hobby->harrastus;
+          $Mielipide    =   $hobby->vapaasana;
+          $Save         =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+        }
+      ?>
+      <form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
+        <h3>Harrastus: </h3><?php echo $Harrastus; ?>
+        <br><h3>Kuvaus: </h3><br><span style="max-width: 350px; hover: overflow: auto;"><?php echo $Mielipide; ?></span>
+        <br><h3>Asetukset: </h3><?php echo $Save; ?><a onclick="return confirm('Haluatko poistaa harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      </form>
+      <hr>
+      <?php endforeach; ?>
+      </div>
+      <?php endif; ?>
+    </p>
+  </div>
 </div>
-</div>
-<br>
+
 
 <!--Työhistoria-->
 <div class="panel panel-primary">
@@ -347,70 +276,52 @@ if (isset($_GET['Prof_Edit'])) {
     ?>
 <?php endforeach; ?>
 <?php if(!isset($work_hexists)) : ?>
-  <h1 class="error-message">Työhistoriaa ei ole lisätty</h1>
+  <h1 class="error-message">Työhistorioita ei ole lisätty</h1>
 <?php else : ?>
-<table class="table">
-<thead>
-  <tr>
-    <th>Työpaikka</th>
-    <th>Tehtävä</th>
-    <th>Alkoi</th>
-    <th>Loppui</th>
-    <th>Kuvaus</th>
-    <th style="min-width: 110px;">Asetukset</th>
-  </tr>
-</thead>
-<tbody>
-<?php foreach($tyohistoria as $work_h) : ?>
-  <tr>
-<?php
-  if (isset($_GET['EditTyo'])) {
-    if ($_GET['EditTyo'] !== $work_h->id) {
-      $Työpaikka  =   $work_h->tyopaikka;
-      $Tehtävä    =   $work_h->tehtava;
-      $Alkoi      =   $work_h->alkoi;
-      $Loppui     =   $work_h->loppui;
-      $Kuvaus     =   $work_h->kuvaus;
-      $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-      $width      =   "max-width: 100px;";
-    } else {
-      $width      =   "max-width: 220px;";
-      $Työpaikka  =   '<input style="width: 110px;" name="tyopaikka" type="text" value="'.$work_h->tyopaikka.'" />';
-      $Tehtävä    =   '<input style="width: 95px;" name="tehtava" type="text" value="'.$work_h->tehtava.'" />';
-      $Alkoi      =   '<input style="width: 95px;" name="Aloitit" type="text" value="'.$work_h->alkoi.'" />';
-      $Loppui     =   '<input style="width: 95px;" name="Lopetit" type="text" value="'.$work_h->loppui.'" />';
-      $Kuvaus     =   '<input style="width: 95px;" name="vapaasana" type="text" value="'.$work_h->kuvaus.'" />';
-      $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
-    }
-  } else {
-    $width = "max-width: 220px;";
-    $Työpaikka  =   $work_h->tyopaikka;
-    $Tehtävä    =   $work_h->tehtava;
-    $Alkoi      =   $work_h->alkoi;
-    $Loppui     =   $work_h->loppui;
-    $Kuvaus     =   $work_h->kuvaus;
-    $Save         =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-  }
-?>
-<form action="<?php echo base_url(); ?>profile/tyohistoria_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
-    <td><?php echo $Työpaikka; ?></td>
-    <td><?php echo $Tehtävä; ?></td>
-    <td><?php echo $Alkoi; ?></td>
-    <td><?php echo $Loppui; ?></td>
-    <td style="<?php echo $width; ?> hover: overflow: auto;"><?php echo $Kuvaus; ?></td>
-    <td>
-    <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko poistaa työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
-    </td>
-  </form>
-  </tr>
-<?php endforeach; ?>
-</tbody>
-</table>
-<?php endif; ?>
+  <div class="Profile-Information">
+    <p>
+      <?php foreach($tyohistoria as $work_h) : ?>
+      <?php
+        if (isset($_GET['EditTyo'])) {
+          if ($_GET['EditTyo'] !== $work_h->id) {
+            $Työpaikka  =   $work_h->tyopaikka;
+            $Tehtävä    =   $work_h->tehtava;
+            $Alkoi      =   $work_h->alkoi;
+            $Loppui     =   $work_h->loppui;
+            $Kuvaus     =   $work_h->kuvaus;
+            $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+          } else {
+            $Työpaikka  =   '<input class="form-control" name="tyopaikka" type="text" value="'.$work_h->tyopaikka.'" />';
+            $Tehtävä    =   '<input class="form-control" name="tehtava" type="text" value="'.$work_h->tehtava.'" />';
+            $Alkoi      =   '<input class="form-control" readonly name="Aloitit" type="text" value="'.$work_h->alkoi.'" />';
+            $Loppui     =   '<input class="form-control" readonly name="Lopetit" type="text" value="'.$work_h->loppui.'" />';
+            $Kuvaus     =   '<textarea class="form-control" name="vapaasana" type="text">'.$work_h->kuvaus.'</textarea>';
+            $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
+          }
+        } else {
+          $Työpaikka  =   $work_h->tyopaikka;
+          $Tehtävä    =   $work_h->tehtava;
+          $Alkoi      =   $work_h->alkoi;
+          $Loppui     =   $work_h->loppui;
+          $Kuvaus     =   $work_h->kuvaus;
+          $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+        }
+      ?>
+      <form action="<?php echo base_url(); ?>profile/tyohistoria_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
+          <h3>Työpaikka: </h3><?php echo $Työpaikka; ?>
+          <br><h3>Tehtävä: </h3><?php echo $Tehtävä; ?>
+          <br><h3>Alkoi: </h3><?php echo $Alkoi; ?>
+          <br><h3>Loppui: </h3><?php echo $Loppui; ?>
+          <br><h3>Kuvaus: </h3><br><?php echo $Kuvaus; ?>
+          <br><h3>Asetukset: </h3><?php echo $Save; ?><a onclick="return confirm('Haluatko poistaa työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+        </form>
+        <hr>
+      <?php endforeach; ?>
+      </div>
+      <?php endif; ?>
+    </p>
+  </div>
 </div>
-</div>
-<br>
 
 <!--Koulutukset-->
 <div class="panel panel-primary">
@@ -430,66 +341,51 @@ if (isset($_GET['Prof_Edit'])) {
 <?php if(!isset($koulutusexists)) : ?>
   <h1 class="error-message">Koulutuksia ei ole lisätty</h1>
 <?php else : ?>
-<table class="table">
-<thead>
-  <tr>
-    <th>Koulutusnimi</th>
-    <th>Koulutusaste</th>
-    <th>Oppilaitos</th>
-    <th>Alkoi</th>
-    <th>Loppui</th>
-    <th style="min-width: 110px;">Asetukset</th>
-  </tr>
-</thead>
-<tbody>
-<?php foreach($koulutus as $koulut) : ?>
-  <tr>
-<?php
-  if (isset($_GET['EditKoulutus'])) {
-    if ($_GET['EditKoulutus'] !== $koulut->id) {
-      $Koulutusnimi  =  $koulut->koulutusnimi;
-      $Koulutusaste  =  $koulut->koulutusaste;
-      $Oppilaitos    =  $koulut->oppilaitos;
-      $Alkoi         =  $koulut->alkoi;
-      $Loppui        =  $koulut->loppui;
-      $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-    } else {
-      // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
-      $Koulutusnimi  =  '<input style="width: 125px;" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
-      $Koulutusaste  =  '<input style="width: 125px;" name="koulutusaste" type="text" value="'.$koulut->koulutusaste.'" />';
-      $Oppilaitos    =  '<input style="width: 100px;" name="oppilaitos" type="text" value="'.$koulut->oppilaitos.'" />';
-      $Alkoi         =  '<input style="width: 90px;"  name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
-      $Loppui        =  '<input style="width: 90px;"  name="loppui" type="text" value="'.$koulut->loppui.'" />';
-      $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
-    }
-  } else {
-    $Koulutusnimi  =  $koulut->koulutusnimi;
-    $Koulutusaste  =  $koulut->koulutusaste;
-    $Oppilaitos    =  $koulut->oppilaitos;
-    $Alkoi         =  $koulut->alkoi;
-    $Loppui        =  $koulut->loppui;
-    $Save            =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
-  }
-?>
-<form action="<?php echo base_url(); ?>profile/koulutus_update/<?php echo $koulut->id; ?>" enctype="multipart/form-data" method="post">
-  <td><?php echo $Koulutusnimi; ?></td>
-  <td><?php echo $Koulutusaste; ?></td>
-  <td><?php echo $Oppilaitos; ?></td>
-  <td><?php echo $Alkoi; ?></td>
-  <td><?php echo $Loppui; ?></td>
-    <td>
-    <?php echo $Save; ?>
-      <a onclick="return confirm('Haluatko poistaa koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
-    </td>
-  </form>
-  </tr>
-<?php endforeach; ?>
-</tbody>
-</table>
-<?php endif; ?>
+  <div class="Profile-Information">
+    <p>
+      <?php foreach($koulutus as $koulut) : ?>
+      <?php
+        if (isset($_GET['EditKoulutus'])) {
+          if ($_GET['EditKoulutus'] !== $koulut->id) {
+            $Koulutusnimi  =  $koulut->koulutusnimi;
+            $Koulutusaste  =  $koulut->koulutusaste;
+            $Oppilaitos    =  $koulut->oppilaitos;
+            $Alkoi         =  $koulut->alkoi;
+            $Loppui        =  $koulut->loppui;
+            $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+          } else {
+            // $Save = '<a href="'.base_url().'profile/kokemus_update/'.$hobby->id.'" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span></a>';
+            $Koulutusnimi  =  '<input class="form-control" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
+            $Koulutusaste  =  '<input class="form-control" name="koulutusaste" type="text" value="'.$koulut->koulutusaste.'" />';
+            $Oppilaitos    =  '<input class="form-control" name="oppilaitos" type="text" value="'.$koulut->oppilaitos.'" />';
+            $Alkoi         =  '<input class="form-control" readonly name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
+            $Loppui        =  '<input class="form-control" readonly name="loppui" type="text" value="'.$koulut->loppui.'" />';
+            $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
+          }
+        } else {
+          $Koulutusnimi  =  $koulut->koulutusnimi;
+          $Koulutusaste  =  $koulut->koulutusaste;
+          $Oppilaitos    =  $koulut->oppilaitos;
+          $Alkoi         =  $koulut->alkoi;
+          $Loppui        =  $koulut->loppui;
+          $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
+        }
+      ?>
+      <form action="<?php echo base_url(); ?>profile/koulutus_update/<?php echo $koulut->id; ?>" enctype="multipart/form-data" method="post">
+        <h3>Koulutusnimi: </h3><?php echo $Koulutusnimi; ?>
+        <br><h3>Koulutusaste: </h3><?php echo $Koulutusaste; ?>
+        <br><h3>Oppilaitos: </h3><?php echo $Oppilaitos; ?>
+        <br><h3>Alkoi: </h3><?php echo $Alkoi; ?>
+        <br><h3>Loppui: </h3><?php echo $Loppui; ?>
+        <br><h3>Asetukset: </h3><?php echo $Save; ?><a onclick="return confirm('Haluatko poistaa koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a>
+      </form>
+      <hr>
+      <?php endforeach; ?>
+      </div>
+      <?php endif; ?>
+    </p>
+  </div>
 </div>
-</div>
-<br>
 
 <!--Kortit-->
 <div class="panel panel-primary">
@@ -510,28 +406,18 @@ if (isset($_GET['Prof_Edit'])) {
     <?php if(!isset($Kortitexists)) : ?>
       <h1 class="error-message">Kortteja ei ole lisätty</h1>
     <?php else : ?>
-    <table class="table">
-    <thead>
-      <tr>
-        <th style="min-width:150px">Kortti</th>
-        <th style="min-width:150px">Vanhenemispäivä</th>
-        <th style="min-width:150px">Kuvaus</th>
-        <th style="min-width:81px">Asetukset</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php foreach($kortit as $kortti) : ?>
-      <tr>
-        <td><p><?php echo $kortti->kortti; ?></p></td>
-        <td><p><?php echo $kortti->loppuu; ?></p></td>
-        <td style="max-width: 86px"><p><?php echo $kortti->vapaasana; ?></p></td>
-        <td>
-          <a onclick="return confirm('Haluatko poistaa kortin <?php echo $kortti->kortti; ?>?');" href="<?php echo base_url(); ?>profile/kortit_delete/<?php echo $kortti->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-    <?php endforeach; ?>
-    </tbody>
-    </table>
-    <?php endif; ?>
-</div>
-</div>
+      <div class="Profile-Information">
+        <p>
+          <?php foreach($kortit as $kortti) : ?>
+              <h3>Kortti: </h3><?php echo $kortti->kortti; ?>
+              <br><h3>Vanhenemispäivä: </h3><?php echo $kortti->loppuu; ?>
+              <br><h3>Kuvaus: </h3><br><?php echo $kortti->vapaasana; ?>
+              <br><h3>Asetukset: </h3><a onclick="return confirm('Haluatko poistaa kortin <?php echo $kortti->kortti; ?>?');" href="<?php echo base_url(); ?>profile/kortit_delete/<?php echo $kortti->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <hr>
+          <?php endforeach; ?>
+          </div>
+          <?php endif; ?>
+        </p>
+    </div>
+  </div>
 </div>
