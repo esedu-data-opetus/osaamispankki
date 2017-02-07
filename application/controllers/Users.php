@@ -73,7 +73,7 @@ public function Login() {
             'is_logged_in' =>  1
           );
       $this->session->set_userdata($data);
-      //Vie profiilin luonti sivulle jos ei ole sitä vielä tehnyt
+      //Vie profiilin luonti sivulle jos sitä ei ole vielä tehty
       if ($this->session->userdata('First_login')) {
         $this->session->set_flashdata('success', 'Kirjautuminen onnistui! Kirjoita henkilötietosi seuraavaksi!');
         redirect('profile/set_profile');
