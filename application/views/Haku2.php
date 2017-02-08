@@ -7,7 +7,9 @@
 								'class'				=> 'form-control',
 								'style' 			=> 'width: 300px; display: inline;',
 								'value'       => set_value('email'),
-                'placeholder' => 'Kirjoita haku tähän');
+                'placeholder' => 'Kirjoita haku tähän',
+								'autofocus'		=> 'autofocus'
+							);
 	?>
 <?php echo form_input($data); ?>
 </p>
@@ -26,7 +28,7 @@
 <?php
 foreach($haku_tulokset as $haut) {
 	if($haut->Näytä_Profiili == 'Kylla'){
-		echo '<div class="panel panel-default">
+		echo '<a style="text-decoration: none;" href="'.base_url().'Haku/'.$haut->User_id.'"><div class="panel panel-default">
 			<div class="panel-heading">
 			<h4>'.$haut->L_Name.' '. $haut->F_Name.'</h4>
 			</div>
@@ -36,7 +38,7 @@ foreach($haku_tulokset as $haut) {
 						<p>'.$haut->Sposti.'</p>
 					</div>
 			</div>
-		</div>';
+		</div></a>';
 	} else {
 		echo '';
 	}
