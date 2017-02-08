@@ -68,7 +68,20 @@ class Profile extends CI_Controller {
       if ($this->Profile_model->harrastus($user_id)) {
         $this->Profile_model->Historiaa('Lisäsit harrastuksen');
         $this->session->set_flashdata('success', 'Harrastus lisätty!');
-        redirect('profile/harrastus');
+        $checkbox = $this->input->post('Uusi');
+        if(isset($checkbox)){
+          $check = array(
+            'check' =>  True,
+          );
+          $this->session->set_userdata($check);
+           redirect('Profile/Harrastus');
+        } else {
+          $check = array(
+            'check' =>  False,
+          );
+          $this->session->set_userdata($check);
+          redirect('Profile');
+        }
       }
     }
   }
@@ -105,7 +118,20 @@ class Profile extends CI_Controller {
       if ($this->Profile_model->tyohistoria($user_id)) {
         $this->Profile_model->Historiaa('Lisäsit työhistorian');
         $this->session->set_flashdata('success', 'Työhistoria lisätty!');
-        redirect('profile/tyohistoria');
+        $checkbox = $this->input->post('Uusi');
+        if(isset($checkbox)){
+          $check = array(
+            'check' =>  True,
+          );
+          $this->session->set_userdata($check);
+           redirect('Profile/Tyohistoria');
+        } else {
+          $check = array(
+            'check' =>  False,
+          );
+          $this->session->set_userdata($check);
+          redirect('Profile');
+        }
       }
     }
   }
@@ -145,7 +171,20 @@ class Profile extends CI_Controller {
       if ($this->Profile_model->koulutus($user_id)) {
         $this->Profile_model->Historiaa('Lisäsit koulutuksen');
         $this->session->set_flashdata('success', 'Koulutus lisätty!');
-        redirect('profile/koulutus');
+        $checkbox = $this->input->post('Uusi');
+        if(isset($checkbox)){
+          $check = array(
+            'check' =>  True,
+          );
+          $this->session->set_userdata($check);
+           redirect('Profile/Koulutus');
+        } else {
+          $check = array(
+            'check' =>  False,
+          );
+          $this->session->set_userdata($check);
+          redirect('Profile');
+        }
       }
     }
   }
@@ -182,7 +221,20 @@ class Profile extends CI_Controller {
       if ($this->Profile_model->kortit($user_id)) {
         $this->Profile_model->Historiaa('Lisäsit kortin');
         $this->session->set_flashdata('success', 'Kortti lisätty!');
-        redirect('profile/kortit');
+        $checkbox = $this->input->post('Uusi');
+        if(isset($checkbox)){
+          $check = array(
+            'check' =>  True,
+          );
+          $this->session->set_userdata($check);
+           redirect('Profile/Kortit');
+        } else {
+          $check = array(
+            'check' =>  False,
+          );
+          $this->session->set_userdata($check);
+          redirect('Profile');
+        }
       }
     }
   }
