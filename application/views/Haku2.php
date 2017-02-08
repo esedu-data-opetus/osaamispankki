@@ -28,7 +28,7 @@ foreach($haku_tulokset as $haut) {
 	if($haut->Näytä_Profiili == 'Kylla'){
 		echo '<div class="panel panel-default">
 			<div class="panel-heading">
-			<p>'.$haut->F_Name.' '. $haut->L_Name.'</p>
+			<h4>'.$haut->L_Name.' '. $haut->F_Name.'</h4>
 			</div>
 				<div class="prof">
 					<div class="prof-info panel-body">
