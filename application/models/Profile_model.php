@@ -13,7 +13,7 @@ class Profile_model extends CI_Model {
         'Osoite'        =>     $this->input->post('osoite'),
         'Posti_Num'     =>     $this->input->post('posti_num'),
         'KT'            =>     '0',
-        'Näytä_Profiili'=>     'Kylla'
+        'Näytä_Profiili'=>     'Ei'
     );
     $insert = $this->db->insert('profile',$Profile);
     if ($insert) {
