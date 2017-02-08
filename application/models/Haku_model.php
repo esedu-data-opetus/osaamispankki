@@ -26,7 +26,6 @@ class Haku_model extends CI_Model {
     // $this->db->or_like('kkortit.kortti', $value);
     // $this->db->or_like('kkortit.vapaasana', $value);
     // $this->db->or_like('metatieto.Tieto', $value);
-    $this->db->where('profile.Näytä_Profiili', 'Kylla');
     $query = $this->db->get();
     return $query->result();
   }

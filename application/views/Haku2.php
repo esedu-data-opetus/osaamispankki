@@ -25,6 +25,7 @@
 <h3>Tulokset haulla "<?php echo filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING); ?>"</h3>
 <?php
 foreach($haku_tulokset as $haut) {
+	if($haut->Näytä_Profiili == 'Kylla'){
 		echo '<div class="panel panel-default">
 			<div class="panel-heading">
 			<p>'.$haut->F_Name.' '. $haut->L_Name.'</p>
@@ -36,6 +37,9 @@ foreach($haku_tulokset as $haut) {
 					</div>
 			</div>
 		</div>';
+	} else {
+		echo '';
+	}
 }
 ?>
 <?php endif ; ?>
