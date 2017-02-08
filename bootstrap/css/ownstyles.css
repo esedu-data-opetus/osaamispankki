@@ -22,6 +22,12 @@ float: right;
 	}
 }
 
+@media screen and (max-width: 480px) {
+	.Profile-Information .Prof-body p {
+		font-size: 17px;
+	}
+}
+
 .Profile-Information h3 {
 	margin: 0;
   padding: 0;

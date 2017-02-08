@@ -3,14 +3,16 @@
 <?php
 if ($this->uri->segment(1) == "Profile" || $this->uri->segment(1) == "profile") {
   $Fter = "";
+  $test = "";
   $mg = "margin: 0;";
 } else {
   $mg = "margin: 80px 0 0 0;";
   $Fter = "navbar-fixed-bottom";
+  $test = "position: fixed; bottom: 0; left: 0; right: 0;";
 }
 ?>
 <div style="<?php echo $mg;?>"></div>
-<footer style="margin: 0;" class="navbar navbar-default <?php echo $Fter; ?>" role="navbar">
+<footer style="margin: 0; <?php echo $test; ?>" class="navbar navbar-default <?php echo $Fter; ?>" role="navbar">
   <span style="position: absolute; left:0; right:0; bottom: 0;" class="text-muted">
     <p style="text-align: center; margin: 0;"><b>Tekijät:</b> Riku, Miika, Valtteri, Joonas & Marko</p>
   </span>

@@ -47,13 +47,13 @@ if ($User->Näytä_Profiili == "Ei") {
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
-    $name     = "<input name='F_Name' type='text' value='".$User->F_Name."'> <input name='L_Name' type='text' value='".$User->L_Name."'>";
-    $s_posti  = "<input name='email' type='text' value='".$User->Own_Email."'>";
-    $osoite   = "<input name='address' type='text' value='".$User->Osoite."'>";
-    $p_num    = "<input name='p_num' type='text' value='".$User->Posti_Num."'>";
-    $puh      = "<input name='puh' type='text' value='".$User->Puh_Num."'>";
-    $kuvaus   = "<textarea name='about' type='text' style='max-width: 537px; max-height: 100px;'>".$User->About."</textarea>";
-    $kuva     = "<input type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+    $name     = "<input class='form-control' name='F_Name' type='text' placeholder='Etunimi' value='".$User->F_Name."'> <input class='form-control' name='L_Name' type='text' placeholder='Sukunimi' value='".$User->L_Name."'>";
+    $s_posti  = "<input class='form-control' name='email' type='text' value='".$User->Own_Email."'>";
+    $osoite   = "<input class='form-control' name='address' type='text' value='".$User->Osoite."'>";
+    $p_num    = "<input class='form-control' name='p_num' type='text' value='".$User->Posti_Num."'>";
+    $puh      = "<input class='form-control' name='puh' type='text' value='".$User->Puh_Num."'>";
+    $kuvaus   = "<textarea class='form-control' name='about' type='text'>".$User->About."</textarea>";
+    $kuva     = "<input class='form-control' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
     $btn      = '<input style="float: right;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
     $name     = $etunimi." ".$sukunimi;
@@ -78,13 +78,15 @@ if (isset($_GET['Prof_Edit'])) {
 ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
-    <p>
-      <b>Tili luotu:
-        <?php echo $C_Day; ?></b>
-        <?php echo $btn; ?>
-        <?php echo $Prof_hide; ?>
-    </p>
+    <div class="Prof-heading">
+      <p>
+        <b>Tili luotu: <?php echo $C_Day; ?></b>
+          <?php echo $btn; ?>
+          <?php echo $Prof_hide; ?>
+      </p>
+    </div>
     <hr>
+    <div class="Prof-body">
     <p>
       <b>Nimi:</b>
       <?php echo $name; ?>
@@ -115,6 +117,7 @@ if (isset($_GET['Prof_Edit'])) {
       <?php echo $kuvaus; ?>
     </p>
     <hr>
+    </div>
   </div>
 </form>
 <?php endforeach; ?>
