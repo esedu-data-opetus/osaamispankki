@@ -6,28 +6,27 @@ class Haku_model extends CI_Model {
     $this->db->select('F_Name, L_Name, Prof_Pic, Sposti, About, Näytä_Profiili');
     $this->db->distinct();
     $this->db->from('profile');
-    $this->db->join('harrastukset', 'harrastukset.User_id = profile.User_id');
-    $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
-    $this->db->join('koulutus', 'koulutus.User_id = profile.User_id');
-    $this->db->join('kkortit', 'kkortit.User_id = profile.User_id');
-    $this->db->join('metatieto', 'metatieto.User_id = profile.User_id');
-    $this->db->where("
-      profile.F_Name LIKE '%$value%' OR
-      profile.L_Name LIKE '%$value%' OR
-      profile.Sposti LIKE '%$value%' OR
-      profile.About LIKE '%$value%' OR
-      harrastukset.harrastus LIKE '%$value%' OR
-      harrastukset.vapaasana LIKE '%$value%' OR
-      tyohistoria.tyopaikka LIKE '%$value%' OR
-      tyohistoria.tehtava LIKE '%$value%' OR
-      tyohistoria.kuvaus LIKE '%$value%' OR
-      koulutus.koulutusnimi LIKE '%$value%' OR
-      koulutus.koulutusaste LIKE '%$value%' OR
-      koulutus.oppilaitos LIKE '%$value%' OR
-      kkortit.kortti LIKE '%$value%' OR
-      kkortit.vapaasana LIKE '%$value%' OR
-      metatieto.Tieto LIKE '%$value%'
-    ");
+    // $this->db->join('harrastukset', 'harrastukset.User_id = profile.User_id');
+    // $this->db->join('tyohistoria', 'tyohistoria.User_id = profile.User_id');
+    // $this->db->join('koulutus', 'koulutus.User_id = profile.User_id');
+    // $this->db->join('kkortit', 'kkortit.User_id = profile.User_id');
+    // $this->db->join('metatieto', 'metatieto.User_id = profile.User_id');
+    $this->db->like('profile.F_Name', $value);
+    $this->db->or_like('profile.L_Name', $value);
+    $this->db->or_like('profile.Sposti', $value);
+    $this->db->or_like('profile.About', $value);
+    // $this->db->or_like('harrastukset.harrastus', $value);
+    // $this->db->or_like('harrastukset.vapaasana', $value);
+    // $this->db->or_like('tyohistoria.tyopaikka', $value);
+    // $this->db->or_like('tyohistoria.tehtava', $value);
+    // $this->db->or_like('tyohistoria.kuvaus', $value);
+    // $this->db->or_like('koulutus.koulutusnimi', $value);
+    // $this->db->or_like('koulutus.koulutusaste', $value);
+    // $this->db->or_like('koulutus.oppilaitos', $value);
+    // $this->db->or_like('kkortit.kortti', $value);
+    // $this->db->or_like('kkortit.vapaasana', $value);
+    // $this->db->or_like('metatieto.Tieto', $value);
+    $this->db->where('profile.Näytä_Profiili', 'Kylla');
     $query = $this->db->get();
     return $query->result();
   }
