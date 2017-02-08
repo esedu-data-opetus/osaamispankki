@@ -27,13 +27,7 @@ public function Register() {
     if ($this->User_model->send_mail($key)) {
       //Luo käyttäjän
       if ($this->User_model->create_member($key)) {
-        //Varmistaa että käyttäjä menee sivulle missä
-        //hän täyttää profiilitietonsa.
-        $data = array(
-					'First_login' =>  True,
-        );
-        $this->session->set_userdata($data);
-        $this->session->set_flashdata('success', 'Käyttäjä Luotu!');
+        $this->session->set_flashdata('success', 'Käyttäjä Luotu! Voit kirjautua sisälle nyt!');
         redirect('home/index');
       }
     } else {
@@ -93,26 +87,10 @@ public function Logout() {
   $this->session->unset_userdata('user_id');
   $this->session->unset_userdata('sposti');
   $this->session->sess_destroy();
-if ($this->uri->segment('proff')) {
     redirect('home/index');
-} else {
-    redirect('home/index');
-  }
 }
 //Jos käyttäjä ei ole tehnyt profiilia hänet ohjataan tänne
 //Ja profiili kirjautuu ulos ja antaa mahdollisuuden luoda profiilin uudestaan
-public function Proff_error() {
-  $data = array(
-    'Key'          =>  'undefined',
-    'user_id'      =>  'undefined',
-    'sposti'       =>  'undefined',
-    'First_login'  =>  True,
-    'is_logged_in' =>  0
-  );
-    $this->session->set_userdata($data);
-    $this->session->set_flashdata('error', 'Profiilisi Ei Ole Sinun!<br>Jos Luulet Toisin Lähetä Palautetta');
-    redirect('home/index');
-}
 //Sähköpostin varmennus
 public function C_Key($key) {
   if ($this->User_model->C_Email($key)) {

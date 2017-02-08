@@ -12,6 +12,7 @@ class Profile_model extends CI_Model {
         'Sposti'        =>     $this->session->userdata('sposti'),
         'Osoite'        =>     $this->input->post('osoite'),
         'Posti_Num'     =>     $this->input->post('posti_num'),
+        'KT'            =>     '0',
         'Näytä_Profiili'=>     'Kylla'
     );
     $insert = $this->db->insert('profile',$Profile);
@@ -49,7 +50,14 @@ class Profile_model extends CI_Model {
   public function get_profile($user_id) {
         $this->db->select('*');
         $this->db->from('profile');
-        $this->db->where('User_id',$user_id);
+        $this->db->where('User_id', $user_id);
+        $query = $this->db->get();
+        return $query->result();
+  }
+  public function get_user($user_id) {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id', $user_id);
         $query = $this->db->get();
         return $query->result();
   }

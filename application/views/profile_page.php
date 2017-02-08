@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <?php
-if (!$User_Info) {
-  redirect('Users/Proff_error');
+if (!$Prof_Info) {
+  redirect('Profile/set_profile');
 }
 
-foreach($User_Info as $User) {
+foreach($Prof_Info as $User) {
   if ($User->Näytä_Profiili == "Ei") {
     $Col = "default";
   } else {
@@ -16,7 +16,7 @@ foreach($User_Info as $User) {
 <div class="panel-group">
   <div class="panel panel-<?php echo $Col; ?>">
     <div class="panel-heading">
-      <?php foreach($User_Info as $User) : ?>
+      <?php foreach($Prof_Info as $User) : ?>
         <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
         <h1>Oma profiili</h1>
         <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
@@ -34,7 +34,7 @@ foreach($User_Info as $User) {
       <?php endforeach; ?>
     </div>
 <div class="panel-body">
-<?php foreach($User_Info as $User) : ?>
+<?php foreach($Prof_Info as $User) : ?>
 <?php
 $C_Day     = $User->Create_date;
 $etunimi   = $User->F_Name;

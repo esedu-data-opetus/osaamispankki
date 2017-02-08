@@ -27,7 +27,7 @@ class Profile extends CI_Controller {
 
     $data['kortit'] = $this->Profile_model->Get_kortit($user_id);
 
-    $data['User_Info'] = $this->Profile_model->get_profile($user_id);
+    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
 
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
@@ -196,10 +196,10 @@ class Profile extends CI_Controller {
   public function hide($tila, $user_id) {
     if ($tila == 'Kylla') {
       $data = array('Näytä_Profiili'  =>  'Kylla');
-      $fd = $this->session->set_flashdata('success', 'Profiilisi on julkinen!');
+      $fd = $this->session->set_flashdata('success-Prof_Hide', 'Profiilisi on näkyvissä!');
     } else {
       $data = array('Näytä_Profiili'  =>  'Ei');
-      $fd = $this->session->set_flashdata('error', 'Profiilisi ei ole julkinen!');
+      $fd = $this->session->set_flashdata('error-Prof_Hide', 'Profiilisi on piilotettu!');
     }
 
     if ($this->Profile_model->hide($user_id,$data)) {

@@ -1,12 +1,15 @@
 //valitsee kaikki saman nimiset id:t
 //$('[id="id"]')
 function check_user() {
-
 if( document.getElementById("uploadBox").files.length == 0 ){
     document.getElementById("nappi").disabled = true;
 } else {
   document.getElementById("nappi").disabled = false;
 }
+}
+
+function MyAlert() {
+  $('#F_MSG').hide();
 }
 
 var main = function() {
@@ -27,5 +30,8 @@ var main = function() {
         }
     });
     $('#luo').addClass('disabled');
+
+    $('#F_MSG').delay(30000).slideUp(500);
+
 };
 $(document).ready(main);
