@@ -24,12 +24,6 @@
 <?php if(!empty($this->input->post('haku'))) : ?>
 <h3>Tulokset haulla "<?php echo filter_var($this->input->post('haku'), FILTER_SANITIZE_STRING); ?>"</h3>
 <?php
-// if (isset($haku_tulokset))
-// 	print_r($haku_tulokset);
-// else {
-// 	echo "<p>Et hakenut vielä";
-// }
-
 foreach($haku_tulokset as $haut) {
 		echo '<div class="panel panel-default">
 			<div class="panel-heading">
