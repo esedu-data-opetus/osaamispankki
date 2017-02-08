@@ -33,7 +33,6 @@ foreach($haku_tulokset as $haut) {
 					<div class="prof-info panel-body">
 					<img class="img-rounded prof-img img-thumbnail" src="'.base_url().'images/profiili/'.$haut->Prof_Pic.'" />
 						<p>'.$haut->Sposti.'</p>
-						<p>'.$haut->About.'</p>
 					</div>
 			</div>
 		</div>';
