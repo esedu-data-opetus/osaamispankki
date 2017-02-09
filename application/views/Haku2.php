@@ -28,7 +28,7 @@
 <?php
 foreach($haku_tulokset as $haut) {
 	if($haut->Näytä_Profiili == 'Kylla'){
-		echo '<a style="text-decoration: none;" href="'.base_url().'Haku/'.$haut->User_id.'"><div class="panel panel-default">
+		echo '<a style="text-decoration: none;" href="'.base_url().'user?='.$haut->User_id.'"><div class="panel panel-default">
 			<div class="panel-heading">
 			<h4>'.$haut->L_Name.' '. $haut->F_Name.'</h4>
 			</div>
