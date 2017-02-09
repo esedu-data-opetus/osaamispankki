@@ -5,7 +5,21 @@
     <a href="<?php echo base_url(); ?>Loki/Clear/<?php echo $this->session->userdata('user_id'); ?>" title="Tyhjennä tapahtuma historia!" style="float: right;" class="btn btn-danger btn-lg" ><span class="glyphicon glyphicon-trash"></span></a>
   </div>
   <div class="panel-body" style="margin:0; padding:0;">
-    <table class="table" style="margin:0; padding:0;">
+    <div class="Profile-Information">
+      <div class="Prof-heading">
+        <h3>Aika</h3>
+        <h3>Päivä</h3>
+        <h3>Tapahtuma</h3>
+      </div>
+      <hr>
+      <?php foreach($Historia as $Loki) : ?>
+        <p><?php echo $Loki->Aika; ?></p>
+        <p><?php echo $Loki->Paiva; ?></p>
+        <p><?php echo $Loki->Toiminta; ?></p>
+        <hr>
+      <?php endforeach; ?>
+    </div>
+    <!-- <table class="table" style="margin:0; padding:0;">
       <thead>
         <tr>
           <th>Aika</th>
@@ -22,6 +36,6 @@
         </tr>
       <?php endforeach; ?>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </div>
