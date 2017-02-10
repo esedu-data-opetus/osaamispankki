@@ -13,6 +13,32 @@
 	?>
 <?php echo form_input($data); ?>
 </p>
+<!-- <p>
+	<?php echo form_label('Suodatin:'); ?>
+	<select name="suodatin" onchange="validateDropdown();" class="form-control col-md-4 col-md-push-0">
+		<option name="suodatinn" value="Harrastukset">Harrastukset</option>
+		<option name="suodatinn" value="Työhistoria">Työhistoria</option>
+		<option name="suodatinn" value="Koulutus">Koulutus</option>
+		<option name="suodatinn" value="Kortit">Kortit</option>
+	</select>
+</p>
+<p>
+<?php echo form_label('Harrastus:'); ?>
+<?php
+	if ($this->session->userdata('harrastus')) {
+		$check = "checked";
+	} else {
+		$check = "";
+	}
+
+		$data = array(
+			'name'		=>  'Harrastukset',
+			'checked' => 	$check,
+			'class'		=>  'checkbox-inline',
+		);
+?>
+<?php echo form_checkbox($data); ?>
+</p> -->
 <p style="display: inline">
 <?php
 	$data = array('name'    =>    'submit',
@@ -28,7 +54,7 @@
 <?php
 foreach($haku_tulokset as $haut) {
 	if($haut->Näytä_Profiili == 'Kylla'){
-		echo '<a style="text-decoration: none;" href="'.base_url().'user?='.$haut->User_id.'"><div class="panel panel-default">
+		echo '<a style="text-decoration: none;" href="'.base_url().'Haku/User/'.$haut->User_id.'"><div class="panel panel-default">
 			<div class="panel-heading">
 			<h4>'.$haut->L_Name.' '. $haut->F_Name.'</h4>
 			</div>

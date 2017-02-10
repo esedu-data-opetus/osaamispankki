@@ -17,9 +17,23 @@ public function index() {
     $this->load->view('layouts/main',$data);
   } else {
     $hakusana =  $this->input->post('haku');
+    // $suodatin =  $this->input->post('suodatin');
+    // $suodatin = array(
+    //   'Harrastukset' => $this->input->post('harrastukset'),
+    // );
     $data['haku_tulokset'] = $this->Haku_model->haku($hakusana);
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
+    }
+  }
+  public function User($User_id) {
+    if ($this->Haku_model->User($User_id)) {
+      $data['user_data'] = $this->Haku_model->User($User_id);
+      $data['main_content'] = "user";
+      $this->load->view('layouts/main', $data);
+    } else {
+      $this->session->set_flashdata('error', 'Käyttäjä on olemattomissa tai piilossa.');
+      redirect('Haku');
     }
   }
 }
