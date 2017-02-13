@@ -79,16 +79,17 @@ class User_model extends CI_Model {
   }
   public function send_mail($key) {
     // $message = "";
-    // $message = "<a href='".base_url()."sivu/register_user/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
-    // $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
-    // $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    // $this->email->to($this->input->post('email'));
-    // $this->email->subject('Vahvista käyttäjätilisi.');
-    // $this->email->message($message);
-
-    // if ($this->email->send()) {
-    return true;
-    // }
+    $message = "<a href='".base_url()."Users/confirmed/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+    $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
+    $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
+    $this->email->to($this->session->userdata('sposti'));
+    $this->email->subject('Vahvista käyttäjätilisi.');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+    } else {
+      return false;
+    }
   }
   public function C_Email($key) {
       return true;

@@ -23,16 +23,13 @@ public function Register() {
   } else {
     //Luo avaimen
     $key = md5(uniqid());
-    //Lähettää sähköposti varmennuksen
-    if ($this->User_model->send_mail($key)) {
       //Luo käyttäjän
       if ($this->User_model->create_member($key)) {
         $this->session->set_flashdata('success', 'Käyttäjä Luotu! Voit kirjautua sisälle nyt!');
         redirect('home/index');
-      }
-    } else {
-      $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
-      redirect('home/index');
+      } else {
+        $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
+        redirect('home/index');
     }
   }
 }
@@ -100,6 +97,23 @@ public function C_Key($key) {
     $this->session->set_userdata($data);
     $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu ja voit kirjautua!');
     redirect('home/index');
+    }
+  }
+  public function test($id, $kt, $Key) {
+    if ($this->session->userdata('KT') == 3) {
+      if ($this->User_model->send_mail($Key)) {
+        $this->session->set_flashdata('success', 'Sähköposti lähetetty!');
+        redirect('Profile');
+      } else {
+        $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
+        redirect('Profile');
+      }
+    } else {
+      redirect('Home');
   }
 }
+  public function confirmed($key) {
+    $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!<br>'.$key.'');
+    redirect('Profile');
+  }
 }
