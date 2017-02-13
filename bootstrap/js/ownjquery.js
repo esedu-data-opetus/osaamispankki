@@ -1,5 +1,17 @@
 //valitsee kaikki saman nimiset id:t
 //$('[id="id"]')
+function myResize() {
+  var w = window.outerWidth;
+  var h = window.outerHeight;
+  var txt = "Window size: width=" + w + ", height=" + h;
+  // if (w <= 480) {
+  //   var txt = "Puhlin!";
+  // } else {
+  //   var txt = "jotain muuta!";
+  // }
+  document.getElementById("size").innerHTML = txt;
+}
+
 function check_user() {
 if( document.getElementById("uploadBox").files.length == 0 ){
     document.getElementById("nappi").disabled = true;
