@@ -78,7 +78,7 @@ if (isset($_GET['Prof_Edit'])) {
 ?>
 
 <?php if ($this->session->userdata('KT') == 3) : ?>
-  <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>Users/test/<?php echo $User->User_id; ?>/<?php echo $User->KT; ?>/<?php echo $this->session->userdata('Key'); ?>"><span class="glyphicon glyphicon-send"></span></a>
+  <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>Users/test"><span class="glyphicon glyphicon-send"></span></a>
 <?php endif; ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
