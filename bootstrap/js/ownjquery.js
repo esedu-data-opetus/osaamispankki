@@ -4,7 +4,7 @@ function myResize() {
   var w = window.outerWidth;
   var h = window.outerHeight;
   var txt = "Window size: width=" + w + ", height=" + h;
-  // if (h <= 480) {
+  // if (w <= 480) {
   //   var txt = "Puhlin!";
   // } else {
   //   var txt = "jotain muuta!";

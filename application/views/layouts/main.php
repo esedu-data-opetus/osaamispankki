@@ -15,7 +15,7 @@
   <script type='text/javascript' src="<?php echo base_url();?>bootstrap/js/ownjquery.js"></script>
   <script src="http://paja.esedu.fi/data13/riku.ronka/harjoitus/js/jquery.js"></script>
 </head>
-<body onresize="myResize()">
+<body>
   <?php $this->load->view('templates/header'); ?>
   <div class="container">
     <?php $this->load->view('templates/Alerts'); ?>
