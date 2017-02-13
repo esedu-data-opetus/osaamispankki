@@ -3,11 +3,15 @@
 	<?php if ($this->session->flashdata('Email')) : ?>
 		<p class="unsuccess"><?php echo $this->session->flashdata('Email'); ?>
 	<?php endif; ?>
-	<h1>Rekisteröityminen</h1>
+	<h1>Rekisteröinti</h1>
 </div>
 <div class="panel-body">
 <?php echo validation_errors('<p style="font-weight: bold;" class="text-danger bg-danger">','</p><br>'); ?>
-<?php echo form_open('users/register'); ?>
+<?php if ($this->uri->segment(2) == 'test') : ?>
+	<?php echo form_open('Users/test'); ?>
+<?php else : ?>
+	<?php echo form_open('Users/register'); ?>
+<?php endif; ?>
 <p>
 	<?php
 	$data = array(
@@ -24,7 +28,7 @@
 	$data = array(
 		'name' => 'email',
 		'class'	 => 'form-control',
-		'placeholder' => 'sähköposti',
+		'placeholder' => '@esedulainen.fi',
 		'value'=> set_value('email')
 	);
 	?>

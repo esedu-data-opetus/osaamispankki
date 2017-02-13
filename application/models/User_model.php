@@ -77,12 +77,11 @@ class User_model extends CI_Model {
         return false;
     }
   }
-  public function send_mail($key) {
-    // $message = "";
-    $message = "<a href='".base_url()."Users/confirmed/$key' >Klikkaa tästä</a> vahvistaaksesi käyttäjän";
+  public function test_send_mail($key) {
+    $message = "<p>Vahvista sähköpostiosoite <a href='".base_url()."Users/confirmed/".$Key."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    $this->email->to($this->session->userdata('sposti'));
+    $this->email->to($this->input->post('email'));
     $this->email->subject('Vahvista käyttäjätilisi.');
     $this->email->message($message);
     if ($this->email->send()) {
@@ -91,6 +90,24 @@ class User_model extends CI_Model {
       return false;
     }
   }
+
+  public function test_create_member() {
+    return true;
+  }
+
+  // public function send_mail($key) {
+  //   $message = "<p>Vahvista sähköpostiosoite <a href='".base_url()."Users/confirmed/".md5($Key)."' >tästä</a>!</p>";
+  //   $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
+  //   $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
+  //   $this->email->to($this->input->post('email'));
+  //   $this->email->subject('Vahvista käyttäjätilisi.');
+  //   $this->email->message($message);
+  //   if ($this->email->send()) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
   public function C_Email($key) {
       return true;
   }
