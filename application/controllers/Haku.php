@@ -29,6 +29,11 @@ public function index() {
   public function User($User_id) {
     if ($this->Haku_model->User($User_id)) {
       $data['user_data'] = $this->Haku_model->User($User_id);
+      $data['harrastus'] = $this->Profile_model->Get_harrastus($User_id);
+      $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($User_id);
+      $data['koulutus'] = $this->Profile_model->Get_koulutus($User_id);
+      $data['kortit'] = $this->Profile_model->Get_kortit($User_id);
+
       $data['main_content'] = "user";
       $this->load->view('layouts/main', $data);
     } else {
