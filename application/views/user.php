@@ -33,14 +33,80 @@
       			echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>en profiili</h1><br><?php
       		}
 
-      		//Jos nimi päättyy 'u'  tai 'i' tai 'e' tai 'o' tai 'u' tai 'ö' printtaa n profiili
-      	 	elseif (substr($user->F_Name, -1) == 'u' ||
-      	 		substr($user->F_Name, -1) == 'i' ||
-      	 		substr($user->F_Name, -1) == 'e' ||
-      	 		substr($user->F_Name, -1) == 'o' ||
-      	 		substr($user->F_Name, -1) == 'u' ||
-      	 		substr($user->F_Name, -1) == 'ö' ||
-      	 		substr($user->F_Name, -1) == 'a')
+      		//Jos nimi päättyy 'ö' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'ö')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'kki' printtaa kin profiili
+      	 	elseif (substr($user->F_Name, -3) == 'kki')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "ki");?>kin profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'tti' printtaa tin profiili
+      	 	elseif (substr($user->F_Name, -3) == 'tti')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "ti");?>tin profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'i' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'i')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'kku' printtaa kun profiili
+      	 	elseif (substr($user->F_Name, -3) == 'kku')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "ku");?>kun profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'u' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'u')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'kka' printtaa kan profiili
+      	 	elseif (substr($user->F_Name, -3) == 'kka')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "ka");?>kan profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'a' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'a')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'kko' printtaa kon profiili
+      	 	elseif (substr($user->F_Name, -3) == 'kko')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "ko");?>kon profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'tto' printtaa ton profiili
+      	 	elseif (substr($user->F_Name, -3) == 'tto')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "to");?>ton profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'o' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'o')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'tte' printtaa eten profiili
+      	 	elseif (substr($user->F_Name, -3) == 'tte')
+      	 	{
+      		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "te");?>eten profiili</h1><br><?php
+      		}
+
+          //Jos nimi päättyy 'e' printtaa n profiili
+      	 	elseif (substr($user->F_Name, -1) == 'e')
       	 	{
       		 	echo "<h1 style='margin-bottom:50px;'>".rtrim($user->F_Name, "s");?>n profiili</h1><br><?php
       		}
