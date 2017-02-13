@@ -133,7 +133,7 @@ public function C_Key($key) {
   }
 }
   public function confirmed($key) {
-    $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!<br>'.$key.'');
+    $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!<br>$key');
     redirect('Profile');
   }
 }
