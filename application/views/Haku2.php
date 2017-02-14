@@ -13,32 +13,6 @@
 	?>
 <?php echo form_input($data); ?>
 </p>
-<!-- <p>
-	<?php echo form_label('Suodatin:'); ?>
-	<select name="suodatin" onchange="validateDropdown();" class="form-control col-md-4 col-md-push-0">
-		<option name="suodatinn" value="Harrastukset">Harrastukset</option>
-		<option name="suodatinn" value="Työhistoria">Työhistoria</option>
-		<option name="suodatinn" value="Koulutus">Koulutus</option>
-		<option name="suodatinn" value="Kortit">Kortit</option>
-	</select>
-</p>
-<p>
-<?php echo form_label('Harrastus:'); ?>
-<?php
-	if ($this->session->userdata('harrastus')) {
-		$check = "checked";
-	} else {
-		$check = "";
-	}
-
-		$data = array(
-			'name'		=>  'Harrastukset',
-			'checked' => 	$check,
-			'class'		=>  'checkbox-inline',
-		);
-?>
-<?php echo form_checkbox($data); ?>
-</p> -->
 <p style="display: inline">
 <?php
 	$data = array('name'    =>    'submit',
