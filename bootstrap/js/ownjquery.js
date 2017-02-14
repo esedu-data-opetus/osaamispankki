@@ -25,6 +25,12 @@ function MyAlert() {
 }
 
 var main = function() {
+
+  $(function() {
+     $("#alkoi").datepicker();
+     $("#loppui").datepicker();
+    });
+
     $('#luo').click(function() {
         $('.counter').text('50');
         $('#luo').addClass('disabled');

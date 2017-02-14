@@ -24,9 +24,11 @@
   </p>
 	<p>
 <?php
-	$data = array('name'  => 'login_submit',
-								'class' => 'btn btn-success btn-lg',
-								'value' => "Kirjaudu sisään");
+	$data = array(
+		'name'  => 'login_submit',
+		'class' => 'btn btn-success btn-lg',
+		'value' => "Kirjaudu sisään"
+							);
 ?>
 <?php echo form_submit($data); ?>
 </p>

@@ -20,6 +20,21 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function profile_settings($User_id) {
+    $settings = array(
+        'User_id'       =>     $this->session->userdata('user_id'),
+        'Del_Vahvistus' =>     true
+    );
+    $insert = $this->db->insert('asetukset', $settings);
+    if ($insert) {
+      return true;
+    }
+  }
+  public function get_settings($user_id) {
+    $this->db->where('User_id',$user_id);
+    $query = $this->db->get('asetukset');
+    return $query->result();
+  }
   public function Get_harrastus($user_id) {
     $this->db->where('User_id',$user_id);
     $query = $this->db->get('harrastukset');

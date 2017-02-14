@@ -7,14 +7,6 @@
  resize: none;
 }
 </style>
-<script type="text/javascript">
-
-	 $(function() {
-	    $("#alkoi").datepicker();
-	    $("#loppui").datepicker();
-	   });
-
-</script>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h1>Lisää kortti</h1>

@@ -6,7 +6,7 @@ class Profile extends CI_Controller {
   public function __construct(){
   parent::__construct();
 
-  if (!$this->session->userdata('is_logged_in') && !$this->session->userdata('First_login')) {
+  if (!$this->session->userdata('is_logged_in')) {
     $this->session->set_flashdata('error', 'Access Denied!');
     redirect('home/index');
   }
@@ -29,14 +29,20 @@ class Profile extends CI_Controller {
 
     $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
 
+    $data['Prof_Settings'] = $this->Profile_model->get_settings($user_id);
+
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
 //Hakee profiilin luonnin näkymän ja asettaa inputeille säännöt
-  public function set_profile() {
+  public function set_profile($w) {
     if ($this->session->userdata('is_logged_in') == 0) {
       redirect('home/index');
     }
+    $user_id = $this->session->userdata('user_id');
+    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
+    $data['Prof_Settings'] = $this->Profile_model->get_settings($user_id);
+
     $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[100]');
 		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[100]');
 		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[100]');
@@ -48,13 +54,30 @@ class Profile extends CI_Controller {
       $data['main_content'] = 'users/set_profile';
       $this->load->view('layouts/main',$data);
     } else {
-      $key = $this->session->userdata('Key');
-      if ($this->Profile_model->profile_setup($key)) {
-        $this->Profile_model->Historiaa('Asetit perustietosi');
-        $this->session->set_flashdata('success', 'Perustiedot asetettu!');
-        redirect('profile/index');
+      $User_id = $this->session->userdata('user_id');
+      if ($w == "b") {
+        if ($this->Profile_model->profile_setup() && $this->Profile_model->profile_settings($User_id)) {
+          $this->Profile_model->Historiaa('Asetit perustietosi & asetukset');
+          $this->session->set_flashdata('success', 'Perustiedot asetettu!');
+          redirect('profile/index');
+        }
+      } else if ($w == "p") {
+        if ($this->Profile_model->profile_setup()) {
+          $this->Profile_model->Historiaa('Asetit perustietosi');
+          $this->session->set_flashdata('success', 'Perustiedot asetettu!');
+          redirect('profile/index');
+        }
       }
     }
+  }
+  public function set_asetukset() {
+    $User_id = $this->session->userdata('user_id');
+      if($this->Profile_model->profile_settings($User_id)) {
+        $this->session->set_flashdata('success', 'Proofiili päivitetty!');
+      } else {
+        $this->session->set_flashdata('error', 'Asetus ongelmia!');
+      }
+    redirect('profile/index');
   }
   //Hakee Harrastuksen lisäys näkymän
   public function harrastus() {
