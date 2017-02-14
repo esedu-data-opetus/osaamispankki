@@ -30,10 +30,10 @@
   <?php
   if ($Palaute->Tila == 1) {
     $Tila = "default";
-    $Tilasi = "Huomattu!";
+    $Tilasi = "Luettu!";
   } else if ($Palaute->Tila == 2) {
     $Tila = "success";
-    $Tilasi = "Luettu!";
+    $Tilasi = "Harkinnassa/Touteutettu!";
   } else {
     $Tila = "";
     $Tilasi = "Lähetetty!";

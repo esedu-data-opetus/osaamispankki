@@ -71,8 +71,7 @@ class Profile extends CI_Controller {
     }
   }
   public function set_asetukset() {
-    $User_id = $this->session->userdata('user_id');
-      if($this->Profile_model->profile_settings($User_id)) {
+      if($this->Profile_model->profile_settings()) {
         $this->session->set_flashdata('success', 'Profiili päivitetty!');
       } else {
         $this->session->set_flashdata('error', 'Asetus ongelmia!');

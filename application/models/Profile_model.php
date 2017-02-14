@@ -20,7 +20,7 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
-  public function profile_settings($User_id) {
+  public function profile_settings() {
     $settings = array(
         'User_id'       =>     $this->session->userdata('user_id'),
         'Del_Vahvistus' =>     true
