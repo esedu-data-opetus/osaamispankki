@@ -1,17 +1,19 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');	if ($this->uri->segment(2) == "set_profile") { $disabled = "disabled"; } else { $disabled = ""; } ?>
 
-<?php
-if ($this->uri->segment(1) == "Profile" || $this->uri->segment(1) == "profile") {
-  $Fter = "";
-  $mg = "margin: 0;";
-} else {
-  $mg = "margin: 80px 0 0 0;";
-  $Fter = "navbar-fixed-bottom";
+<div style="margin: 20px 0 0 0;"></div>
+<?php if ($this->uri->segment(1) == "Palaute" || $this->uri->segment(2) == "Tyohistoria" || $this->uri->segment(2) == "Kortit" || $this->uri->segment(2) == "Koulutus" || $this->uri->segment(2) == "Harrastus" || $this->uri->segment(1) == "Haku" || $this->uri->segment(1) == "haku" || empty($this->uri->segment(1)) || $this->uri->segment(1) == "Home" || $this->uri->segment(1) == "home" || $this->uri->segment(2) == "Login" || $this->uri->segment(2) == "Register") : ?>
+<style>
+@media screen and (min-width: 480px) {
+  .my-style {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+  }
 }
-?>
-<div style="<?php echo $mg;?>"></div>
-
-<footer style="margin: 0;" class="navbar navbar-default <?php echo $Fter; ?>" role="navbar">
+</style>
+<?php endif; ?>
+<footer style="margin: 0;" class="navbar navbar-default my-style" role="navbar">
   <span style="position: absolute; left:0; right:0; bottom: 0;" class="text-muted">
     <p style="text-align: center; margin: 0;"><b>Tekijät:</b> Riku, Miika, Valtteri, Joonas & Marko</p>
   </span>

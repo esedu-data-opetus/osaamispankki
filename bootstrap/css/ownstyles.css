@@ -25,6 +25,7 @@ float: right;
   }
 }
 
+
 @media screen and (max-width: 480px) {
   .Profile-Information .Prof-body p {
 		font-size: 17px;

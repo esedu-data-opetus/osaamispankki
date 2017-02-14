@@ -416,7 +416,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div class=panel-heading>
     <h3 class=panel-title>
       <span style="font-size: 22px;">Kortit</span>
-      <a href="<?php echo base_url(); ?>profile/kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
+      <a href="<?php echo base_url(); ?>profile/Kortit" class="btn btn-success add-btn" title="Lisää kortti"><span class="glyphicon glyphicon-plus plus"></span></a>
     </h3>
   </div>
   <div class=panel-body>
