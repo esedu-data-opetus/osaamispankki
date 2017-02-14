@@ -184,6 +184,7 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
     $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim|required');
     $this->form_validation->set_rules('Lopetit', 'loppui', 'trim|required');
+    $this->form_validation->set_rules('Vapaasana', 'vapaasana', 'trim');
 
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'Kokemukset/koulutus';
@@ -223,7 +224,8 @@ class Profile extends CI_Controller {
         'koulutusaste'    =>     filter_var($this->input->post('koulutusaste'), FILTER_SANITIZE_STRING),
         'oppilaitos'      =>     filter_var($this->input->post('oppilaitos'), FILTER_SANITIZE_STRING),
         'alkoi'           =>     filter_var($this->input->post('alkoi'), FILTER_SANITIZE_STRING),
-        'loppui'          =>     filter_var($this->input->post('loppui'), FILTER_SANITIZE_STRING)
+        'loppui'          =>     filter_var($this->input->post('loppui'), FILTER_SANITIZE_STRING),
+        'vapaasana'       =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->koulutus_update($id,$data)) {
       $this->Profile_model->Historiaa('Päivitit koulutuksen');
@@ -286,6 +288,7 @@ class Profile extends CI_Controller {
     $data = array(
       'F_Name'          =>    filter_var($this->input->post('F_Name'), FILTER_SANITIZE_STRING),
       'L_Name'          =>    filter_var($this->input->post('L_Name'), FILTER_SANITIZE_STRING),
+      'Kielitaito'      =>    filter_var($this->input->post('kielitaito'), FILTER_SANITIZE_STRING),
       'Own_Email'       =>    filter_var($this->input->post('email'), FILTER_SANITIZE_STRING),
       'Osoite'          =>    filter_var($this->input->post('address'), FILTER_SANITIZE_STRING),
       'Posti_Num'       =>    filter_var($this->input->post('p_num'), FILTER_SANITIZE_STRING),

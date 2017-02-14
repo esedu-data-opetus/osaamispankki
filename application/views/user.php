@@ -12,6 +12,10 @@
     </h3>
       <p><?php echo $user->Own_Email; ?></p>
     <h3>
+      <b>Kielitaito:</b>
+    </h3>
+      <p><?php echo $user->Kielitaito; ?></p>
+    <h3>
       <b>Osoite:</b>
     </h3>
       <p><?php echo $user->Osoite; ?></p>
@@ -83,6 +87,7 @@
   <p><b>Oppilaitos:</b> <?php echo $koulu->oppilaitos; ?></p>
   <p><b>Alkoi:</b> <?php echo $koulu->alkoi; ?></p>
   <p><b>Loppui:</b> <?php echo $koulu->loppui; ?></p>
+  <p><b>Vapaasana:</b> <?php echo $koulu->vapaasana; ?></p>
   <hr>
 <?php endforeach; ?>
 <?php endif; ?>

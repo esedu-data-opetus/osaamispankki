@@ -49,6 +49,7 @@ if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
     $name     = "<input class='form-control' name='F_Name' type='text' placeholder='Etunimi' value='".$User->F_Name."'> <input class='form-control' name='L_Name' type='text' placeholder='Sukunimi' value='".$User->L_Name."'>";
     $s_posti  = "<input class='form-control' name='email' type='text' value='".$User->Own_Email."'>";
+    $K_Taito  = '<input class="form-control" name="kielitaito" type="text" value='.$User->Kielitaito.'>';
     $osoite   = "<input class='form-control' name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input class='form-control' name='p_num' type='text' value='".$User->Posti_Num."'>";
     $puh      = "<input class='form-control' name='puh' type='text' value='".$User->Puh_Num."'>";
@@ -58,6 +59,7 @@ if (isset($_GET['Prof_Edit'])) {
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
+    $K_Taito  = $User->Kielitaito;
     $osoite   = $User->Osoite;
     $p_num    = $User->Posti_Num;
     $puh      = $User->Puh_Num;
@@ -69,6 +71,7 @@ if (isset($_GET['Prof_Edit'])) {
   $name     = $etunimi." ".$sukunimi;
   $s_posti  = $User->Own_Email;
   $osoite   = $User->Osoite;
+  $K_Taito  = $User->Kielitaito;
   $p_num    = $User->Posti_Num;
   $puh      = $User->Puh_Num;
   $kuvaus   = $User->About;
@@ -107,6 +110,11 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
+      <b>Kielitaito:</b>
+      <?php echo $K_Taito; ?>
+    </p>
+    <hr>
+    <p>
       <b>Postinumero:</b>
       <?php echo $p_num; ?>
     </p>
@@ -117,7 +125,7 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
-      <b>Kuvaus:</b>
+      <b>Kuvaus:</b><br>
       <?php echo $kuvaus; ?>
     </p>
     <hr>
@@ -366,6 +374,7 @@ if (isset($_GET['Prof_Edit'])) {
             $Oppilaitos    =  $koulut->oppilaitos;
             $Alkoi         =  $koulut->alkoi;
             $Loppui        =  $koulut->loppui;
+            $K_vapaasana   =  $koulut->vapaasana;
             $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
           } else {
             $Koulutusnimi  =  '<input class="form-control" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
@@ -373,6 +382,7 @@ if (isset($_GET['Prof_Edit'])) {
             $Oppilaitos    =  '<input class="form-control" name="oppilaitos" type="text" value="'.$koulut->oppilaitos.'" />';
             $Alkoi         =  '<input class="form-control" readonly name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
             $Loppui        =  '<input class="form-control" readonly name="loppui" type="text" value="'.$koulut->loppui.'" />';
+            $K_vapaasana   =  '<input class="form-control" name="K_vapaasana" type="text" value="'.$koulut->vapaasana.'" />';
             $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
           }
         } else {
@@ -381,6 +391,7 @@ if (isset($_GET['Prof_Edit'])) {
           $Oppilaitos    =  $koulut->oppilaitos;
           $Alkoi         =  $koulut->alkoi;
           $Loppui        =  $koulut->loppui;
+          $K_vapaasana   =  $koulut->vapaasana;
           $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
         }
       ?>
@@ -391,6 +402,7 @@ if (isset($_GET['Prof_Edit'])) {
         <br><h3>Oppilaitos: </h3><?php echo $Oppilaitos; ?>
         <br><h3>Alkoi: </h3><?php echo $Alkoi; ?>
         <br><h3>Loppui: </h3><?php echo $Loppui; ?>
+        <br><h3>Vapaasana: </h3><br><?php echo $K_vapaasana; ?>
       </form>
       <hr>
       <?php endforeach; ?>

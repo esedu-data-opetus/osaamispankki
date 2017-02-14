@@ -12,6 +12,7 @@
      $Puh_Num = set_value('puh_num');
      $Posti_Num = set_value('posti_num');
      $Own_Email = set_value('own_email');
+     $kielitaito = set_value('kielitaito');
    } else if (!$Prof_Settings) {
      foreach($Prof_Info as $Prof) {
        $F_Name = $Prof->F_Name;
@@ -20,6 +21,7 @@
        $Puh_Num = $Prof->Puh_Num;
        $Posti_Num = $Prof->Posti_Num;
        $Own_Email = $Prof->Own_Email;
+       $kielitaito = $Prof->Kielitaito;
      }
      if (!isset($F_Name)) {
        $F_Name = set_value('f_name');
@@ -28,6 +30,7 @@
        $Puh_Num = set_value('puh_num');
        $Posti_Num = set_value('posti_num');
        $Own_Email = set_value('own_email');
+       $kielitaito = set_value('kielitaito');
      }
    }
 ?>
@@ -87,6 +90,18 @@
     'placeholder' =>  'Sukunimi',
 		'value'       =>  $L_Name,
     $Update    =>  $Update
+	);
+	?>
+	<?php echo form_input($data); ?>
+</p>
+<p>
+	<?php
+	$data = array(
+		'name'        => 'kielitaito',
+    'class'       => 'form-control',
+    'placeholder' => 'Kielitaito',
+		'value'       => $kielitaito,
+    $Update    => $Update
 	);
 	?>
 	<?php echo form_input($data); ?>

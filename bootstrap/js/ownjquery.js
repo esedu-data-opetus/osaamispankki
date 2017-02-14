@@ -24,6 +24,20 @@ function MyAlert() {
   $('#F_MSG').hide();
 }
 
+function validateDropdown() {
+   var e = document.getElementById("select");
+   var strUser = e.options[e.selectedIndex].value;
+
+   console.log(strUser);
+
+     if(strUser == '0')
+   {
+     document.getElementById('nappi').disabled = true;
+   } else {
+     document.getElementById('nappi').disabled = false;
+   }
+ }
+
 var main = function() {
 
   $(function() {
