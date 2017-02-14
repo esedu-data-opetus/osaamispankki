@@ -19,7 +19,7 @@ foreach($Prof_Info as $User) {
       <?php foreach($Prof_Info as $User) : ?>
         <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
         <h1>Oma profiili</h1>
-        <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
+        <p>Tervetuloa <?php echo $User->F_Name; ?></p>
         <?php if (isset($_GET['Prof_Edit'])) {
           echo "<div style='float:right;'>";
           echo form_open_multipart('Upload_controller/do_upload');
