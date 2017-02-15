@@ -49,7 +49,7 @@ if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
     $name     = "<input class='form-control' name='F_Name' type='text' placeholder='Etunimi' value='".$User->F_Name."'> <input class='form-control' name='L_Name' type='text' placeholder='Sukunimi' value='".$User->L_Name."'>";
     $s_posti  = "<input class='form-control' name='email' type='text' value='".$User->Own_Email."'>";
-    $K_Taito  = '<input class="form-control" name="kielitaito" type="text" value='.$User->Kielitaito.'>';
+    $K_Taito  = '<input class="form-control" name="kielitaito" type="text" placeholder="Kirjoita mitä kieliä osaat" value='.$User->Kielitaito.'>';
     $osoite   = "<input class='form-control' name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input class='form-control' name='p_num' type='text' value='".$User->Posti_Num."'>";
     $puh      = "<input class='form-control' name='puh' type='text' value='".$User->Puh_Num."'>";

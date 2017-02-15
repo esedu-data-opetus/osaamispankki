@@ -5,7 +5,6 @@ class Profile_model extends CI_Model {
         'User_id'       =>     $this->session->userdata('user_id'),
         'F_Name'        =>     $this->input->post('f_name'),
         'L_Name'        =>     $this->input->post('l_name'),
-        'Kielitaito'    =>     'Kirjoita mitä kieliä osaat!',
         'C_Key'         =>     $this->session->userdata('Key'),
         'Puh_Num'       =>     $this->input->post('puh_num'),
         'About'         =>     'Muu',
