@@ -24,20 +24,20 @@ public function Register() {
     //Luo avaimen
     $key = md5(uniqid());
       //Luo käyttäjän
-      // if ($this->User_model->test_send_mail($Key)) {
+      if ($this->User_model->test_send_mail($Key)) {
         if ($this->User_model->create_member($key)) {
           $this->session->set_flashdata('success', 'Käyttäjä luotu!');
-          // $this->session->set_flashdata('success', 'Sähköposti lähetetty! Käy vahvistamassa sähköpostisi!');
+          $this->session->set_flashdata('success', 'Sähköposti lähetetty! Käy vahvistamassa sähköpostisi!');
           redirect('Home');
         } else {
-          // $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
+          $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
           $this->session->set_flashdata('error', 'Käyttäjä ei voitu luoda!');
           redirect('Home');
         }
-      // } else {
-      //   $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
-      //   redirect('Home');
-      // }
+      } else {
+        $this->session->set_flashdata('error', 'Sähköpostia ei voitu lähettää!');
+        redirect('Home');
+      }
   }
 }
 //Kirjautuu sisälle
