@@ -78,7 +78,7 @@ class User_model extends CI_Model {
     }
   }
   public function test_send_mail($key) {
-    $message = "<p>Vahvista sähköpostiosoite <a href='".base_url()."Users/confirmed/".$Key."' >tästä</a>!</p>";
+    $message = "<p>Vahvista sähköpostiosoite <a href='".base_url()."Users/confirmed/".md5($key)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($this->input->post('email'));
@@ -111,7 +111,7 @@ class User_model extends CI_Model {
   //activate user account
   function verifyEmail($key) {
     $data = array('Status' => 1);
-    $this->db->where('C_Key', $key);
+    $this->db->where('md5(C_Key)', $key);
     return $this->db->update('users', $data);
   }
 }
