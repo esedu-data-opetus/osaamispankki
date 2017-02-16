@@ -136,7 +136,7 @@ public function C_Key($key) {
     if ($this->User_model->verifyEmail($hash))
 		{
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!');
-      redirect('Profile');
+      redirect('Users');
 		}
 		else
 		{

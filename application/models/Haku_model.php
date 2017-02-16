@@ -18,7 +18,7 @@ class Haku_model extends CI_Model {
     $this->db->or_like('profile.L_Name', $value);
     $this->db->or_like('profile.Sposti', $value);
     $this->db->or_like('profile.Own_Email', $value);
-    // $this->db->or_like('profile.About', $value);
+    $this->db->or_like('profile.About', $value);
     // $this->db->or_like('harrastukset.harrastus', $value);
     // $this->db->or_like('harrastukset.vapaasana', $value);
     // $this->db->or_like('tyohistoria.tyopaikka', $value);
