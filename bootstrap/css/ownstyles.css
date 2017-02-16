@@ -81,3 +81,11 @@ float: right;
 .alert-right {
   float: right;
 }
+
+.u_prof:hover {
+    background-color: #E6E6E6;
+}
+
+.u_prof:active {
+    background-color: #BDBDBD;
+}
