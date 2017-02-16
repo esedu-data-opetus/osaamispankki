@@ -46,6 +46,7 @@ class User_model extends CI_Model {
 
     $this->db->where('Email',$username);
     $this->db->where('Password',$enc_password);
+    $this->db->where('Status',1);
 
     $result = $this->db->get('users');
     if($result->num_rows() == 1){
@@ -114,4 +115,13 @@ class User_model extends CI_Model {
     $this->db->where('md5(C_Key)', $key);
     return $this->db->update('users', $data);
   }
+
+  // function verifyUser($username,$password) {
+  //   $enc_password = md5($password);
+  //
+  //   $this->db->select('Status');
+  //   $this->db->where('Email',$username);
+  //   $this->db->where('Password',$enc_password);
+  //   return $this->db->update('users', $data);
+  // }
 }
