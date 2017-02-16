@@ -112,6 +112,6 @@ class User_model extends CI_Model {
   function verifyEmail($key) {
     $data = array('Status' => 1);
     $this->db->where('C_Key', $key);
-    return $this->db->update('user', $data);
+    return $this->db->update('users', $data);
   }
 }
