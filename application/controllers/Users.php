@@ -132,7 +132,7 @@ public function C_Key($key) {
     }
   }
 }
-  public function confirmed($key) {
+  public function confirmed($hash=NULL) {
     if ($this->user_model->verifyEmailID($hash))
 		{
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!');
