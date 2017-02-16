@@ -24,7 +24,7 @@ public function Register() {
     //Luo avaimen
     $key = md5(uniqid());
       //Luo käyttäjän
-      if ($this->User_model->test_send_mail($Key)) {
+      if ($this->User_model->test_send_mail($key)) {
         if ($this->User_model->create_member($key)) {
           $this->session->set_flashdata('success', 'Käyttäjä luotu!');
           $this->session->set_flashdata('success', 'Sähköposti lähetetty! Käy vahvistamassa sähköpostisi!');
