@@ -24,7 +24,7 @@ public function Register() {
     //Luo avaimen
     $key = md5(uniqid());
       //Luo käyttäjän
-      // if ($this->User_model->send_mail($Key)) {
+      // if ($this->User_model->test_send_mail($Key)) {
         if ($this->User_model->create_member($key)) {
           $this->session->set_flashdata('success', 'Käyttäjä luotu!');
           // $this->session->set_flashdata('success', 'Sähköposti lähetetty! Käy vahvistamassa sähköpostisi!');
@@ -133,7 +133,15 @@ public function C_Key($key) {
   }
 }
   public function confirmed($key) {
-    $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!<br>$key');
-    redirect('Profile');
+    if ($this->user_model->verifyEmailID($hash))
+		{
+      $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!');
+      redirect('Profile');
+		}
+		else
+		{
+			$this->session->set_flashdata('error','Sorry! There is error verifying your Email Address!');
+			redirect('user/register');
+		}
   }
 }

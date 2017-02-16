@@ -108,7 +108,10 @@ class User_model extends CI_Model {
   //     return false;
   //   }
   // }
-  public function C_Email($key) {
-      return true;
+  //activate user account
+  function verifyEmail($key) {
+    $data = array('Status' => 1);
+    $this->db->where('C_Key', $key);
+    return $this->db->update('user', $data);
   }
 }
