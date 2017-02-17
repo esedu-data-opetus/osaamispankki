@@ -125,10 +125,18 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
-      <b>Kuvaus:</b><br>
+      <b>Vpaasana:</b><br>
       <?php echo $kuvaus; ?>
     </p>
     <hr>
+    <?php if($this->session->userdata('KT') == 3) : ?>
+    <p>
+      <b>Suosittelija testi!:</b><br>
+      <div class="panel panel-default" style="padding: 10px;">
+        <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
+      </div>
+    </p>
+  <?php endif; ?>
     </div>
   </div>
 </form>

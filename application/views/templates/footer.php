@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');	if ($this->uri->segment(2) == "set_profile") { $disabled = "disabled"; } else { $disabled = ""; } ?>
 
 <div style="margin: 20px 0 0 0;"></div>
-<?php if ($this->uri->segment(1) == "Palaute" || $this->uri->segment(2) == "Tyohistoria" || $this->uri->segment(2) == "Kortit" || $this->uri->segment(2) == "Koulutus" || $this->uri->segment(2) == "Harrastus" || $this->uri->segment(1) == "Haku" || $this->uri->segment(1) == "haku" || empty($this->uri->segment(1)) || $this->uri->segment(1) == "Home" || $this->uri->segment(1) == "home" || $this->uri->segment(2) == "Login" || $this->uri->segment(2) == "Register") : ?>
+<?php if ($this->uri->segment(1) == "Haku" && $this->uri->segment(2) !== "User" || $this->uri->segment(1) == "Palaute" || $this->uri->segment(2) == "Tyohistoria" || $this->uri->segment(2) == "Kortit" || $this->uri->segment(2) == "Koulutus" || $this->uri->segment(2) == "Harrastus" || empty($this->uri->segment(1)) || $this->uri->segment(1) == "Home" || $this->uri->segment(1) == "home" || $this->uri->segment(2) == "Login" || $this->uri->segment(2) == "Register") : ?>
 <style>
 @media screen and (min-width: 480px) {
   .my-style {
