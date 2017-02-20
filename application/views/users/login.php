@@ -6,19 +6,23 @@
 <?php echo form_open('users/login'); ?>
 <p>
 <?php
-	$data = array('name'        => 'email',
-								'placeholder' => 'Sähköposti',
-								'class' 			=> 'form-control',
-								'value'       => set_value('email'));
+	$data = array(
+		'name'        => 'email',
+		'placeholder' => 'Sähköposti',
+		'class' 			=> 'form-control',
+		'value'       => set_value('email')
+	);
 	?>
 <?php echo form_input($data); ?>
 </p>
 <p>
 <?php
-    $data = array('name'        => 'password',
-									'placeholder' => 'Salasana',
-									'class' 			=> 'form-control',
-                  'value'       => set_value('password'));
+    $data = array(
+			'name'        => 'password',
+			'placeholder' => 'Salasana',
+			'class' 			=> 'form-control',
+			'value'       => set_value('password')
+		);
 ?>
 <?php echo form_password($data); ?>
   </p>

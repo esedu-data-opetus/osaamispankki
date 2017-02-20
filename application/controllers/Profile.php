@@ -31,6 +31,8 @@ class Profile extends CI_Controller {
 
     $data['Prof_Settings'] = $this->Profile_model->get_settings($user_id);
 
+    $data['User_Info'] = $this->Profile_model->get_user($user_id);
+
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
@@ -69,6 +71,9 @@ class Profile extends CI_Controller {
         }
       }
     }
+  }
+  public function suosittelija() {
+      echo "1+1=".filter_var($this->input->post('suosittelija'), FILTER_SANITIZE_STRING);
   }
   public function set_asetukset() {
       if($this->Profile_model->profile_settings()) {
@@ -225,7 +230,7 @@ class Profile extends CI_Controller {
         'oppilaitos'      =>     filter_var($this->input->post('oppilaitos'), FILTER_SANITIZE_STRING),
         'alkoi'           =>     filter_var($this->input->post('alkoi'), FILTER_SANITIZE_STRING),
         'loppui'          =>     filter_var($this->input->post('loppui'), FILTER_SANITIZE_STRING),
-        'vapaasana'       =>     filter_var($this->input->post('vapaasana'), FILTER_SANITIZE_STRING)
+        'vapaasana'       =>     filter_var($this->input->post('K_vapaasana'), FILTER_SANITIZE_STRING)
     );
     if ($this->Profile_model->koulutus_update($id,$data)) {
       $this->Profile_model->Historiaa('Päivitit koulutuksen');
