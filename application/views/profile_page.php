@@ -149,11 +149,28 @@ if (isset($_GET['Prof_Edit'])) {
   <?php endif; ?>
   <div class="panel panel-default">
     <?php if(isset($_GET['add_S'])) : ?>
-        <div class="panel panel-heading">
-          <?php $n = 1; while($n < 10) : $n++ ?>
-            <button class="btn btn-default"><span class="glyphicon glyphicon-list"></span></button>
-          <?php endwhile; ?>
-        </div>
+      <div class="panel-heading">
+        <?php echo form_open('Profile/suosittelija'); ?>
+        <?php
+        $data = array(
+          'name'        => 'suosittelija',
+          'style'       => 'width: 40%; display: inline;',
+          'placeholder' => 'Suosittelija',
+          'class' 			=> 'form-control',
+          'value'       => set_value('suosittelija')
+        );
+        ?>
+        <?php echo form_input($data); ?>
+        <?php
+        $data = array(
+          'name'  => 'submit',
+          'class' => 'btn btn-success',
+          'value' => "Lisää suosittelija"
+        );
+        ?>
+        <?php echo form_submit($data); ?>
+        <?php echo form_close(); ?>
+      </div>
     <?php endif; ?>
     <div class="panel-body">
       <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
@@ -162,6 +179,7 @@ if (isset($_GET['Prof_Edit'])) {
 </p>
 </div>
 </div>
+<br>
 <?php endif; ?>
 
 <?php if(isset($Prof_Settings)) : ?>
