@@ -56,8 +56,12 @@ public function Login() {
   } else {
     $username = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
     $password = $this->input->post('password');
+    // if ($this->User_model->verifyUser($username,$password)) {
     //Hakee käyttäjän id:n inputtiin laitetuilla tiedoilla
     $user_id = $this->User_model->login_user($username,$password);
+  // } else {
+  //   $User_e = "Kala"
+  // }
     //Hakee käyttäjän tyypin inputtiin laitetuilla tiedoilla
     $KT = $this->User_model->User_type($username);
     //Hakee käyttäjän avaimen inputtiin laitetuilla tiedoilla
@@ -80,7 +84,11 @@ public function Login() {
         redirect('home/index');
       }
     } else {
+      // if ($User_e !== "Kala") {
       $this->session->set_flashdata('error', 'Käyttäjä nimi tai salasana väärin :/');
+    // } else {
+    //   $this->session->set_flashdata('error', 'Käyttäjää ei ole vielä vahvistettu!');
+    // }
       redirect('home/index');
       }
     }
@@ -133,13 +141,10 @@ public function C_Key($key) {
   }
 }
   public function confirmed($hash) {
-    if ($this->User_model->verifyEmail($hash))
-		{
+    if ($this->User_model->verifyEmail($hash)) {
       $this->session->set_flashdata('success', 'Käyttäjä on vahvistettu!');
-      redirect('Users');
-		}
-		else
-		{
+      redirect('Users/login');
+		}		else {
 			$this->session->set_flashdata('error','Sorry! There is error verifying your Email Address!');
 			redirect('user/register');
 		}

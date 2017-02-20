@@ -34,10 +34,11 @@ class Haku_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
-  public function User($User_id) {
+  public function User($user) {
     $this->db->select('*');
     $this->db->from('profile');
-    $this->db->where('User_id', $User_id);
+    // $this->db->where('User_id', $User_id);
+    $this->db->where('md5(Sposti)', $user);
     $this->db->where('Näytä_Profiili', 'Kylla');
     $query = $this->db->get();
     return $query->result();

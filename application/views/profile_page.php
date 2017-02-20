@@ -125,25 +125,15 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
-      <b>Kuvaus:</b>
+      <b>Vapaasana:</b><br>
       <?php echo $kuvaus; ?>
     </p>
     <hr>
     <?php if($this->session->userdata('KT') == 3) : ?>
     <p>
-      <b>Suosittelijat:</b>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <img style="max-width: 50px; max-height: 50px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
-          </><?php echo $User->F_Name." ".$User->L_Name; ?></>
-          <br><?php echo $User->Puh_Num; ?>
-        </div>
-      <div class="panel-body">
-        <h6>Hei!</h6>
-      </div>
-      <div class="panel-footer">
-        <h6>Hyi!</h6>
-      </div>
+      <b>Suosittelija testi!:</b><br>
+      <div class="panel panel-default" style="padding: 10px;">
+        <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
       </div>
     </p>
   <?php endif; ?>

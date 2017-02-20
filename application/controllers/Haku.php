@@ -29,9 +29,9 @@ public function index() {
     $this->load->view('layouts/main',$data);
     }
   }
-  public function User($User_id) {
-    if ($this->Haku_model->User($User_id)) {
-      $data['user_data'] = $this->Haku_model->User($User_id);
+  public function User($User_id, $user) {
+    if ($this->Haku_model->User($user)) {
+      $data['user_data'] = $this->Haku_model->User($user);
       $data['harrastus'] = $this->Profile_model->Get_harrastus($User_id);
       $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($User_id);
       $data['koulutus'] = $this->Profile_model->Get_koulutus($User_id);
