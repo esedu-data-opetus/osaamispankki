@@ -132,30 +132,38 @@ if (isset($_GET['Prof_Edit'])) {
       <?php echo $kuvaus; ?>
     </p>
     <hr>
-    <?php if($this->session->userdata('KT') == 3) : ?>
-    <p>
-      <b>Suosittelija:</b>
-      <?php if(!isset($_GET['add_S'])) : ?>
-        <a href="<?php echo base_url(); ?>Profile?add_S"><span style="float: right;" class="glyphicon glyphicon-plus"></span></a>
-      <?php else : ?>
-        <a href="<?php echo base_url(); ?>Profile"><span style="float: right;" class="glyphicon glyphicon-home"></span></a>
-      <?php endif; ?>
-      <div class="panel panel-default">
-        <?php if(isset($_GET['add_S'])) : ?>
-            <div class="panel panel-heading">
-              Testing!
-            </div>
-        <?php endif; ?>
-        <div class="panel-body">
-          <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
-        </div>
-      </div>
-    </p>
-  <?php endif; ?>
     </div>
   </div>
 </form>
 <?php endforeach; ?>
+
+<?php if($this->session->userdata('KT') == 3) : ?>
+  <div class="Profile-Information">
+    <div class="Prof-body">
+<p>
+  <b>Suosittelija:</b>
+  <?php if(!isset($_GET['add_S'])) : ?>
+    <a href="<?php echo base_url(); ?>Profile?add_S"><span style="float: right;" class="glyphicon glyphicon-plus"></span></a>
+  <?php else : ?>
+    <a href="<?php echo base_url(); ?>Profile"><span style="float: right;" class="glyphicon glyphicon-home"></span></a>
+  <?php endif; ?>
+  <div class="panel panel-default">
+    <?php if(isset($_GET['add_S'])) : ?>
+        <div class="panel panel-heading">
+          <?php $n = 1; while($n < 10) : $n++ ?>
+            <button class="btn btn-default"><span class="glyphicon glyphicon-list"></span></button>
+          <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+    <div class="panel-body">
+      <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
+    </div>
+  </div>
+</p>
+</div>
+</div>
+<?php endif; ?>
+
 <?php if(isset($Prof_Settings)) : ?>
   <?php
     foreach ($Prof_Settings as $P_Sets) {
