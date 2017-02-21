@@ -140,12 +140,6 @@ if (isset($_GET['Prof_Edit'])) {
 <?php if($this->session->userdata('KT') == 3) : ?>
   <div class="Profile-Information">
     <div class="Prof-body">
-
-      <br><h3>Ajax testi</h3><br>
-      Enter Pizza, Makkara or Pihvi:<br>
-      <input type="text" id="userInput"><br>
-      <div id="underInput"></div><br>
-
 <p>
   <b>Suosittelija:</b>
   <?php if(!isset($_GET['add_S'])) : ?>
