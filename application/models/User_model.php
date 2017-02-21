@@ -17,13 +17,18 @@ class User_model extends CI_Model {
             }
         }
         $from = $Email;
-        $needs = "esedulainen.fi";
-        $pos = strpos($from, $needs);
+        $esedulainen = "esedulainen.fi";
+        $esedu = "esedu.fi";
+        $pos = strpos($from, $esedu);
+        $pos2 = strpos($from, $esedulainen);
         if ($pos === false) {
+        if ($pos2 === false) {
           $C = "Sinun pitää käyttää esedulainen sähköpostia!";
-          echo "The string '$needs' was not found in the string '$from'<br>";
+          echo "The string '$esedulainen' was not found in the string '$from'<br>";
+        }
+          echo "The string '$esedu' was not found in the string '$from'<br>";
         } else {
-          echo "The string '$needs' was found in the string '$from'<br>";
+          echo "The string '$esedulainen' or '$esedu' was found in the string '$from'<br>";
         }
     if (!isset($C)) {
       $data = array(
