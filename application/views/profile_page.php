@@ -137,50 +137,31 @@ if (isset($_GET['Prof_Edit'])) {
 </form>
 <?php endforeach; ?>
 
-<?php if($this->session->userdata('KT') == 3) : ?>
   <div class="Profile-Information">
     <div class="Prof-body">
-<p>
-  <b>Suosittelija:</b>
-  <?php if(!isset($_GET['add_S'])) : ?>
-    <a href="<?php echo base_url(); ?>Profile?add_S"><span style="float: right;" class="glyphicon glyphicon-plus"></span></a>
-  <?php else : ?>
-    <a href="<?php echo base_url(); ?>Profile"><span style="float: right;" class="glyphicon glyphicon-home"></span></a>
-  <?php endif; ?>
-  <div class="panel panel-default">
-    <?php if(isset($_GET['add_S'])) : ?>
-      <div class="panel-heading">
-        <?php echo form_open('Profile/suosittelija'); ?>
-        <?php
-        $data = array(
-          'name'        => 'suosittelija',
-          'style'       => 'width: 40%; display: inline;',
-          'placeholder' => 'Suosittelija',
-          'class' 			=> 'form-control',
-          'value'       => set_value('suosittelija')
-        );
-        ?>
-        <?php echo form_input($data); ?>
-        <?php
-        $data = array(
-          'name'  => 'submit',
-          'class' => 'btn btn-success',
-          'value' => "Lisää suosittelija"
-        );
-        ?>
-        <?php echo form_submit($data); ?>
-        <?php echo form_close(); ?>
-      </div>
-    <?php endif; ?>
-    <div class="panel-body">
-      <a href="<?php echo base_url(); ?>Haku/User/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>">@<?php echo $User->F_Name." ".$User->L_Name; ?></a>
+      <p>
+        <b>Suosittelijat:</b>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <?php foreach($suosittelijat as $suosijat) :?>
+              <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </p>
+      <p>
+        <b>Suositeltu:</b>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <?php foreach($suositeltu as $suosttu) :?>
+              <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosttu->User_id; ?>/<?php echo md5($suosttu->Suositeltu); ?>"><?php echo $suosttu->Suositeltu; ?></a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </p>
     </div>
   </div>
-</p>
-</div>
-</div>
 <br>
-<?php endif; ?>
 
 <?php if(isset($Prof_Settings)) : ?>
   <?php

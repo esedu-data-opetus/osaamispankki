@@ -32,6 +32,7 @@ public function index() {
   public function User($User_id, $user) {
     if ($this->Haku_model->User($user)) {
       $data['user_data'] = $this->Haku_model->User($user);
+      $data['suositukset'] = $this->Profile_model->suositukset();
       $data['harrastus'] = $this->Profile_model->Get_harrastus($User_id);
       $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($User_id);
       $data['koulutus'] = $this->Profile_model->Get_koulutus($User_id);

@@ -4,7 +4,35 @@
   <div style="overflow:auto;" class="panel-heading">
       <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $user->Prof_Pic; ?>" class="img-responsive img-thumbnail">
       <h1><?php echo $user->F_Name.' '.$user->L_Name; ?></h1>
-  </div>
+      <?php foreach($suositukset as $suos) : ?>
+        <?php if($this->session->userdata('sposti') == $suos->Suosittelija) : ?>
+          <?php $suositeltu = 'Kylla'; ?>
+        <?php endif; ?>
+      <?php endforeach; ?>
+  <?php if(!isset($suositeltu) && $this->session->userdata('sposti') && $this->session->userdata('sposti') !== $user->Sposti) : ?>
+  <?php echo form_open('Profile/suosittelija'); ?>
+  <?php
+  $data = array(
+    'name'        => 'suosittelija',
+    'style'       => 'display: none;',
+    'placeholder' => 'Suosittelijan sähköposti',
+    'class' 			=> 'form-control',
+    'readonly'    => 'readonly',
+    'value'       => $user->Sposti,
+  );
+  ?>
+  <?php echo form_input($data); ?>
+  <?php
+  $data = array(
+    'name'  => 'submit',
+    'value' => "Suosittele",
+    'class' => 'btn btn-success',
+  );
+  ?>
+  <?php echo form_submit($data); ?>
+  <?php echo form_close(); ?>
+  <?php endif; ?>
+</div>
   <div class="panel-body">
     <div class="Prof-body">
     <h3>

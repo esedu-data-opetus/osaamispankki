@@ -30,6 +30,37 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function suosittelijat() {
+    $data = array(
+      'User_id'       =>  $this->session->userdata('user_id'),
+      'Suosittelija'  =>  $this->session->userdata('sposti'),
+      'Suositeltu'    =>  $this->input->post('suosittelija'),
+    );
+    $insert = $this->db->insert('suosittelijat',$data);
+    if ($insert) {
+      return true;
+    }
+  }
+  public function suositukset() {
+    $this->db->select('*');
+    $this->db->from('suosittelijat');
+    $query = $this->db->get();
+    return $query->result();
+  }
+  public function sousijat($Sposti) {
+    $this->db->select('*');
+    $this->db->from('suosittelijat');
+    $this->db->where('Suositeltu', $Sposti);
+    $query = $this->db->get();
+    return $query->result();
+  }
+  public function suositeltu($Sposti) {
+    $this->db->select('*');
+    $this->db->from('suosittelijat');
+    $this->db->where('Suosittelija', $Sposti);
+    $query = $this->db->get();
+    return $query->result();
+  }
   public function get_settings($user_id) {
     $this->db->where('User_id',$user_id);
     $query = $this->db->get('asetukset');

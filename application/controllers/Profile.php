@@ -14,6 +14,7 @@ class Profile extends CI_Controller {
 //Hakee käyttäjäntiedot, metatiedot ja kokemukset ja näkymän profiilisivulle
   public function index() {
     $user_id = $this->session->userdata('user_id');
+    $Sposti = $this->session->userdata('sposti');
 
     $data['Palautteet'] = $this->Palaute_model->hae_palaute();
 
@@ -32,6 +33,10 @@ class Profile extends CI_Controller {
     $data['Prof_Settings'] = $this->Profile_model->get_settings($user_id);
 
     $data['User_Info'] = $this->Profile_model->get_user($user_id);
+
+    $data['suosittelijat'] = $this->Profile_model->sousijat($Sposti);
+
+    $data['suositeltu'] = $this->Profile_model->suositeltu($Sposti);
 
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
@@ -73,7 +78,19 @@ class Profile extends CI_Controller {
     }
   }
   public function suosittelija() {
-      echo "1+1=".filter_var($this->input->post('suosittelija'), FILTER_SANITIZE_STRING);
+    $this->form_validation->set_rules('suosittelija', 'suosittelija', 'trim|required');
+    if($this->form_validation->run() == true) {
+      if($this->Profile_model->suosittelijat()) {
+        $this->session->set_flashdata('success', 'Suosittelija lisätty!');
+        redirect('Profile/index');
+      } else {
+        $this->session->set_flashdata('error', 'Suosittelijaa ei lisätty!');
+        redirect('Profile/index');
+      }
+    } else {
+      $this->session->set_flashdata('error', 'Täytä kenttä!');
+      redirect('Profile/index');
+    }
   }
   public function set_asetukset() {
       if($this->Profile_model->profile_settings()) {
