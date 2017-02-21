@@ -17,13 +17,18 @@ class User_model extends CI_Model {
             }
         }
         $from = $Email;
-        $needs = "esedulainen.fi";
-        $pos = strpos($from, $needs);
+        $esedulainen = "esedulainen.fi";
+        $esedu = "esedu.fi";
+        $pos = strpos($from, $esedu);
+        $pos2 = strpos($from, $esedulainen);
         if ($pos === false) {
+        if ($pos2 === false) {
           $C = "Sinun pitää käyttää esedulainen sähköpostia!";
-          echo "The string '$needs' was not found in the string '$from'<br>";
+          echo "The string '$esedulainen' was not found in the string '$from'<br>";
+        }
+          echo "The string '$esedu' was not found in the string '$from'<br>";
         } else {
-          echo "The string '$needs' was found in the string '$from'<br>";
+          echo "The string '$esedulainen' or '$esedu' was found in the string '$from'<br>";
         }
     if (!isset($C)) {
       $data = array(
@@ -124,4 +129,17 @@ class User_model extends CI_Model {
   //   $this->db->where('Password',$enc_password);
   //   return $this->db->update('users', $data);
   // }
+  public function resetPassword($email) {
+    $message = "<p>Vaihda salasana <a href='#' >tästä</a>!</p>";
+    $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
+    $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
+    $this->email->to($this->input->post('email'));
+    $this->email->subject('Salasanan palautus.');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

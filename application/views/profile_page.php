@@ -21,7 +21,7 @@ foreach($Prof_Info as $User) {
         <h1>Oma profiili</h1>
 
         <?php foreach($User_Info as $User_i) : ?>
-          <p>Tervetuloa <?php echo $User_i->Name; ?></p>
+          <p>Tervetuloa <?php echo $User_i->Name; ?>!</p>
         <?php endforeach; ?>
         <?php if (isset($_GET['Prof_Edit'])) {
           echo "<div style='float:right;'>";
