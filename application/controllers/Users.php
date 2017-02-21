@@ -153,4 +153,8 @@ public function C_Key($key) {
     $data['main_content'] = 'users/forgot_password';
     $this->load->view('layouts/main',$data);
   }
+  public function new_password() {
+    $data['main_content'] = 'users/new_password';
+    $this->load->view('layouts/main',$data);
+  }
 }
