@@ -89,7 +89,7 @@ public function Login() {
     // } else {
     //   $this->session->set_flashdata('error', 'Käyttäjää ei ole vielä vahvistettu!');
     // }
-      redirect('home/index');
+      redirect('users/login');
       }
     }
   }
@@ -148,5 +148,9 @@ public function C_Key($key) {
 			$this->session->set_flashdata('error','Sorry! There is error verifying your Email Address!');
 			redirect('user/register');
 		}
+  }
+  public function forgot_password() {
+    $data['main_content'] = 'users/forgot_password';
+    $this->load->view('layouts/main',$data);
   }
 }

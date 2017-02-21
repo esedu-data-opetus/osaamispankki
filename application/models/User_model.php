@@ -129,4 +129,17 @@ class User_model extends CI_Model {
   //   $this->db->where('Password',$enc_password);
   //   return $this->db->update('users', $data);
   // }
+  public function resetPassword($email) {
+    $message = "<p>Vaihda salasana <a href='#' >tästä</a>!</p>";
+    $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
+    $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
+    $this->email->to($this->input->post('email'));
+    $this->email->subject('Salasanan palautus.');
+    $this->email->message($message);
+    if ($this->email->send()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
