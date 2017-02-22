@@ -6,9 +6,9 @@
       <h1><?php echo $user->F_Name.' '.$user->L_Name; ?></h1>
       <?php foreach($suositukset as $suos) : ?>
         <?php if($suos->Suositeltu == $user->Sposti) : ?>
-        <?php if($this->session->userdata('sposti') == $suos->Suosittelija) : ?>
-          <?php $suositeltu = 'Kylla'; ?>
-        <?php endif; ?>
+          <?php if($this->session->userdata('sposti') == $suos->Suosittelija) : ?>
+            <?php $suositeltu = 'Kylla'; ?>
+          <?php endif; ?>
         <?php endif; ?>
       <?php endforeach; ?>
   <?php if(!isset($suositeltu) && $this->session->userdata('sposti') && $this->session->userdata('sposti') !== $user->Sposti) : ?>

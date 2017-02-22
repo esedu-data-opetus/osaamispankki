@@ -144,7 +144,7 @@ if (isset($_GET['Prof_Edit'])) {
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suosittelijat as $suosijat) :?>
-              <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a>
+              <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a>
             <?php endforeach; ?>
           </div>
         </div>
@@ -154,7 +154,7 @@ if (isset($_GET['Prof_Edit'])) {
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suositeltu as $suosttu) :?>
-              <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosttu->User_id; ?>/<?php echo md5($suosttu->Suositeltu); ?>"><?php echo $suosttu->Suositeltu; ?></a>
+              <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosttu->User_id; ?>/<?php echo md5($suosttu->Suositeltu); ?>"><?php echo $suosttu->Suositeltu; ?></a>
             <?php endforeach; ?>
           </div>
         </div>
