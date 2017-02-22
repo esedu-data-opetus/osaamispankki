@@ -1,6 +1,15 @@
 <?php
 class Profile_model extends CI_Model {
   public function profile_setup() {
+
+    if(strpos($this->session->userdata('sposti'), "esedulainen.fi")) {
+      $KT = 0;
+    } elseif(strpos($this->session->userdata('sposti'), "esedu.fi")) {
+      $KT = 2;
+    } else {
+      $KT = 1;
+    }
+
     $Profile = array(
         'User_id'       =>     $this->session->userdata('user_id'),
         'F_Name'        =>     $this->input->post('f_name'),
@@ -12,7 +21,7 @@ class Profile_model extends CI_Model {
         'Sposti'        =>     $this->session->userdata('sposti'),
         'Osoite'        =>     $this->input->post('osoite'),
         'Posti_Num'     =>     $this->input->post('posti_num'),
-        'KT'            =>     '0',
+        'KT'            =>     $KT,
         'Näytä_Profiili'=>     'Kylla'
     );
     $insert = $this->db->insert('profile',$Profile);

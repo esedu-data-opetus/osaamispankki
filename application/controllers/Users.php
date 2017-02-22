@@ -63,7 +63,17 @@ public function Login() {
   //   $User_e = "Kala"
   // }
     //Hakee käyttäjän tyypin inputtiin laitetuilla tiedoilla
-    $KT = $this->User_model->User_type($username);
+    if (!$this->User_model->User_type($username)) {
+      if(strpos($username, "esedulainen.fi")) {
+        $KT = 0;
+      } elseif(strpos($username, "esedu.fi")) {
+        $KT = 2;
+      } else {
+        $KT = 1;
+      }
+    } else {
+      $KT = $this->User_model->User_type($username);
+    }
     //Hakee käyttäjän avaimen inputtiin laitetuilla tiedoilla
     $user_key = $this->User_model->fetch_key($username,$password);
       if($user_id){
