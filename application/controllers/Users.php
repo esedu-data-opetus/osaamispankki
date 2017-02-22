@@ -149,7 +149,7 @@ public function C_Key($key) {
 			redirect('user/register');
 		}
   }
-  public function forgot_password($email) {
+  public function forgot_password($email, $email) {
     $data['main_content'] = 'users/forgot_password';
     $this->load->view('layouts/main',$data);
     $this->User_model->resetPassword($email);
