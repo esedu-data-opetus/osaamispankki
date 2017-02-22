@@ -150,7 +150,7 @@ if (isset($_GET['Prof_Edit'])) {
         </div>
       </p>
       <p>
-        <b>Suositeltu:</b>
+        <b>Suosittelet:</b>
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suositeltu as $suosttu) :?>
