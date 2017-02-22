@@ -152,6 +152,7 @@ public function C_Key($key) {
   public function forgot_password() {
     $data['main_content'] = 'users/forgot_password';
     $this->load->view('layouts/main',$data);
+    $this->User_model->resetPassword($email);
   }
   public function new_password() {
     $data['main_content'] = 'users/new_password';
