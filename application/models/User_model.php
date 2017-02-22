@@ -142,4 +142,13 @@ class User_model extends CI_Model {
       return false;
     }
   }
+  public function checkEmail($email) {
+    $this->db->where('Email', $email);
+    $query = $this->db->get('Email');
+    if ($query->num_rows() > 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

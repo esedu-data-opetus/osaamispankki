@@ -160,10 +160,20 @@ public function C_Key($key) {
 		}
   }
   public function forgot_password() {
-    $data['main_content'] = 'users/forgot_password';
-    $this->load->view('layouts/main',$data);
     $email = $this->input->post('email');
-    $this->User_model->resetPassword($email);
+    if ($this->User_model->checkEmail($email)) {
+      $this->form_validation->set_rules('email', 'Email', 'callback_checkEmail');
+      if ($this->form_validation->run() == FALSE) {
+        $data['main_content'] = 'users/register';
+        $this->load->view('layouts/main',$data);
+        $this->session->set_flashdata('error','Sähköpostia ei löytynyt!');
+      } else {
+      $data['main_content'] = 'users/forgot_password';
+      $this->load->view('layouts/main',$data);
+      $this->User_model->resetPassword($email);
+      $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
+    }
+    }
   }
   public function new_password() {
     $data['main_content'] = 'users/new_password';
