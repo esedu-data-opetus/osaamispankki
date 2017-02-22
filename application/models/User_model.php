@@ -133,7 +133,7 @@ class User_model extends CI_Model {
     $message = "<p>Vaihda salasana <a href='#' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    $this->email->to($this->input->post('email'));
+    $this->email->to($email);
     $this->email->subject('Salasanan palautus.');
     $this->email->message($message);
     if ($this->email->send()) {
