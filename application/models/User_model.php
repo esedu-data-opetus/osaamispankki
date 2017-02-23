@@ -146,7 +146,7 @@ class User_model extends CI_Model {
     $this->db->where('Email', $email);
     $result = $this->db->get('users');
     if($result->num_rows() == 1){
-        return $result->row(0)->email;
+        return true;
     } else {
         return false;
     }
