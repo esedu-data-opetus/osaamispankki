@@ -177,17 +177,21 @@ public function C_Key($key) {
     }
   }
   public function new_password($email) {
-    $password = md5($this->input->post('password'));
     $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[1]');
     $this->form_validation->set_rules('password_c', 'Confirm Password', 'trim|required|max_length[50]|min_length[1]|matches[password]');
-    if ($this->form_validation->run() == FALSE) {
+    if ($this->form_validation->run() === FALSE) {
+      $data = array(
+        'Pw_Email' => $email
+      );
+      $this->session->set_userdata($data);
       $data['main_content'] = 'users/new_password';
       $this->load->view('layouts/main',$data);
     } else {
-      $data = array(
-        'Password' => $this->input->post('password'),
+      $things = array(
+        'Password' => md5($this->input->post('password')),
       );
-      if ($this->User_model->resetPassword($email, $password)) {
+      $Pw_Email = $this->session->userdata('Pw_Email');
+      if ($this->User_model->resetPassword($Pw_Email, $things)) {
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
     } else {
