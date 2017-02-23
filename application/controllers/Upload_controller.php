@@ -39,7 +39,7 @@ class Upload_Controller extends CI_Controller {
 		else
 		{
 			$error = array('error' => $this->upload->display_errors());
-			$this->load->template('layouts/main');
+			redirect('profile/index');
 		}
 	}
 }
