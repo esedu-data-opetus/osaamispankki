@@ -168,7 +168,7 @@ public function C_Key($key) {
         $this->session->set_flashdata('error','Virheellinen sähköpostiosoite!');
       } else {
         if ($this->User_model->checkEmail($email)) {
-          $this->User_model->resetPassword($email);
+          $this->User_model->send_password_reset($email);
           $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
           redirect('home/index');
         } else {
@@ -185,7 +185,7 @@ public function C_Key($key) {
       $this->load->view('layouts/main',$data);
       $this->session->set_flashdata('error','Virheellinen salasana!');
     } else {
-      $this->User_model->updatePassword($password);
+      $this->User_model->resetPassword($password);
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
     }
