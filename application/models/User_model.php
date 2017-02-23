@@ -143,6 +143,7 @@ class User_model extends CI_Model {
     }
   }
   public function checkEmail($email) {
+    $this->db->select('C_Key');
     $this->db->where('Email', $email);
     $query = $this->db->get('users');
     if ($query->num_rows() > 0){
