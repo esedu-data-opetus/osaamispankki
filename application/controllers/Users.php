@@ -161,18 +161,20 @@ public function C_Key($key) {
   }
   public function forgot_password() {
     $email = $this->input->post('email');
-    if ($this->User_model->checkEmail($email)) {
-      $this->form_validation->set_rules('email', 'Email', 'callback_checkEmail');
+      $this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[100]|min_length[5]|valid_email');
       if ($this->form_validation->run() == FALSE) {
-        $data['main_content'] = 'users/register';
+        $data['main_content'] = 'users/forgot_password';
         $this->load->view('layouts/main',$data);
-        $this->session->set_flashdata('error','Sähköpostia ei löytynyt!');
+        $this->session->set_flashdata('error','Virheellinen sähköpostiosoite!');
       } else {
-      $data['main_content'] = 'users/forgot_password';
-      $this->load->view('layouts/main',$data);
-      $this->User_model->resetPassword($email);
-      $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
-    }
+        if ($this->User_model->checkEmail($email)) {
+          $this->User_model->resetPassword($email);
+          $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
+        } else {
+          $data['main_content'] = 'users/forgot_password';
+          $this->load->view('layouts/main',$data);
+          $this->session->set_flashdata('error','Sähköpostia ei löytynyt!');
+        }
     }
   }
   public function new_password() {
