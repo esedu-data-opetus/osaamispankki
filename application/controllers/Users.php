@@ -165,14 +165,13 @@ public function C_Key($key) {
       if ($this->form_validation->run() == FALSE) {
         $data['main_content'] = 'users/forgot_password';
         $this->load->view('layouts/main',$data);
-        $this->session->set_flashdata('error','Virheellinen sähköpostiosoite!');
       } else {
         if ($this->User_model->checkEmail($email)) {
           $this->User_model->send_password_reset($email);
           $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
           redirect('home/index');
         } else {
-          $this->session->set_flashdata('error','Sähköpostia ei löytynyt!');
+          $this->session->set_flashdata('error','Sähköpostiosoite on virheellinen tai sitä ei ole olemassa!');
           redirect('users/forgot_password');
         }
     }
