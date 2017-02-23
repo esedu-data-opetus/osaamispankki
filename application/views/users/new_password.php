@@ -13,7 +13,7 @@
 		'value'       => set_value('password')
 	);
 	?>
-<?php echo form_input($data); ?>
+<?php echo form_password($data); ?>
 </p>
 <p>
 <?php
@@ -24,7 +24,7 @@
 		'value'       => set_value('password_c')
 	);
 	?>
-<?php echo form_input($data); ?>
+<?php echo form_password($data); ?>
 </p>
 	<p>
 <?php

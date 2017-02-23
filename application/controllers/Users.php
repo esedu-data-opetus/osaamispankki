@@ -178,7 +178,16 @@ public function C_Key($key) {
     }
   }
   public function new_password() {
-    $data['main_content'] = 'users/new_password';
-    $this->load->view('layouts/main',$data);
-  }
+    $password = md5($this->input->post('password'));
+    $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[1]');
+    if ($this->form_validation->run() == FALSE) {
+      $data['main_content'] = 'users/new_password';
+      $this->load->view('layouts/main',$data);
+      $this->session->set_flashdata('error','Virheellinen salasana!');
+    } else {
+      $this->User_model->updatePassword($password);
+      $this->session->set_flashdata('success', 'Salasanan on nyt vaihdettu!');
+      redirect('home/index');
+    }
+    }
 }
