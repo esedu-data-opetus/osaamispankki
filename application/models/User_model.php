@@ -143,18 +143,18 @@ class User_model extends CI_Model {
     }
   }
   public function checkEmail($email) {
-    $this->db->select('C_Key');
     $this->db->where('Email', $email);
     $result = $this->db->get('users');
     if($result->num_rows() == 1){
-        return $result->row(0)->C_Key;
+        return $result->row(0)->email;
     } else {
         return false;
     }
   }
-  public function resetPassword($email, $data) {
+  public function resetPassword($email, $password) {
+    $data = array('Password' => $password);
     $this->db->where('md5(Email)', $email);
     $this->db->update('users', $data);
-    return true; 
+    return true;
   }
 }

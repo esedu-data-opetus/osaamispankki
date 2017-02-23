@@ -187,8 +187,11 @@ public function C_Key($key) {
       $data = array(
         'Password' => $this->input->post('password'),
       );
-      if ($this->User_model->resetPassword($email, $data)) {
+      if ($this->User_model->resetPassword($email, $password)) {
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
+      redirect('home/index');
+    } else {
+      $this->session->set_flashdata('success', 'Salasanaa ei voitu vaihtaa!');
       redirect('home/index');
     }
     }
