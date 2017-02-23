@@ -186,7 +186,7 @@ public function C_Key($key) {
       $this->session->set_flashdata('error','Virheellinen salasana!');
     } else {
       $this->User_model->updatePassword($password);
-      $this->session->set_flashdata('success', 'Salasanan on nyt vaihdettu!');
+      $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
     }
     }
