@@ -187,11 +187,11 @@ public function C_Key($key) {
       $data['main_content'] = 'users/new_password';
       $this->load->view('layouts/main',$data);
     } else {
-      $things = array(
+      $data = array(
         'Password' => md5($this->input->post('password')),
       );
       $Pw_Email = $this->session->userdata('Pw_Email');
-      if ($this->User_model->resetPassword($Pw_Email, $things)) {
+      if ($this->User_model->resetPassword($Pw_Email, $data)) {
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
     } else {

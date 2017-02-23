@@ -151,9 +151,9 @@ class User_model extends CI_Model {
         return false;
     }
   }
-  public function resetPassword($Pw_Email, $things) {
+  public function resetPassword($Pw_Email, $data) {
     $this->db->where('md5(Email)', $Pw_Email);
-    $this->db->update('users', $things);
+    $this->db->update('users', $data);
     return true;
   }
 }
