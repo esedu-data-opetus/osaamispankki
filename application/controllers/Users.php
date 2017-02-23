@@ -170,11 +170,10 @@ public function C_Key($key) {
         if ($this->User_model->checkEmail($email)) {
           $this->User_model->resetPassword($email);
           $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
-          redirect('user/login');
+          redirect('home/index');
         } else {
-          $data['main_content'] = 'users/forgot_password';
-          $this->load->view('layouts/main',$data);
           $this->session->set_flashdata('error','Sähköpostia ei löytynyt!');
+          redirect('users/forgot_password');
         }
     }
   }
