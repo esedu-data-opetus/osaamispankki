@@ -145,11 +145,11 @@ class User_model extends CI_Model {
   public function checkEmail($email) {
     $this->db->select('C_Key');
     $this->db->where('Email', $email);
-    $query = $this->db->get('users');
-    if ($query->num_rows() > 0){
-      return true;
+    $result = $this->db->get('users');
+    if($result->num_rows() == 1){
+        return $result->row(0)->C_Key;
     } else {
-      return false;
+        return false;
     }
   }
   public function updatePassword($password) {
