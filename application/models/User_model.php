@@ -152,10 +152,11 @@ class User_model extends CI_Model {
     }
   }
   public function updatePassword($password) {
+    $email = $this->input->get(md5($email));
     $data = array('md5(Password)' => $password);
     $this->db->select('md5(Password)');
     $this->db->from('users');
-    $this->db->where('Email', $this->input->get(md5($email)));
+    $this->db->where('Email', $email);
     $query = $this->db->get('users');
     return $this->db->update('users', $data);
   }
