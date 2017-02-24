@@ -26,7 +26,6 @@
 		'placeholder'		=>  'Voimassaoloaika',
 		'id'						=>	'loppui',
 		'class'					=>	'form-control',
-		'readonly'			=> 	'readonly',
 		'value'       	=> 	set_value('Lopetit')
 	);
 	?>

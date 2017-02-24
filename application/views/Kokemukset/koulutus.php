@@ -45,7 +45,6 @@
 		'id'					=> 	'alkoi',
 		'placeholder'	=> 	'Alkoi',
 		'class'				=>	'form-control',
-		'readonly'		=> 	'readonly',
 		'value'       => 	set_value('Aloitit')
 	);
 	?>
@@ -58,7 +57,6 @@
 		'id'					=> 	'loppui',
 		'placeholder'	=> 	'Loppui',
 		'class'				=>	'form-control',
-		'readonly'		=> 	'readonly',
 		'value'       => 	set_value('Lopetit')
 	);
 	?>
