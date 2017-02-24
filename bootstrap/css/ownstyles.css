@@ -14,25 +14,20 @@ float: right;
 	.Profile-Information p {
 		font-size: 15px;
 	}
+  .Profile-Information .Prof-body p {
+		font-size: 17px;
+	}
+  .Profile-Information .Prof-heading h3 {
+    margin: 0 10px 0 10px;
+  }
 }
 
 @media screen and (min-width: 480px) {
-	.Profile-Information p {
+  .Profile-Information p {
 		font-size: 23px;
 	}
   .Profile-Information .Prof-heading h3 {
     margin: 0 20px 0 20px;
-  }
-}
-
-
-@media screen and (max-width: 480px) {
-  .Profile-Information .Prof-body p {
-		font-size: 17px;
-	}
-
-  .Profile-Information .Prof-heading h3 {
-    margin: 0 10px 0 10px;
   }
 }
 
