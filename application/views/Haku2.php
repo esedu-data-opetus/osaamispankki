@@ -45,6 +45,7 @@ foreach($haku_tulokset as $haut) {
 }
 ?>
 <?php else : ?>
+	<?php if($this->session->userdata('KT') == 3) : ?>
 	<a style="text-decoration: none;" class="u_prof" href="#"><div class="panel panel-default u_prof">
 		<div class="panel-heading">
 		<h4>Etu- / Sukunimi</h4>
@@ -56,4 +57,5 @@ foreach($haku_tulokset as $haut) {
 				</div>
 		</div>
 	</div></a>
+	<?php endif ; ?>
 <?php endif ; ?>

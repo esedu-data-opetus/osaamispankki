@@ -19,12 +19,6 @@ foreach($Prof_Info as $User) {
       <?php foreach($Prof_Info as $User) : ?>
         <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
         <h1>Oma profiili</h1>
-        
-        <h3>Ajax testi</h3>
-        Enter Pizza, Makkara or Pihvi:
-        <input type="text" id="userInput">
-        <div id="underInput"></div>
-
         <?php foreach($User_Info as $User_i) : ?>
           <p>Tervetuloa <?php echo $User_i->Name; ?>!</p>
         <?php endforeach; ?>
@@ -88,7 +82,7 @@ if (isset($_GET['Prof_Edit'])) {
 }
 ?>
 <?php if($this->session->userdata('KT') == 3) : ?>
-  <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/index?share=<?php echo $User->User_id; ?>"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+    <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/index?share=<?php echo $User->User_id; ?>"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
 <?php endif; ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
