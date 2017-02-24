@@ -162,6 +162,7 @@ public function C_Key($key) {
   public function forgot_password() {
     $email = $this->input->post('email');
     $rs = rand(999999999,9999999999);
+    trim($rs);
     $rs2 = md5($rs);
     $data = array('rs' => $rs2);
     $this->session->set_userdata($data);
