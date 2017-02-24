@@ -351,4 +351,7 @@ class Profile extends CI_Controller {
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
   }
+  public function share($user_id) {
+    redirect('profile/index');
+  }
 }
