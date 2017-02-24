@@ -171,7 +171,7 @@ public function C_Key($key) {
         $this->load->view('layouts/main',$data);
       } else {
         if ($this->User_model->checkEmail($email)) {
-          $this->User_model->send_password_reset($email, $data);
+          $this->User_model->send_password_reset($email, $rs2);
           $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
           redirect('home/index');
         } else {
@@ -180,7 +180,7 @@ public function C_Key($key) {
         }
     }
   }
-  public function new_password($email) {
+  public function new_password($email, $rs2) {
     $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[1]');
     $this->form_validation->set_rules('password_c', 'Confirm Password', 'trim|required|max_length[50]|min_length[1]|matches[password]');
     if ($this->form_validation->run() === FALSE) {
@@ -195,7 +195,7 @@ public function C_Key($key) {
         'Password' => md5($this->input->post('password')),
       );
       $Pw_Email = $this->session->userdata('Pw_Email');
-      if ($this->uri->segment(5) == $this->session->userdata('rs')) {
+      if ($rs2 == $this->session->userdata('rs')) {
       if ($this->User_model->resetPassword($Pw_Email, $data)) {
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
