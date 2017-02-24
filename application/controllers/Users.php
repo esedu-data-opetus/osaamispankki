@@ -163,8 +163,8 @@ public function C_Key($key) {
     $email = $this->input->post('email');
     $rs = rand(999999999,9999999999);
     $rs2 = md5($rs);
-    $data2 = array('rs' => $rs2);
-    $this->session->set_userdata($data2);
+    $data = array('rs' => $rs2);
+    $this->session->set_userdata($data);
       $this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[100]|min_length[5]|valid_email');
       if ($this->form_validation->run() == FALSE) {
         $data['main_content'] = 'users/forgot_password';
