@@ -83,7 +83,7 @@ if (isset($_GET['Prof_Edit'])) {
 }
 ?>
 
-<a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>Profile/share/"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+<a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/index?share=<?php echo $User->User_id; ?>"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
     <div class="Prof-heading">
