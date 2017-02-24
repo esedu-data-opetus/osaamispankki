@@ -44,4 +44,16 @@ foreach($haku_tulokset as $haut) {
 	}
 }
 ?>
+<?php else : ?>
+	<a style="text-decoration: none;" class="u_prof" href="#"><div class="panel panel-default u_prof">
+		<div class="panel-heading">
+		<h4>Etu- / Sukunimi</h4>
+		</div>
+			<div class="prof">
+				<div class="prof-info panel-body">
+				<img class="img-rounded prof-img img-thumbnail" src="<?php echo base_url(); ?>images/profiili/default.png" />
+					<p>esim.jotain@esedu.fi</p>
+				</div>
+		</div>
+	</div></a>
 <?php endif ; ?>

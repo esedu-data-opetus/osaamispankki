@@ -25,6 +25,7 @@ public function index() {
       'Metatieto' => $this->input->post('metatieto'),
     );
     $data['haku_tulokset'] = $this->Haku_model->haku($hakusana, $suodatin);
+
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
     }
