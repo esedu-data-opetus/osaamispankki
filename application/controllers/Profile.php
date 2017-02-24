@@ -291,7 +291,7 @@ class Profile extends CI_Controller {
     redirect('profile/index');
   }
   //Vaihtaa progiilin tilaa
-  public function hide($tila, $user_id) {
+  public function hide($tila) {
     if ($tila == 'Kylla') {
       $data = array('Näytä_Profiili'  =>  'Kylla');
       $fd = $this->session->set_flashdata('success-Prof_Hide', 'Profiilisi on näkyvissä!');
@@ -299,7 +299,7 @@ class Profile extends CI_Controller {
       $data = array('Näytä_Profiili'  =>  'Ei');
       $fd = $this->session->set_flashdata('error-Prof_Hide', 'Profiilisi on piilotettu!');
     }
-
+    $user_id = $this->session->userdata('user_id');
     if ($this->Profile_model->hide($user_id,$data)) {
       $fb;
       redirect('profile/index');
