@@ -205,7 +205,7 @@ public function C_Key($key) {
     }
   } else {
     $this->session->set_flashdata('error', 'Virhe!');
-    // redirect('home/index');
+    redirect('home/index');
   }
     }
     }
