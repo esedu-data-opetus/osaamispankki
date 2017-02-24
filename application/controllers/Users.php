@@ -180,7 +180,7 @@ public function C_Key($key) {
         }
     }
   }
-  public function new_password($email = 0, $rs2 = 0) {
+  public function new_password($email, $rs2) {
     $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[1]');
     $this->form_validation->set_rules('password_c', 'Confirm Password', 'trim|required|max_length[50]|min_length[1]|matches[password]');
     if ($this->form_validation->run() == FALSE) {
