@@ -34,12 +34,12 @@ class Upload_Controller extends CI_Controller {
 			$this->db->where('Sposti', $this->session->userdata('sposti'));
 			$this->db->update('profile',$data);
 			//print_r($this->upload->data());
-			// redirect('profile/index');
+			redirect('profile/index');
 		}
 		else
 		{
 			$error = array('error' => $this->upload->display_errors());
-			// redirect('profile/index');
+			redirect('profile/index');
 		}
 	}
 }
