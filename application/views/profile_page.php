@@ -43,9 +43,9 @@ $C_Day     = $User->Create_date;
 $etunimi   = $User->F_Name;
 $sukunimi  = $User->L_Name;
 if ($User->Näytä_Profiili == "Ei") {
-  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Kylla/'.$User->User_id.'" class="btn btn-success" title="Näytä profiili hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Kylla" class="btn btn-success" title="Näytä profiili hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 } else {
-  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Ei/'.$User->User_id.'" class="btn btn-danger" title="Estä profiilin näkyminen hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right;" href="'.base_url().'profile/hide/Ei" class="btn btn-danger" title="Estä profiilin näkyminen hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 }
 
 if (isset($_GET['Prof_Edit'])) {
