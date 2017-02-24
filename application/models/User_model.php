@@ -129,8 +129,8 @@ class User_model extends CI_Model {
   //   $this->db->where('Password',$enc_password);
   //   return $this->db->update('users', $data);
   // }
-  public function send_password_reset($email, $rs2) {
-    $message = "<p>Vaihda salasana <a href='".base_url()."Users/new_password/".md5($email)."/".$rs2."' >tästä</a>!</p>";
+  public function send_password_reset($email) {
+    $message = "<p>Vaihda salasana <a href='".base_url()."Users/new_password/".md5($email)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);

@@ -161,17 +161,13 @@ public function C_Key($key) {
   }
   public function forgot_password() {
     $email = $this->input->post('email');
-    $rs = rand(999999999,9999999999);
-    $rs2 = md5($rs);
-    $data = array('rs' => $rs2);
-    $this->session->set_userdata($data);
       $this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[100]|min_length[5]|valid_email');
       if ($this->form_validation->run() == FALSE) {
         $data['main_content'] = 'users/forgot_password';
         $this->load->view('layouts/main',$data);
       } else {
         if ($this->User_model->checkEmail($email)) {
-          $this->User_model->send_password_reset($email, $rs2);
+          $this->User_model->send_password_reset($email);
           $this->session->set_flashdata('success', 'Salasanan palautus sähköposti lähetetty!');
           redirect('home/index');
         } else {
@@ -180,7 +176,7 @@ public function C_Key($key) {
         }
     }
   }
-  public function new_password($email, $rs2) {
+  public function new_password($email) {
     $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[1]');
     $this->form_validation->set_rules('password_c', 'Confirm Password', 'trim|required|max_length[50]|min_length[1]|matches[password]');
     if ($this->form_validation->run() == FALSE) {
@@ -195,7 +191,6 @@ public function C_Key($key) {
         'Password' => md5($this->input->post('password')),
       );
       $Pw_Email = $this->session->userdata('Pw_Email');
-      if ($rs2 == $this->session->userdata('rs')) {
       if ($this->User_model->resetPassword($Pw_Email, $data)) {
       $this->session->set_flashdata('success', 'Salasana vaihdettiin onnistuneesti!');
       redirect('home/index');
@@ -203,10 +198,6 @@ public function C_Key($key) {
       $this->session->set_flashdata('success', 'Salasanaa ei voitu vaihtaa!');
       redirect('home/index');
     }
-  } else {
-    $this->session->set_flashdata('error', 'Virhe!');
-    redirect('home/index');
-  }
     }
     }
 }
