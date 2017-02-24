@@ -130,7 +130,7 @@ class User_model extends CI_Model {
   //   return $this->db->update('users', $data);
   // }
   public function send_password_reset($email, $data) {
-    $message = "<p>Vaihda salasana <a href='".base_url()."Users/new_password/".md5($email)."/".$data."' >tästä</a>!</p>";
+    $message = "<p>Vaihda salasana <a href='".base_url()."Users/new_password/".md5($email)."/".$data['rs']."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
