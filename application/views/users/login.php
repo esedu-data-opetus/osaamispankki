@@ -8,6 +8,7 @@
 <?php
 	$data = array(
 		'name'        => 'email',
+		'style'				=>	'email',
 		'placeholder' => 'Sähköposti',
 		'class' 			=> 'form-control',
 		'value'       => set_value('email')
