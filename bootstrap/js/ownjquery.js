@@ -38,12 +38,11 @@ function validateDropdown() {
    }
  }
 
+ $(function() {
+   $('#alkoi').datepick();
+   $('#loppui').datepick();
+ });
 var main = function() {
-
-  // $(function() {
-  //    $("#alkoi").datepicker();
-  //    $("#loppui").datepicker();
-  //   });
 
     $('#luo').click(function() {
         $('.counter').text('50');

@@ -26,11 +26,5 @@
     <?php $this->load->view($main_content); ?>
   </div>
 <?php $this->load->view('templates/footer'); ?>
-<script>
-$(function() {
-  $('#alkoi').datepick();
-  $('#loppui').datepick();
-});
-</script>
 </body>
 </html>
