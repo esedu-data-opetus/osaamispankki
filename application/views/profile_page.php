@@ -345,8 +345,8 @@ if (isset($_GET['Prof_Edit'])) {
           } else {
             $Työpaikka  =   '<input class="form-control" name="tyopaikka" type="text" value="'.$work_h->tyopaikka.'" />';
             $Tehtävä    =   '<input class="form-control" name="tehtava" type="text" value="'.$work_h->tehtava.'" />';
-            $Alkoi      =   '<input class="form-control" id="alkoi" readonly name="Aloitit" type="text" value="'.$work_h->alkoi.'" />';
-            $Loppui     =   '<input class="form-control" id="loppui" readonly name="Lopetit" type="text" value="'.$work_h->loppui.'" />';
+            $Alkoi      =   '<input class="form-control" id="alkoi" name="Aloitit" type="text" value="'.$work_h->alkoi.'" />';
+            $Loppui     =   '<input class="form-control" id="loppui" name="Lopetit" type="text" value="'.$work_h->loppui.'" />';
             $Kuvaus     =   '<textarea class="form-control" name="vapaasana" type="text">'.$work_h->kuvaus.'</textarea>';
             $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
           }
