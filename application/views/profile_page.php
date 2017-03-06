@@ -408,8 +408,8 @@ if (isset($_GET['Prof_Edit'])) {
             $Koulutusnimi  =  '<input class="form-control" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
             $Koulutusaste  =  '<input class="form-control" name="koulutusaste" type="text" value="'.$koulut->koulutusaste.'" />';
             $Oppilaitos    =  '<input class="form-control" name="oppilaitos" type="text" value="'.$koulut->oppilaitos.'" />';
-            $Alkoi         =  '<input class="form-control" id="alkoi" readonly name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
-            $Loppui        =  '<input class="form-control" id="loppui" readonly name="loppui" type="text" value="'.$koulut->loppui.'" />';
+            $Alkoi         =  '<input class="form-control" id="alkoi" name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
+            $Loppui        =  '<input class="form-control" id="loppui" name="loppui" type="text" value="'.$koulut->loppui.'" />';
             $K_vapaasana   =  '<input class="form-control" name="K_vapaasana" type="text" value="'.$koulut->vapaasana.'" />';
             $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
           }
