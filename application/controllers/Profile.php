@@ -114,16 +114,8 @@ class Profile extends CI_Controller {
         $this->session->set_flashdata('success', 'Harrastus lisätty!');
         $checkbox = $this->input->post('Uusi');
         if(isset($checkbox)){
-          $check = array(
-            'check' =>  True,
-          );
-          $this->session->set_userdata($check);
            redirect('Profile/Harrastus');
         } else {
-          $check = array(
-            'check' =>  False,
-          );
-          $this->session->set_userdata($check);
           redirect('Profile');
         }
       }
@@ -164,16 +156,8 @@ class Profile extends CI_Controller {
         $this->session->set_flashdata('success', 'Työhistoria lisätty!');
         $checkbox = $this->input->post('Uusi');
         if(isset($checkbox)){
-          $check = array(
-            'check' =>  True,
-          );
-          $this->session->set_userdata($check);
            redirect('Profile/Tyohistoria');
         } else {
-          $check = array(
-            'check' =>  False,
-          );
-          $this->session->set_userdata($check);
           redirect('Profile');
         }
       }
@@ -218,16 +202,8 @@ class Profile extends CI_Controller {
         $this->session->set_flashdata('success', 'Koulutus lisätty!');
         $checkbox = $this->input->post('Uusi');
         if(isset($checkbox)){
-          $check = array(
-            'check' =>  True,
-          );
-          $this->session->set_userdata($check);
            redirect('Profile/Koulutus');
         } else {
-          $check = array(
-            'check' =>  False,
-          );
-          $this->session->set_userdata($check);
           redirect('Profile');
         }
       }
@@ -269,16 +245,8 @@ class Profile extends CI_Controller {
         $this->session->set_flashdata('success', 'Kortti lisätty!');
         $checkbox = $this->input->post('Uusi');
         if(isset($checkbox)){
-          $check = array(
-            'check' =>  True,
-          );
-          $this->session->set_userdata($check);
            redirect('Profile/Kortit');
         } else {
-          $check = array(
-            'check' =>  False,
-          );
-          $this->session->set_userdata($check);
           redirect('Profile');
         }
       }

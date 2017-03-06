@@ -43,25 +43,17 @@
 <?php echo form_textarea($data); ?>
   </p>
 	<p>
-	<?php echo form_label('Lisää useampi:'); ?>
+<p style="display: inline;">
 	<?php
-		if ($this->session->userdata('check')) {
-			$check = "checked";
-		} else {
-			$check = "";
-		}
-
-			$data = array(
-				'name'		=>  'Uusi',
-				'checked' => 	$check,
-				'class'		=>  'checkbox-inline',
-				'value'		=> 	set_value('Uusi')
-			);
+	$data = array(
+		'name'		=>  'Uusi',
+		'class'		=>	'btn btn-primary btn-lg',
+		'value'		=> 	'Lisää useampi Harrastus'
+	);
 	?>
-	<?php echo form_checkbox($data); ?>
+	<?php echo form_submit($data); ?>
 	</p>
-
-	<p>
+<p style="display: inline;">
 <?php
 	$data = array(
 		'name' => 'submit',

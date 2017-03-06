@@ -39,8 +39,6 @@ foreach($haku_tulokset as $haut) {
 					</div>
 			</div>
 		</div></a>';
-	} else {
-		echo '';
 	}
 }
 ?>
