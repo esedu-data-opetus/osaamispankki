@@ -40,10 +40,10 @@ function validateDropdown() {
 
 var main = function() {
 
-  $(function() {
-     $("#alkoi").datepicker();
-     $("#loppui").datepicker();
-    });
+  // $(function() {
+  //    $("#alkoi").datepicker();
+  //    $("#loppui").datepicker();
+  //   });
 
     $('#luo').click(function() {
         $('.counter').text('50');
