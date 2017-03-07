@@ -16,10 +16,14 @@
 				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
 			<?php else : ?>
+        <?php if($this->session->userdata('KT') == 3) : ?>
         <li><div class="btn-group">
           <a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px 0 10px 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a>
           <a href="<?php echo base_url(); ?>Profile/Settings/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-primary" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-cog"></span></a>
         </div></li>
+      <?php else : ?>
+        <li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px 0 10px 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a></li>
+      <?php endif; ?>
 			<?php if ($this->session->userdata('KT') >= 1) :?>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a></li>
       <?php endif; ?>
