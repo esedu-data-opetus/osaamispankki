@@ -79,9 +79,23 @@ class Profile extends CI_Controller {
   }
   public function settings($User) {
     $data['Prof_Info'] = $this->Profile_model->get_profile($User);
-    
+
     $data['main_content'] = "Settings";
     $this->load->view('layouts/main', $data);
+  }
+  public function suosittelijat($act = NULL,$fact = NULL,$spot = NULL) {
+    echo $act." ".$fact." ".$spot."<br>";
+    if($act == "Hide") {
+      if($this->Profile_model->suos_hide($fact, $spot)) {
+        $this->session->set_flashdata('success', 'Käyttäjä piiloitettu.');
+        redirect('Profile/index');
+      }
+    } elseif($act == "Delete") {
+      if($this->Profile_model->suos_del($spot)) {
+        $this->session->set_flashdata('success', 'Suosittelija poistettu.');
+        redirect('Profile/index');
+      }
+    }
   }
   public function suosittelija() {
     $this->form_validation->set_rules('suosittelija', 'suosittelija', 'trim|required');

@@ -138,11 +138,55 @@ if (isset($_GET['Prof_Edit'])) {
   <div class="Profile-Information">
     <div class="Prof-body">
       <p>
-        <b>Suosittelijat:</b>
+        <b>Suosittelijat: </b>
+        <?php foreach($suosittelijat as $suosijat) :?>
+        <?php if($suosijat->Show == "Kylla") : ?>
+          <?php
+            $eye = "close";
+            $fact = "Ei";
+          ?>
+        <?php else : ?>
+          <?php
+            $eye = "open";
+            $fact = "Kylla";
+          ?>
+        <?php endif; ?>
+        <?php endforeach;?>
+        <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/<?php echo $fact; ?>/<?php echo md5($this->session->userdata('sposti')) ?>"><span class="glyphicon glyphicon-eye-<?php echo $eye; ?>"></span></a>
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suosittelijat as $suosijat) :?>
-              <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a>
+
+              <!-- <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a> -->
+              <?php
+                if($suosijat->Show == "Kylla") {
+                  $btn_c = "primary";
+                } else {
+                  $btn_c = "default";
+                }
+              ?>
+              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#1<?php echo str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija)); ?>"><?php echo $suosijat->Suosittelija; ?></button>
+              <div id="1<?php echo str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija)); ?>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Suosittelija: <?php echo $suosijat->Suosittelija; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                      <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>" class="btn btn-primary">Mene profiiliin</a>
+                    <?php if($suosijat->Show == "Kylla") : ?>
+                      <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Ei/<?php echo $suosijat->id; ?>" class="btn btn-warning">Piilota</a> -->
+                    <?php else : ?>
+                      <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Kylla/<?php echo $suosijat->id; ?>" class="btn btn-success">Näytä</a> -->
+                    <?php endif; ?>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <?php endforeach; ?>
           </div>
         </div>
@@ -151,8 +195,38 @@ if (isset($_GET['Prof_Edit'])) {
         <b>Suosittelet:</b>
         <div class="panel panel-default">
           <div class="panel-body">
-            <?php foreach($suositeltu as $suosttu) :?>
-              <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosttu->User_id; ?>/<?php echo md5($suosttu->Suositeltu); ?>"><?php echo $suosttu->Suositeltu; ?></a>
+            <?php foreach($suositeltu as $suosittu) :?>
+              <!-- <a data-toggle="modal" data-target="#myModal" style="border-right: 2px solid; border-left: 2px solid;"><?php echo $suosittu->Suositeltu; ?></a> -->
+              <?php
+                if($suosittu->Show == "Kylla") {
+                  $btn_c = "primary";
+                } else {
+                  $btn_c = "default";
+                }
+              ?>
+              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#<?php echo str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu)); ?>"><?php echo $suosittu->Suositeltu; ?></button>
+              <div id="<?php echo str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu)); ?>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Suositeltu: <?php echo $suosittu->Suositeltu; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                      <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosittu->User_id; ?>/<?php echo md5($suosittu->Suositeltu); ?>" class="btn btn-primary">Mene profiiliin</a>
+                      <?php if($suosittu->Show == "Kylla") : ?>
+                        <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Ei/<?php echo $suosittu->id; ?>" class="btn btn-warning">Piilota</a> -->
+                      <?php else : ?>
+                        <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Kylla/<?php echo $suosittu->id; ?>" class="btn btn-success">Näytä</a> -->
+                      <?php endif; ?>
+                      <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Delete/<?php echo $suosittu->id; ?>" class="btn btn-danger">Älä suosittele</a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <?php endforeach; ?>
           </div>
         </div>

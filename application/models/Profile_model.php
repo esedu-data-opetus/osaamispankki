@@ -50,9 +50,27 @@ class Profile_model extends CI_Model {
       return true;
     }
   }
+  public function suos_del($spot) {
+    $this->db->where('id', $spot);
+    $this->db->delete('suosittelijat');
+    return true;
+  }
+  public function suos_hide($fact, $spot) {
+    $data = array(
+      'Show'  =>  $fact,
+    );
+    if (strlen($spot) == 32) {
+      $this->db->where('md5(Suositeltu)', $spot);
+    } else {
+      $this->db->where('id', $spot);
+    }
+    $this->db->update('suosittelijat', $data);
+    return true;
+  }
   public function suositukset() {
     $this->db->select('*');
     $this->db->from('suosittelijat');
+    $this->db->where('Show', 'Kylla');
     $query = $this->db->get();
     return $query->result();
   }
