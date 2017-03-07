@@ -12,27 +12,25 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
       <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
-				<li><div class="btn-group"><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a></div><li>
-				<li><div class="btn-group"><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a></div><li>
+				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
+				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
 			<?php else : ?>
         <li><div class="btn-group">
           <a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px 0 10px 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a>
-          <a href="" class="btn btn-primary" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-cog"></span></a>
+          <a href="<?php echo base_url(); ?>Profile/Settings/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-primary" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-cog"></span></a>
         </div></li>
 			<?php if ($this->session->userdata('KT') >= 1) :?>
-				<li><div class="btn-group"><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a></div></li>
+				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a></li>
       <?php endif; ?>
-        <li><div class="btn-group"><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a></div></li>
+        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a></li>
       <?php if ($this->session->userdata('KT') == 3) :?>
-        <li><div class="btn-group"><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a></div></li>
+        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a></li>
       <?php else : ?>
-        <li><div class="btn-group"><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a></div></li>
+        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a></li>
       <?php endif; ?>
       <?php endif; ?>
     </ul>
-
       <ul class="nav navbar-nav navbar-right">
 				<?php if ($this->session->userdata('is_logged_in') == 1) :?>
 					<a class="btn btn-danger btn-lg <?php echo $disabled; ?>" style="float: right; margin: 10px 30px; 10px 10px" href="<?php echo base_url(); ?>Users/Logout">Kirjaudu ulos</a>

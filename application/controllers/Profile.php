@@ -77,6 +77,12 @@ class Profile extends CI_Controller {
       }
     }
   }
+  public function settings($User) {
+    $data['Prof_Info'] = $this->Profile_model->get_profile($User);
+    
+    $data['main_content'] = "Settings";
+    $this->load->view('layouts/main', $data);
+  }
   public function suosittelija() {
     $this->form_validation->set_rules('suosittelija', 'suosittelija', 'trim|required');
     if($this->form_validation->run() == true) {
