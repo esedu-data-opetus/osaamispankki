@@ -152,7 +152,11 @@ if (isset($_GET['Prof_Edit'])) {
           ?>
         <?php endif; ?>
         <?php endforeach;?>
-        <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/<?php echo $fact; ?>/<?php echo md5($this->session->userdata('sposti')) ?>"><span class="glyphicon glyphicon-eye-<?php echo $eye; ?>"></span></a>
+        <?php if (empty($fact) || empty($eye)) {
+          $eye = "open";
+          $fact = "Kylla";
+        } ?>
+        <a href="<?php echo base_url(); ?>Profile/suos_hide/<?php echo $fact; ?>/<?php echo md5($this->session->userdata('sposti')) ?>"><span class="glyphicon glyphicon-eye-<?php echo $eye; ?>"></span></a>
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suosittelijat as $suosijat) :?>
@@ -176,9 +180,9 @@ if (isset($_GET['Prof_Edit'])) {
                     <div class="modal-body">
                       <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>" class="btn btn-primary">Mene profiiliin</a>
                     <?php if($suosijat->Show == "Kylla") : ?>
-                      <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Ei/<?php echo $suosijat->id; ?>" class="btn btn-warning">Piilota</a> -->
+                      <a href="<?php echo base_url(); ?>Profile/suos_hide/Ei/<?php echo $suosijat->id; ?>" class="btn btn-warning">Piilota</a>
                     <?php else : ?>
-                      <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Kylla/<?php echo $suosijat->id; ?>" class="btn btn-success">Näytä</a> -->
+                      <a href="<?php echo base_url(); ?>Profile/suos_hide/Kylla/<?php echo $suosijat->id; ?>" class="btn btn-success">Näytä</a>
                     <?php endif; ?>
                     </div>
                     <div class="modal-footer">
@@ -196,7 +200,6 @@ if (isset($_GET['Prof_Edit'])) {
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suositeltu as $suosittu) :?>
-              <!-- <a data-toggle="modal" data-target="#myModal" style="border-right: 2px solid; border-left: 2px solid;"><?php echo $suosittu->Suositeltu; ?></a> -->
               <?php
                 if($suosittu->Show == "Kylla") {
                   $btn_c = "primary";
@@ -215,11 +218,11 @@ if (isset($_GET['Prof_Edit'])) {
                     <div class="modal-body">
                       <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosittu->User_id; ?>/<?php echo md5($suosittu->Suositeltu); ?>" class="btn btn-primary">Mene profiiliin</a>
                       <?php if($suosittu->Show == "Kylla") : ?>
-                        <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Ei/<?php echo $suosittu->id; ?>" class="btn btn-warning">Piilota</a> -->
+                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Ei/<?php echo $suosittu->id; ?>" class="btn btn-warning disabled">Piilota</a>
                       <?php else : ?>
-                        <!-- <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Hide/Kylla/<?php echo $suosittu->id; ?>" class="btn btn-success">Näytä</a> -->
+                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Kylla/<?php echo $suosittu->id; ?>" class="btn btn-success disabled">Näytä</a>
                       <?php endif; ?>
-                      <a href="<?php echo base_url(); ?>Profile/Suosittelijat/Delete/<?php echo $suosittu->id; ?>" class="btn btn-danger">Älä suosittele</a>
+                      <a href="<?php echo base_url(); ?>Profile/suos_del/<?php echo $suosittu->id; ?>" class="btn btn-danger">Älä suosittele</a>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>

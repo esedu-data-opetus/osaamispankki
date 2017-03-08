@@ -83,18 +83,16 @@ class Profile extends CI_Controller {
     $data['main_content'] = "Settings";
     $this->load->view('layouts/main', $data);
   }
-  public function suosittelijat($act = NULL,$fact = NULL,$spot = NULL) {
-    echo $act." ".$fact." ".$spot."<br>";
-    if($act == "Hide") {
-      if($this->Profile_model->suos_hide($fact, $spot)) {
-        $this->session->set_flashdata('success', 'Käyttäjä piiloitettu.');
-        redirect('Profile/index');
-      }
-    } elseif($act == "Delete") {
-      if($this->Profile_model->suos_del($spot)) {
-        $this->session->set_flashdata('success', 'Suosittelija poistettu.');
-        redirect('Profile/index');
-      }
+  public function suos_hide($fact,$spot) {
+    if($this->Profile_model->suos_hide($fact, $spot)) {
+      $this->session->set_flashdata('success', 'Käyttäjä piiloitettu.');
+      redirect('Profile/index');
+    }
+}
+  public function suos_del($spot) {
+    if($this->Profile_model->suos_del($spot)) {
+      $this->session->set_flashdata('success', 'Suosittelija poistettu.');
+      redirect('Profile/index');
     }
   }
   public function suosittelija() {
