@@ -218,9 +218,9 @@ if (isset($_GET['Prof_Edit'])) {
                     <div class="modal-body">
                       <a href="<?php echo base_url(); ?>Haku/User/<?php echo $suosittu->User_id; ?>/<?php echo md5($suosittu->Suositeltu); ?>" class="btn btn-primary">Mene profiiliin</a>
                       <?php if($suosittu->Show == "Kylla") : ?>
-                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Ei/<?php echo $suosittu->id; ?>" class="btn btn-warning disabled">Piilota</a>
+                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Ei/<?php echo $suosittu->id; ?>" class="btn btn-warning">Piilota</a>
                       <?php else : ?>
-                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Kylla/<?php echo $suosittu->id; ?>" class="btn btn-success disabled">Näytä</a>
+                        <a href="<?php echo base_url(); ?>Profile/suos_hide/Kylla/<?php echo $suosittu->id; ?>" class="btn btn-success">Näytä</a>
                       <?php endif; ?>
                       <a href="<?php echo base_url(); ?>Profile/suos_del/<?php echo $suosittu->id; ?>" class="btn btn-danger">Älä suosittele</a>
                     </div>
