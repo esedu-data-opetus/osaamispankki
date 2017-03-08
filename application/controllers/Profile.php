@@ -83,6 +83,10 @@ class Profile extends CI_Controller {
     $data['main_content'] = "Settings";
     $this->load->view('layouts/main', $data);
   }
+  public function Ajax_Test() {
+    $data['main_content'] = "Ajax_test";
+    $this->load->view('layouts/main', $data);
+  }
   public function suos_hide($fact,$spot) {
     if($this->Profile_model->suos_hide($fact, $spot)) {
       $this->session->set_flashdata('success', 'Käyttäjä piiloitettu.');
