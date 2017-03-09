@@ -346,7 +346,7 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('email', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
-    $data['main_content'] = 'profile/share';
+    $data['main_content'] = 'share';
     $this->load->view('layouts/main',$data);
   } else {
     $us_id = $this->session->userdata($user_id);
