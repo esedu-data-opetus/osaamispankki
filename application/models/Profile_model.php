@@ -271,7 +271,7 @@ class Profile_model extends CI_Model {
     $message = "<p>Käyttäjän profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    $this->email->to($us_id);
+    $this->email->to($email);
     $this->email->subject('Käyttäjä jakoi profiilin.');
     $this->email->message($message);
     if ($this->email->send()) {
