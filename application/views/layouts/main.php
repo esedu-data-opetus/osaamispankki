@@ -19,7 +19,7 @@
   <script type="text/javascript" src="<?php echo base_url();?>datepicker/js/jquery.datepick.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>datepicker/js/jquery.datepick-fi.js"></script>
 </head>
-<body>
+<body onload="process()">
   <?php $this->load->view('templates/header'); ?>
   <div class="container">
     <?php $this->load->view('templates/Alerts'); ?>

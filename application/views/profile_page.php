@@ -357,6 +357,11 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
   <h1 class="error-message">Harrastuksia ei ole lisätty</h1>
+  <h2>Ajax test - Osaajapankki</h2>
+  <h3>Ajax testi</h3>
+  Enter Pizza, Makkara or Pihvi:
+  <input type="text" id="userInput">
+  <div id="underInput"></div>
 <?php else : ?>
   <div class="Profile-Information">
       <?php foreach($harrastus as $hobby) : ?>
