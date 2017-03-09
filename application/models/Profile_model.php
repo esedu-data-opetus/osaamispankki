@@ -290,7 +290,7 @@ class Profile_model extends CI_Model {
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
-    $this->email->subject("$data['F_Name'] jakoi profiilin.");
+    $this->email->subject("".$data['F_Name']." jakoi profiilin.");
     $this->email->message($message);
     if ($this->email->send()) {
       return true;
