@@ -18,6 +18,7 @@
   <script type="text/javascript" src="<?php echo base_url();?>datepicker/js/jquery.plugin.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>datepicker/js/jquery.datepick.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>datepicker/js/jquery.datepick-fi.js"></script>
+  <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
 </head>
 <body onload="process()">
   <?php $this->load->view('templates/header'); ?>
