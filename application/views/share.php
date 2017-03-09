@@ -12,7 +12,7 @@
       'name'        => 'Sposti',
       'placeholder' => 'Sähköposti',
       'class'       => 'form-control',
-      'value'       => 'Sposti',
+      'value'       => set_value('Sposti'),
 
     );
     ?>

@@ -343,7 +343,7 @@ class Profile extends CI_Controller {
   }
 
   public function share() {
-    $this->form_validation->set_rules('email', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
+    $this->form_validation->set_rules('Sposti', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
     $data['main_content'] = 'share';
