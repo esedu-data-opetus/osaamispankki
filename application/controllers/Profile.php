@@ -41,6 +41,11 @@ class Profile extends CI_Controller {
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
+  public function pdf($user_id, $Sposti) {
+    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
+
+    $this->load->view('PDF/index',$data);
+  }
 //Hakee profiilin luonnin näkymän ja asettaa inputeille säännöt
   public function set_profile($w) {
     if ($this->session->userdata('is_logged_in') == 0) {
