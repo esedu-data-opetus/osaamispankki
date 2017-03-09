@@ -286,11 +286,12 @@ class Profile_model extends CI_Model {
   }
 
   public function share($us_id, $email, $sposti, $data) {
+    $f = $data['F_Name'];
     $message = "<p>Käyttäjän profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
-    $this->email->subject("".$data['F_Name']." jakoi profiilin.");
+    $this->email->subject("".$f." jakoi profiilin.");
     $this->email->message($message);
     if ($this->email->send()) {
       return true;
