@@ -342,6 +342,7 @@ class Profile extends CI_Controller {
     redirect('profile/index');
   }
   public function share($user_id) {
-    redirect('profile/index');
+    $data['main_content'] = 'profile/share';
+    $this->load->view('layouts/main',$data);
   }
 }
