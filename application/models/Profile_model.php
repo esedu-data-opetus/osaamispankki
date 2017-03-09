@@ -322,10 +322,10 @@ class Profile_model extends CI_Model {
     $this->email->send();
     $this->email->send();
     $this->email->send();
-    if ($this->email->send()) {
+    // if ($this->email->send()) {
       return true;
-    } else {
-      return false;
-    }
+    // } else {
+    //   return false;
+    // }
   }
 }
