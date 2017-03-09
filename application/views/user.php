@@ -5,7 +5,7 @@
       <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $user->Prof_Pic; ?>" class="img-responsive img-thumbnail">
       <h1><?php echo $user->F_Name.' '.$user->L_Name; ?></h1>
       <?php if($this->session->userdata('KT') >= 2) : ?>
-        <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $user->id; ?>/<?php echo md5($user->Sposti); ?>" class="btn btn-default"><span class="glyphicon glyphicon-list"></span></a>
+        <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $user->User_id; ?>/<?php echo md5($user->Sposti); ?>" class="btn btn-default"><span class="glyphicon glyphicon-list"></span></a>
       <?php endif; ?>
       <?php foreach($suositukset as $suos) : ?>
         <?php if($suos->Suositeltu == $user->Sposti) : ?>
