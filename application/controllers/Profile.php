@@ -351,7 +351,7 @@ class Profile extends CI_Controller {
   } else {
     $us_id = $this->session->userdata("user_id");
     $sposti = $this->session->userdata("sposti");
-    $email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
+    $email = filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING);
     $this->Profile_model->share($us_id, $email, $sposti);
     $this->session->set_flashdata('success', 'Profiilin jakaminen onnistui!');
     redirect('profile/index');
