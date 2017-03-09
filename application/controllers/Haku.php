@@ -46,4 +46,18 @@ public function index() {
       redirect('Haku');
     }
   }
+  public function haku_proto() {
+    $this->form_validation->set_rules('search', 'Search', 'trim');
+
+  if ($this->form_validation->run() == FALSE) {
+    $data['main_content'] = "haku_proto";
+    $this->load->view('layouts/main', $data);
+} else {
+    $search =  $this->input->post('search');
+    $query = $this->Haku_model->searchProto($search);
+    echo json_encode ($query);
+    $data['main_content'] = "haku_proto";
+    $this->load->view('layouts/main',$data);
+  }
+  }
 }
