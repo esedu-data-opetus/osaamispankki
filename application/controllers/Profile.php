@@ -364,7 +364,7 @@ class Profile extends CI_Controller {
   } else {
     $this->session->set_flashdata('error', 'Profiilin jakaminen epäonnistui!');
     redirect('profile/index');
-  // }
+  }
   }
 }
 }
