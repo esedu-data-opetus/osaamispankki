@@ -5,7 +5,7 @@
   </div>
 <div class="panel-body">
 <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
-<?php echo form_open('share'); ?>
+<?php echo form_open('profile/share'); ?>
   <p>
     <?php
       $data = array(
