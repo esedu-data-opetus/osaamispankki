@@ -267,12 +267,21 @@ class Profile_model extends CI_Model {
     }
   }
 
-  public function share($us_id, $email, $sposti) {
+  public function getUserdata($us_id, $sposti) {
+    $this->db->select('F_Name', 'L_Name');
+    $this->db->from('profile');
+    $this->db->where('User_id', $us_id);
+    $this->db->where('Sposti', $sposti);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function share($us_id, $email, $sposti, $data) {
     $message = "<p>Käyttäjän profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
-    $this->email->subject('Käyttäjä jakoi profiilin.');
+    $this->email->subject($fname' jakoi profiilin.');
     $this->email->message($message);
     if ($this->email->send()) {
       return true;
