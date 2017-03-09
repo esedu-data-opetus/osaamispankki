@@ -348,17 +348,28 @@ class Profile extends CI_Controller {
   }
 
   public function share() {
-    $this->form_validation->set_rules('email', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
+    $this->form_validation->set_rules('Sposti', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
     $data['main_content'] = 'share';
     $this->load->view('layouts/main',$data);
   } else {
-    $us_id = $this->session->userdata($user_id);
-    $email = filter_var($this->input->post('email'), FILTER_SANITIZE_STRING);
-    $this->Profile_model->share($us_id, $email);
+    $us_id = $this->session->userdata("user_id");
+    $sposti = $this->session->userdata("sposti");
+    $email = filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING);
+    $fname = $this->Profile_model->getUserdata1($us_id, $sposti);
+    $lname = $this->Profile_model->getUserdata2($us_id, $sposti);
+    $data = array(
+      'F_Name' => $fname,
+      'L_Name' => $lname
+    );
+    if ($this->Profile_model->share($us_id, $email, $sposti, $data)) {
     $this->session->set_flashdata('success', 'Profiilin jakaminen onnistui!');
     redirect('profile/index');
+  } else {
+    $this->session->set_flashdata('error', 'Profiilin jakaminen epäonnistui!');
+    redirect('profile/index');
+  }
   }
 }
 }

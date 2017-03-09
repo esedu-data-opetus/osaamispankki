@@ -267,12 +267,30 @@ class Profile_model extends CI_Model {
     }
   }
 
-  public function share($us_id, $email) {
-    $message = "<p>Käyttäjän profiiliin pääset <a href='".base_url()."home/index/' >tästä</a>!</p>";
+  public function getUserdata1($us_id, $sposti) {
+    $this->db->select('F_Name');
+    $this->db->from('profile');
+    $this->db->where('User_id', $us_id);
+    $this->db->where('Sposti', $sposti);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function getUserdata2($us_id, $sposti) {
+    $this->db->select('L_Name');
+    $this->db->from('profile');
+    $this->db->where('User_id', $us_id);
+    $this->db->where('Sposti', $sposti);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function share($us_id, $email, $sposti, $data) {
+    $message = "<p>Käyttäjän profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
-    $this->email->to($us_id);
-    $this->email->subject('Käyttäjä jakoi profiilin.');
+    $this->email->to($email);
+    $this->email->subject("".$data['F_Name']." jakoi profiilin.");
     $this->email->message($message);
     if ($this->email->send()) {
       return true;
