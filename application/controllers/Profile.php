@@ -341,11 +341,12 @@ class Profile extends CI_Controller {
     $this->Profile_model->delete_meta($id);
     redirect('profile/index');
   }
+
   public function share() {
     $this->form_validation->set_rules('email', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
-    $data['main_content'] = 'share';
+    $data['main_content'] = 'profile/share';
     $this->load->view('layouts/main',$data);
   } else {
     $us_id = $this->session->userdata($user_id);
