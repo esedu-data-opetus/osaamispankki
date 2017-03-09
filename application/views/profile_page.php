@@ -82,6 +82,9 @@ if (isset($_GET['Prof_Edit'])) {
 }
 ?>
 <?php if($this->session->userdata('KT') == 3) : ?>
+<<<<<<< HEAD
+    <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/index?share=<?php echo $User->User_id; ?>"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+=======
 <hr>
   <h2>Ajax test - Osaajapankki</h2>
   <h3>Ajax testi</h3>
@@ -90,6 +93,7 @@ if (isset($_GET['Prof_Edit'])) {
   <div id="underInput"></div>
   <hr>
     <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+>>>>>>> ce6dd108468804aea003460d1af6b23530d43de2
 <?php endif; ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
@@ -167,8 +171,6 @@ if (isset($_GET['Prof_Edit'])) {
         <div class="panel panel-default">
           <div class="panel-body">
             <?php foreach($suosittelijat as $suosijat) :?>
-
-              <!-- <a style="border-right: 2px solid; border-left: 2px solid;" href="<?php echo base_url(); ?>Haku/User/<?php echo $suosijat->User_id; ?>/<?php echo md5($suosijat->Suosittelija); ?>"><?php echo $suosijat->Suosittelija; ?></a> -->
               <?php
                 if($suosijat->Show == "Kylla") {
                   $btn_c = "primary";
