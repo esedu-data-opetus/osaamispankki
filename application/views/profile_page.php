@@ -82,6 +82,13 @@ if (isset($_GET['Prof_Edit'])) {
 }
 ?>
 <?php if($this->session->userdata('KT') == 3) : ?>
+<hr>
+  <h2>Ajax test - Osaajapankki</h2>
+  <h3>Ajax testi</h3>
+  Enter Pizza, Makkara or Pihvi:
+  <input type="text" id="userInput">
+  <div id="underInput"></div>
+  <hr>
     <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/index?share=<?php echo $User->User_id; ?>"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
 <?php endif; ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
@@ -357,11 +364,6 @@ if (isset($_GET['Prof_Edit'])) {
 <?php endforeach; ?>
 <?php if(!isset($hobbyexists)) : ?>
   <h1 class="error-message">Harrastuksia ei ole lisätty</h1>
-  <h2>Ajax test - Osaajapankki</h2>
-  <h3>Ajax testi</h3>
-  Enter Pizza, Makkara or Pihvi:
-  <input type="text" id="userInput">
-  <div id="underInput"></div>
 <?php else : ?>
   <div class="Profile-Information">
       <?php foreach($harrastus as $hobby) : ?>
