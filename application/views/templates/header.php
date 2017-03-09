@@ -19,7 +19,7 @@
         <?php if($this->session->userdata('KT') == 3) : ?>
         <li><div class="btn-group">
           <a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px 0 10px 10px;" href="<?php echo base_url(); ?>Profile">Oma profiili</a>
-          <a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px 0 0 0; padding: 13px 0 13px 0;" href="<?php echo base_url(); ?>Profile/Ajax_Test"><span class="glyphicon glyphicon-globe"></span></a>
+          <a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="margin: 10px 0 0 0; padding: 13px 0 13px 0;" href="Ajax_Test/index"><span class="glyphicon glyphicon-globe"></span></a>
           <a href="<?php echo base_url(); ?>Profile/Settings/<?php echo $this->session->userdata('user_id'); ?>" class="btn btn-primary" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-cog"></span></a>
         </div></li>
       <?php else : ?>
