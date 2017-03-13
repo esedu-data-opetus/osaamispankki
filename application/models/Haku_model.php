@@ -1,10 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Haku_model extends CI_Model {
-  public function haku($value = '', $suodatin) {
-    if(!isset($suodatin)) {
-      $suodatin = 'Nothing!';
-    }
+  public function haku($value = '') {
     $this->db->select('F_Name, L_Name, Prof_Pic, Sposti, About, Näytä_Profiili, profile.User_id');
     $this->db->distinct();
     $this->db->from('profile');

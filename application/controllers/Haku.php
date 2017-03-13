@@ -19,16 +19,13 @@ public function index() {
     $this->load->view('layouts/main',$data);
   } else {
     $hakusana =  $this->input->post('haku');
-    $suodatin = array(
-      'Harrastukset' => $this->input->post('harrastukset'),
-      'Työhistoria' => $this->input->post('tyohistoria'),
-      'Koulutus' => $this->input->post('koulutus'),
-      'Kortit' => $this->input->post('kortit'),
-      'Metatieto' => $this->input->post('metatieto'),
-    );
-    $data['haku_tulokset'] = $this->Haku_model->haku($hakusana, $suodatin);
-    $data['main_content'] = 'Haku2';
-    $this->load->view('layouts/main',$data);
+    if (!empty($hakusana)) {
+        $data['haku_tulokset'] = $this->Haku_model->haku($hakusana);
+        $data['main_content'] = 'Haku2';
+        $this->load->view('layouts/main',$data);
+      } else {
+        redirect('Haku');
+      }
     }
   }
   public function User($User_id, $user) {
