@@ -27,7 +27,9 @@
 			<?php if ($this->session->userdata('KT') >= 1) :?>
         <li><div class="btn-group">
         <a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px 0 10px 10px;" href="<?php echo base_url(); ?>Haku"><span class="glyphicon glyphicon-search"></span> Haku</a>
-        <a href="<?php echo base_url(); ?>Haku/haku_proto/" class="btn btn-success btn-lg" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-wrench"></span></a>
+        <?php if($this->session->userdata('sposti') == "joonas.myllarinen@esedulainen.fi") : ?>
+          <a href="<?php echo base_url(); ?>Haku/haku_proto/" class="btn btn-success btn-lg" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-wrench"></span></a>
+        <?php endif; ?>
       </div></li>
       <?php endif; ?>
         <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a></li>
