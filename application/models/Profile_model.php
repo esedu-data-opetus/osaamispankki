@@ -281,7 +281,6 @@ public function getUsername($sposti) {
     $this->db->from('profile');
     $this->db->where('Sposti', $sposti);
     $query = $this->db->get();
-    return $query->result();
 
     $message = "<p>".$data['F_Name']." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
