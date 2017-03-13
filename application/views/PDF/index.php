@@ -147,11 +147,11 @@ foreach($kortit as $KT) {
   $pdf->SetFont('Arial','i',15);
   $kortti = stripslashes($KT->kortti);
   $kortti = iconv('UTF-8', 'windows-1252', $kortti);
-  $pdf->Cell(0,10,'        Kortti:            '.$kortti."                         Voimassaoloaika:".$KT->loppuu);
+  $pdf->Cell(0,10,'        Kortti:                  '.$kortti."                         Voimassaoloaika:".$KT->loppuu);
   $pdf->Ln($ht);
   $vapaasana = stripslashes($KT->vapaasana);
   $vapaasana = iconv('UTF-8', 'windows-1252', $vapaasana);
-  $pdf->Cell(0,10,'        Vapaasana:         '.$vapaasana);
+  $pdf->Cell(0,10,'        Vapaasana:        '.$vapaasana);
   $pdf->Ln(15);
   }
 }
