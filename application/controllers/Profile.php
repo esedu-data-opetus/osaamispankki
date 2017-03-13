@@ -15,29 +15,17 @@ class Profile extends CI_Controller {
   public function index() {
     $user_id = $this->session->userdata('user_id');
     $Sposti = $this->session->userdata('sposti');
-
     $data['Palautteet'] = $this->Palaute_model->hae_palaute();
-
     $data['meta_tieto'] = $this->Profile_model->get_meta($user_id);
-
     $data['harrastus'] = $this->Profile_model->Get_harrastus($user_id);
-
     $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($user_id);
-
     $data['koulutus'] = $this->Profile_model->Get_koulutus($user_id);
-
     $data['kortit'] = $this->Profile_model->Get_kortit($user_id);
-
     $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
-
     $data['Prof_Settings'] = $this->Profile_model->get_settings($user_id);
-
     $data['User_Info'] = $this->Profile_model->get_user($user_id);
-
     $data['suosittelijat'] = $this->Profile_model->sousijat($Sposti);
-
     $data['suositeltu'] = $this->Profile_model->suositeltu($Sposti);
-
     $data['main_content'] = 'profile_page';
     $this->load->view('layouts/main',$data);
   }
@@ -355,13 +343,16 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('Sposti', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
+    $user_id = $this->session->userdata('user_id');
+    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
     $data['main_content'] = 'share';
     $this->load->view('layouts/main',$data);
   } else {
     $us_id = $this->session->userdata("user_id");
     $sposti = $this->session->userdata("sposti");
+    $username = $this->input->post('Lahettaja');
     $email = filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING);
-    if ($this->Profile_model->share($us_id, $email, $sposti)) {
+    if ($this->Profile_model->share($us_id, $email, $sposti, $username)) {
     $this->session->set_flashdata('success', 'Profiilin jakaminen onnistui!');
     redirect('profile/index');
   } else {

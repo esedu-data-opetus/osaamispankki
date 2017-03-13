@@ -6,7 +6,17 @@
 <div class="panel-body">
 <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php echo form_open('profile/share'); ?>
-  <p>
+  <?php
+  foreach($Prof_Info as $Prof) {
+    $Name = $Prof->F_Name." ".$Prof->L_Name;
+  }
+    $data = array(
+    'name'    =>  'Lahettaja',
+    'style'   =>  'display: none;',
+    'value'   =>   $Name,
+  );
+  ?>
+  <?php echo form_input($data); ?>
     <?php
       $data = array(
       'name'        => 'Sposti',
