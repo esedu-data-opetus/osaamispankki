@@ -9,7 +9,7 @@
         $U_Id = $user->id;
         $U_Sposti = $user->Sposti;
       }
-      echo "<a href= ".base_url()."users/new_password/".md5($U_Sposti)."/".$this->session->userdata('check_key').">Vaihda salasana</a>"
+      echo "<a href= ".base_url()."users/new_password/".md5($U_Sposti).">Vaihda salasana</a>"
     ?>
     <?php echo form_open('Profile/Settings/'.$U_Id.''); ?>
     <p>
