@@ -13,6 +13,8 @@ public function index() {
   $this->form_validation->set_rules('haku', 'Hakusana', 'trim');
 
   if ($this->form_validation->run() == FALSE) {
+    $hakusana =  $this->input->post('haku');
+    $data['all_users'] = $this->Haku_model->allUsers($hakusana);
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
   } else {
@@ -25,7 +27,6 @@ public function index() {
       'Metatieto' => $this->input->post('metatieto'),
     );
     $data['haku_tulokset'] = $this->Haku_model->haku($hakusana, $suodatin);
-
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
     }
@@ -46,18 +47,19 @@ public function index() {
       redirect('Haku');
     }
   }
-  public function haku_proto() {
-    $this->form_validation->set_rules('search', 'Search', 'trim');
-
-  if ($this->form_validation->run() == FALSE) {
-    $data['main_content'] = "haku_proto";
-    $this->load->view('layouts/main', $data);
-} else {
-    $search =  $this->input->post('search');
-    $query = $this->Haku_model->searchProto($search);
-    echo json_encode ($query);
-    $data['main_content'] = "haku_proto";
-    $this->load->view('layouts/main',$data);
-  }
-  }
+//   public function haku_proto() {
+//     $this->form_validation->set_rules('search', 'Search', 'trim');
+//
+//   if ($this->form_validation->run() == FALSE) {
+//     $data['main_content'] = "haku_proto";
+//     $this->load->view('layouts/main', $data);
+// } else {
+//     $search =  $this->input->post('search');
+//     $query = $this->Haku_model->searchProto($search);
+//     header('Content-Type: application/json');
+//     echo json_encode ($query);
+//     $data['main_content'] = "haku_proto";
+//     $this->load->view('layouts/main',$data);
+//   }
+//   }
 }

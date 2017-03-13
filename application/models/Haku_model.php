@@ -34,6 +34,16 @@ class Haku_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function allUsers() {
+    $this->db->select('*');
+    $this->db->from('profile');
+    $this->db->where('Näytä_Profiili', 'Kylla');
+    $this->db->order_by('L_Name', "asc");
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function User($user) {
     $this->db->select('*');
     $this->db->from('profile');

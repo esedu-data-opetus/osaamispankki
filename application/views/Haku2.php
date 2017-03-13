@@ -43,17 +43,21 @@ foreach($haku_tulokset as $haut) {
 }
 ?>
 <?php else : ?>
-	<?php if($this->session->userdata('KT') == 3) : ?>
-	<a style="text-decoration: none;" class="u_prof" href="#"><div class="panel panel-default u_prof">
-		<div class="panel-heading">
-		<h4>Etu- / Sukunimi</h4>
-		</div>
-			<div class="prof">
-				<div class="prof-info panel-body">
-				<img class="img-rounded prof-img img-thumbnail" src="<?php echo base_url(); ?>images/profiili/default.png" />
-					<p>esim.jotain@esedu.fi</p>
+<?php
+	foreach($all_users as $user) {
+		if($user->Näytä_Profiili == 'Kylla'){
+			echo '<a style="text-decoration: none;" class="u_prof" href="'.base_url().'Haku/User/'.$user->User_id.'/'.md5($user->Sposti).'"><div class="panel panel-default u_prof">
+				<div class="panel-heading">
+				<h4>'.$user->L_Name.' '. $user->F_Name.'</h4>
 				</div>
-		</div>
-	</div></a>
-	<?php endif ; ?>
+					<div class="prof">
+						<div class="prof-info panel-body">
+						<img class="img-rounded prof-img img-thumbnail" src="'.base_url().'images/profiili/'.$user->Prof_Pic.'" />
+							<p>'.$user->Sposti.'</p>
+						</div>
+				</div>
+			</div></a>';
+		}
+	}
+?>
 <?php endif ; ?>
