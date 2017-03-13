@@ -276,13 +276,7 @@ public function getUsername($sposti) {
 }
 
   public function share($us_id, $email, $sposti, $username) {
-    // $username = $data['uname'];
-    $this->db->select('F_Name', 'L_Name');
-    $this->db->from('profile');
-    $this->db->where('Sposti', $sposti);
-    $query = $this->db->get();
-
-    $message = "<p>".print_r($query)." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
+    $message = "<p>Käyttäjä ".$sposti." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
