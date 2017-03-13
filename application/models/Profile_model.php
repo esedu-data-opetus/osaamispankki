@@ -282,7 +282,7 @@ public function getUsername($sposti) {
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
     $this->email->subject("Käyttäjä jakoi profiilin.");
-    $this->email->message($message);
+    $this->email->message($username['F_Name']);
     if ($this->email->send()) {
       return true;
     } else {
