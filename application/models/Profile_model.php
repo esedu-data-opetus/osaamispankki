@@ -282,7 +282,7 @@ public function getUsername($sposti) {
     $this->db->where('Sposti', $sposti);
     $query = $this->db->get();
 
-    $message = "<p>".echo $query." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
+    $message = "<p>".print_r($query)." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
