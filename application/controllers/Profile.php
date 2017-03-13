@@ -344,12 +344,12 @@ class Profile extends CI_Controller {
   } else {
     $us_id = $this->session->userdata("user_id");
     $sposti = $this->session->userdata("sposti");
-    $username = $this->Profile_model->getUsername($sposti);
+    $userfname = $this->Profile_model->getUserfname($sposti);
     $data = array(
-      'uname' => $username
+      'ufname' => $userfname
     );
     $email = filter_var($this->input->post('Sposti'), FILTER_SANITIZE_STRING);
-    if ($this->Profile_model->share($us_id, $email, $sposti, $username)) {
+    if ($this->Profile_model->share($us_id, $email, $sposti, $userfname)) {
     $this->session->set_flashdata('success', 'Profiilin jakaminen onnistui!');
     redirect('profile/index');
   } else {
