@@ -270,7 +270,7 @@ class Profile_model extends CI_Model {
 public function getUsername($sposti) {
   $this->db->select('F_Name', 'L_Name');
   $this->db->from('profile');
-  $this->db->where('Sposti', $sposti)
+  $this->db->where('Sposti', $sposti);
   $query = $this->db->get();
   return $query->result();
 }
