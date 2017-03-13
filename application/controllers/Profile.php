@@ -42,6 +42,10 @@ class Profile extends CI_Controller {
     $this->load->view('layouts/main',$data);
   }
   public function pdf($user_id, $Sposti) {
+    $data['harrastus'] = $this->Profile_model->Get_harrastus($user_id);
+    $data['tyohistoria'] = $this->Profile_model->Get_tyohistoria($user_id);
+    $data['koulutus'] = $this->Profile_model->Get_koulutus($user_id);
+    $data['kortit'] = $this->Profile_model->Get_kortit($user_id);
     $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
 
     $this->load->view('PDF/index',$data);

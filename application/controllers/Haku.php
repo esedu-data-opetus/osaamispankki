@@ -40,7 +40,7 @@ public function index() {
       $data['main_content'] = "user";
       $this->load->view('layouts/main', $data);
     } else {
-      $this->session->set_flashdata('error', 'Käyttäjä on olemattomissa tai piilossa.');
+      $this->session->set_flashdata('error', 'Käyttäjä ei ole tai piilossa.');
       redirect('Haku');
     }
   }

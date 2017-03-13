@@ -67,8 +67,8 @@
 
     <?php if (isset($harrastus)) : ?>
       <?php foreach($harrastus as $hobby) : ?>
-        <?php if ($hobby->User_id == $user->id) : ?>
-        <?php $hobby_here = false; ?>
+        <?php if ($hobby->User_id == $this->uri->segment(3)) : ?>
+        <?php $hobby_here = true; ?>
       <?php endif; ?>
     <?php endforeach; ?>
     <?php if(isset($hobby_here)) : ?>
@@ -85,8 +85,8 @@
 
 <?php if (isset($tyohistoria)) : ?>
   <?php foreach($tyohistoria as $tyo) : ?>
-    <?php if ($tyo->User_id == $user->id) : ?>
-    <?php $tyo_here = false; ?>
+    <?php if ($tyo->User_id == $this->uri->segment(3)) : ?>
+    <?php $tyo_here = true; ?>
   <?php endif; ?>
 <?php endforeach; ?>
 <?php if(isset($tyo_here)) : ?>
@@ -106,8 +106,8 @@
 
 <?php if (isset($koulutus)) : ?>
   <?php foreach($koulutus as $koulu) : ?>
-    <?php if ($koulu->User_id == $user->id) : ?>
-    <?php $koulu_here = false; ?>
+    <?php if ($koulu->User_id == $this->uri->segment(3)) : ?>
+    <?php $koulu_here = true; ?>
   <?php endif; ?>
 <?php endforeach; ?>
 <?php if(isset($koulu_here)) : ?>
@@ -128,8 +128,8 @@
 
 <?php if (isset($kortit)) : ?>
   <?php foreach($kortit as $kortti) : ?>
-    <?php if ($kortti->User_id == $user->id) : ?>
-    <?php $kortti_here = false; ?>
+    <?php if ($kortti->User_id == $this->uri->segment(3)) : ?>
+    <?php $kortti_here = true; ?>
   <?php endif; ?>
 <?php endforeach; ?>
 <?php if(isset($kortti_here)) : ?>
