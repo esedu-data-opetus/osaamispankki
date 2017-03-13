@@ -50,9 +50,9 @@ class Haku_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
-  public function searchProto($search) {
-   $this->load->database();
-   $query = $this->db->query("SELECT * FROM profile where F_Name like '%$search%' ");
-   return $query->result();
- }
+ //  public function searchProto($search) {
+ //   $this->load->database();
+ //   $query = $this->db->query("SELECT * FROM profile where F_Name like '%$search%' ");
+ //   return $query->result();
+ // }
 }
