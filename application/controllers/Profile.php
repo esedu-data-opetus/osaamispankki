@@ -344,7 +344,7 @@ class Profile extends CI_Controller {
   } else {
     $us_id = $this->session->userdata("user_id");
     $sposti = $this->session->userdata("sposti");
-    $username = $this->Profile_model->getUsername();
+    $username = $this->Profile_model->getUsername($sposti);
     $data = array(
       'uname'=> $username
     );
