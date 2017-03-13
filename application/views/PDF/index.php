@@ -23,6 +23,7 @@ foreach($Prof_Info as $Prof) {
     "Posti_Num" =>  $Prof->Posti_Num,
     "Puh_Num"   =>  $Prof->Puh_Num,
     "About"     =>  $Prof->About,
+    "Kielitaito"     =>  $Prof->Kielitaito,
   );
 }
 
@@ -48,6 +49,10 @@ $pdf->Ln($ht);
 $Osoite = stripslashes($Profile['Osoite']);
 $Osoite = iconv('UTF-8', 'windows-1252', $Osoite);
 $pdf->Cell(0,10,'        Osoite:                 '.$Osoite);
+$pdf->Ln($ht);
+$Kielitaito = stripslashes($Profile['Kielitaito']);
+$Kielitaito = iconv('UTF-8', 'windows-1252', $Kielitaito);
+$pdf->Cell(0,10,'        Kielitaito:             '.$Kielitaito);
 
 $pdf->Ln($ht);
 $pdf->Cell(0,10,'        Postinumero:       '.$Profile['Posti_Num']);
