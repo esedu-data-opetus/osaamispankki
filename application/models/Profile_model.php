@@ -277,7 +277,8 @@ public function getUsername($sposti) {
 
   public function share($us_id, $email, $sposti, $username) {
     // $username = $data['uname'];
-    $message = "<p>".$username." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
+    foreach($username as $uname) {
+    $message = "<p>".$uname." jakoi profiilinsa. Profiiliin pääset <a href='".base_url()."Haku/User/".$us_id."/".md5($sposti)."' >tästä</a>!</p>";
     $this->load->library('email', array('mailtype'=>'html','protocol'=>'mail'));
     $this->email->from('osaamispankki@esedu.fi', 'Osaamispankki');
     $this->email->to($email);
@@ -288,5 +289,6 @@ public function getUsername($sposti) {
     } else {
       return false;
     }
+  }
   }
 }
