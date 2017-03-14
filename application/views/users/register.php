@@ -28,7 +28,7 @@
 	$data = array(
 		'name' => 'email',
 		'class'	 => 'form-control',
-		'placeholder' => '@esedulainen.fi',
+		'placeholder' => '@esedulainen.fi tai @esedu.fi',
 		'value'=> set_value('email')
 	);
 	?>
