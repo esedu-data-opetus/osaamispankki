@@ -3,7 +3,7 @@
 <h1>Salasanan palautus</h1><br>
 </div>
 <div class="panel-body">
-<p>Kirjoita kenttään <b>@esedulainen.fi</b> sähköpostitunnuksesi niin lähetämme sähköpostiisi salasanan palautuslinkin.</p>
+<p>Kirjoita kenttään <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnuksesi niin lähetämme sähköpostiisi salasanan palautuslinkin.</p>
 <?php echo form_open('users/forgot_password'); ?>
 <p>
 <?php
@@ -11,6 +11,7 @@
 		'name'        => 'email',
 		'placeholder' => '@esedulainen.fi',
 		'class' 			=> 'form-control',
+		'placeholder' => '@esedulainen.fi tai @esedu.fi',
 		'value'       => set_value('email')
 	);
 	?>

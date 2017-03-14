@@ -84,3 +84,20 @@ float: right;
 .u_prof:active {
     background-color: #BDBDBD;
 }
+
+.info-text {
+  visibility: hidden;
+  color: #000;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: arial;
+  margin-left: 10px;
+  width: 14px;
+  height: 16px;
+}
+
+.info:hover .info-text {
+  visibility: visible;
+}

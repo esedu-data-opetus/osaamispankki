@@ -12,17 +12,18 @@
 <?php else : ?>
 	<?php echo form_open('Users/register'); ?>
 <?php endif; ?>
+<p>Etunimi</p>
 <p>
 	<?php
 	$data = array(
 		'name' => 'name',
 		'class'	 => 'form-control',
-		'placeholder' => 'Etunimi',
 		'value'=> set_value('name')
 	);
 	?>
 	<?php echo form_input($data); ?>
 </p>
+<p>Sähköposti <span class="glyphicon glyphicon-question-sign info"><span class="info-text">Sähköpostiosoitteena sinun tulee käyttää <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnustasi.</span></span></p>
 <p>
 	<?php
 	$data = array(
@@ -34,23 +35,23 @@
 	?>
 	<?php echo form_input($data); ?>
 </p>
+<p>Salasana <span class="glyphicon glyphicon-question-sign info"><span class="info-text">Salasanan tulee olla vähintään <b>5 merkkiä</b> pitkä.</span></span></p>
 <p>
 	<?php
 	$data = array(
 		'name' => 'password',
 		'class'	 => 'form-control',
-		'placeholder' => 'Salasana',
 		'value'=> set_value('password')
 	);
 	?>
 	<?php echo form_password($data); ?>
 </p>
+<p>Salasanan vahvistus</p>
 <p>
 	<?php
 	$data = array(
 		'name' => 'confirmpassword',
 		'class'	 => 'form-control',
-		'placeholder' => 'Salasana uudestaan',
 		'value'=> set_value('confirmpassword')
 	);
 	?>
