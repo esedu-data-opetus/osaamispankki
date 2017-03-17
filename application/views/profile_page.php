@@ -81,14 +81,15 @@ if (isset($_GET['Prof_Edit'])) {
   $btn      = '<a style="float: right;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
 }
 ?>
-<?php if($this->session->userdata('KT') == 3) : ?>
-    <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
-<?php endif; ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
   <div class="Profile-Information">
     <div class="Prof-heading">
       <p>
         <b>Tili luotu: <?php echo $C_Day; ?></b>
+          <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
+          <?php if($this->session->userdata('KT') == 3) : ?>
+            <a class="btn btn-warning" style="float: right;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+          <?php endif; ?>
           <?php echo $btn; ?>
           <?php echo $Prof_hide; ?>
       </p>
