@@ -84,6 +84,10 @@ float: right;
     background-color: #BDBDBD;
 }
 
+.info {
+  cursor: pointer;
+}
+
 .info-text {
   visibility: hidden;
   color: #000;
@@ -93,8 +97,10 @@ float: right;
   font-size: 14px;
   font-family: arial;
   margin-left: 10px;
-  width: 14px;
-  height: 16px;
+  width: auto;
+  height: auto;
+  background-color: #fff;
+  position: absolute;
 }
 
 .info:hover + .info-text {
