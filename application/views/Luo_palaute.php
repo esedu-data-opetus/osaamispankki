@@ -15,6 +15,7 @@
       'placeholder' => 'Sähköposti',
       'class'       => 'form-control',
       'value'       => $this->session->userdata('sposti'),
+      'style'       => 'display: none',
 
     );
     ?>
