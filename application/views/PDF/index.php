@@ -3,9 +3,11 @@ require('fpdf.php');
 
 class PDF extends FPDF {
 function Header() {
-    // $this->SetFont('Arial','B',15);
-    // $this->Cell(30,10,'Henkilotiedot');
-    // $this->Ln();
+    $this->SetFont('Arial','i',10);
+    $this->Cell(0,10,'Osaajapankki');
+    $this->Ln(5);
+    $this->Cell(0,10,'Esedu');
+    $this->Ln();
 }
 
 function Footer() {
