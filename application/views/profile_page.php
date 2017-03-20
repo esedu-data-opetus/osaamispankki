@@ -42,9 +42,9 @@ $C_Day     = $User->Create_date;
 $etunimi   = $User->F_Name;
 $sukunimi  = $User->L_Name;
 if ($User->Näytä_Profiili == "Ei") {
-  $Prof_hide = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0;" href="'.base_url().'profile/hide/Kylla" class="btn btn-success" title="Näytä profiili hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; height: 34px;" href="'.base_url().'profile/hide/Kylla" class="btn btn-success" title="Näytä profiili hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 } else {
-  $Prof_hide = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0;" href="'.base_url().'profile/hide/Ei" class="btn btn-danger" title="Estä profiilin näkyminen hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
+  $Prof_hide = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; height: 34px;" href="'.base_url().'profile/hide/Ei" class="btn btn-danger" title="Estä profiilin näkyminen hakutuloksissa"><span class="glyphicon glyphicon-globe"></span></a>';
 }
 
 if (isset($_GET['Prof_Edit'])) {
@@ -57,7 +57,7 @@ if (isset($_GET['Prof_Edit'])) {
     $puh      = "<input class='form-control' name='puh' type='text' value='".$User->Puh_Num."'>";
     $kuvaus   = "<textarea class='form-control' name='about' type='text'>".$User->About."</textarea>";
     $kuva     = "<input class='form-control' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-    $btn      = '<input style="float: right;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
+    $btn      = '<input style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
@@ -67,7 +67,7 @@ if (isset($_GET['Prof_Edit'])) {
     $puh      = $User->Puh_Num;
     $kuvaus   = $User->About;
     $kuva     = "";
-    $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
+    $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
   }
 } else {
   $name     = $etunimi." ".$sukunimi;
@@ -78,7 +78,7 @@ if (isset($_GET['Prof_Edit'])) {
   $puh      = $User->Puh_Num;
   $kuvaus   = $User->About;
   $kuva     = "";
-  $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
+  $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
 }
 ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
@@ -86,9 +86,9 @@ if (isset($_GET['Prof_Edit'])) {
     <div class="Prof-heading">
       <p>
         <b>Tili luotu: <?php echo $C_Day; ?></b>
-          <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right; border-top-left-radius: 0; border-bottom-left-radius: 0;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
+          <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
           <?php if($this->session->userdata('KT') == 3) : ?>
-            <a class="btn btn-warning" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
+            <a class="btn btn-warning" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a>
           <?php endif; ?>
           <?php echo $btn; ?>
           <?php echo $Prof_hide; ?>
