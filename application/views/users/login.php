@@ -4,7 +4,7 @@
 </div>
 <div class="panel-body">
 <?php echo form_open('users/login'); ?>
-<p>Sähköposti <span class="glyphicon glyphicon-question-sign info"><span class="info-text">Kirjaudu sisään <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnuksellasi.</span></span></p>
+<div class="input-text">Sähköposti <span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Kirjaudu sisään <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnuksellasi.</span></div>
 <p>
 <?php
 	$data = array(

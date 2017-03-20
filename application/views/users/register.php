@@ -23,7 +23,7 @@
 	?>
 	<?php echo form_input($data); ?>
 </p>
-<p>Sähköposti <span class="glyphicon glyphicon-question-sign info"><span class="info-text">Sähköpostiosoitteena sinun tulee käyttää <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnustasi.</span></span></p>
+<div class="input-text">Sähköposti <span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Sähköpostiosoitteena sinun tulee käyttää <b>@esedulainen.fi</b> tai <b>@esedu.fi</b> sähköpostitunnustasi.</span></div>
 <p>
 	<?php
 	$data = array(
@@ -35,7 +35,7 @@
 	?>
 	<?php echo form_input($data); ?>
 </p>
-<p>Salasana <span class="glyphicon glyphicon-question-sign info"><span class="info-text">Salasanan tulee olla vähintään <b>5 merkkiä</b> pitkä.</span></span></p>
+<div class="input-text">Sähköposti <span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Salasanan tulee olla vähintään <b>5 merkkiä</b> pitkä.</span></div>
 <p>
 	<?php
 	$data = array(

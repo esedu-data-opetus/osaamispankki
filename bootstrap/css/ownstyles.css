@@ -46,7 +46,6 @@ float: right;
   padding: 0 0 0 50px;
 }
 
-/*top, right, bottom, left*/
 .plus {
   margin: -2px -2px 0 0;
 }
@@ -98,6 +97,10 @@ float: right;
   height: 16px;
 }
 
-.info:hover .info-text {
+.info:hover + .info-text {
   visibility: visible;
+}
+
+.input-text {
+  margin: 0 0 10 0;
 }
