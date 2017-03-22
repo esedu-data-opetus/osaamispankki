@@ -343,10 +343,7 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('Sposti', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
 
   if ($this->form_validation->run() == FALSE) {
-    $user_id = $this->session->userdata('user_id');
-    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
-    $data['main_content'] = 'share';
-    $this->load->view('layouts/main',$data);
+    redirect('Profile/index');
   } else {
     $us_id = $this->session->userdata("user_id");
     $sposti = $this->session->userdata("sposti");

@@ -89,57 +89,7 @@ if (isset($_GET['Prof_Edit'])) {
           <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
           <?php if($this->session->userdata('KT') == 3) : ?>
             <!-- <a class="btn btn-warning" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a> -->
-
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
-            <div id="jaa" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1>Profiilin jakaminen</h1>
-                  </div>
-                  <div class="modal-body">
-                    <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
-                    <?php echo form_open('profile/share'); ?>
-                      <?php
-                      foreach($Prof_Info as $Prof) {
-                        $Name = $Prof->F_Name." ".$Prof->L_Name;
-                      }
-                        $data = array(
-                        'name'    =>  'Lahettaja',
-                        'style'   =>  'display: none;',
-                        'value'   =>   $Name,
-                      );
-                      ?>
-                      <?php echo form_input($data); ?>
-                        <?php
-                          $data = array(
-                          'name'        =>  'Sposti',
-                          'placeholder' =>  'Sähköposti',
-                          'style'       =>  'width: 60%; display: inline;',
-                          'class'       =>  'form-control',
-                          'value'       =>  set_value('Sposti'),
-
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                      <?php
-                       $data = array(
-                                  'name'  =>  'submit',
-                                  'style' =>  'display: inline;',
-                                  'class' =>  'btn btn-success',
-                                  'value' =>  'Lähetä'
-                                 );
-                      ?>
-                      <?php echo form_submit($data); ?>
-                    <?php echo form_close(); ?>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           <?php endif; ?>
           <?php echo $btn; ?>
           <?php echo $Prof_hide; ?>
@@ -185,6 +135,54 @@ if (isset($_GET['Prof_Edit'])) {
     </div>
   </div>
 </form>
+<div id="jaa" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Profiilin jakaminen</h1>
+      </div>
+      <div class="modal-body">
+        <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
+        <?php echo form_open('profile/share'); ?>
+          <?php
+          foreach($Prof_Info as $Prof) {
+            $Name = $Prof->F_Name." ".$Prof->L_Name;
+          }
+            $data = array(
+            'name'    =>  'Lahettaja',
+            'style'   =>  'display: none;',
+            'value'   =>   $Name,
+          );
+          ?>
+          <?php echo form_input($data); ?>
+            <?php
+              $data = array(
+              'name'        =>  'Sposti',
+              'placeholder' =>  'Sähköposti',
+              'style'       =>  'width: 60%; display: inline;',
+              'class'       =>  'form-control',
+              'value'       =>  set_value('Sposti'),
+
+            );
+            ?>
+            <?php echo form_input($data); ?>
+          <?php
+           $data = array(
+                      'name'  =>  'submit',
+                      'style' =>  'display: inline;',
+                      'class' =>  'btn btn-success',
+                      'value' =>  'Lähetä'
+                     );
+          ?>
+          <?php echo form_submit($data); ?>
+        <?php echo form_close(); ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+      </div>
+    </div>
+  </div>
+</div>
 <?php endforeach; ?>
 
   <div class="Profile-Information">
