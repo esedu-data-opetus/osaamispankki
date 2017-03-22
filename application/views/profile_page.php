@@ -20,7 +20,7 @@ foreach($Prof_Info as $User) {
         <img style="float: right; max-width: 100px; max-height: 100px;" src="<?php echo base_url(); ?>/images/profiili/<?php echo $User->Prof_Pic; ?>" class="img-responsive img-thumbnail">
         <h1>Oma profiili</h1>
         <?php foreach($User_Info as $User_i) : ?>
-          <p>Tervetuloa <?php echo $User->F_Name; ?>!</p>
+          <p>Tervetuloa <?php echo $User_i->Name; ?>!</p>
         <?php endforeach; ?>
         <?php if (isset($_GET['Prof_Edit'])) {
           echo "<div style='float:right;'>";
@@ -78,7 +78,7 @@ if (isset($_GET['Prof_Edit'])) {
   $puh      = $User->Puh_Num;
   $kuvaus   = $User->About;
   $kuva     = "";
-  $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-edit"></a>';
+  $btn      = '<a style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="'.base_url().'profile/index?Prof_Edit='.$User->User_id.'" class="btn btn-primary" title="Muokkaa profiilia"><span class="glyphicon glyphicon-pencil"></a>';
 }
 ?>
 <form action="<?php echo base_url(); ?>profile/profile_update/<?php echo $User->User_id; ?>" enctype="multipart/form-data" method="post">
