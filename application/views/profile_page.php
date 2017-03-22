@@ -322,7 +322,7 @@ if (isset($_GET['Prof_Edit'])) {
       <?php endif; ?>
       <a href="<?php echo base_url(); ?>Profile?add_meta" class="btn btn-success" style="float: right; display: inline;"><span class="glyphicon glyphicon-plus"></span></a>
     <?php endif; ?>
-    <div class="input-text" style="text-align: center;"><h1 style="text-align: center; margin: 0; padding: 0; display: inline;">Metatieto </h1><span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Metatiedot ovat hakusanoja joilla profiilisi on helpommin löydettävissä esimerkiksi haussa.</span></div>
+    <div class="input-text" style="text-align: center;"><h1 style="text-align: center; margin: 0; padding: 0; display: inline;">Metatieto </h1></div>
     </div>
     <div class="panel-body">
       <?php if (isset($_GET['add_meta'])) : ?>
