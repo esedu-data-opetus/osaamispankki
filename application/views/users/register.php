@@ -35,7 +35,7 @@
 	?>
 	<?php echo form_input($data); ?>
 </p>
-<div class="input-text">Sähköposti <span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Salasanan tulee olla vähintään <b>5 merkkiä</b> pitkä.</span></div>
+<div class="input-text">Salasana <span class="glyphicon glyphicon-question-sign info"></span><span class="info-text">Salasanan tulee olla vähintään <b>5 merkkiä</b> pitkä.</span></div>
 <p>
 	<?php
 	$data = array(
