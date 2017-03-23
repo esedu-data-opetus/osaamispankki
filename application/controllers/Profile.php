@@ -91,8 +91,19 @@ class Profile extends CI_Controller {
     }
 }
   public function suos_del($spot) {
-    if($this->Profile_model->suos_del($spot)) {
-      $this->session->set_flashdata('success', 'Suosittelija poistettu.');
+    $query = $this->db->get('suosittelijat');
+    foreach($query->result() as $row) {
+        if($spot == $row->id) {
+          $id = $row->User_id;
+        }
+    }
+    if($this->session->userdata('id') == $id) {
+      if($this->Profile_model->suos_del($spot)) {
+        $this->session->set_flashdata('success', 'Suosittelija poistettu.');
+        redirect('Profile/index');
+      }
+    } else {
+      $this->session->set_flashdata('error', 'Älä edes yritä!');
       redirect('Profile/index');
     }
   }
