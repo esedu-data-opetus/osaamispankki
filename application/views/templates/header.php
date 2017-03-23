@@ -29,10 +29,11 @@
           <?php echo form_open('Haku'); ?>
           <p style="display: inline">
           <?php
-          	$data = array('name'        => 'haku',
-          								'class'				=> 'form-control',
-          								'style' 			=> 'width: 70%; height: 46px; display: inline; margin: 10 -5 10 10; border-top-right-radius: 0; border-bottom-right-radius: 0;',
-          								'value'       => set_value('email'),
+          	$data = array('name'        =>  'haku',
+          								'class'				=>  'form-control',
+                          'placeholder' =>  'Hae',
+          								'style' 			=>  'width: 70%; height: 46px; display: inline; margin: 10 -5 10 10; border-top-right-radius: 0; border-bottom-right-radius: 0;',
+          								'value'       =>  set_value('email'),
           							);
           	?>
           <?php echo form_input($data); ?>
