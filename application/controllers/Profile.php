@@ -97,7 +97,7 @@ class Profile extends CI_Controller {
           $id = $row->User_id;
         }
     }
-    if($this->session->userdata('id') == $id) {
+    if($this->session->userdata('user_id') == $id) {
       if($this->Profile_model->suos_del($spot)) {
         $this->session->set_flashdata('success', 'Suosittelija poistettu.');
         redirect('Profile/index');
