@@ -55,10 +55,8 @@ class Profile extends CI_Controller {
 		$this->form_validation->set_rules('puh_num', 'Puhelinnumero', 'required|trim|numeric|max_length[100]');
 
     if ($this->form_validation->run() == FALSE) {
-      if($this->Profile_model->profile_settings($User_id)) {
-        $this->session->set_flashdata('success', 'Tiedot asetettu!');
-        redirect('Profile/index');
-      }
+      $data['main_content'] = 'users/set_profile';
+      $this->load->view('layouts/main',$data);
     } else {
       $User_id = $this->session->userdata('user_id');
       if ($w == "b") {

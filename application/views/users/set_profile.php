@@ -34,7 +34,8 @@
 
 <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php if ($Prof_Info) : ?>
-<?php $Update = 'readonly'; ?>
+  <p>Serverillö oli joku vika ja tarvitsemme vahvistuksesi profiilin päivittämiseen!</p>
+<?php $Update = 'none'; ?>
 <?php else : ?>
   <?php $Update = ''; ?>
 <?php endif; ?>
@@ -62,7 +63,7 @@
     'class'       => 'form-control',
     'placeholder' => 'Henkilökohtainen sähköposti',
     'value'       =>  $Own_Email,
-    $Update    =>  $Update
+    'style'       =>  'display: '.$Update.';',
   );
   ?>
   <?php echo form_input($data); ?>
@@ -74,7 +75,7 @@
     'class'       =>  'form-control',
     'placeholder' =>  'Etunimi',
 		'value'       =>  $F_Name,
-    $Update    =>  $Update
+    'style'       =>  'display: '.$Update.';',
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -86,7 +87,7 @@
     'class'       =>  'form-control',
     'placeholder' =>  'Sukunimi',
 		'value'       =>  $L_Name,
-    $Update    =>  $Update
+    'style'       =>  'display: '.$Update.';',
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -98,7 +99,7 @@
     'class'       => 'form-control',
     'placeholder' => 'Osoite',
 		'value'       => $Osoite,
-    $Update    => $Update
+    'style'       => 'display: '.$Update.';',
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -110,7 +111,7 @@
     'class'       => 'form-control',
     'placeholder' => 'Postinumero',
 		'value'       => $Posti_Num,
-    $Update    => $Update
+    'style'       =>  'display: '.$Update.';',
 	);
 	?>
 	<?php echo form_input($data); ?>
@@ -122,7 +123,7 @@
     'class'       => 'form-control',
     'placeholder' => 'Puhelinnumero',
     'value'       =>  $Puh_Num,
-    $Update    =>  $Update
+    'style'       =>  'display: '.$Update.';',
   );
   ?>
   <?php echo form_input($data); ?>

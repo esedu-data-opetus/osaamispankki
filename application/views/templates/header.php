@@ -30,7 +30,7 @@
           <p style="display: inline">
           <?php
           	$data = array('name'        =>  'haku',
-          								'class'				=>  'form-control',
+          								'class'				=>  'form-control '. $disabled,
                           'placeholder' =>  'Hae',
           								'style' 			=>  'width: 70%; height: 46px; display: inline; margin: 10 -5 10 10; border-top-right-radius: 0; border-bottom-right-radius: 0;',
           								'value'       =>  set_value('email'),
@@ -38,7 +38,7 @@
           	?>
           <?php echo form_input($data); ?>
           </p>
-          <button class="btn btn-success btn-lg" style="height: 46px; margin: 8 10 10 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"><span class="glyphicon glyphicon-search"></span></button>
+          <button class="btn btn-success btn-lg <?php echo $disabled; ?>" style="height: 46px; margin: 8 10 10 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"><span class="glyphicon glyphicon-search"></span></button>
           <?php echo form_close(); ?>
           <!-- <a href="<?php echo base_url(); ?>Haku/haku_proto/" class="btn btn-success btn-lg" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-wrench"></span></a> -->
       </div></li>
