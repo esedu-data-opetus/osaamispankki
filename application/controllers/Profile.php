@@ -61,13 +61,13 @@ class Profile extends CI_Controller {
       $User_id = $this->session->userdata('user_id');
       if ($w == "b") {
         if ($this->Profile_model->profile_setup() && $this->Profile_model->profile_settings($User_id)) {
-          $this->Profile_model->Historiaa('Asetit perustietosi & asetukset');
+          $this->Profile_model->Historiaa('Perustietosi on asetettu!');
           $this->session->set_flashdata('success', 'Perustiedot asetettu!');
           redirect('profile/index');
         }
       } else if ($w == "p") {
         if ($this->Profile_model->profile_setup()) {
-          $this->Profile_model->Historiaa('Asetit perustietosi');
+          $this->Profile_model->Historiaa('Perustietosi on asetettu!');
           $this->session->set_flashdata('success', 'Perustiedot asetettu!');
           redirect('profile/index');
         }
