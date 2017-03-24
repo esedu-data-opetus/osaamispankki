@@ -40,7 +40,13 @@ class Haku_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
+  public function everyuser() {
+    $this->db->select('*');
+    $this->db->from('profile');
+    $query = $this->db->get();
+    return $query->result();
 
+  }
   public function User($user) {
     $this->db->select('*');
     $this->db->from('profile');

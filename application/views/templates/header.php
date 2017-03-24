@@ -46,6 +46,7 @@
         <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Loki"><span class="glyphicon glyphicon-backward"></span> Loki</a></li>
       <?php if ($this->session->userdata('KT') == 3) :?>
         <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute"><span class="glyphicon glyphicon-list-alt"></span> Palaute</a></li>
+        <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Home/Admin"><span class="glyphicon glyphicon-list"></span> Käyttäjät</a></li>
       <?php else : ?>
         <li><a class="btn btn-info btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Palaute/hae_palaute_user/<?php echo md5($this->session->userdata('sposti')); ?>"><span class="glyphicon glyphicon-list-alt"></span> Palautteesi</a></li>
       <?php endif; ?>
