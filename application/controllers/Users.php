@@ -64,9 +64,9 @@ public function Login() {
   // }
     //Hakee käyttäjän tyypin inputtiin laitetuilla tiedoilla
     if (!$this->User_model->User_type($username)) {
-      if(strpos($username, "esedulainen.fi")) {
+      if(strpos($username, "@esedulainen.fi")) {
         $KT = 0;
-      } elseif(strpos($username, "esedu.fi")) {
+      } elseif(strpos($username, "@esedu.fi")) {
         $KT = 2;
       } else {
         $KT = 1;
