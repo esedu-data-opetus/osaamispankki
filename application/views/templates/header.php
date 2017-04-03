@@ -15,6 +15,23 @@
       <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
 				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
+          <li><div class="btn-group">
+            <?php echo form_open('Haku'); ?>
+            <p style="display: inline">
+            <?php
+              $data = array('name'        =>  'haku',
+                            'class'				=>  'form-control '. $disabled,
+                            'placeholder' =>  'Hae',
+                            'style' 			=>  'width: 70%; height: 46px; display: inline; margin: 10 -5 10 10; border-top-right-radius: 0; border-bottom-right-radius: 0;',
+                            'value'       =>  set_value('email'),
+                          );
+              ?>
+            <?php echo form_input($data); ?>
+            </p>
+            <button class="btn btn-success btn-lg <?php echo $disabled; ?>" style="height: 46px; margin: 8 10 10 0; border-top-left-radius: 0; border-bottom-left-radius: 0;"><span class="glyphicon glyphicon-search"></span></button>
+            <?php echo form_close(); ?>
+            <!-- <a href="<?php echo base_url(); ?>Haku/haku_proto/" class="btn btn-success btn-lg" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-wrench"></span></a> -->
+        </div></li>
 			<?php else : ?>
         <?php if($this->session->userdata('KT') == 3) : ?>
         <li><div class="btn-group">

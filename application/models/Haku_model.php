@@ -32,6 +32,19 @@ class Haku_model extends CI_Model {
     return $query->result();
   }
 
+  public function haku2($value = '') {
+    $this->db->select('F_Name, L_Name, Prof_Pic, Sposti, Näytä_Profiili, profile.User_id');
+    $this->db->distinct();
+    $this->db->from('profile');
+    $this->db->where('profile.Näytä_Profiili', 'Kylla');
+    $this->db->like('profile.F_Name', $value);
+    $this->db->or_like('profile.L_Name', $value);
+    $this->db->or_like('profile.Sposti', $value);
+    $this->db->order_by('profile.L_Name', "asc");
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function allUsers() {
     $this->db->select('*');
     $this->db->from('profile');
@@ -40,6 +53,16 @@ class Haku_model extends CI_Model {
     $query = $this->db->get();
     return $query->result();
   }
+
+  public function allUsers2() {
+    $this->db->select('F_Name, L_Name, Prof_Pic, Sposti, Näytä_Profiili, profile.User_id');
+    $this->db->from('profile');
+    $this->db->where('Näytä_Profiili', 'Kylla');
+    $this->db->order_by('L_Name', "asc");
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   public function everyuser() {
     $this->db->select('*');
     $this->db->from('profile');

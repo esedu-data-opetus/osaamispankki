@@ -6,23 +6,35 @@ class Haku extends CI_Controller {
   }
 //Hakee profiilit, metatiedot ja kaikki kokemukset(Harrastukset, Työhistoria, Koulutukset ja Kortit)
 public function index() {
-  if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
-    $this->session->set_flashdata('error', 'Access Denied!');
-    redirect('home/index');
-  }
+  // if (!$this->session->userdata('is_logged_in') || $this->session->userdata('KT') == 0) {
+  //   $this->session->set_flashdata('error', 'Access Denied!');
+  //   redirect('home/index');
+  // }
   $this->form_validation->set_rules('haku', 'Hakusana', 'trim');
 
   if ($this->form_validation->run() == FALSE) {
     $hakusana =  $this->input->post('haku');
-    $data['all_users'] = $this->Haku_model->allUsers($hakusana);
+    if ($this->session->userdata('is_logged_in') !== true) {
+    $data['all_users'] = $this->Haku_model->allUsers2($hakusana);
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
   } else {
+    $data['all_users'] = $this->Haku_model->allUsers($hakusana);
+    $data['main_content'] = 'Haku2';
+    $this->load->view('layouts/main',$data);
+  }
+  } else {
     $hakusana =  $this->input->post('haku');
     if (!empty($hakusana)) {
+      if ($this->session->userdata('is_logged_in') !== true) {
+        $data['haku_tulokset'] = $this->Haku_model->haku2($hakusana);
+        $data['main_content'] = 'Haku2';
+        $this->load->view('layouts/main',$data);
+      } else {
         $data['haku_tulokset'] = $this->Haku_model->haku($hakusana);
         $data['main_content'] = 'Haku2';
         $this->load->view('layouts/main',$data);
+      }
       } else {
         redirect('Haku');
       }
