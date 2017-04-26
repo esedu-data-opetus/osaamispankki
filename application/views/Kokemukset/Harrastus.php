@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h1>Lisää Harrastus</h1>
+		<h1>Lisää harrastus</h1>
 	</div>
 <div class="panel-body>" style="padding: 20px 10px 0 10px;">
 	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
@@ -32,7 +32,7 @@
 $data = array(
 	'name'		=>  'Uusi',
 	'class'		=>	'btn btn-primary btn-lg',
-	'value'		=> 	'Lisää useampi Harrastus'
+	'value'		=> 	'Lisää useampi harrastus'
 );
 ?>
 <?php echo form_submit($data); ?>
@@ -42,7 +42,7 @@ $data = array(
 	$data = array(
 		'name' 		=> 		'submit',
 		'class' 	=> 		'btn btn-success btn-lg',
-		'value' 	=> 		'Lisää Harrastus'
+		'value' 	=> 		'Lisää harrastus'
 	);
 ?>
 <?php echo form_submit($data); ?>
