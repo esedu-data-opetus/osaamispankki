@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h1>Lisää Harrastus</h1>
+		<h1>Lisää harrastus</h1>
 	</div>
 <div class="panel-body>" style="padding: 20px 10px 0 10px;">
 	<?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
