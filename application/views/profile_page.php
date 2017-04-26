@@ -58,7 +58,7 @@ if (isset($_GET['Prof_Edit'])) {
     $kuvaus   = "<textarea class='form-control' name='about' type='text'>".$User->About."</textarea>";
     $kuva     = "<input class='form-control' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
     $btn      = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="submit" id="save_btn" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
-    $btn2     = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" onClick="window.location.replace('"paja.esedu.fi/op/profile"');" type="button" id="save_btn" class="btn btn-primary" value="Peruuta" title="Peruuta"/>';
+    $btn2     = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" onClick="window.location.replace('."paja.esedu.fi/op/profile".');" type="button" id="save_btn" class="btn btn-primary" value="Peruuta" title="Peruuta"/>';
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
