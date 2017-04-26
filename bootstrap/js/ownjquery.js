@@ -44,6 +44,7 @@ function validateDropdown() {
  });
 var main = function() {
   $('#save_btn').animate({width: "80px"}, 1000);
+  $('#back_btn').animate({width: "80px"}, 1000);
     $('#luo').click(function() {
         $('.counter').text('50');
         $('#luo').addClass('disabled');
