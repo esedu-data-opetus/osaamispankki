@@ -93,6 +93,7 @@ if (isset($_GET['Prof_Edit'])) {
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
           <?php endif; ?>
           <?php echo $btn; ?>
+          <?php echo $btn2; ?>
           <?php echo $Prof_hide; ?>
       </p>
     </div>
