@@ -68,7 +68,7 @@
 		$data = array(
 			'name'		=>  'Uusi',
 			'class'		=>	'btn btn-primary btn-lg',
-			'value'		=> 	'Lisää useampi Harrastus'
+			'value'		=> 	'Lisää useampi työhistoria'
 		);
 		?>
 		<?php echo form_submit($data); ?>
@@ -77,7 +77,7 @@
 	$data = array(
 		'name' 			=> 	'submit',
 		'class' 		=> 	'btn btn-success btn-lg',
-		'value' 		=> 	'Lisää Työhistoria'
+		'value' 		=> 	'Lisää työhistoria'
 	);
 ?>
 <?php echo form_submit($data); ?>
