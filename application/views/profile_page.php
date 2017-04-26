@@ -49,6 +49,7 @@ if ($User->Näytä_Profiili == "Ei") {
 
 if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
+    $url = 'paja.esedu.fi/op';
     $name     = "<input class='form-control' name='F_Name' type='text' placeholder='Etunimi' value='".$User->F_Name."'> <input class='form-control' name='L_Name' type='text' placeholder='Sukunimi' value='".$User->L_Name."'>";
     $s_posti  = "<input class='form-control' name='email' type='text' value='".$User->Own_Email."'>";
     $K_Taito  = '<input class="form-control" name="kielitaito" type="text" placeholder="Kirjoita mitä kieliä osaat" value='.$User->Kielitaito.'>';
@@ -57,8 +58,9 @@ if (isset($_GET['Prof_Edit'])) {
     $puh      = "<input class='form-control' name='puh' type='text' value='".$User->Puh_Num."'>";
     $kuvaus   = "<textarea class='form-control' name='about' type='text'>".$User->About."</textarea>";
     $kuva     = "<input class='form-control' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
-    $btn      = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="submit" id="save_btn" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>';
-    $btn2     = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" onClick="window.location.replace('."paja.esedu.fi/op/profile".');" type="button" id="save_btn" class="btn btn-primary" value="Peruuta" title="Peruuta"/>';
+    $btn      = '<input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="submit" id="save_btn" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset"/>
+    <input style="width: 0; float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" onClick="window.location.replace('$url');" type="button" id="save_btn" class="btn btn-primary" value="Peruuta" title="Peruuta"/>
+';
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
@@ -93,7 +95,6 @@ if (isset($_GET['Prof_Edit'])) {
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
           <?php endif; ?>
           <?php echo $btn; ?>
-          <?php echo $btn2; ?>
           <?php echo $Prof_hide; ?>
       </p>
     </div>
