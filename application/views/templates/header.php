@@ -15,6 +15,7 @@
       <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
 				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
+          <?php if($this->session->userdata('KT') == 3) : ?>
           <li><div class="btn-group">
             <?php echo form_open('Haku'); ?>
             <p style="display: inline">
@@ -32,6 +33,7 @@
             <?php echo form_close(); ?>
             <!-- <a href="<?php echo base_url(); ?>Haku/haku_proto/" class="btn btn-success btn-lg" style="padding: 15px 10px 15px 10px; margin: 10px 10px 10px 0;"><span class="glyphicon glyphicon-wrench"></span></a> -->
         </div></li>
+        <?php endif; ?>
 			<?php else : ?>
         <?php if($this->session->userdata('KT') == 3) : ?>
         <li><div class="btn-group">
