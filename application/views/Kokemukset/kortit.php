@@ -48,7 +48,7 @@
 	$data = array(
 		'name'		=>  'Uusi',
 		'class'		=>	'btn btn-primary btn-lg',
-		'value'		=> 	'Lisää useampi Harrastus'
+		'value'		=> 	'Lisää useampi kortti'
 	);
 	?>
 	<?php echo form_submit($data); ?>
