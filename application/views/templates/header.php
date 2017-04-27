@@ -15,7 +15,7 @@
       <?php if ($this->session->userdata('is_logged_in') !== 1) :?>
 				<li><a class="btn btn-primary btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Login">Kirjautuminen</a><li>
 				<li><a class="btn btn-success btn-lg <?php echo $disabled; ?>" style="color: white; margin: 10px;" href="<?php echo base_url(); ?>Users/Register">Luo tili</a><li>
-          <?php if($this->session->userdata('KT') == 3) : ?>
+          <?php if($this->session->userdata('Tälle on tarvetta') == True) : ?>
           <li><div class="btn-group">
             <?php echo form_open('Haku'); ?>
             <p style="display: inline">
