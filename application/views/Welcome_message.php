@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div class="page-header">
-<h3 class="text-muted">(Vanha viesti)</h3>
+<!-- <h3 class="text-muted">(Vanha viesti)</h3> -->
 <h2 >ETURIVIN TAITAJAT - Osaajapankki</h2>
 </div>
 <p>ETURIVIN TAITAJAT - Osaajapankki on Etelä-savon ammattiopiston (Esedu) ylläpitämä verkkopalvelu, jonka tarkoituksena on edistää opiskelijoiden työllistymistä.</p><br />
