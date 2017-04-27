@@ -88,10 +88,10 @@ if (isset($_GET['Prof_Edit'])) {
       <p>
         <b>Tili luotu: <?php echo $C_Day; ?></b>
           <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
-          <?php if($this->session->userdata('KT') == 3) : ?>
+          <!-- <?php if($this->session->userdata('KT') == 3) : ?> -->
             <!-- <a class="btn btn-warning" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a> -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
-          <?php endif; ?>
+          <!-- <?php endif; ?> -->
           <?php echo $btn; ?>
           <?php echo $Prof_hide; ?>
       </p>
