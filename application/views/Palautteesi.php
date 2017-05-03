@@ -18,9 +18,9 @@
   <table style="margin: 0; padding: 0;" class="table">
     <thead>
     <tr>
-      <th>SähköPosti</th>
+      <th>Sähköposti</th>
       <th>Aihe</th>
-      <th>palaute</th>
+      <th>Palaute</th>
       <th>Tila</th>
     </tr>
   </thead>
