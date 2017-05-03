@@ -172,8 +172,8 @@ class Profile extends CI_Controller {
   public function tyohistoria() {
     $this->form_validation->set_rules('tyopaikka', 'tyopaikka', 'trim|required');
     $this->form_validation->set_rules('tehtava', 'tehtava', 'trim|required');
-    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim');
+    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
 
     if ($this->form_validation->run() == FALSE) {
@@ -218,8 +218,8 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('koulutusnimi', 'koulutusnimi', 'trim|required');
     $this->form_validation->set_rules('koulutusaste', 'koulutusaste', 'trim|required');
     $this->form_validation->set_rules('oppilaitos', 'oppilaitos', 'trim|required');
-    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim|required');
+    $this->form_validation->set_rules('Aloitit', 'alkoi', 'trim');
+    $this->form_validation->set_rules('Lopetit', 'loppui', 'trim');
     $this->form_validation->set_rules('Vapaasana', 'vapaasana', 'trim');
 
     if ($this->form_validation->run() == FALSE) {
@@ -263,7 +263,7 @@ class Profile extends CI_Controller {
   //Hakee Korttien lisäys näkymän
   public function kortit() {
     $this->form_validation->set_rules('kortti', 'kortti', 'trim|required');
-    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim|required');
+    $this->form_validation->set_rules('Lopetit', 'Lopetit', 'trim');
     $this->form_validation->set_rules('vapaasana', 'vapaasana', 'trim');
     if ($this->form_validation->run() == FALSE) {
       $data['main_content'] = 'Kokemukset/kortit';
