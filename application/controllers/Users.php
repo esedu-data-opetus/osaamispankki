@@ -14,8 +14,8 @@ public function Register() {
   //Inputtien säännöt mitä niitten pitää noudattaa
   $this->form_validation->set_rules('name', 'Name', 'trim|required|max_length[50]|min_length[2]');
   $this->form_validation->set_rules('email', 'Email','trim|required|max_length[100]|min_length[5]|valid_email');
-  $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[5]');
-	$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'trim|required|max_length[50]|min_length[5]|matches[password]');
+  $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]|min_length[4]');
+	$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'trim|required|max_length[50]|min_length[4]|matches[password]');
   //Hakee register sivun jos inputit ei noudata sääntöjä
   if ($this->form_validation->run() == FALSE) {
     $data['main_content'] = 'users/register';
