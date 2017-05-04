@@ -102,7 +102,7 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
-      <b>Sähköposti:</b>
+      <b>Toinen sähköposti:</b>
       <?php echo $s_posti; ?>
     </p>
     <hr>
