@@ -74,11 +74,17 @@ class Profile extends CI_Controller {
       }
     }
   }
-  public function settings($User) {
-    $data['Prof_Info'] = $this->Profile_model->get_profile($User);
-
-    $data['main_content'] = "Settings";
-    $this->load->view('layouts/main', $data);
+  public function settings() {
+    if($this->session->userdata('KT') == 3) {
+      $User = $this->session->userdata('user_id');
+      $data['Prof_Info'] = $this->Profile_model->get_profile($User);
+      
+      $data['main_content'] = "Settings";
+      $this->load->view('layouts/main', $data);
+    } else {
+      $this->session->set_flashdata('error', 'Access Denied!');
+      redirect('home/index');
+    }
   }
   public function Ajax_Test() {
     $data['main_content'] = "Ajax_test";

@@ -216,8 +216,8 @@ if (isset($_GET['Prof_Edit'])) {
                   $btn_c = "default";
                 }
               ?>
-              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#1<?php echo str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija)); ?>"><?php echo $suosijat->Suosittelija; ?></button>
-              <div id="1<?php echo str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija)); ?>" class="modal fade" role="dialog">
+              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#1<?php echo str_replace(' ', '', str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija))); ?>"><?php echo $suosijat->Suosittelija; ?></button>
+              <div id="1<?php echo str_replace(' ', '', str_replace('.', '', str_replace('@', '', $suosijat->Suosittelija))); ?>" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -254,8 +254,8 @@ if (isset($_GET['Prof_Edit'])) {
                   $btn_c = "default";
                 }
               ?>
-              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#<?php echo str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu)); ?>"><?php echo $suosittu->Suositeltu; ?></button>
-              <div id="<?php echo str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu)); ?>" class="modal fade" role="dialog">
+              <button type="button" class="btn btn-<?php echo $btn_c ?>" data-toggle="modal" data-target="#<?php echo str_replace(' ', '', str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu))); ?>"><?php echo $suosittu->Suositeltu; ?></button>
+              <div id="<?php echo str_replace(' ', '', str_replace('.', '', str_replace('@', '', $suosittu->Suositeltu))); ?>" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
