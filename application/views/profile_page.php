@@ -25,7 +25,7 @@ foreach($Prof_Info as $User) {
         <?php if (isset($_GET['Prof_Edit'])) {
           echo "<div style='float:right;'>";
           echo form_open_multipart('Upload_controller/do_upload');
-          echo "<input style='margin-top:-100px;' onChange='check_user();' type='file' id='uploadBox' name='userfile' size='20' class=''/>";
+          echo "<input style='margin-top:-100px;' onChange='check_user();' type='file' id='uploadBox' name='userfile' size='20' class='' accept='image/*'/>";
           echo "<input style='margin-top:10px;' type='submit' id='nappi' name='submit' value='Lataa' class='btn btn-success' disabled/>";
           echo "</form>";
           echo "</div>";

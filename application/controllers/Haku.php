@@ -14,19 +14,19 @@ public function index() {
 
   if ($this->form_validation->run() == FALSE) {
     $hakusana =  $this->input->post('haku');
-    if ($this->session->userdata('is_logged_in') !== true) {
-    $data['all_users'] = $this->Haku_model->allUsers2($hakusana);
+    if ($this->session->userdata('is_logged_in') !== 1) {
+    $data['all_users'] = $this->Haku_model->allUsers2();
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
   } else {
-    $data['all_users'] = $this->Haku_model->allUsers($hakusana);
+    $data['all_users'] = $this->Haku_model->allUsers();
     $data['main_content'] = 'Haku2';
     $this->load->view('layouts/main',$data);
   }
   } else {
     $hakusana =  $this->input->post('haku');
     if (!empty($hakusana)) {
-      if ($this->session->userdata('is_logged_in') !== true) {
+      if ($this->session->userdata('is_logged_in') !== 1) {
         $data['haku_tulokset'] = $this->Haku_model->haku2($hakusana);
         $data['main_content'] = 'Haku2';
         $this->load->view('layouts/main',$data);

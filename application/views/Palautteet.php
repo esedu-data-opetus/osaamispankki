@@ -42,7 +42,7 @@ if ($Palaute->Tila == 1) {
     <td>
       <a class="btn btn-default" title="Luettu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/1/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-pushpin"></span></a>
       <a class="btn btn-success" title="Korjattu!" href="<?php echo base_url(); ?>Palaute/palaute_tila/2/<?php echo $Palaute->id; ?>"><span class="glyphicon glyphicon-ok"></span></a>
-      <a onclick="return confirm('Halutako Poistaa Palautteen?');" href="<?php echo base_url(); ?>Palaute/palaute_delete/<?php echo $Palaute->id; ?>" class="btn btn-danger" title="Hylätty!"><span class="glyphicon glyphicon-trash"></span></a>
+      <a onclick="return confirm('Halutako poistaa palautteen?');" href="<?php echo base_url(); ?>Palaute/palaute_delete/<?php echo $Palaute->id; ?>" class="btn btn-danger" title="Hylätty!"><span class="glyphicon glyphicon-trash"></span></a>
     </td>
   </tr>
 <?php endforeach; ?>

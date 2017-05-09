@@ -17,8 +17,8 @@ class User_model extends CI_Model {
             }
         }
         $from = $Email;
-        $esedulainen = "esedulainen.fi";
-        $esedu = "esedu.fi";
+        $esedulainen = "@esedulainen.fi";
+        $esedu = "@esedu.fi";
         $pos = strpos($from, $esedu);
         $pos2 = strpos($from, $esedulainen);
         if ($pos === false) {

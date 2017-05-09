@@ -38,7 +38,7 @@
   <?php echo form_close(); ?>
   <?php endif; ?>
 </div>
-<?php if($this->session->userdata('is_logged_in') !== true) : ?>
+<?php if($this->session->userdata('is_logged_in') !== 1) : ?>
   <div class="panel-body">
     <div class="Prof-body">
     <h3>
