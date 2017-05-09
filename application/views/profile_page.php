@@ -412,20 +412,23 @@ if (isset($_GET['Prof_Edit'])) {
           if ($_GET['EditHobby'] !== $hobby->id) {
             $Harrastus  =   $hobby->harrastus;
             $Mielipide  =   $hobby->vapaasana;
+            $back_btn   =   '';
             $Save       =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
           } else {
-            $Harrastus  =   '<input class="form-control" name="harrastus" type="text" value="'.$hobby->harrastus.'" />';
+            $Harrastus  =   '<input class="form-control" name="harrastus" type="text" autofocus value="'.$hobby->harrastus.'" />';
             $Mielipide  =   '<textarea class="form-control" name="vapaasana" type="text" value="'.$hobby->vapaasana.'">'.$hobby->vapaasana.'</textarea>';
+            $back_btn   =   '<a href="'.base_url().'Profile/Index" class="btn btn-primary">Peruuta</a>';
             $Save       =   '<input class="btn btn-primary" type="submit" value="Tallenna" title="Tallenna muutokset">';
           }
         } else {
           $Harrastus    =   $hobby->harrastus;
           $Mielipide    =   $hobby->vapaasana;
+          $back_btn     =   '';
           $Save         =   '<a href="'.base_url().'profile/index?EditHobby='.$hobby->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
         }
       ?>
       <form action="<?php echo base_url(); ?>profile/harrastus_update/<?php echo $hobby->id; ?>" enctype="multipart/form-data" method="post">
-        <h3>Asetukset: </h3><?php echo $Save; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
+        <h3>Asetukset: </h3><?php echo $Save; echo $back_btn; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa harrastuksen <?php echo $hobby->harrastus; ?>?');" href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/harrastus_delete/<?php echo $hobby->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
         <br><h3>Harrastus: </h3><?php echo $Harrastus; ?>
         <br><h3>Kuvaus: </h3><br><span style="max-width: 350px; hover: overflow: auto;"><?php echo $Mielipide; ?></span>
       </form>
@@ -465,13 +468,15 @@ if (isset($_GET['Prof_Edit'])) {
             $Alkoi      =   $work_h->alkoi;
             $Loppui     =   $work_h->loppui;
             $Kuvaus     =   $work_h->kuvaus;
+            $back_btn   =   '';
             $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
           } else {
-            $Työpaikka  =   '<input class="form-control" name="tyopaikka" type="text" value="'.$work_h->tyopaikka.'" />';
+            $Työpaikka  =   '<input class="form-control" name="tyopaikka" type="text" autofocus value="'.$work_h->tyopaikka.'" />';
             $Tehtävä    =   '<input class="form-control" name="tehtava" type="text" value="'.$work_h->tehtava.'" />';
             $Alkoi      =   '<input class="form-control" id="alkoi" name="Aloitit" type="text" value="'.$work_h->alkoi.'" />';
             $Loppui     =   '<input class="form-control" id="loppui" name="Lopetit" type="text" value="'.$work_h->loppui.'" />';
             $Kuvaus     =   '<textarea class="form-control" name="vapaasana" type="text">'.$work_h->kuvaus.'</textarea>';
+            $back_btn   =   '<a href="'.base_url().'Profile/Index" class="btn btn-primary">Peruuta</a>';
             $Save       =   '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
           }
         } else {
@@ -480,11 +485,12 @@ if (isset($_GET['Prof_Edit'])) {
           $Alkoi      =   $work_h->alkoi;
           $Loppui     =   $work_h->loppui;
           $Kuvaus     =   $work_h->kuvaus;
+          $back_btn   =   '';
           $Save       =   '<a href="'.base_url().'profile/index?EditTyo='.$work_h->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
         }
       ?>
       <form action="<?php echo base_url(); ?>profile/tyohistoria_update/<?php echo $work_h->id; ?>" enctype="multipart/form-data" method="post">
-          <h3>Asetukset: </h3><?php echo $Save; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
+          <h3>Asetukset: </h3><?php echo $Save; echo $back_btn; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa työhistorian <?php echo $work_h->tyopaikka; ?>?');" href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/tyohistoria_delete/<?php echo $work_h->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
           <br><h3>Työpaikka: </h3><?php echo $Työpaikka; ?>
           <br><h3>Tehtävä: </h3><?php echo $Tehtävä; ?>
           <br><h3>Alkoi: </h3><?php echo $Alkoi; ?>
@@ -527,14 +533,16 @@ if (isset($_GET['Prof_Edit'])) {
             $Alkoi         =  $koulut->alkoi;
             $Loppui        =  $koulut->loppui;
             $K_vapaasana   =  $koulut->vapaasana;
+            $back_btn      =  '';
             $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
           } else {
-            $Koulutusnimi  =  '<input class="form-control" name="koulutusnimi" type="text" value="'.$koulut->koulutusnimi.'" />';
+            $Koulutusnimi  =  '<input class="form-control" name="koulutusnimi" type="text" autofocus value="'.$koulut->koulutusnimi.'" />';
             $Koulutusaste  =  '<input class="form-control" name="koulutusaste" type="text" value="'.$koulut->koulutusaste.'" />';
             $Oppilaitos    =  '<input class="form-control" name="oppilaitos" type="text" value="'.$koulut->oppilaitos.'" />';
             $Alkoi         =  '<input class="form-control" id="alkoi" name="alkoi" type="text" value="'.$koulut->alkoi.'" />';
             $Loppui        =  '<input class="form-control" id="loppui" name="loppui" type="text" value="'.$koulut->loppui.'" />';
             $K_vapaasana   =  '<input class="form-control" name="K_vapaasana" type="text" value="'.$koulut->vapaasana.'" />';
+            $back_btn      =  '<a href="'.base_url().'Profile/Index" class="btn btn-primary">Peruuta</a>';
             $Save          =  '<input type="submit" class="btn btn-primary" value="Tallenna" title="Tallenna muutokset">';
           }
         } else {
@@ -544,11 +552,12 @@ if (isset($_GET['Prof_Edit'])) {
           $Alkoi         =  $koulut->alkoi;
           $Loppui        =  $koulut->loppui;
           $K_vapaasana   =  $koulut->vapaasana;
+          $back_btn      =  '';
           $Save          =  '<a href="'.base_url().'profile/index?EditKoulutus='.$koulut->id.'" class="btn btn-primary" title="Muokkaa"><span class="glyphicon glyphicon-pencil"></span></a>';
         }
       ?>
       <form action="<?php echo base_url(); ?>profile/koulutus_update/<?php echo $koulut->id; ?>" enctype="multipart/form-data" method="post">
-        <h3>Asetukset: </h3><?php echo $Save; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
+        <h3>Asetukset: </h3><?php echo $Save; echo $back_btn; ?><?php if($Vahvistus == "Päällä") : ?><a onclick="return confirm('Haluatko poistaa koulutuksen <?php echo $koulut->koulutusnimi; ?>?');" href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php else : ?><a href="<?php echo base_url(); ?>profile/koulutus_delete/<?php echo $koulut->id; ?>" class="btn btn-danger" title="Poista"><span class="glyphicon glyphicon-trash"></span></a><?php endif; ?>
         <br><h3>Koulutusnimi: </h3><?php echo $Koulutusnimi; ?>
         <br><h3>Koulutusaste: </h3><?php echo $Koulutusaste; ?>
         <br><h3>Oppilaitos: </h3><?php echo $Oppilaitos; ?>
