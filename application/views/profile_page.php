@@ -101,7 +101,7 @@ if (isset($_GET['Prof_Edit'])) {
           }
           ?>
           <?php if(isset($missing)) : ?>
-            <a href="<?php echo base_url(); ?>Profile/emptyInputs" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-danger"><span class="glyphicon glyphicon-bell"></span></a>
+            <a title="Täydennä puuttuvat perustiedot." href="<?php echo base_url(); ?>Profile/emptyInputs" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-danger"><span class="glyphicon glyphicon-bell"></span></a>
           <?php endif; ?>
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
             <?php echo $btn; ?>
