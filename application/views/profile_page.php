@@ -67,7 +67,12 @@ if (isset($_GET['Prof_Edit'])) {
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
-    $Syntymäpäivä = $User->spv.'.'.$User->skk.'.'.$User->svs;
+    if (empty($User->skk)) {
+      $skk = "_";
+    } else {
+      $skk = $User->skk;
+    }
+    $Syntymäpäivä = $User->spv.'.'.$skk.'.'.$User->svs;
     $K_Taito  = $User->Kielitaito;
     $osoite   = $User->Osoite;
     $p_num    = $User->Posti_Num;
@@ -79,7 +84,12 @@ if (isset($_GET['Prof_Edit'])) {
 } else {
   $name     = $etunimi." ".$sukunimi;
   $s_posti  = $User->Own_Email;
-  $Syntymäpäivä = $User->spv.'.'.$User->skk.'.'.$User->svs;
+  if (empty($User->skk)) {
+    $skk = "_";
+  } else {
+    $skk = $User->skk;
+  }
+  $Syntymäpäivä = $User->spv.'.'.$skk.'.'.$User->svs;
   $osoite   = $User->Osoite;
   $K_Taito  = $User->Kielitaito;
   $p_num    = $User->Posti_Num;
