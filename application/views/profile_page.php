@@ -51,6 +51,11 @@ if (isset($_GET['Prof_Edit'])) {
   if ($_GET['Prof_Edit'] == $User->User_id) {
     $name     = "<input class='form-control' name='F_Name' type='text' placeholder='Etunimi' value='".$User->F_Name."'> <input class='form-control' name='L_Name' type='text' placeholder='Sukunimi' value='".$User->L_Name."'>";
     $s_posti  = "<input class='form-control' name='email' type='text' value='".$User->Own_Email."'>";
+    $Syntymäpäivä = '<br>
+      <input name="spv" class="form-control" type="number" value="'.$User->spv.'" placeholder="Päivä" style="display: inline; width: 30%;">
+      <input name="skk" class="form-control" type="number" value="'.$User->skk.'" placeholder="Kuukausi" style="display: inline; width: 30%;">
+      <input name="svs" class="form-control" type="number" value="'.$User->svs.'" placeholder="Vuosi" style="display: inline; width: 30%;">
+    ';
     $K_Taito  = '<input class="form-control" name="kielitaito" type="text" placeholder="Kirjoita mitä kieliä osaat" value='.$User->Kielitaito.'>';
     $osoite   = "<input class='form-control' name='address' type='text' value='".$User->Osoite."'>";
     $p_num    = "<input class='form-control' name='p_num' type='text' value='".$User->Posti_Num."'>";
@@ -62,6 +67,7 @@ if (isset($_GET['Prof_Edit'])) {
   } else {
     $name     = $etunimi." ".$sukunimi;
     $s_posti  = $User->Own_Email;
+    $Syntymäpäivä = $User->spv.'.'.$User->skk.'.'.$User->svs;
     $K_Taito  = $User->Kielitaito;
     $osoite   = $User->Osoite;
     $p_num    = $User->Posti_Num;
@@ -73,6 +79,7 @@ if (isset($_GET['Prof_Edit'])) {
 } else {
   $name     = $etunimi." ".$sukunimi;
   $s_posti  = $User->Own_Email;
+  $Syntymäpäivä = $User->spv.'.'.$User->skk.'.'.$User->svs;
   $osoite   = $User->Osoite;
   $K_Taito  = $User->Kielitaito;
   $p_num    = $User->Posti_Num;
@@ -88,10 +95,17 @@ if (isset($_GET['Prof_Edit'])) {
       <p>
         <b>Tili luotu: <?php echo $C_Day; ?></b>
           <a href="<?php echo base_url(); ?>Profile/PDF/<?php echo $User->User_id; ?>/<?php echo md5($User->Sposti); ?>" style="float: right; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
-            <!-- <a class="btn btn-warning" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" href="<?php echo base_url(); ?>profile/share"><span class="glyphicon glyphicon-share-alt" title="Jaa"></span></a> -->
+          <?php
+          if (empty($User->F_Name) || empty($User->L_Name) || empty($s_posti) || empty($User->spv) || empty($User->skk) || empty($User->svs) || empty($K_Taito) || empty($osoite) || empty($p_num) || empty($puh) || empty($kuvaus)) {
+            $missing = TRUE;
+          }
+          ?>
+          <?php if(isset($missing)) : ?>
+            <a href="<?php echo base_url(); ?>Profile/emptyInputs" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;" class="btn btn-danger"><span class="glyphicon glyphicon-bell"></span></a>
+          <?php endif; ?>
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#jaa" style="float: right; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; height: 34px;"><span class="glyphicon glyphicon-share-alt"></span></button>
-          <?php echo $btn; ?>
-          <?php echo $Prof_hide; ?>
+            <?php echo $btn; ?>
+            <?php echo $Prof_hide; ?>
       </p>
     </div>
     <hr>
@@ -107,13 +121,18 @@ if (isset($_GET['Prof_Edit'])) {
     </p>
     <hr>
     <p>
-      <b>Osoite:</b>
-      <?php echo $osoite; ?>
+      <b>Syntymäpäivä:</b>
+      <?php echo $Syntymäpäivä; ?>
     </p>
     <hr>
     <p>
       <b>Kielitaito:</b>
       <?php echo $K_Taito; ?>
+    </p>
+    <hr>
+    <p>
+      <b>Osoite:</b>
+      <?php echo $osoite; ?>
     </p>
     <hr>
     <p>

@@ -29,12 +29,21 @@
        $Posti_Num = set_value('posti_num');
        $Own_Email = set_value('own_email');
      }
+   } else {
+     $F_Name = "";
+     $L_Name = "";
+     $Osoite = "";
+     $Puh_Num = "";
+     $Posti_Num = "";
+     $Own_Email = "";
    }
 ?>
 
 <?php echo validation_errors('<b class="text-danger bg-danger">','</b><br>'); ?>
 <?php if ($Prof_Info) : ?>
-  <p>Serverillö oli joku vika ja tarvitsemme vahvistuksesi profiilin päivittämiseen!</p>
+  <p>Serverillö oli joku vika ja tarvitsemme vahvistuksesi!</p>
+  <p>Paina nappia niin saame korjattua asiat.</p>
+  <p>Jos asia ei korjaudu laita laita palautetta omalla @esedulainen.fi sähköpostillasi.</p>
 <?php $Update = 'none'; ?>
 <?php else : ?>
   <?php $Update = ''; ?>
@@ -54,6 +63,11 @@
   $btn_v = "Vahvista";
   echo form_open('profile/set_asetukset');
 ?>
+<?php else : ?>
+  <?php
+  $btn_v = "Virhe!";
+  echo form_open('profile/index');
+  ?>
 <?php endif; ?>
 
 <p>
@@ -91,6 +105,12 @@
 	);
 	?>
 	<?php echo form_input($data); ?>
+</p>
+<p style="display: <?php echo $Update; ?>;" class="text-muted">
+  Syntymäpäivä:<br>
+  <input name="spv" class="form-control" type="number" value="<?php echo set_value('spv'); ?>" placeholder="Päivä" style="display: inline; width: 30%;">
+  <input name="skk" class="form-control" type="number" value="<?php echo set_value('skk'); ?>" placeholder="Kuukausi" style="display: inline; width: 30%;">
+  <input name="svs" class="form-control" type="number" value="<?php echo set_value('svs'); ?>" placeholder="Vuosi" style="display: inline; width: 30%;">
 </p>
 <p>
 	<?php

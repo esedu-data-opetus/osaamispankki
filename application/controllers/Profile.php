@@ -50,6 +50,9 @@ class Profile extends CI_Controller {
     $this->form_validation->set_rules('own_email', 'Henkilökohtainen sähköpostiosoite', 'required|valid_email|max_length[100]');
 		$this->form_validation->set_rules('f_name', 'Etunimi', 'required|trim|max_length[100]');
 		$this->form_validation->set_rules('l_name', 'Sukunimi', 'required|trim|max_length[100]');
+    $this->form_validation->set_rules('spv', 'Syntymä Päivä', 'required|trim|max_length[2]');
+    $this->form_validation->set_rules('skk', 'Syntymä Kuukausi', 'required|trim|max_length[2]');
+    $this->form_validation->set_rules('svs', 'Syntymä Vuosi', 'required|trim|max_length[4]');
 		$this->form_validation->set_rules('osoite', 'Osoite', 'required|trim|max_length[100]');
 		$this->form_validation->set_rules('posti_num', 'Postinumero', 'required|trim');
 		$this->form_validation->set_rules('puh_num', 'Puhelinnumero', 'required|trim|numeric|max_length[100]');
@@ -78,13 +81,20 @@ class Profile extends CI_Controller {
     if($this->session->userdata('KT') == 3) {
       $User = $this->session->userdata('user_id');
       $data['Prof_Info'] = $this->Profile_model->get_profile($User);
-      
+
       $data['main_content'] = "Settings";
       $this->load->view('layouts/main', $data);
     } else {
       $this->session->set_flashdata('error', 'Access Denied!');
       redirect('home/index');
     }
+  }
+  public function emptyInputs() {
+    $user_id = $this->session->userdata('user_id');
+    $data['Prof_Info'] = $this->Profile_model->get_profile($user_id);
+
+    $data['main_content'] = "emptyInputs";
+    $this->load->view('layouts/main', $data);
   }
   public function Ajax_Test() {
     $data['main_content'] = "Ajax_test";
@@ -314,6 +324,9 @@ class Profile extends CI_Controller {
     $data = array(
       'F_Name'          =>    filter_var($this->input->post('F_Name'), FILTER_SANITIZE_STRING),
       'L_Name'          =>    filter_var($this->input->post('L_Name'), FILTER_SANITIZE_STRING),
+      'spv'             =>    filter_var($this->input->post('spv'), FILTER_SANITIZE_STRING),
+      'skk'             =>    filter_var($this->input->post('skk'), FILTER_SANITIZE_STRING),
+      'svs'             =>    filter_var($this->input->post('svs'), FILTER_SANITIZE_STRING),
       'Kielitaito'      =>    filter_var($this->input->post('kielitaito'), FILTER_SANITIZE_STRING),
       'Own_Email'       =>    filter_var($this->input->post('email'), FILTER_SANITIZE_STRING),
       'Osoite'          =>    filter_var($this->input->post('address'), FILTER_SANITIZE_STRING),
