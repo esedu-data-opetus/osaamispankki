@@ -46,6 +46,9 @@
     </h3>
       <p><?php echo $user->Sposti; ?></p>
     <h3>
+    </h3>
+      <p style="color:red;">Sinun täytyy kirjautua sisään nähdäksesi koko profiilin.</p>
+    <h3>
     </div>
   <?php else : ?>
     <div class="panel-body">
