@@ -37,7 +37,7 @@
 <p>
 	<select name="Aihe" id="select" onchange="validateDropdown();" class="form-control">
     <option disabled selected value="0">Valitse Aihe</option>
-    <option name="knimi" value="Negativinen">Negatiivinen</option>
+    <option name="knimi" value="Negatiivinen">Negatiivinen</option>
     <option name="knimi" value="Positiivinen">Positiivinen</option>
     <option name="knimi" value="Parantaa">Parantaa</option>
     <option name="knimi" value="Salsana">Salasana</option>
@@ -46,6 +46,7 @@
     <option name="knimi" value="Koulutus">Koulutus</option>
     <option name="knimi" value="Tyohistoria">Työhistoria</option>
     <option name="knimi" value="Harrastukset">Harrastukset</option>
+    <option name="knimi" value="Muu">Muu</option>
 	</select>
 </p>
 <p>
